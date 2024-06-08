@@ -1,4 +1,4 @@
-const BASE_URL = "https://astrowala-backend-deployed.onrender.com";
+const BASE_URL = "https://astrowala-backend-deployed.onrender.com/api/v1";
 
 // AUTH ENDPOINTS
 export const endpoints = {
