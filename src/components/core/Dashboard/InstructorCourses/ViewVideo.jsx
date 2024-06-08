@@ -10,8 +10,9 @@ function ViewVideo() {
   const [keyInfo, setKeyInfo] = useState(null);
   const [videoData, setVideoData] = useState(null);
 
-  const port = 5000;
-  const API = `http://localhost:${port}`;
+  // const port = 5000;
+  // const API = `http://localhost:${port}`;
+  const API = `https://astrowala-backend-deployed.onrender.com`
 
   useEffect(() => {
     console.log("Video ID from params:", videoId); // Debugging line
