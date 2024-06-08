@@ -4,7 +4,7 @@ import { videoEndpoints } from "../apis";
 
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'https://astrowala-backend-deployed.onrender.com/';
 
 const { UPLOAD_VIDEO_API } = videoEndpoints;
 
