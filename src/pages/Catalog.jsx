@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
 // import CourseCard from "../components/Catalog/CourseCard"
@@ -7,51 +7,54 @@ import Footer from "../components/common/Footer"
 import Course_Card from '../components/core/Catalog/Course_Card'
 import Course_Slider from "../components/core/Catalog/Course_Slider"
 import Loading from './../components/common/Loading';
-
 import { getCatalogPageData } from '../services/operations/pageAndComponentData'
-import { fetchCourseCategories } from './../services/operations/courseDetailsAPI';
+// import { fetchCourseCategories } from './../services/operations/courseDetailsAPI';
 
 
 
 
 function Catalog() {
 
-    const { catalogName } = useParams()
+    const { catID } = useParams()
     const [active, setActive] = useState(1)
     const [catalogPageData, setCatalogPageData] = useState(null)
-    const [categoryId, setCategoryId] = useState("")
+    // const [categoryId, setCategoryId] = useState("")
     const [loading, setLoading] = useState(false);
 
+
     // Fetch All Categories
-    useEffect(() => {
-        ; (async () => {
-            try {
-                const res = await fetchCourseCategories();
-                const category_id = res.filter(
-                    (ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName
-                )[0]._id
-                setCategoryId(category_id)
-            } catch (error) {
-                console.log("Could not fetch Categories.", error)
-            }
-        })()
-    }, [catalogName])
+    // useEffect(() => {
+    //     ; (async () => {
+    //         try {
+    //             const res = await fetchCourseCategories();
+    //             console.log(res)
+    //             const category_id = res[0]._id;
+    //             console.log(res)
+    //             setCategoryId(category_id)
+    //         } catch (error) {
+    //             console.log("Could not fetch Categories.", error)
+    //         }
+    //     })()
+    // }, [catID])
 
 
     useEffect(() => {
-        if (categoryId) {
-            ; (async () => {
-                setLoading(true)
+        console.log('Fetching catalog data for category ID:', catID);
+        if (catID) {
+            (async () => {
+                setLoading(true);
                 try {
-                    const res = await getCatalogPageData(categoryId)
-                    setCatalogPageData(res)
+                    const res = await getCatalogPageData(catID);
+                    setCatalogPageData(res);
+                    console.log('Fetched catalog data:', res);
                 } catch (error) {
-                    console.log(error)
+                    console.log('Error fetching catalog data:', error);
                 }
-                setLoading(false)
-            })()
+                setLoading(false);
+            })();
         }
-    }, [categoryId])
+    }, [catID]);
+    
 
     // console.log('======================================= ', catalogPageData)
     // console.log('categoryId ==================================== ', categoryId)
@@ -70,24 +73,22 @@ function Catalog() {
             </div>)
     }
 
-
-
     return (
         <>
             {/* Hero Section */}
             <div className=" box-content bg-richblack-800 px-4">
-                <div className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
+                <div className="mx-auto flex min-h-[260px] m-3 max-w-maxContentTab flex-col justify-center gap-5 lg:max-w-maxContent ">
                     <p className="text-sm text-richblack-300">
                         {`Home / Catalog / `}
                         <span className="text-yellow-25">
-                            {catalogPageData?.selectedCategory?.name}
+                            {catalogPageData?.selectedCategory?.category?.name}
                         </span>
                     </p>
                     <p className="text-3xl text-richblack-5">
-                        {catalogPageData?.selectedCategory?.name}
+                        {catalogPageData?.selectedCategory?.category?.name}
                     </p>
                     <p className="max-w-[870px] text-richblack-200">
-                        {catalogPageData?.selectedCategory?.description}
+                        {catalogPageData?.selectedCategory?.category?.description}
                     </p>
                 </div>
             </div>
@@ -103,7 +104,7 @@ function Catalog() {
                             } cursor-pointer`}
                         onClick={() => setActive(1)}
                     >
-                        Most Populer
+                        Most Popular
                     </p>
                     <p
                         className={`px-4 py-2 ${active === 2

@@ -3,7 +3,7 @@ import { Link, matchPath, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { NavbarLinks } from "../../../data/navbar-links"
-import GyanSrijanLogo from '../../assets/Logo/GyanSrijanLogo.png'
+import AstrowalaLogo from '../../assets/Logo/GyanSrijanLogo.png'
 import { fetchCourseCategories } from './../../services/operations/courseDetailsAPI';
 
 import ProfileDropDown from '../core/Auth/ProfileDropDown'
@@ -89,7 +89,7 @@ const Navbar = () => {
             <div className='flex w-11/12 max-w-maxContent items-center justify-between '>
                 {/* logo */}
                 <Link to="/">
-                <img src={GyanSrijanLogo} style={{ height: '80px', width: 'auto' }} loading='lazy' />
+                <img src={AstrowalaLogo} style={{ height: '80px', width: 'auto' }} loading='lazy' />
                 </Link>
 
                 {/* Nav Links - visible for only large devices*/}
@@ -118,7 +118,7 @@ const Navbar = () => {
                                                         <>
                                                             {subLinks?.map((subLink, i) => (
                                                                 <Link
-                                                                    to={`/catalog/${subLink.name
+                                                                    to={`/catalog/${subLink._id
                                                                         .split(" ")
                                                                         .join("-")
                                                                         .toLowerCase()}`}

@@ -93,7 +93,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
-        <Route path="catalog/:catalogName" element={<Catalog />} />
+        <Route path="catalog/:catID" element={<Catalog />} />
         <Route path="courses/:courseId" element={<CourseDetails />} />
 
         {/* Open Route - for Only Non Logged in User */}
