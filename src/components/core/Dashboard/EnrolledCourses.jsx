@@ -61,14 +61,14 @@ export default function EnrolledCourses() {
 
   return (
     <>
-      <div className="text-4xl text-richblack-5 font-boogaloo text-center sm:text-left">Enrolled Courses</div>
+      <div className="text-4xl text-richblack-5 font-semibold text-center sm:text-left">Enrolled Courses</div>
       {
         <div className="my-8 text-richblack-5">
           {/* Headings */}
           <div className="flex rounded-t-2xl bg-richblack-800 ">
             <p className="w-[45%] px-5 py-3">Course Name</p>
             <p className="w-1/4 px-2 py-3">Duration</p>
-            <p className="flex-1 px-2 py-3">Progress</p>
+            {/* <p className="flex-1 px-2 py-3">Progress</p> */}
           </div>
 
 
@@ -120,26 +120,26 @@ export default function EnrolledCourses() {
                   <div className="flex sm:w-2/5 flex-col gap-2 px-2 py-3">
                     {/* {console.log('Course ============== ', course.progressPercentage)} */}
 
-                    <p>Progress: {course.progressPercentage || 0}%</p>
+                    {/* <p>Progress: {course.progressPercentage || 0}%</p>
                     <ProgressBar
                       completed={course.progressPercentage || 0}
                       height="8px"
                       isLabelVisible={false}
-                    />
+                    /> */}
                   </div>
                 </div>
 
                 {/* only for larger devices */}
                 {/* duration -  progress */}
                 <div className="hidden w-1/5 sm:flex px-2 py-3">{course?.totalDuration}</div>
-                <div className="hidden sm:flex w-1/5 flex-col gap-2 px-2 py-3">
+                {/* <div className="hidden sm:flex w-1/5 flex-col gap-2 px-2 py-3">
                   <p>Progress: {course.progressPercentage || 0}%</p>
                   <ProgressBar
                     completed={course.progressPercentage || 0}
                     height="8px"
                     isLabelVisible={false}
                   />
-                </div>
+                </div> */}
               </div>
             ))
           }

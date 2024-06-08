@@ -42,7 +42,7 @@ export default function CourseInformationForm() {
       setValue("courseShortDesc", course.courseDescription);
       setValue("coursePrice", course.price);
       setValue("courseCategory", course.category._id); // Assuming course.category is an object with _id
-      setValue("courseImage", course.thumbnailPath);
+      setValue("courseImage", course.thumbnailUrl);
     }
   }, [course, editCourse, setValue]);
 
@@ -101,7 +101,7 @@ export default function CourseInformationForm() {
     formData.append("price", data.coursePrice);
     formData.append("category", data.courseCategory);
     formData.append("status", COURSE_STATUS.DRAFT);
-    formData.append("thumbnailImage", data.courseImage[0]);
+    formData.append("thumbnail", data.courseImage[0]);
     setLoading(true);
     const result = await addCourseDetails(formData, token);
     if (result) {

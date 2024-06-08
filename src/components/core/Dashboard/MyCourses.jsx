@@ -34,15 +34,15 @@ export default function MyCourses() {
   return (
     <div>
       <div className="mb-14 flex justify-between">
-        <h1 className="text-4xl font-medium text-richblack-5 font-boogaloo text-center lg:text-left">
+        <h1 className="text-4xl font-medium text-richblack-5 font-semibold text-center lg:text-left">
           My Courses
         </h1>
-        <IconBtn
+        {/* <IconBtn
           text="Add Course"
           onclick={() => navigate("/dashboard/add-course")}
         >
           <VscAdd />
-        </IconBtn>
+        </IconBtn> */}
       </div>
 
       {/* course Table */}

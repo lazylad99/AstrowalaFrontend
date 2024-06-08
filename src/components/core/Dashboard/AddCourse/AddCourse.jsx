@@ -4,8 +4,12 @@ import { toast } from "react-hot-toast";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import { MdNavigateNext } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
-import { addCourseDetails, editCourseDetails, fetchCourseCategories } from "../../../../services/operations/courseDetailsAPI";
+import { useNavigate } from "react-router-dom";
+import {
+  addCourseDetails,
+  editCourseDetails,
+  fetchCourseCategories,
+} from "../../../../services/operations/courseDetailsAPI";
 import { setCourse } from "../../../../slices/courseSlice";
 import { COURSE_STATUS } from "../../../../utils/constants";
 import IconBtn from "../../../common/IconBtn";
@@ -13,8 +17,13 @@ import Upload from "./Upload";
 import PublishCourse from "./PublishCourse/index";
 
 export default function AddCourse() {
-
-  const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,7 +31,7 @@ export default function AddCourse() {
   const { course, editCourse } = useSelector((state) => state.course);
   const [loading, setLoading] = useState(false);
   const [courseCategories, setCourseCategories] = useState([]);
-
+  console.log({ editCourse });
   useEffect(() => {
     const getCategories = async () => {
       setLoading(true);
@@ -87,26 +96,27 @@ export default function AddCourse() {
         setLoading(false);
         if (result) {
           dispatch(setCourse(result));
-          navigate('/dashboard/my-courses');
+          navigate("/dashboard/my-courses");
         }
       } else {
         toast.error("No changes made to the form");
       }
       return;
     }
-
+    console.log(data.courseImage);
     const formData = new FormData();
     formData.append("courseName", data.courseTitle);
     formData.append("courseDescription", data.courseShortDesc);
     formData.append("price", data.coursePrice);
     formData.append("category", data.courseCategory);
     formData.append("status", COURSE_STATUS.DRAFT);
-    formData.append("thumbnailImage", data.courseImage[0]);
+    formData.append("thumbnail", data.courseImage);
+
     setLoading(true);
     const result = await addCourseDetails(formData, token);
     if (result) {
       dispatch(setCourse(result));
-      navigate('/dashboard/my-courses');
+      navigate("/dashboard/my-courses");
     }
     setLoading(false);
   };
@@ -178,8 +188,11 @@ export default function AddCourse() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5" htmlFor="courseCategory        ">
-          Course Category 
+        <label
+          className="text-sm text-richblack-5"
+          htmlFor="courseCategory        "
+        >
+          Course Category
         </label>
         <select
           {...register("courseCategory", { required: true })}
@@ -213,7 +226,7 @@ export default function AddCourse() {
       <div className="flex justify-end gap-x-2">
         {editCourse && (
           <button
-            onClick={() => navigate('/dashboard/my-courses')}
+            onClick={() => navigate("/dashboard/my-courses")}
             disabled={loading}
             className={`flex cursor-pointer items-center gap-x-2 rounded-md py-[8px] px-[20px] font-semibold
               text-richblack-900 bg-richblack-300 hover:bg-richblack-900 hover:text-richblack-300 duration-300`}

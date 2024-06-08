@@ -69,6 +69,8 @@ export default function CoursesTable({
     field === "Published" ? course.status !== COURSE_STATUS.DRAFT : course.status === COURSE_STATUS.DRAFT
   );
 
+  console.log(filteredCourses)
+
   return (
     <>
       <div className="flex justify-between items-center mb-4">
@@ -117,7 +119,7 @@ export default function CoursesTable({
                 >
                   <Td className="flex flex-1 gap-x-4 relative">
                     <Img
-                      src={course?.thumbnail}
+                      src={course?.thumbnailUrl}
                       alt={course?.courseName}
                       className="h-[148px] min-w-[270px] max-w-[270px] rounded-lg object-cover"
                     />

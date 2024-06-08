@@ -17,10 +17,10 @@ export default function EditCourse() {
     const fetchFullCourseDetails = async () => {
       setLoading(true);
       const result = await getFullDetailsOfCourse(courseId, token);
-      // console.log('Data from edit course file = ', result)
-      if (result?.courseDetails) {
+      console.log("Data from edit course file = ", result);
+      if (result) {
         dispatch(setEditCourse(true));
-        dispatch(setCourse(result?.courseDetails));
+        dispatch(setCourse(result));
       }
       setLoading(false);
     };

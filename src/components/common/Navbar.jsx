@@ -89,7 +89,7 @@ const Navbar = () => {
             <div className='flex w-11/12 max-w-maxContent items-center justify-between '>
                 {/* logo */}
                 <Link to="/">
-                <img src={AstrowalaLogo} style={{ height: '80px', width: 'auto' }} loading='lazy' />
+                <img src={AstrowalaLogo} style={{ height: '60px', width: 'auto' }} loading='lazy' />
                 </Link>
 
                 {/* Nav Links - visible for only large devices*/}

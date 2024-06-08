@@ -216,8 +216,9 @@ const Home = () => {
                 </div>
               }
               subheading={
-                "Gyan Srijan offers a diverse selection of courses across various domains, including technology, business, arts, and personal development. Whether you're a beginner or an experienced professional, you'll find courses that meet your needs and help you achieve your goals."
+                "Astrowala offers a wide range of astrology courses designed to help you understand the mysteries of the cosmos. Whether you're new to astrology or an experienced practitioner, you'll find courses that cater to your needs and help you unlock your full potential."
               }
+              
               ctabtn1={{
                 btnText: "try it yourself",
                 linkto: "/signup",
@@ -232,7 +233,7 @@ const Home = () => {
               //   codeColor={"text-yellow-25"}
               //   backgroundGradient={"code-block1-grad"}
             />
-            <div className="explore-courses bg-gray-100 py-10">
+            {/* <div className="explore-courses bg-gray-100 py-10">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {categories.map((category, index) => (
                   <div
@@ -252,11 +253,11 @@ const Home = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Code block 2 */}
-          <div>
+          {/* <div>
             <CodeBlocks
               position={"lg:flex-row-reverse"}
               heading={
@@ -282,7 +283,7 @@ const Home = () => {
               codeblock={`import React from "react";\n import CTAButton from "./Button";\nimport TypeAnimation from "react-type";\nimport { FaArrowRight } from "react-icons/fa";\n\nconst Home = () => {\nreturn (\n<div>Home</div>\n)\n}\nexport default Home;`}
               backgroundGradient={"code-block2-grad"}
             />
-          </div>
+          </div> */}
         </div>
 
         <Footer />
