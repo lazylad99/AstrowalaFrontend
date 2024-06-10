@@ -18,6 +18,7 @@ import {
   toggleVideoPublishStatus,
 } from "../../../../services/operations/videoAPI";
 import IconBtn from "../../../common/IconBtn";
+import { GiReturnArrow } from "react-icons/gi";
 
 const deleteVideo = async ({ videoId }, token) => {
   return true;
@@ -99,6 +100,13 @@ const VideosList = () => {
 
   return (
     <>
+      <div
+        className="mb-5 lg:mt-10 lg:mb-0 z-[100]"
+        onClick={() => navigate(-1)}
+      >
+        <GiReturnArrow className="w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer" />
+      </div>
+
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-semibold text-richwhite-100">Videos</h1>
         <Tab tabData={tabData} field={filter} setField={setFilter} />

@@ -222,11 +222,7 @@ export default function CoursesTable({
                       <button
                         onClick={(event) => {
                           event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                          // Open the "Add Videos" page in a new tab
-                          window.open(
-                            `/dashboard/${course._id}/add-videos`,
-                            "_blank"
-                          );
+                          navigate(`/dashboard/${course._id}/add-videos`);
                         }}
                         className="z-40 m-4"
                       >

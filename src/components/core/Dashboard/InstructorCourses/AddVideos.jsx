@@ -57,7 +57,7 @@ export default function AddVideos() {
       console.error("Error uploading video:", error);
     } finally {
       setLoading(false);
-      navigate(`/dashboard/my-courses`);
+      navigate(`/dashboard/${courseId}/videos`);
     }
   };
 
