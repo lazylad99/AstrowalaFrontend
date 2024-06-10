@@ -73,13 +73,23 @@ body {
   }
 }
 
+input::placeholder {
+  color: #7ddfff;
+  /* Change this to your desired color */
+}
+
+/* Apply placeholder color to all textarea elements */
+textarea::placeholder {
+  color: #7ddfff;
+  /* Change this to your desired color */
+}
 
 .lable-style {
   @apply text-[14px] text-richwhite-5;
 }
 
 .form-style {
-  @apply rounded-lg bg-richwhite-700 p-3 text-[16px] leading-[24px] text-richwhite-5 shadow-[0_1px_0_0] shadow-white/30 placeholder:text-richwhite-400 focus:outline-none;
+  @apply rounded-lg bg-richwhite-700 p-3 text-[16px] leading-[24px] text-richwhite-5 shadow-[0_1px_0_0] shadow-white/30 placeholder:text-richblue-800 focus:outline-none;
 }
 
 .section_heading {

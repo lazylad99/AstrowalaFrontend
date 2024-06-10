@@ -165,7 +165,7 @@ const Navbar = () => {
             <Link to="/login">
               {/* <button className='border border-richwhite-700 bg-richwhite-800 px-[12px] py-[8px] text-richblue-100 rounded-md focus:outline-8 outlineyellow-50'> */}
               <button
-                className={` px-[12px] py-[8px] text-richblue-100 rounded-md 
+                className={` px-[12px] py-[8px] text-richblue-800 bg-yellow-50 font-semibold rounded-md 
                                  ${
                                    matchRoute("/login")
                                      ? "border-[2.5px] border-yellow-50"
@@ -180,7 +180,7 @@ const Navbar = () => {
             <Link to="/signup">
               {/* <button className='border border-richwhite-700 bg-richwhite-800 px-[12px] py-[8px] text-richblue-100 rounded-md'> */}
               <button
-                className={` px-[12px] py-[8px] text-richblue-100 rounded-md 
+                className={` px-[12px] py-[8px] text-richblue-800 bg-yellow-50 font-semibold rounded-md 
                                  ${
                                    matchRoute("/signup")
                                      ? "border-[2.5px] border-yellow-50"

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../../../services/formatDate";
 import {
-  deleteCourse,
+  // deleteCourse,
   fetchInstructorCourses,
   togglePublishStatus, // Import the new API function
 } from "../../../../services/operations/courseDetailsAPI";
@@ -27,7 +27,7 @@ export default function CoursesTable({
 }) {
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [confirmationModal, setConfirmationModal] = useState(null);
   const [field, setField] = useState("Published"); // State to toggle published/unpublished courses
@@ -38,25 +38,24 @@ export default function CoursesTable({
     { id: 2, type: "Drafted", tabName: "Drafted" },
   ];
 
-  const handleCourseDelete = async (courseId) => {
-    setLoading(true);
-    const toastId = toast.loading("Deleting...");
-    await deleteCourse({ courseId: courseId }, token);
-    const result = await fetchInstructorCourses(token);
-    if (result) {
-      setCourses(result);
-    }
-    setConfirmationModal(null);
-    setLoading(false);
-    toast.dismiss(toastId);
-  };
+  // const handleCourseDelete = async (courseId) => {
+  //   setLoading(true);
+  //   const toastId = toast.loading("Deleting...");
+  //   await deleteCourse({ courseId: courseId }, token);
+  //   const result = await fetchInstructorCourses(token);
+  //   if (result) {
+  //     setCourses(result);
+  //   }
+  //   setConfirmationModal(null);
+  //   setLoading(false);
+  //   toast.dismiss(toastId);
+  // };
 
   const toggleCoursePublishStatus = async (courseId) => {
     console.log(courseId);
     setLoading(true);
     const toastId = toast.loading("Updating status...");
     const result = await togglePublishStatus(courseId, token);
-    console.log("result", result);
     if (result.success) {
       toast.success(result.message);
       const updatedCourses = await fetchInstructorCourses(token);
@@ -192,21 +191,26 @@ export default function CoursesTable({
                       </button>
                       <button
                         disabled={loading}
+                        // onClick={(event) => {
+                        //   event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
+                        //   setConfirmationModal({
+                        //     text1: "Do you want to delete this course?",
+                        //     text2:
+                        //       "All the data related to this course will be deleted",
+                        //     btn1Text: !loading ? "Delete" : "Loading...",
+                        //     btn2Text: "Cancel",
+                        //     btn1Handler: !loading
+                        //       ? () => handleCourseDelete(course._id)
+                        //       : () => {},
+                        //     btn2Handler: !loading
+                        //       ? () => setConfirmationModal(null)
+                        //       : () => {},
+                        //   });
+                        // }}
+
                         onClick={(event) => {
                           event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                          setConfirmationModal({
-                            text1: "Do you want to delete this course?",
-                            text2:
-                              "All the data related to this course will be deleted",
-                            btn1Text: !loading ? "Delete" : "Loading...",
-                            btn2Text: "Cancel",
-                            btn1Handler: !loading
-                              ? () => handleCourseDelete(course._id)
-                              : () => {},
-                            btn2Handler: !loading
-                              ? () => setConfirmationModal(null)
-                              : () => {},
-                          });
+                          toggleCoursePublishStatus(course._id); // Call the function to toggle publish status
                         }}
                         title="Delete"
                         className="px-1 transition-all duration-200 hover:scale-110 hover:text-[#ff0000]"

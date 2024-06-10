@@ -2,9 +2,10 @@ import { toast } from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { videoEndpoints } from "../apis";
 import axios from 'axios';
+import { BASE_URL } from "../apis";
 
-// const API_BASE_URL = 'https://astrowala-backend-deployed.onrender.com';
-const API_BASE_URL = 'http://localhost:5000';
+// const BASE_URL = 'https://astrowala-backend-deployed.onrender.com';
+// const BASE_URL = 'http://localhost:5000';
 
 const { UPLOAD_VIDEO_API, VIDEO_TOGGLE_PUBLISH_API } = videoEndpoints;
 
@@ -42,7 +43,7 @@ export const uploadVideo = async (formData, token) => {
 
 export const fetchVideoData = async (videoId) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/api/v1/video/${videoId}`);
+    const response = await axios.get(`${BASE_URL}/video/${videoId}`);
     if (response?.data.success) {
       return response?.data.data;
     } else {
@@ -58,18 +59,18 @@ export const fetchVideoData = async (videoId) => {
 
 // ================ FETCHING KEY INFO ================
 
-export const fetchKeyInfo = async () => {
-  try {
-    const response = await axios.get(`${API_BASE_URL}/getKeyInfo`);
-    if (response?.data.success) {
-      return response?.data.data ; // Set the fetched video data in state
-    } else {
-      console.error("Error fetching video:", response?.data.message);
-    }
-  } catch (error) {
-    console.error("Error fetching video:", error);
-  }
-};
+// export const fetchKeyInfo = async () => {
+//   try {
+//     const response = await axios.get(`${BASE_URL}/getKeyInfo`);
+//     if (response?.data.success) {
+//       return response?.data.data ; // Set the fetched video data in state
+//     } else {
+//       console.error("Error fetching video:", response?.data.message);
+//     }
+//   } catch (error) {
+//     console.error("Error fetching video:", error);
+//   }
+// };
 
 
 
@@ -78,7 +79,7 @@ export const fetchKeyInfo = async () => {
 export const fetchCourseVideos = async (courseId, token) => {
  
   try {
-    const response = await axios.get(`${API_BASE_URL}/api/v1/video/all-videos/${courseId}`, {
+    const response = await axios.get(`${BASE_URL}/video/all-videos/${courseId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
