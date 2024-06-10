@@ -48,7 +48,7 @@ function CourseDetailsCard({ course, thumbnail, setConfirmationModal, handleBuyC
   };
 
   return (
-    <div className="flex flex-col gap-4 rounded-2xl bg-richblack-700 p-4 text-richblack-5">
+    <div className="flex flex-col gap-4 rounded-2xl bg-richwhite-700 p-4 text-richwhite-5">
       <Img
         src={thumbnail}
         alt={course?.courseName}
@@ -59,9 +59,9 @@ function CourseDetailsCard({ course, thumbnail, setConfirmationModal, handleBuyC
         <div className="space-x-3 pb-4 text-3xl font-semibold">
           Rs. {CurrentPrice}
         </div>
-       
+
         {/* Conditional rendering of buttons based on user's account type */}
-        {(user?.accountType === ACCOUNT_TYPE.STUDENT) ? (
+        {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
           <div className="flex flex-col gap-4">
             <button
               className="yellowButton outline-none"
@@ -76,22 +76,27 @@ function CourseDetailsCard({ course, thumbnail, setConfirmationModal, handleBuyC
                 : "Buy Now"}
             </button>
             {(!user || !course?.studentsEnrolled.includes(user?._id)) && (
-              <button onClick={handleAddToCart} className="blackButton outline-none">
+              <button
+                onClick={handleAddToCart}
+                className="blackButton outline-none"
+              >
                 Add to Cart
               </button>
             )}
           </div>
-        ) : (user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) ? (
+        ) : user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? (
           <div className="flex flex-col gap-4">
-            <button onClick={() => navigate("/dashboard/{_id}/videos")} className="yellowButton outline-none">
+            <button
+              onClick={() => navigate("/dashboard/{_id}/videos")}
+              className="yellowButton outline-none"
+            >
               Go to Videos
             </button>
           </div>
         ) : null}
 
         <div>
-          <div className="flex flex-col gap-3 text-sm text-caribbeangreen-100">
-          </div>
+          <div className="flex flex-col gap-3 text-sm text-caribbeangreen-100"></div>
         </div>
 
         <div className="text-center">

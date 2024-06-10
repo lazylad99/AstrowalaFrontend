@@ -114,10 +114,10 @@ export default function CourseInformationForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6 "
+      className="space-y-8 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-6 "
     >
       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5" htmlFor="courseTitle">
+        <label className="text-sm text-richwhite-5" htmlFor="courseTitle">
           Course Title <sup className="text-pink-200">*</sup>
         </label>
         <input
@@ -134,7 +134,7 @@ export default function CourseInformationForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5" htmlFor="courseShortDesc">
+        <label className="text-sm text-richwhite-5" htmlFor="courseShortDesc">
           Course Short Description <sup className="text-pink-200">*</sup>
         </label>
         <textarea
@@ -151,7 +151,7 @@ export default function CourseInformationForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5" htmlFor="coursePrice">
+        <label className="text-sm text-richwhite-5" htmlFor="coursePrice">
           Course Price <sup className="text-pink-200">*</sup>
         </label>
         <div className="relative">
@@ -168,7 +168,7 @@ export default function CourseInformationForm() {
             })}
             className="form-style w-full !pl-12"
           />
-          <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 inline-block -translate-y-1/2 text-2xl text-richblack-400" />
+          <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 inline-block -translate-y-1/2 text-2xl text-richwhite-400" />
         </div>
         {errors.coursePrice && (
           <span className="ml-2 text-xs tracking-wide text-pink-200">
@@ -178,8 +178,11 @@ export default function CourseInformationForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5" htmlFor="courseCategory        ">
-          Course Category 
+        <label
+          className="text-sm text-richwhite-5"
+          htmlFor="courseCategory        "
+        >
+          Course Category
         </label>
         <select
           {...register("courseCategory", { required: true })}
@@ -213,10 +216,10 @@ export default function CourseInformationForm() {
       <div className="flex justify-end gap-x-2">
         {editCourse && (
           <button
-            onClick={() => navigate('/dashboard/my-courses')}
+            onClick={() => navigate("/dashboard/my-courses")}
             disabled={loading}
             className={`flex cursor-pointer items-center gap-x-2 rounded-md py-[8px] px-[20px] font-semibold
-              text-richblack-900 bg-richblack-300 hover:bg-richblack-900 hover:text-richblack-300 duration-300`}
+              text-richwhite-900 bg-richwhite-300 hover:bg-richwhite-900 hover:text-richwhite-300 duration-300`}
           >
             Continue Without Saving
           </button>

@@ -21,19 +21,19 @@ function Course_Card({ course, Height }) {
   // console.log("count............", avgReviewCount)
 
   return (
-    <div className='hover:scale-[1.03] transition-all duration-200 z-50 '>
+    <div className="hover:scale-[1.03] transition-all duration-200 z-50 ">
       <Link to={`/courses/${course._id}`}>
         <div className="">
           <div className="rounded-lg">
             <Img
-              src={course?.thumbnail}
+              src={course?.thumbnailUrl}
               alt="course thumnail"
               className={`${Height} w-full rounded-xl object-cover `}
             />
           </div>
           <div className="flex flex-col gap-2 px-1 py-3">
-            <p className="text-xl text-richblack-5">{course?.courseName}</p>
-            <p className="text-sm text-richblack-50">
+            <p className="text-xl text-richwhite-5">{course?.courseName}</p>
+            <p className="text-sm text-richwhite-50">
               {course?.instructor?.firstName} {course?.instructor?.lastName}
             </p>
             <div className="flex items-center gap-2">
@@ -48,16 +48,16 @@ function Course_Card({ course, Height }) {
                 fullIcon={<FaStar />}
               /> */}
               <RatingStars Review_Count={avgReviewCount} />
-              <span className="text-richblack-400">
+              <span className="text-richwhite-400">
                 {course?.ratingAndReviews?.length} Ratings
               </span>
             </div>
-            <p className="text-xl text-richblack-5">Rs. {course?.price}</p>
+            <p className="text-xl text-richwhite-5">Rs. {course?.price}</p>
           </div>
         </div>
       </Link>
     </div>
-  )
+  );
 }
 
 export default Course_Card

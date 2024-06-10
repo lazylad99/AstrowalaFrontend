@@ -1,12 +1,15 @@
 import { toast } from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { videoEndpoints } from "../apis";
-
 import axios from 'axios';
 
-const API_BASE_URL = 'https://astrowala-backend-deployed.onrender.com';
+// const API_BASE_URL = 'https://astrowala-backend-deployed.onrender.com';
+const API_BASE_URL = 'http://localhost:5000';
 
-const { UPLOAD_VIDEO_API } = videoEndpoints;
+const { UPLOAD_VIDEO_API, VIDEO_TOGGLE_PUBLISH_API } = videoEndpoints;
+
+
+// ================ UPLOADING VIDEO ================
 
 export const uploadVideo = async (formData, token) => {
   const toastId = toast.loading("Uploading video...");
@@ -33,6 +36,10 @@ export const uploadVideo = async (formData, token) => {
   return result;
 };
 
+
+
+// ================ FETCHING VIDEO DATA ================
+
 export const fetchVideoData = async (videoId) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/api/v1/video/${videoId}`);
@@ -46,6 +53,10 @@ export const fetchVideoData = async (videoId) => {
     throw error;
   }
 };
+
+
+
+// ================ FETCHING KEY INFO ================
 
 export const fetchKeyInfo = async () => {
   try {
@@ -61,6 +72,9 @@ export const fetchKeyInfo = async () => {
 };
 
 
+
+// ================ FETCHING COURSE VIDEOS ================
+
 export const fetchCourseVideos = async (courseId, token) => {
  
   try {
@@ -73,5 +87,25 @@ export const fetchCourseVideos = async (courseId, token) => {
   } catch (error) {
     console.error("Error fetching course videos:", error);
     return [];
+  }
+};
+
+
+// ================= VIDEO TOGGLE PUBLISH =================================
+
+export const toggleVideoPublishStatus = async (videoId, token) => {
+  try {
+    const response = await apiConnector("PATCH", VIDEO_TOGGLE_PUBLISH_API.replace(':videoId', videoId), {}, {
+      Authorization: `Bearer ${token}`,
+    });
+    console.log("response", response);
+    if (response.data.success) {
+      console.log('Publish status toggled successfully:');
+    } else {
+      console.error('Failed to toggle publish status:');
+    }
+    return response.data;
+  } catch (error) {
+    console.error('Error:', error);
   }
 };

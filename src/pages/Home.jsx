@@ -147,20 +147,27 @@ const Home = () => {
     <React.Fragment>
       {/* background random image */}
       <div>
-        <div className="w-full h-[450px] md:h-[650px] absolute top-0 left-0 opacity-[0.3] overflow-hidden object-cover ">
-          <img
-            src={backgroundImg}
-            alt="Background"
-            className="w-full h-full object-cover "
-          />
+  <div
+    className="w-full h-[450px] md:h-[650px] absolute top-0 left-0  overflow-hidden object-cover"
+    style={{
+      textShadow: '0 0.05rem 0.1rem rgba(0, 0, 0, 0.5)',
+      boxShadow: 'inset 0 0 5rem rgba(0, 0, 0, 0.5)',
+    }}
+  >
+    <img
+      src={backgroundImg}
+      alt="Background"
+      className="w-full h-full object-cover"
+    />
 
-          <div className="absolute left-0 bottom-0 w-full h-[250px] opacity_layer_bg "></div>
-        </div>
-      </div>
+    <div className="absolute left-0 bottom-0 w-full h-[250px] opacity_layer_bg"></div>
+  </div>
+</div>
+
 
       <div className=" ">
         {/*Section1  */}
-        <div className="relative h-[450px] md:h-[550px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white ">
+        <div className="relative h-[450px] md:h-[550px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-richwhite-100 ">
           <motion.div
             variants={fadeIn("left", 0.1)}
             initial="hidden"
@@ -177,7 +184,7 @@ const Home = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className=" mt-4 w-[90%] text-center text-base lg:text-lg font-bold text-richblack-300"
+            className=" mt-4 w-[90%] text-center text-base lg:text-lg font-bold text-richwhite-500"
           >
             At Astrowala, we harness the celestial energies to empower your
             journey towards self-discovery and personal growth. Explore the
@@ -188,12 +195,12 @@ const Home = () => {
           <div className="flex flex-row gap-7 mt-8">
             <Link to={"/catalog/vedic-astrology"}>
               <div
-                className="z-0 group p-1 mx-auto rounded-full bg-yellow-50 font-bold text-richblack-900
-                                        transition-all duration-200 hover:scale-95 w-fit hover:text-white"
+                className="z-0 group p-1 mx-auto rounded-full bg-yellow-50 font-bold text-black
+                                        transition-all duration-200 hover:scale-95 w-fit"
               >
                 <div
                   className="flex flex-row items-center gap-2 rounded-full px-10 py-[5px]
-                              transition-all duration-200 group-hover:bg-richblack-900"
+                              transition-all duration-200 group-hover:bg-richwhite-100"
                 >
                   <p>Browse Courses</p>
                   <FaArrowRight />
@@ -211,14 +218,13 @@ const Home = () => {
               position={"lg:flex-col"}
               heading={
                 <div className="text-3xl lg:text-4xl font-semibold">
-                  Explore Our Courses
+                  Explore
                   <HighlightText text={"Our Courses "} />
                 </div>
               }
               subheading={
                 "Astrowala offers a wide range of astrology courses designed to help you understand the mysteries of the cosmos. Whether you're new to astrology or an experienced practitioner, you'll find courses that cater to your needs and help you unlock your full potential."
               }
-              
               ctabtn1={{
                 btnText: "try it yourself",
                 linkto: "/signup",

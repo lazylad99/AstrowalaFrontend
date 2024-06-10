@@ -53,8 +53,7 @@ export default function ChipInput({ label, name, placeholder, register, errors, 
   // Render the component
   return (
     <div className="flex flex-col space-y-2">
-
-      <label className="text-sm text-richblack-5" htmlFor={name}>
+      <label className="text-sm text-richwhite-5" htmlFor={name}>
         {label} <sup className="text-pink-200">*</sup>
       </label>
 
@@ -62,7 +61,7 @@ export default function ChipInput({ label, name, placeholder, register, errors, 
         {chips?.map((chip, index) => (
           <div
             key={index}
-            className="m-1 flex items-center rounded-full bg-yellow-400 px-2 py-1 text-sm text-richblack-5"
+            className="m-1 flex items-center rounded-full bg-yellow-400 px-2 py-1 text-sm text-richwhite-5"
           >
             {chip}
 
@@ -76,7 +75,6 @@ export default function ChipInput({ label, name, placeholder, register, errors, 
             </button>
           </div>
         ))}
-
 
         <input
           id={name}
@@ -93,5 +91,5 @@ export default function ChipInput({ label, name, placeholder, register, errors, 
         </span>
       )}
     </div>
-  )
+  );
 }

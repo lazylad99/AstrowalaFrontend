@@ -162,13 +162,15 @@ function CourseDetails() {
 
   return (
     <>
-      <div className={`relative w-full bg-richblack-800`}>
+      <div className={`relative w-full bg-richwhite-800`}>
         {/* Hero Section */}
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative ">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-cente py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
-
             {/* Go back button */}
-            <div className="mb-5 lg:mt-10 lg:mb-0 z-[100]" onClick={() => navigate(-1)}>
+            <div
+              className="mb-5 lg:mt-10 lg:mb-0 z-[100]"
+              onClick={() => navigate(-1)}
+            >
               <GiReturnArrow className="w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer" />
             </div>
 
@@ -183,32 +185,62 @@ function CourseDetails() {
             </div>
 
             {/* Course data */}
-            <div className={`mb-5 flex flex-col justify-center gap-4 py-5 text-lg text-richblack-5`}>
-              <p className="text-4xl font-bold text-richblack-5 sm:text-[42px]">{courseName}</p>
-              <p className='text-richblack-200'>{courseDescription}</p>
+            <div
+              className={`mb-5 flex flex-col justify-center gap-4 py-5 text-lg text-richwhite-5`}
+            >
+              <p className="text-4xl font-bold text-richwhite-5 sm:text-[42px]">
+                {courseName}
+              </p>
+              <p className="text-richwhite-200">{courseDescription}</p>
               <div className="text-md flex flex-wrap items-center gap-2">
                 <span className="text-yellow-25">{avgReviewCount}</span>
                 <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
-                <span>{`(${ratingAndReviews.length} reviews)`}</span>
+                {/* <span>{`(${ratingAndReviews.length} reviews)`}</span> */}
                 <span>{`${studentsEnrolled.length} students enrolled`}</span>
               </div>
-              <p className="capitalize"> Created By <span className="font-semibold underline">{instructor.firstName} {instructor.lastName}</span></p>
+              <p className="capitalize">
+                {" "}
+                Created By{" "}
+                <span className="font-semibold underline">
+                  {instructor.firstName} {instructor.lastName}
+                </span>
+              </p>
               <div className="flex flex-wrap gap-5 text-lg">
                 <p className="flex items-center gap-2">
                   {" "}
                   <BiInfoCircle /> Created at {formatDate(createdAt)}
                 </p>
-                <p className="flex items-center gap-2">{" "} <HiOutlineGlobeAlt /> English</p>
+                <p className="flex items-center gap-2">
+                  {" "}
+                  <HiOutlineGlobeAlt /> English
+                </p>
               </div>
             </div>
 
             {/* will appear only for small size */}
-            <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
-              <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">Rs. {price}</p>
-              <button className="yellowButton" onClick={handleBuyCourse}>Buy Now</button>
-              <button onClick={handleAddToCart} className="blackButton">Add to Cart</button>
-            </div>
+            {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
+            <div className="flex w-full flex-col gap-4 border-y border-y-richwhite-500 py-4 lg:hidden">
+              <p className="space-x-3 pb-4 text-3xl font-semibold text-richwhite-5">
+                Rs. {price}
+              </p>
+              <button className="yellowButton text-richblack-800" onClick={handleBuyCourse}>
+                Buy Now
+              </button>
+              <button onClick={handleAddToCart} className="blackButton">
+                Add to Cart
+              </button>
+            </div> ) : user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? (
+          <div className="flex flex-col gap-4">
+            <button
+              onClick={() => navigate("/dashboard/{_id}/videos")}
+              className="yellowButton outline-none"
+            >
+              Go to Videos
+            </button>
           </div>
+        ) : null}
+          </div>
+  
 
           {/* Floating Courses Card */}
           <div className="right-[1.5rem] top-[60px] mx-auto hidden lg:block lg:absolute min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0">
@@ -222,10 +254,10 @@ function CourseDetails() {
         </div>
       </div>
 
-      <div className="mx-auto box-content px-4 text-start text-richblack-5 lg:w-[1260px]">
+      <div className="mx-auto box-content px-4 text-start text-richwhite-5 lg:w-[1260px]">
         <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
           {/* What will you learn section */}
-          {/* <div className="my-8 border border-richblack-600 p-8">
+          {/* <div className="my-8 border border-richwhite-600 p-8">
             <p className="text-3xl font-semibold">What you'll learn</p>
             <div className="mt-3">
               {whatYouWillLearn && (
@@ -298,10 +330,15 @@ function CourseDetails() {
                   className="h-14 w-14 rounded-full object-cover"
                 />
                 <div>
-                  <p className="text-lg capitalize flex items-center gap-2 font-semibold">{`${instructor.firstName} ${instructor.lastName}`}
-                    <span><MdOutlineVerified className='w-5 h-5 text-[#00BFFF]' /></span>
+                  <p className="text-lg capitalize flex items-center gap-2 font-semibold">
+                    {`${instructor.firstName} ${instructor.lastName}`}
+                    <span>
+                      <MdOutlineVerified className="w-5 h-5 text-[#00BFFF]" />
+                    </span>
                   </p>
-                  <p className="text-richblack-50">{instructor?.additionalDetails?.about}</p>
+                  <p className="text-richwhite-50">
+                    {instructor?.additionalDetails?.about}
+                  </p>
                 </div>
               </div>
             </div>

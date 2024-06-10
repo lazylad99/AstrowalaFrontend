@@ -4,9 +4,9 @@ import Template from "../components/core/Auth/Template"
 function Signup() {
   return (
     <Template
-      title="Join the millions learning to code with StudyNotion for free"
-      description1="Build skills for today, tomorrow, and beyond."
-      description2="Education to future-proof your career."
+      title="Join the Astrowala Community and Unlock Your Cosmic Potential"
+      description1="Explore the ancient wisdom of astrology for a brighter future."
+      description2="Courses to guide your journey of self-discovery and personal growth."
       image={signupImg}
       formType="signup"
     />

@@ -60,7 +60,7 @@ export default function PublishCourse() {
   }
 
   return (
-    <div className=" bg-richblack-800 ">
+    <div className=" bg-richwhite-800 ">
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Checkbox */}
         <div className="my-6 mb-8">
@@ -69,14 +69,14 @@ export default function PublishCourse() {
               type="checkbox"
               id="public"
               {...register("public")}
-              className="border-gray-300 h-4 w-4 rounded bg-richblack-500 text-richblack-400 focus:ring-2 focus:ring-richblack-5"
+              className="border-gray-300 h-4 w-4 rounded bg-richwhite-500 text-richwhite-400 focus:ring-2 focus:ring-richwhite-5"
             />
-            <span className="ml-2 text-richblack-400">
+            <span className="ml-2 text-richwhite-400">
               Make this course as public
             </span>
           </label>
         </div>
       </form>
     </div>
-  )
+  );
 }

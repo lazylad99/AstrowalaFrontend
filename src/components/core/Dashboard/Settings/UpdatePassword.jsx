@@ -33,11 +33,11 @@ export default function UpdatePassword() {
   return (
     <>
       <form onSubmit={handleSubmit(submitPasswordForm)}>
-        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-6 sm:px-12">
-          <h2 className="text-lg font-semibold text-richblack-5">Password</h2>
+        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-8 px-6 sm:px-12">
+          <h2 className="text-lg font-semibold text-richwhite-5">Password</h2>
 
           <div className="flex flex-col gap-5 lg:flex-row">
-          {/* Current Password */}
+            {/* Current Password */}
             <div className="relative flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="oldPassword" className="lable-style">
                 Current Password
@@ -133,21 +133,21 @@ export default function UpdatePassword() {
                 </span>
               )}
             </div>
-
           </div>
         </div>
 
         <div className="flex justify-end gap-2">
           <button
-            onClick={() => { navigate("/dashboard/my-profile") }}
-            className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50"
+            onClick={() => {
+              navigate("/dashboard/my-profile");
+            }}
+            className="cursor-pointer rounded-md bg-richwhite-700 py-2 px-5 font-semibold text-richwhite-50"
           >
             Cancel
           </button>
           <IconBtn type="submit" text="Update" />
         </div>
-
       </form>
     </>
-  )
+  );
 }

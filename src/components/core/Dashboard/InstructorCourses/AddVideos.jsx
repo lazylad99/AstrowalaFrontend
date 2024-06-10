@@ -61,7 +61,7 @@
 
 //   return (
 //     <div className="container mx-auto mt-8">
-//       <div className="max-w-lg mx-auto bg-richblack-800 p-8 rounded-lg shadow-lg">
+//       <div className="max-w-lg mx-auto bg-richwhite-800 p-8 rounded-lg shadow-lg">
 //         <h2 className="text-2xl text-white font-semibold mb-4">Add Video</h2>
 //         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
 //           <Upload
@@ -117,8 +117,6 @@
 
 
 // New Code
-
-// AddVideos.jsx
 
 // AddVideos.jsx
 
@@ -180,7 +178,7 @@ export default function AddVideos() {
 
   return (
     <div className="container mx-auto mt-8">
-      <div className="max-w-lg mx-auto bg-richblack-800 p-8 rounded-lg shadow-lg">
+      <div className="max-w-lg mx-auto bg-richwhite-800 p-8 rounded-lg shadow-lg">
         <h2 className="text-2xl text-white font-semibold mb-4">Add Video</h2>
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           <Upload

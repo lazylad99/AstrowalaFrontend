@@ -13,6 +13,7 @@ const {
   GET_FULL_COURSE_DETAILS_AUTHENTICATED,
   CREATE_RATING_API,
   LECTURE_COMPLETION_API,
+  TOGGLE_PUBLISH_API
 } = courseEndpoints
 
 
@@ -260,3 +261,30 @@ export const createRating = async (data, token) => {
   toast.dismiss(toastId)
   return success
 }
+
+
+
+// ================= TOGGLE PUBLISH =================================
+export const togglePublishStatus = async (courseId, token) => {
+  try {
+    // const response = await fetch(`${courseEndpoints.TOGGLE_PUBLISH_API.replace(':courseId', courseId)}`, {
+    //   method: 'PATCH',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${yourAuthToken}`
+    //   }
+    // });
+    const response = await apiConnector("PATCH", TOGGLE_PUBLISH_API.replace(':courseId', courseId), {}, {
+      Authorization: `Bearer ${token}`,
+    })
+    console.log("response", response)
+    if (response.data.success) {
+      console.log('Publish status toggled successfully:');
+    } else {
+      console.error('Failed to toggle publish status:');
+    }
+    return response.data
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};

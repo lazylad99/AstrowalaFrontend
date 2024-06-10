@@ -10,9 +10,9 @@ function ViewVideo() {
   const [keyInfo, setKeyInfo] = useState(null);
   const [videoData, setVideoData] = useState(null);
 
-  // const port = 5000;
-  // const API = `http://localhost:${port}`;
-  const API = `https://astrowala-backend-deployed.onrender.com`
+  const port = 5000;
+  const API = `http://localhost:${port}`;
+  // const API = `https://astrowala-backend-deployed.onrender.com`
 
   useEffect(() => {
     console.log("Video ID from params:", videoId); // Debugging line
@@ -76,7 +76,7 @@ function ViewVideo() {
 
   return (
     <>
-      <div className="space-y-8 m-5 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6 ">
+      <div className="space-y-8 m-5 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-6 ">
         <div>
           <h1 className="text-2xl font-medium text-white">
             {videoData?.title}
@@ -92,7 +92,7 @@ function ViewVideo() {
           "Loading..."
         )}
 
-        <div className="font-medium text-richblack-100">
+        <div className="font-medium text-richwhite-100">
           <p>{videoData?.description}</p>
         </div>
       </div>

@@ -10,8 +10,8 @@ module.exports = {
       boogaloo: ['Boogaloo', "sans-serif"]
     },
     colors: {
-      white: "#fff",
-      black: "#000",
+      white: "#ffffff",
+      black: "#000000",
       transparent: "#ffffff00",
       richblack: {
         5: "#F1F2FF",
@@ -26,6 +26,20 @@ module.exports = {
         700: "#2C333F",
         800: "#161D29",
         900: "#000814",
+      },
+      richwhite: {
+        5: "#f0faff",  // Very light blue
+        25: "#d9f3ff", // Very light blue
+        50: "#c2ecff", // Light blue
+        100: "#ebffff", // Light blue
+        200: "#94e6ff", // Lighter blue
+        300: "#7ddfff", // Lighter blue
+        400: "#66d8ff", // Primary color shade
+        500: "#4fd1ff", // Primary color shade
+        600: "#41bcf4", // Slightly darker primary color
+        700: "#23a3ff", // Slightly darker blue
+        800: "#0194ff", // Even darker blue
+        900: "#0170b8", // Darker blue
       },
       richblue: {
         5: "#ECF5FF",

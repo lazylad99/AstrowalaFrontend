@@ -1,4 +1,5 @@
-const BASE_URL = "https://astrowala-backend-deployed.onrender.com/api/v1";
+// const BASE_URL = "https://astrowala-backend-deployed.onrender.com/api/v1";
+const BASE_URL = "http://localhost:5000/api/v1";
 
 // AUTH ENDPOINTS
 export const endpoints = {
@@ -33,6 +34,8 @@ export const courseEndpoints = {
   
   GET_ALL_INSTRUCTOR_COURSES_API: BASE_URL + "/course/getInstructorCourses",
   DELETE_COURSE_API: BASE_URL + "/course/deleteCourse",
+
+  TOGGLE_PUBLISH_API: BASE_URL + "/course/:courseId/toggle-publish",
   GET_FULL_COURSE_DETAILS_AUTHENTICATED: BASE_URL + "/course/getFullCourseDetails",
   LECTURE_COMPLETION_API: BASE_URL + "/course/updateCourseProgress",
   CREATE_RATING_API: BASE_URL + "/course/createRating",
@@ -41,6 +44,7 @@ export const courseEndpoints = {
 // VIDEOS ENDPOINTS
 export const videoEndpoints = {
   UPLOAD_VIDEO_API: BASE_URL + "/video/upload",
+  VIDEO_TOGGLE_PUBLISH_API: BASE_URL + "/video/:videoId/toggle-publish",
 }
 
 // RATINGS AND REVIEWS
