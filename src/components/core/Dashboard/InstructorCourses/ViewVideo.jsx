@@ -41,12 +41,11 @@ function ViewVideo() {
 
   return (
     <>
-      <div
-        className="mb-5 lg:mt-10 lg:mb-0 z-[100]"
+      <GiReturnArrow
+        className="mb-5 lg:mt-10 lg:mb-0 w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer"
         onClick={() => navigate(-1)}
-      >
-        <GiReturnArrow className="w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer" />
-      </div>
+      />
+
       <div className="space-y-8 m-5 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-6">
         <div>
           <h1 className="text-2xl font-medium text-white">

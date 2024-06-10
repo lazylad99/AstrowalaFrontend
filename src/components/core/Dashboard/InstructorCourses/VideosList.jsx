@@ -263,6 +263,7 @@ import {
 } from "../../../../services/operations/videoAPI";
 import IconBtn from "../../../common/IconBtn";
 import { ACCOUNT_TYPE } from "../../../../utils/constants";
+import { GiReturnArrow } from "react-icons/gi";
 
 const deleteVideo = async ({ videoId }, token) => {
   return true;
@@ -346,6 +347,11 @@ const VideosList = () => {
 
   return (
     <>
+      <GiReturnArrow
+        className="mb-5 lg:mt-10 lg:mb-0 w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer"
+        onClick={() => navigate(-1)}
+      />
+
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-semibold text-richwhite-100">Videos</h1>
 
@@ -401,7 +407,7 @@ const VideosList = () => {
                           src={video_bg}
                           className="h-[148px] min-w-[270px] max-w-[270px] m-2 mr-4 rounded-lg object-cover"
                         />
-                        <div className="flex flex-col w-full md:w-auto m-1 mt-4">
+                        <div className="flex flex-col w-full md:w-auto m-1 mt-2">
                           <p className="text-lg font-semibold text-richwhite-5 capitalize">
                             {video.title}
                           </p>
@@ -435,8 +441,8 @@ const VideosList = () => {
                                     <HiClock size={14} /> Drafted
                                   </p>
                                 ) : (
-                                  <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-yellow-100">
-                                    <p className="flex h-3 w-3 items-center justify-center rounded-full bg-yellow-100 text-richwhite-700">
+                                  <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-yellow-5">
+                                    <p className="flex h-3 w-3 items-center justify-center rounded-full bg-yellow-5 text-richwhite-700">
                                       <FaCheck size={8} />
                                     </p>{" "}
                                     Published
