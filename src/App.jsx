@@ -161,6 +161,14 @@ function App() {
                 path="dashboard/enrolled-courses"
                 element={<EnrolledCourses />}
               />
+              <Route
+                path="dashboard/:courseId/videos"
+                element={<VideosList />}
+              />
+              <Route
+                path="dashboard/view-video/:videoId"
+                element={<ViewVideo />}
+              />
             </>
           )}
 
@@ -201,7 +209,7 @@ function App() {
         >
           {user?.accountType === ACCOUNT_TYPE.STUDENT && (
             <Route
-              path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+              path="view-course/:courseId/:videoId/view-video"
               element={<VideoDetails />}
             />
           )}

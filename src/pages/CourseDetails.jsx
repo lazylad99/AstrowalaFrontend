@@ -219,28 +219,31 @@ function CourseDetails() {
 
             {/* will appear only for small size */}
             {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
-            <div className="flex w-full flex-col gap-4 border-y border-y-richwhite-500 py-4 lg:hidden">
-              <p className="space-x-3 pb-4 text-3xl font-semibold text-richwhite-5">
-                Rs. {price}
-              </p>
-              <button className="yellowButton text-richblack-800" onClick={handleBuyCourse}>
-                Buy Now
-              </button>
-              <button onClick={handleAddToCart} className="blackButton">
-                Add to Cart
-              </button>
-            </div> ) : user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? (
-          <div className="flex flex-col gap-4">
-            <button
+              <div className="flex w-full flex-col gap-4 border-y border-y-richwhite-500 py-4 lg:hidden">
+                <p className="space-x-3 pb-4 text-3xl font-semibold text-richwhite-5">
+                  Rs. {price}
+                </p>
+                <button
+                  className="yellowButton text-richblack-800"
+                  onClick={handleBuyCourse}
+                >
+                  Buy Now
+                </button>
+                <button onClick={handleAddToCart} className="blackButton">
+                  Add to Cart
+                </button>
+              </div>
+            ) : user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? (
+              <div className="flex flex-col gap-4">
+                {/* <button
               onClick={() => navigate("/dashboard/{_id}/videos")}
               className="yellowButton outline-none"
             >
               Go to Videos
-            </button>
+            </button> */}
+              </div>
+            ) : null}
           </div>
-        ) : null}
-          </div>
-  
 
           {/* Floating Courses Card */}
           <div className="right-[1.5rem] top-[60px] mx-auto hidden lg:block lg:absolute min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0">

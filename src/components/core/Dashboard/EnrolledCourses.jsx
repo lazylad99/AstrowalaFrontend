@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import ProgressBar from "@ramonak/react-progress-bar"
+// import ProgressBar from "@ramonak/react-progress-bar"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
@@ -93,16 +93,12 @@ export default function EnrolledCourses() {
             >
               <div
                 className="flex sm:w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
-                onClick={() => {
-                  navigate(
-                    `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`
-                  );
-                }}
-              >
+                onClick={() => navigate(`/dashboard/${course._id}/videos`)}
+                  >
                 <Img
-                  src={course.thumbnail}
+                  src={course.thumbnailUrl}
                   alt="course_img"
-                  className="h-14 w-14 rounded-lg object-cover"
+                  className="h-14 w-20 rounded-lg object-cover"
                 />
 
                 <div className="flex max-w-xs flex-col gap-2">

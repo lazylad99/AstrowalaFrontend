@@ -20,23 +20,23 @@ const QuickLinks = ["Home", "About", "Courses", "Contact Us"];
 const Footer = () => {
   return (
     <div className="bg-richwhite-700 mx-7 rounded-3xl mb-10">
-      <div className="flex lg:flex-row gap-8 items-center justify-between w-11/12 max-w-maxContent text-richblue-400 leading-6 mx-auto relative py-14">
+      <div className="flex lg:flex-row gap-8 items-center justify-between w-11/12 max-w-maxContent text-richwhite-100 leading-6 mx-auto relative py-14">
         <div className="border-b w-[100%] flex flex-col lg:flex-row pb-5 border-richwhite-700">
           {/* Section 1 */}
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richwhite-700 pl-3 lg:pr-5 gap-3">
             <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
-            <Link to="/" className="logo-container">
-          <img
-            src={AstroWalaLogo}
-            alt="Logo"
-            className="logo"
-            loading="lazy"
-            style={{
-              height: "60px",
-              width: "auto",
-            }}
-          />
-        </Link>
+              <Link to="/" className="logo-container">
+                <img
+                  src={AstroWalaLogo}
+                  alt="Logo"
+                  className="logo"
+                  loading="lazy"
+                  style={{
+                    height: "60px",
+                    width: "auto",
+                  }}
+                />
+              </Link>
               <h1 className="text-richblue-500  font-semibold text-[16px]">
                 Connect with Us
               </h1>
@@ -75,9 +75,9 @@ const Footer = () => {
                     key={index}
                     className="text-[14px] cursor-pointer hover:text-richblue-500  transition-all duration-200"
                   >
-                    <Link to={ele.toLowerCase().replace(/\s+/g, "-")}>
-                      {ele}
-                    </Link>
+                    {/* <Link to={ele.toLowerCase().replace(/\s+/g, "-")}> */}
+                    {ele}
+                    {/* </Link> */}
                   </div>
                 ))}
               </div>
