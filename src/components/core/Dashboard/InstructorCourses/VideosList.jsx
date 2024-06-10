@@ -413,11 +413,6 @@ const VideosList = () => {
                                   .slice(0, TRUNCATE_LENGTH)
                                   .join(" ") + "..."
                               : video.description}
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Rerum in quas esse vitae laudantium
-                            praesentium dignissimos cumque unde beatae soluta ea
-                            aperiam corrupti eos, perferendis tempore quia
-                            doloribus sunt officia.
                           </p>
 
                           {user &&

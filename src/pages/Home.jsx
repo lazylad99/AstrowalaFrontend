@@ -22,94 +22,86 @@ import { motion } from "framer-motion";
 import { fadeIn } from "./../components/common/motionFrameVarients";
 
 // background random images
-import backgroundImg1 from "../assets/Images/random bg img/img1.jpg";
-import backgroundImg2 from "../assets/Images/random bg img/img2.jpg";
-import backgroundImg3 from "../assets/Images/random bg img/coding bg3.jpg";
-import backgroundImg4 from "../assets/Images/random bg img/coding bg4.jpg";
-import backgroundImg5 from "../assets/Images/random bg img/coding bg5.jpg";
-import backgroundImg6 from "../assets/Images/random bg img/coding bg6.jpeg";
-import backgroundImg7 from "../assets/Images/random bg img/coding bg7.jpg";
-import backgroundImg8 from "../assets/Images/random bg img/coding bg8.jpeg";
-import backgroundImg9 from "../assets/Images/random bg img/coding bg9.jpg";
-import backgroundImg10 from "../assets/Images/random bg img/coding bg10.jpg";
-import backgroundImg111 from "../assets/Images/random bg img/coding bg11.jpg";
-import backgroundImg112 from "../assets/Images/random bg img/coding bg12.jpg";
-import backgroundImg113 from "../assets/Images/random bg img/coding bg13.jpg";
-import backgroundImg114 from "../assets/Images/random bg img/coding bg14.jpg";
-import backgroundImg115 from "../assets/Images/random bg img/coding bg15.jpg";
-import backgroundImg116 from "../assets/Images/random bg img/coding bg16.jpg";
-import backgroundImg117 from "../assets/Images/random bg img/coding bg17.jpg";
+import backgroundImg1 from "../assets/Images/astro_images/img.png";
+import backgroundImg2 from "../assets/Images/astro_images/img1.jpg";
+import backgroundImg3 from "../assets/Images/astro_images/img2.jpg";
+import backgroundImg4 from "../assets/Images/astro_images/img3.jpg";
+import backgroundImg5 from "../assets/Images/astro_images/img4.jpg";
+import backgroundImg6 from "../assets/Images/astro_images/img5.jpg";
+import backgroundImg7 from "../assets/Images/astro_images/vastu.jpg";
+// import backgroundImg8 from "../assets/Images/astro_images/img1.jpg";
 
-const categories = [
-  {
-    name: "Technology",
-    description:
-      "Dive into the world of technology with our comprehensive courses covering programming languages, software development, cloud computing, cybersecurity, and more.",
-    courses: [
-      "Web Development",
-      "Data Science",
-      "Mobile App Development",
-      "Cybersecurity",
-      "Cloud Computing",
-    ],
-  },
-  {
-    name: "Business & Finance",
-    description:
-      "Gain valuable skills in business management, finance, marketing, entrepreneurship, and project management to succeed in today's competitive business landscape.",
-    courses: [
-      "Business Administration",
-      "Financial Management",
-      "Marketing Strategies",
-      "Entrepreneurship",
-      "Project Management",
-    ],
-  },
-  {
-    name: "Creative Arts",
-    description:
-      "Unleash your creativity and explore your artistic talents with courses in photography, graphic design, video production, music production, and creative writing.",
-    courses: [
-      "Photography Basics",
-      "Graphic Design Fundamentals",
-      "Video Editing Mastery",
-      "Music Composition",
-      "Creative Writing Workshop",
-    ],
-  },
-  {
-    name: "Personal Development",
-    description:
-      "Invest in yourself and enhance your personal and professional growth with courses focused on communication skills, leadership development, time management, mindfulness, and goal setting.",
-    courses: [
-      "Effective Communication",
-      "Leadership Essentials",
-      "Time Management Techniques",
-      "Mindfulness Practices",
-      "Goal Setting Strategies",
-    ],
-  },
-  {
-    name: "Health & Wellness",
-    description:
-      "Take care of your mind and body with courses that promote physical and mental well-being, including yoga, nutrition, meditation, stress management, and holistic health.",
-    courses: [
-      "Yoga for Beginners",
-      "Nutrition Fundamentals",
-      "Meditation Practices",
-      "Stress Relief Techniques",
-      "Holistic Health & Healing",
-    ],
-  },
-];
+// const categories = [
+//   {
+//     name: "Technology",
+//     description:
+//       "Dive into the world of technology with our comprehensive courses covering programming languages, software development, cloud computing, cybersecurity, and more.",
+//     courses: [
+//       "Web Development",
+//       "Data Science",
+//       "Mobile App Development",
+//       "Cybersecurity",
+//       "Cloud Computing",
+//     ],
+//   },
+//   {
+//     name: "Business & Finance",
+//     description:
+//       "Gain valuable skills in business management, finance, marketing, entrepreneurship, and project management to succeed in today's competitive business landscape.",
+//     courses: [
+//       "Business Administration",
+//       "Financial Management",
+//       "Marketing Strategies",
+//       "Entrepreneurship",
+//       "Project Management",
+//     ],
+//   },
+//   {
+//     name: "Creative Arts",
+//     description:
+//       "Unleash your creativity and explore your artistic talents with courses in photography, graphic design, video production, music production, and creative writing.",
+//     courses: [
+//       "Photography Basics",
+//       "Graphic Design Fundamentals",
+//       "Video Editing Mastery",
+//       "Music Composition",
+//       "Creative Writing Workshop",
+//     ],
+//   },
+//   {
+//     name: "Personal Development",
+//     description:
+//       "Invest in yourself and enhance your personal and professional growth with courses focused on communication skills, leadership development, time management, mindfulness, and goal setting.",
+//     courses: [
+//       "Effective Communication",
+//       "Leadership Essentials",
+//       "Time Management Techniques",
+//       "Mindfulness Practices",
+//       "Goal Setting Strategies",
+//     ],
+//   },
+//   {
+//     name: "Health & Wellness",
+//     description:
+//       "Take care of your mind and body with courses that promote physical and mental well-being, including yoga, nutrition, meditation, stress management, and holistic health.",
+//     courses: [
+//       "Yoga for Beginners",
+//       "Nutrition Fundamentals",
+//       "Meditation Practices",
+//       "Stress Relief Techniques",
+//       "Holistic Health & Healing",
+//     ],
+//   },
+// ];
 
 const randomImges = [
   backgroundImg1,
   backgroundImg2,
-  // backgroundImg114,
-  //   backgroundImg115,
-  // backgroundImg116,
-  //   backgroundImg117,
+  backgroundImg3,
+  backgroundImg4,
+  backgroundImg5,
+  backgroundImg6,
+  backgroundImg7,
 ];
 
 // hardcoded
@@ -147,23 +139,26 @@ const Home = () => {
     <React.Fragment>
       {/* background random image */}
       <div>
-  <div
-    className="w-full h-[450px] md:h-[650px] absolute top-0 left-0  overflow-hidden object-cover"
-    style={{
-      textShadow: '0 0.05rem 0.1rem rgba(0, 0, 0, 0.5)',
-      boxShadow: 'inset 0 0 5rem rgba(0, 0, 0, 0.5)',
-    }}
-  >
-    <img
-      src={backgroundImg}
-      alt="Background"
-      className="w-full h-full object-cover"
-    />
+        <div
+          className="w-full h-[450px] md:h-[650px] absolute top-0 left-0 overflow-hidden object-cover"
+          style={{
+            boxShadow: "inset 0 0 5rem rgba(0, 0, 0, 1)", // Increased darkness
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)), url("${backgroundImg}")`, // Applying linear gradient and background image
+          }}
+        >
+          {/* No need to apply opacity to the image itself */}
+          <img
+            src={backgroundImg}
+            alt="Background"
+            className="w-full h-full object-cover darken-image"
+            style={{
+              filter: "brightness(0.5)", // Adjust the brightness value to darken the image
+            }}
+          />
 
-    <div className="absolute left-0 bottom-0 w-full h-[250px] opacity_layer_bg"></div>
-  </div>
-</div>
-
+          <div className="absolute left-0 bottom-0 w-full h-[250px] opacity_layer_bg"></div>
+        </div>
+      </div>
 
       <div className=" ">
         {/*Section1  */}
@@ -184,7 +179,7 @@ const Home = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className=" mt-4 w-[90%] text-center text-base lg:text-lg font-bold text-richwhite-500"
+            className=" mt-4 w-[90%] text-center text-base lg:text-lg font-bold text-richwhite-200"
           >
             At Astrowala, we harness the celestial energies to empower your
             journey towards self-discovery and personal growth. Explore the

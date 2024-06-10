@@ -149,11 +149,6 @@ export default function CoursesTable({
                               .slice(0, TRUNCATE_LENGTH)
                               .join(" ") + "..."
                           : course.courseDescription}
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Aspernatur dicta ratione, autem quia iusto aut
-                        voluptatem nihil illo minima harum vero iure at
-                        repudiandae sed deserunt alias! Cupiditate, et
-                        doloribus.
                       </p>
                       <p className="text-[12px] text-richwhite-100 mt-4">
                         Created: {formatDate(course?.createdAt)}
@@ -166,8 +161,8 @@ export default function CoursesTable({
                           <HiClock size={14} /> Drafted
                         </p>
                       ) : (
-                        <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-yellow-50">
-                          <p className="flex h-3 w-3 items-center justify-center rounded-full bg-yellow-50 text-richwhite-700">
+                        <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-yellow-5">
+                          <p className="flex h-3 w-3 items-center justify-center rounded-full bg-yellow-5 text-richwhite-700">
                             <FaCheck size={8} />
                           </p>{" "}
                           Published
