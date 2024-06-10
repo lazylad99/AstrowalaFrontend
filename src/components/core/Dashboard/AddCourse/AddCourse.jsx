@@ -264,7 +264,7 @@ import { setCourse } from "../../../../slices/courseSlice";
 // import { COURSE_STATUS } from "../../../../utils/constants";
 import IconBtn from "../../../common/IconBtn";
 import Upload from "./Upload";
-import PublishCourse from "./PublishCourse/index";
+// import PublishCourse from "./PublishCourse/index";
 
 export default function AddCourse() {
   const {
@@ -303,7 +303,7 @@ export default function AddCourse() {
       setValue("courseCategory", course.category._id); // Assuming course.category is an object with _id
       setValue("courseImage", course.thumbnailUrl);
 
-      console.log("CategoryId", course.category._id);
+      // console.log("CategoryId", course.category._id);
     }
   }, [course, editCourse, setValue]);
 

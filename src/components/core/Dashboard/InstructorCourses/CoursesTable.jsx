@@ -149,6 +149,11 @@ export default function CoursesTable({
                               .slice(0, TRUNCATE_LENGTH)
                               .join(" ") + "..."
                           : course.courseDescription}
+                        Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit. Aspernatur dicta ratione, autem quia iusto aut
+                        voluptatem nihil illo minima harum vero iure at
+                        repudiandae sed deserunt alias! Cupiditate, et
+                        doloribus.
                       </p>
                       <p className="text-[12px] text-richwhite-100 mt-4">
                         Created: {formatDate(course?.createdAt)}

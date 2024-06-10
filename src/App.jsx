@@ -39,6 +39,7 @@ import { HiArrowNarrowUp } from "react-icons/hi";
 import AddVideos from "./components/core/Dashboard/InstructorCourses/AddVideos";
 import VideosList from "./components/core/Dashboard/InstructorCourses/VideosList";
 import ViewVideo from "./components/core/Dashboard/InstructorCourses/ViewVideo";
+import EditVideo from "./components/core/Dashboard/InstructorCourses/EditVideo";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -194,6 +195,10 @@ function App() {
               <Route
                 path="dashboard/view-video/:videoId"
                 element={<ViewVideo />}
+              />
+              <Route
+                path="dashboard/edit-video/:videoId"
+                element={<EditVideo />}
               />
             </>
           )}

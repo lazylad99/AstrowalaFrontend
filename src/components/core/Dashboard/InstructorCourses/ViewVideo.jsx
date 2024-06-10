@@ -18,7 +18,7 @@ function ViewVideo() {
         if (videoId) {
           const videoData = await fetchVideoData(videoId);
           setVideoData(videoData);
-          console.log(videoData);
+          // console.log(videoData);
         } else {
           console.error("videoId is undefined");
         }

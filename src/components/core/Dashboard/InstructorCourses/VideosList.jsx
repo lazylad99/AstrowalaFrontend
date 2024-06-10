@@ -262,6 +262,7 @@ import {
   toggleVideoPublishStatus,
 } from "../../../../services/operations/videoAPI";
 import IconBtn from "../../../common/IconBtn";
+import { ACCOUNT_TYPE } from "../../../../utils/constants";
 
 const deleteVideo = async ({ videoId }, token) => {
   return true;
@@ -271,6 +272,7 @@ const VideosList = () => {
   const navigate = useNavigate();
   const { courseId } = useParams();
   const token = useSelector((state) => state.auth.token);
+  const { user } = useSelector((state) => state.profile);
 
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -346,7 +348,10 @@ const VideosList = () => {
     <>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-semibold text-richwhite-100">Videos</h1>
-        <Tab tabData={tabData} field={filter} setField={setFilter} />
+
+        {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+          <Tab tabData={tabData} field={filter} setField={setFilter} />
+        )}
       </div>
 
       <Table className="rounded-2xl border border-richwhite-800">
@@ -355,9 +360,11 @@ const VideosList = () => {
             <Th className="text-left text-sm font-medium uppercase p-4 text-richwhite-100">
               Videos
             </Th>
-            <Th className="text-left text-sm font-medium uppercase p-4 text-richwhite-100">
-              Actions
-            </Th>
+            {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+              <Th className="text-left text-sm font-medium uppercase p-4 text-richwhite-100">
+                Actions
+              </Th>
+            )}
           </Tr>
         </Thead>
 
@@ -392,9 +399,9 @@ const VideosList = () => {
                       <div className="flex w-full md:w-auto">
                         <Img
                           src={video_bg}
-                          className="h-[148px] min-w-[270px] max-w-[270px] m-4 rounded-lg object-cover"
+                          className="h-[148px] min-w-[270px] max-w-[270px] m-2 mr-4 rounded-lg object-cover"
                         />
-                        <div className="flex flex-col w-full md:w-auto m-2">
+                        <div className="flex flex-col w-full md:w-auto m-1 mt-4">
                           <p className="text-lg font-semibold text-richwhite-5 capitalize">
                             {video.title}
                           </p>
@@ -406,85 +413,105 @@ const VideosList = () => {
                                   .slice(0, TRUNCATE_LENGTH)
                                   .join(" ") + "..."
                               : video.description}
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Rerum in quas esse vitae laudantium
+                            praesentium dignissimos cumque unde beatae soluta ea
+                            aperiam corrupti eos, perferendis tempore quia
+                            doloribus sunt officia.
                           </p>
-                          <p className="text-[12px] text-richwhite-100 mt-4">
-                            Created: {formatDate(video.createdAt)}
-                          </p>
-                          <p className="text-[12px] text-richwhite-100">
-                            Updated: {formatDate(video.updatedAt)}
-                          </p>
-                          {video.status === "DRAFT" ? (
-                            <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-pink-100">
-                              <HiClock size={14} /> Drafted
-                            </p>
-                          ) : (
-                            <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-yellow-100">
-                              <p className="flex h-3 w-3 items-center justify-center rounded-full bg-yellow-100 text-richwhite-700">
-                                <FaCheck size={8} />
-                              </p>{" "}
-                              Published
-                            </div>
-                          )}
+
+                          {user &&
+                            user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+                              <div>
+                                <p className="text-[12px] text-richwhite-100 mt-4">
+                                  Created: {formatDate(video.createdAt)}
+                                </p>
+                                <p className="text-[12px] text-richwhite-100">
+                                  Updated: {formatDate(video.updatedAt)}
+                                </p>
+                              </div>
+                            )}
+
+                          {user &&
+                            user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+                              <div>
+                                {video.status === "DRAFT" ? (
+                                  <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-pink-100">
+                                    <HiClock size={14} /> Drafted
+                                  </p>
+                                ) : (
+                                  <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-yellow-100">
+                                    <p className="flex h-3 w-3 items-center justify-center rounded-full bg-yellow-100 text-richwhite-700">
+                                      <FaCheck size={8} />
+                                    </p>{" "}
+                                    Published
+                                  </div>
+                                )}
+                              </div>
+                            )}
                         </div>
                       </div>
                     </Td>
-                    <Td className="text-sm font-medium text-richwhite-100">
-                      <div className="flex flex-col">
-                        <div className="flex pb-5">
-                          <button
-                            disabled={loading}
-                            onClick={(event) => {
-                              event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                              navigate(`/dashboard/edit-video/${video._id}`);
-                            }}
-                            title="Edit"
-                            className="px-5 transition-all duration-200 hover:scale-110 hover:text-caribbeangreen-300"
-                          >
-                            <FiEdit2 size={20} />
-                          </button>
-                          <button
-                            disabled={loading}
-                            onClick={(event) => {
-                              event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                              setConfirmationModal({
-                                text1: "Do you want to delete this video?",
-                                text2:
-                                  "All the data related to this video will be deleted",
-                                btn1Text: "Delete",
-                                btn2Text: "Cancel",
-                                btn1Handler: () => handleVideoDelete(video._id),
-                                btn2Handler: () => setConfirmationModal(null),
-                              });
-                            }}
-                            className="px-1 transition-all duration-200 hover:scale-110 hover:text-[#ff0000]"
-                            title="Delete"
-                          >
-                            <RiDeleteBin6Line size={20} />
-                          </button>
+                    {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+                      <Td className="text-sm font-medium text-richwhite-100">
+                        <div className="flex flex-col">
+                          <div className="flex pb-5">
+                            <button
+                              disabled={loading}
+                              onClick={(event) => {
+                                event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
+                                navigate(`/dashboard/edit-video/${video._id}`);
+                              }}
+                              title="Edit"
+                              className="px-5 transition-all duration-200 hover:scale-110 hover:text-caribbeangreen-300"
+                            >
+                              <FiEdit2 size={20} />
+                            </button>
+                            <button
+                              disabled={loading}
+                              onClick={(event) => {
+                                event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
+                                setConfirmationModal({
+                                  text1: "Do you want to delete this video?",
+                                  text2:
+                                    "All the data related to this video will be deleted",
+                                  btn1Text: "Delete",
+                                  btn2Text: "Cancel",
+                                  btn1Handler: () =>
+                                    handleVideoDelete(video._id),
+                                  btn2Handler: () => setConfirmationModal(null),
+                                });
+                              }}
+                              className="px-1 transition-all duration-200 hover:scale-110 hover:text-[#ff0000]"
+                              title="Delete"
+                            >
+                              <RiDeleteBin6Line size={20} />
+                            </button>
+                          </div>
+                          <div>
+                            <button
+                              onClick={(event) => {
+                                event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
+                                togglePublishStatus(video._id);
+                              }}
+                              className={`${
+                                video.status === "DRAFT"
+                                  ? "text-[#00ff00]"
+                                  : "text-[#ff0000]"
+                              } px-1 transition-all duration-200 hover:scale-110`}
+                            >
+                              <IconBtn
+                                text={
+                                  !video.isPublished
+                                    ? "Publish Video"
+                                    : "Draft Video"
+                                }
+                              ></IconBtn>
+                            </button>
+                          </div>
                         </div>
-                        <div>
-                          <button
-                            onClick={(event) => {
-                              event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                              togglePublishStatus(video._id);
-                            }}
-                            className={`${
-                              video.status === "DRAFT"
-                                ? "text-[#00ff00]"
-                                : "text-[#ff0000]"
-                            } px-1 transition-all duration-200 hover:scale-110`}
-                          >
-                            <IconBtn
-                              text={
-                                !video.isPublished
-                                  ? "Publish Video"
-                                  : "Draft Video"
-                              }
-                            ></IconBtn>
-                          </button>
-                        </div>
-                      </div>
-                    </Td>
+                      </Td>
+                    )}
                   </Tr>
                 ))
               )}

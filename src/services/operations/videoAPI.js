@@ -110,3 +110,34 @@ export const toggleVideoPublishStatus = async (videoId, token) => {
     console.error('Error:', error);
   }
 };
+
+
+// ================ EDITING VIDEO ================
+
+export const updateVideo = async (videoId, formData, token) => {
+  const toastId = toast.loading("Updating video...");
+  let result = null;
+
+  try {
+    const response = await apiConnector("PUT", `${BASE_URL}/video/update/${videoId}`, formData, {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    });
+
+    console.log("RESPONSE", response)
+
+    if (!response?.data) {
+      throw new Error("Failed to update video");
+    }
+    console.log(response.data);
+
+    result = response.data.video;
+    toast.success("Video updated successfully.");
+  } catch (error) {
+    console.error("Error updating video:", error.response?.data || error.message);
+    toast.error(error.response?.data?.message || "Failed to update video. Please try again.");
+  }
+
+  toast.dismiss(toastId);
+  return result;
+};

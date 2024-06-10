@@ -1,11 +1,12 @@
-// AddVideos.jsx
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { uploadVideo } from "../../../../services/operations/videoAPI";
+import {
+  uploadVideo,
+  updateVideo,
+} from "../../../../services/operations/videoAPI";
 import { setVideos } from "../../../../slices/videosSlice";
 import IconBtn from "../../../common/IconBtn";
 import Upload from "../AddCourse/Upload";
@@ -15,60 +16,81 @@ export default function AddVideos() {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm();
+
   const navigate = useNavigate();
-  const { courseId } = useParams();
   const dispatch = useDispatch();
+  const { courseId, videoId } = useParams();
   const [loading, setLoading] = useState(false);
   const { token } = useSelector((state) => state.auth);
-  const { videos } = useSelector((state) => state.videos);
+  const { video, editVideo, videos } = useSelector((state) => state.videos);
 
-  const constructFormData = (data, courseId) => {
+  useEffect(() => {
+    if (editVideo && video) {
+      setValue("title", video.title);
+      setValue("description", video.description);
+      setValue("videoUrl", video.videoUrl);
+      setValue("pdfUrl", video.pdfUrl);
+      setValue("imagesUrl", video.imagesUrl);
+    }
+  }, [editVideo, video, setValue]);
+
+  const constructFormData = (data) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("description", data.description);
     formData.append("courseId", courseId);
-    formData.append("videoUrl", data.videoUrl);
-    formData.append("pdfUrl", data.pdfUrl);
+    formData.append("videoUrl", data.videoUrl[0]);
+    formData.append("pdfUrl", data.pdfUrl[0]);
     for (let i = 0; i < data.imagesUrl.length; i++) {
       formData.append("imagesUrl", data.imagesUrl[i]);
     }
-    console.log(formData);
     return formData;
   };
 
   const onSubmit = async (data) => {
     setLoading(true);
-    const formData = constructFormData(data, courseId);
-    console.log(formData);
+    const formData = constructFormData(data);
     try {
-      const result = await uploadVideo(formData, token);
-      if (result) {
-        const updatedVideos = [...videos, result];
-        dispatch(setVideos(updatedVideos));
-        toast.success("Video added successfully");
-        // Reset form fields
-        setValue("title", "");
-        setValue("description", "");
-        setValue("videoUrl", null);
+      let result;
+      if (editVideo) {
+        result = await updateVideo(videoId, formData, token);
+        if (result) {
+          const updatedVideos = videos.map((vid) =>
+            vid._id === videoId ? result : vid
+          );
+          dispatch(setVideos(updatedVideos));
+          toast.success("Video updated successfully");
+        }
+      } else {
+        result = await uploadVideo(formData, token);
+        if (result) {
+          const updatedVideos = [...videos, result];
+          dispatch(setVideos(updatedVideos));
+          toast.success("Video added successfully");
+        }
       }
+      navigate(`/dashboard/${courseId}/videos`);
     } catch (error) {
       console.error("Error uploading video:", error);
+      toast.error("Failed to upload video");
     } finally {
       setLoading(false);
-      navigate(`/dashboard/${courseId}/videos`);
     }
   };
 
   return (
     <div className="container mx-auto mt-8">
       <div className="max-w-lg mx-auto bg-richwhite-800 p-8 rounded-lg shadow-lg">
-        <h2 className="text-2xl text-white font-semibold mb-4">Add Video</h2>
+        <h2 className="text-2xl text-white font-semibold mb-4">
+          {editVideo ? "Edit Video" : "Add Video"}
+        </h2>
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           <Upload
             name="videoUrl"
-            label="videoUrl"
+            label="Video"
             register={register}
             setValue={setValue}
             errors={errors}
@@ -76,7 +98,7 @@ export default function AddVideos() {
           />
           <Upload
             name="pdfUrl"
-            label="pdfUrl"
+            label="PDF"
             register={register}
             setValue={setValue}
             errors={errors}
@@ -84,7 +106,7 @@ export default function AddVideos() {
           />
           <Upload
             name="imagesUrl"
-            label="imagesUrl"
+            label="Images"
             register={register}
             setValue={setValue}
             errors={errors}
@@ -92,18 +114,16 @@ export default function AddVideos() {
             pdf={false}
             multiple={true}
           />
-
           <div className="mb-4 mt-4">
             <label
               htmlFor="title"
-              className="block text-white text-sm font-medium text-gray-700"
+              className="block text-white text-sm font-medium"
             >
               Video Title
             </label>
             <input
               id="title"
               type="text"
-              name="title"
               {...register("title", { required: true })}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
@@ -116,13 +136,12 @@ export default function AddVideos() {
           <div className="mb-4">
             <label
               htmlFor="description"
-              className="block text-white text-sm font-medium text-gray-700"
+              className="block text-white text-sm font-medium"
             >
               Video Description
             </label>
             <textarea
               id="description"
-              name="description"
               {...register("description", { required: true })}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
@@ -136,7 +155,15 @@ export default function AddVideos() {
             <IconBtn
               type="submit"
               disabled={loading}
-              text={loading ? "Adding..." : "Add Video"}
+              text={
+                loading
+                  ? editVideo
+                    ? "Updating..."
+                    : "Adding..."
+                  : editVideo
+                  ? "Update Video"
+                  : "Add Video"
+              }
             />
           </div>
         </form>
