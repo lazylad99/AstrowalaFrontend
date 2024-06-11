@@ -119,7 +119,7 @@ const Home = () => {
 
   // get courses data
   const [CatalogPageData, setCatalogPageData] = useState(null);
-  const categoryID = "6506c9dff191d7ffdb4a3fe2"; // hard coded
+  const categoryID = "6662ad7dbb3aa094b1109871"; // hard coded
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -188,7 +188,7 @@ const Home = () => {
           </motion.div>
 
           <div className="flex flex-row gap-7 mt-8">
-            <Link to={"/catalog/vedic-astrology"}>
+            <Link to={"/catalog/6662ad7dbb3aa094b1109871"}>
               <div
                 className="z-0 group p-1 mx-auto rounded-full bg-yellow-50 font-bold text-black
                                         transition-all duration-200 hover:scale-95 w-fit"

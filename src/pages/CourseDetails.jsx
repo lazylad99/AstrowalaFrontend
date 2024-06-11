@@ -113,7 +113,7 @@ function CourseDetails() {
   const {
     courseName,
     courseDescription,
-    thumbnail,
+    thumbnailUrl,
     price,
     courseContent,
     ratingAndReviews,
@@ -177,7 +177,7 @@ function CourseDetails() {
             {/* will appear only for small size */}
             <div className="relative block max-h-[30rem] lg:hidden">
               <Img
-                src={thumbnail}
+                src={thumbnailUrl}
                 alt="course thumbnail"
                 className="aspect-auto w-full rounded-2xl"
               />
@@ -249,7 +249,7 @@ function CourseDetails() {
           <div className="right-[1.5rem] top-[60px] mx-auto hidden lg:block lg:absolute min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0">
             <CourseDetailsCard
               course={response}
-              thumbnail={thumbnail ? thumbnail : bgImg}
+              thumbnail={thumbnailUrl ? thumbnailUrl : bgImg}
               setConfirmationModal={setConfirmationModal}
               handleBuyCourse={handleBuyCourse}
             />

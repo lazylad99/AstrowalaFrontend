@@ -1,6 +1,7 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ImFacebook, ImYoutube, ImInstagram } from "react-icons/im";
+import { fetchCourseCategories } from "./../../services/operations/courseDetailsAPI";
 
 // Images
 import AstroWalaLogo from "../../assets/Logo/GyanSrijanLogo.png";
@@ -15,9 +16,30 @@ const Services = [
   "Medical Astrology",
   "Master Level Numerology",
 ];
-const QuickLinks = ["Home", "About", "Courses", "Contact Us"];
+const QuickLinks = ["Home", "About", "Contact"];
 
 const Footer = () => {
+  const [subLinks, setSubLinks] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchSublinks = async () => {
+    try {
+      setLoading(true);
+      const res = await fetchCourseCategories();
+      // const result = await apiConnector("GET", categories.CATEGORIES_API);
+      // const result = await apiConnector('GET', 'http://localhost:4000/api/v1/course/showAllCategories');
+      // console.log("Printing Sublinks result:", result);
+      setSubLinks(res);
+    } catch (error) {
+      console.log("Could not fetch the category list = ", error);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchSublinks();
+  }, []);
+
   return (
     <div className="bg-richwhite-700 mx-7 rounded-3xl mb-10">
       <div className="flex lg:flex-row gap-8 items-center justify-between w-11/12 max-w-maxContent text-richwhite-100 leading-6 mx-auto relative py-14">
@@ -57,9 +79,13 @@ const Footer = () => {
                     key={index}
                     className="text-[14px] cursor-pointer hover:text-richblue-500  transition-all duration-200"
                   >
-                    <Link to={ele.toLowerCase().replace(/\s+/g, "-")}>
-                      {ele}
-                    </Link>
+                    {ele === "Home" ? (
+                      <Link to="#">Home</Link>
+                    ) : (
+                      <Link to={ele.toLowerCase().replace(/\s+/g, "-")}>
+                        {ele}
+                      </Link>
+                    )}
                   </div>
                 ))}
               </div>
@@ -70,15 +96,17 @@ const Footer = () => {
                 Services
               </h1>
               <div className="flex flex-col gap-2 mt-2">
-                {Services.map((ele, index) => (
-                  <div
-                    key={index}
+                {subLinks?.map((subLink, i) => (
+                  <Link
+                    to={`/catalog/${subLink._id
+                      .split(" ")
+                      .join("-")
+                      .toLowerCase()}`}
                     className="text-[14px] cursor-pointer hover:text-richblue-500  transition-all duration-200"
+                    key={i}
                   >
-                    {/* <Link to={ele.toLowerCase().replace(/\s+/g, "-")}> */}
-                    {ele}
-                    {/* </Link> */}
-                  </div>
+                    <p>{subLink.name}</p>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -120,7 +148,8 @@ const Footer = () => {
                     : "border-r border-richwhite-700"
                 } px-3 cursor-pointer hover:text-richblue-500  transition-all duration-200`}
               >
-                <Link to={ele.split(" ").join("-").toLowerCase()}>{ele}</Link>
+                {/* <Link to={ele.split(" ").join("-").toLowerCase()}>{ele}</Link> */}
+                <Link to="#">{ele}</Link>
               </div>
             ))}
           </div>
@@ -129,7 +158,7 @@ const Footer = () => {
             <div className="flex">
               <span>Made with ❤️</span>
               <Link
-                to=" "
+                to="#"
                 target="__blank"
                 className="text-white hover:underline ml-1"
               >

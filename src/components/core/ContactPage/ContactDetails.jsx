@@ -8,7 +8,7 @@ const contactDetails = [
     icon: "HiChatBubbleLeftRight",
     heading: "Chat on us",
     description: "Our friendly team is here to help.",
-    details: "info@gyansrijan.com",
+    details: "info@astrowala.com",
   },
   {
     icon: "BiWorld",
@@ -23,7 +23,7 @@ const contactDetails = [
     description: "Mon - Fri From 8am to 5pm",
     details: "+123 456 7869",
   },
-]
+];
 
 
 const ContactDetails = () => {

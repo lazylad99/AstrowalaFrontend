@@ -27,10 +27,10 @@ export default function SidebarLink({ link, iconName }) {
     <NavLink
       to={link.path}
       onClick={handleClick}
-      className={`relative px-8 py-2 text-sm font-semibold ${
+      className={`relative px-8 py-2 text-sm font-semibold text-richwhite-100 ${
         matchRoute(link.path)
-          ? "bg-yellow-200 text-richwhite-100"
-          : "text-richblue-800 hover:bg-richwhite-800 text-shadow-md duration-200"
+          ? "bg-yellow-200"
+          : " hover:bg-richwhite-800 text-shadow-md duration-200"
       } transition-all `}
     >
       <span

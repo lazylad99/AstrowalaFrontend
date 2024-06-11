@@ -156,7 +156,7 @@ export default function Instructor() {
                   className="sm:w-1/3 flex flex-col items-center justify-center"
                 >
                   <Img
-                    src={course.thumbnail}
+                    src={course.thumbnailUrl}
                     alt={course.courseName}
                     className="h-[201px] w-full rounded-2xl object-cover"
                   />
