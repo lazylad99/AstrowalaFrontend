@@ -63,9 +63,15 @@ const Footer = () => {
                 Connect with Us
               </h1>
               <div className="flex gap-3 text-lg duration-200">
-                <ImFacebook className="cursor-pointer hover:scale-95" />
-                <ImYoutube className="cursor-pointer hover:scale-95" />
-                <ImInstagram className="cursor-pointer hover:scale-95" />
+                <Link to="https://www.facebook.com/astrowala5">
+                  <ImFacebook className="cursor-pointer hover:scale-95" />
+                </Link>
+                <Link to="https://www.youtube.com/@AstroWala">
+                  <ImYoutube className="cursor-pointer hover:scale-95" />
+                </Link>
+                <Link to="https://www.instagram.com/numerowala/?hl=en">
+                  <ImInstagram className="cursor-pointer hover:scale-95" />
+                </Link>
               </div>
             </div>
 

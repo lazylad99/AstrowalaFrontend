@@ -174,12 +174,15 @@
 
 // AddVideos.jsx
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { uploadVideo } from "../../../../services/operations/videoAPI";
+import {
+  fetchVideoData,
+  // editVideoDetails,
+} from "../../../../services/operations/videoAPI";
 import { setVideos } from "../../../../slices/videosSlice";
 import IconBtn from "../../../common/IconBtn";
 import Upload from "../AddCourse/Upload";
@@ -192,57 +195,118 @@ export default function AddVideos() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const { courseId } = useParams();
+  const { courseId, videoId } = useParams();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const { token } = useSelector((state) => state.auth);
   const { videos } = useSelector((state) => state.videos);
 
-  const constructFormData = (data, courseId) => {
+  const [videoUrl, setVideoUrl] = useState("");
+  const [pdfUrl, setPdfUrl] = useState("");
+  const [imagesUrl, setImagesUrl] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const video = await fetchVideoData(videoId);
+        if (video) {
+          setVideoUrl(video.videoUrl);
+          setPdfUrl(video.pdfUrl);
+          setImagesUrl(video.imagesUrl);
+          setValue("title", video.title);
+          setValue("description", video.description);
+          setValue("videoUrl", videoUrl);
+          setValue("pdfUrl", pdfUrl);
+          setValue("imagesUrl", imagesUrl);
+        }
+      } catch (error) {
+        console.error("Error fetching video data:", error);
+      }
+    };
+
+    fetchData();
+  }, [videoId, setValue]);
+
+  const constructFormData = (data) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("description", data.description);
-    formData.append("courseId", courseId);
-    formData.append("videoUrl", data.videoUrl);
-    formData.append("pdfUrl", data.pdfUrl);
+    formData.append("videoUrl", data.videoUrl[0]);
+    formData.append("pdfUrl", data.pdfUrl[0]);
     for (let i = 0; i < data.imagesUrl.length; i++) {
       formData.append("imagesUrl", data.imagesUrl[i]);
     }
-    console.log(formData);
     return formData;
   };
 
   const onSubmit = async (data) => {
     setLoading(true);
-    const formData = constructFormData(data, courseId);
-    console.log(formData);
+    const formData = constructFormData(data);
     try {
-      const result = await uploadVideo(formData, token);
+      const result = await editVideoDetails(videoId, formData, token);
       if (result) {
-        const updatedVideos = [...videos, result];
+        const updatedVideos = videos.map((video) =>
+          video._id === videoId ? result : video
+        );
         dispatch(setVideos(updatedVideos));
-        toast.success("Video added successfully");
-        // Reset form fields
-        setValue("title", "");
-        setValue("description", "");
-        setValue("videoUrl", null);
+        toast.success("Video updated successfully");
       }
     } catch (error) {
-      console.error("Error uploading video:", error);
+      console.error("Error updating video:", error);
     } finally {
       setLoading(false);
-      navigate(`/dashboard/${courseId}/videos`);
+      navigate(`/dashboard/my-courses`);
     }
   };
 
   return (
     <div className="container mx-auto mt-8">
       <div className="max-w-lg mx-auto bg-richwhite-800 p-8 rounded-lg shadow-lg">
-        <h2 className="text-2xl text-white font-semibold mb-4">Add Video</h2>
+        <h2 className="text-2xl text-white font-semibold mb-4">Edit Video</h2>
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+          {videoUrl && (
+            <div className="mb-4">
+              <label className="block text-white text-sm font-medium text-gray-700">
+                Current Video
+              </label>
+              <video src={videoUrl} controls className="w-full mt-1 mb-4" />
+            </div>
+          )}
+          {pdfUrl && (
+            <div className="mb-4">
+              <label className="block text-white text-sm font-medium text-gray-700">
+                Current PDF
+              </label>
+              <a
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500"
+              >
+                View PDF
+              </a>
+            </div>
+          )}
+          {imagesUrl && imagesUrl.length > 0 && (
+            <div className="mb-4">
+              <label className="block text-white text-sm font-medium text-gray-700">
+                Current Images
+              </label>
+              <div className="flex flex-wrap">
+                {imagesUrl.map((url, index) => (
+                  <img
+                    key={index}
+                    src={url}
+                    alt={`Image ${index + 1}`}
+                    className="w-1/4 h-auto mt-1 mr-2"
+                  />
+                ))}
+              </div>
+            </div>
+          )}
           <Upload
             name="videoUrl"
-            label="videoUrl"
+            label="Upload New Video"
             register={register}
             setValue={setValue}
             errors={errors}
@@ -250,7 +314,7 @@ export default function AddVideos() {
           />
           <Upload
             name="pdfUrl"
-            label="pdfUrl"
+            label="Upload New PDF"
             register={register}
             setValue={setValue}
             errors={errors}
@@ -258,7 +322,7 @@ export default function AddVideos() {
           />
           <Upload
             name="imagesUrl"
-            label="imagesUrl"
+            label="Upload New Images"
             register={register}
             setValue={setValue}
             errors={errors}
@@ -310,7 +374,7 @@ export default function AddVideos() {
             <IconBtn
               type="submit"
               disabled={loading}
-              text={loading ? "Adding..." : "Add Video"}
+              text={loading ? "Updating..." : "Update Video"}
             />
           </div>
         </form>
