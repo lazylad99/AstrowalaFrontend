@@ -50,7 +50,7 @@ function UpdatePassword() {
             Choose new password
           </h1>
 
-          <p className="my-4 text-[1.125rem] leading-[1.625rem] text-richwhite-100">
+          <p className="my-4 text-[1.125rem] leading-[1.625rem] text-white">
             Almost done. Enter your new password and you're all set.
           </p>
 

@@ -101,7 +101,7 @@ function CourseDetailsCard({ course, thumbnail, setConfirmationModal, handleBuyC
 
         <div className="text-center">
           <button
-            className="mx-auto flex items-center gap-2 py-6 text-richwhite-100"
+            className="mx-auto flex items-center gap-2 py-6 text-black"
             onClick={handleShare}
           >
             <FaShareSquare size={15} /> Share

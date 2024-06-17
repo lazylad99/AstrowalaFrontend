@@ -79,7 +79,7 @@ function LoginForm() {
           )}
         </span>
         <Link to="/forgot-password">
-          <p className="mt-1 ml-auto max-w-max text-xs text-richwhite-100">
+          <p className="mt-1 ml-auto max-w-max text-xs text-black">
             Forgot Password
           </p>
         </Link>

@@ -77,7 +77,7 @@ export default function MobileProfileDropDown() {
             alt={`profile-${user?.firstName}`}
             className={"aspect-square w-[30px] rounded-full object-cover"}
           />
-          <AiOutlineCaretDown className="text-sm text-richwhite-100" />
+          <AiOutlineCaretDown className="text-sm text-black" />
         </div>
 
         {open && (
@@ -87,35 +87,35 @@ export default function MobileProfileDropDown() {
             ref={ref}
           >
             <Link to="/dashboard/my-profile" onClick={() => setOpen(false)}>
-              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richwhite-100">
+              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-black">
                 <VscDashboard className="text-lg" />
                 Dashboard
               </div>
             </Link>
 
             <Link to="/" onClick={() => setOpen(false)}>
-              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richwhite-100 border-y border-richwhite-700 ">
+              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-black border-y border-richwhite-700 ">
                 <AiOutlineHome className="text-lg" />
                 Home
               </div>
             </Link>
 
             <Link to="/" onClick={() => setOpen(false)}>
-              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richwhite-100">
+              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-black">
                 <PiNotebook className="text-lg" />
                 Catalog
               </div>
             </Link>
 
             <Link to="/about" onClick={() => setOpen(false)}>
-              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richwhite-100 border-y border-richwhite-700 ">
+              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-black border-y border-richwhite-700 ">
                 <TbMessage2Plus className="text-lg" />
                 About Us
               </div>
             </Link>
 
             <Link to="/contact" onClick={() => setOpen(false)}>
-              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richwhite-100 ">
+              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-black ">
                 <MdOutlineContactPhone className="text-lg" />
                 Contact Us
               </div>
@@ -126,7 +126,7 @@ export default function MobileProfileDropDown() {
                 dispatch(logout(navigate));
                 setOpen(false);
               }}
-              className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richwhite-100"
+              className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-black"
             >
               <VscSignOut className="text-lg" />
               Logout

@@ -107,7 +107,7 @@ const VideoDetails = () => {
           ) : (
             "Loading..."
           )}
-          <div className="font-medium text-richwhite-100">
+          <div className="font-medium text-black">
             <p>{videoData?.description}</p>
           </div>
           <h2 className="text-xl font-medium text-white">Source Materials</h2>
@@ -116,7 +116,7 @@ const VideoDetails = () => {
               <a
                 href={videoData.pdfUrl}
                 download
-                className="flex items-center text-richwhite-100"
+                className="flex items-center text-black"
               >
                 <FaFilePdf className="mr-2" /> PDF
               </a>
@@ -128,7 +128,7 @@ const VideoDetails = () => {
                   key={index}
                   href={imgUrl}
                   download
-                  className="flex items-center text-richwhite-100"
+                  className="flex items-center text-white"
                 >
                   <FaImage className="mr-2" /> Image {index + 1}
                 </a>

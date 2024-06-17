@@ -88,23 +88,23 @@ export default function CoursesTable({
   return (
     <>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-semibold text-richwhite-100">Courses</h1>
+        <h1 className="text-2xl font-semibold text-black">Courses</h1>
         <Tab tabData={tabData} field={field} setField={setField} />
       </div>
 
       <Table className="rounded-2xl border border-richwhite-800 ">
         <Thead>
           <Tr className="flex gap-x-10 rounded-t-3xl border-b border-b-richwhite-800 px-6 py-2">
-            <Th className="flex-1 text-left text-sm font-medium uppercase text-richwhite-100">
+            <Th className="flex-1 text-left text-sm font-medium uppercase text-black">
               Courses
             </Th>
-            <Th className="text-left text-sm font-medium uppercase text-richwhite-100">
+            <Th className="text-left text-sm font-medium uppercase text-black">
               Duration
             </Th>
-            <Th className="text-left text-sm font-medium uppercase text-richwhite-100">
+            <Th className="text-left text-sm font-medium uppercase text-black">
               Price
             </Th>
-            <Th className="text-left ml-2 mr-10 text-sm font-medium uppercase text-richwhite-100">
+            <Th className="text-left ml-2 mr-10 text-sm font-medium uppercase text-black">
               Actions
             </Th>
           </Tr>
@@ -120,7 +120,7 @@ export default function CoursesTable({
           <Tbody>
             {filteredCourses?.length === 0 ? (
               <Tr>
-                <Td className="py-10 text-center text-2xl font-medium text-richwhite-100">
+                <Td className="py-10 text-center text-2xl font-medium text-black">
                   No courses found
                 </Td>
               </Tr>
@@ -150,10 +150,10 @@ export default function CoursesTable({
                               .join(" ") + "..."
                           : course.courseDescription}
                       </p>
-                      <p className="text-[12px] text-richwhite-100 mt-4">
+                      <p className="text-[12px] text-black mt-4">
                         Created: {formatDate(course?.createdAt)}
                       </p>
-                      <p className="text-[12px] text-richwhite-100">
+                      <p className="text-[12px] text-black">
                         Updated: {formatDate(course?.updatedAt)}
                       </p>
                       {!course.isPublished ? (
@@ -170,13 +170,11 @@ export default function CoursesTable({
                       )}
                     </div>
                   </Td>
-                  <Td className="text-sm font-medium text-richwhite-100">
-                    2hr 30min
-                  </Td>
-                  <Td className="text-sm font-medium text-richwhite-100">
+                  <Td className="text-sm font-medium text-black">2hr 30min</Td>
+                  <Td className="text-sm font-medium text-black">
                     ₹{course.price}
                   </Td>
-                  <Td className="flex flex-col text-sm font-medium text-richwhite-100 ">
+                  <Td className="flex flex-col text-sm font-medium text-black ">
                     <div className="flex pb-5">
                       <button
                         disabled={loading}

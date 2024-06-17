@@ -27,7 +27,7 @@ function ForgotPassword() {
           <h1 className="text-[1.875rem] font-semibold leading-[2.375rem] text-richwhite-5">
             {!emailSent ? "Reset your password" : "Check email"}
           </h1>
-          <div className="my-4 text-[1.125rem] leading-[1.625rem] text-richwhite-100">
+          <div className="my-4 text-[1.125rem] leading-[1.625rem] text-black">
             {!emailSent ? (
               "Have no fear. We'll email you instructions to reset your password. If you dont have access to your email we can try account recovery"
             ) : (

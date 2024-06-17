@@ -64,7 +64,7 @@ export default function Sidebar() {
   return (
     <>
       <div
-        className="sm:hidden text-richwhite-100 absolute left-7 top-3 cursor-pointer "
+        className="sm:hidden text-black absolute left-7 top-3 cursor-pointer "
         onClick={() => dispatch(setOpenSideMenu(!openSideMenu))}
       >
         {openSideMenu ? <IoMdClose size={33} /> : <HiMenuAlt1 size={33} />}
@@ -108,7 +108,7 @@ export default function Sidebar() {
               }
               className=" "
             >
-              <div className="flex items-center gap-x-2 px-8 py-2 text-sm font-semibold text-richwhite-100 hover:bg-richwhite-700 relative">
+              <div className="flex items-center gap-x-2 px-8 py-2 text-sm font-semibold text-black hover:bg-richwhite-700 relative">
                 <VscSignOut className="text-lg" />
                 <span>Logout</span>
               </div>

@@ -42,7 +42,7 @@ export default function EditCourse() {
           {course ? (
             <AddCourse />
           ) : (
-            <p className="mt-14 text-center text-3xl font-semibold text-richwhite-100">
+            <p className="mt-14 text-center text-3xl font-semibold text-black">
               Course not found
             </p>
           )}

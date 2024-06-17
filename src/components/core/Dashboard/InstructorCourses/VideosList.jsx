@@ -100,18 +100,18 @@
 //   return (
 //     <>
 //       <div className="flex justify-between items-center mb-4">
-//         <h1 className="text-2xl font-semibold text-richwhite-100">Videos</h1>
+//         <h1 className="text-2xl font-semibold text-white">Videos</h1>
 //         <Tab tabData={tabData} field={filter} setField={setFilter} />
 //       </div>
 
 //       <Table className="rounded-2xl border border-richwhite-800">
 //         <Thead>
 //           <Tr className="gap-x-10 rounded-t-3xl border-b border-b-richwhite-800 px-6 py-2">
-//             <Th className="text-left text-sm font-medium uppercase p-4 text-richwhite-100">
+//             <Th className="text-left text-sm font-medium uppercase p-4 text-white">
 //               Videos
 //             </Th>
-//             {/* <Th className="text-left text-sm font-medium uppercase p-4 text-richwhite-100">Duration</Th> */}
-//             <Th className="text-left text-sm font-medium uppercase p-4 text-richwhite-100">
+//             {/* <Th className="text-left text-sm font-medium uppercase p-4 text-white">Duration</Th> */}
+//             <Th className="text-left text-sm font-medium uppercase p-4 text-white">
 //               Actions
 //             </Th>
 //           </Tr>
@@ -130,7 +130,7 @@
 //                 <Tr>
 //                   <Td
 //                     colSpan={3}
-//                     className="py-10 text-center text-2xl font-medium text-richwhite-100"
+//                     className="py-10 text-center text-2xl font-medium text-white"
 //                   >
 //                     No videos found
 //                   </Td>
@@ -161,10 +161,10 @@
 //                                 .join(" ") + "..."
 //                             : video.description}
 //                         </p>
-//                         <p className="text-[12px] text-richwhite-100 mt-4">
+//                         <p className="text-[12px] text-white mt-4">
 //                           Created: {formatDate(video.createdAt)}
 //                         </p>
-//                         <p className="text-[12px] text-richwhite-100">
+//                         <p className="text-[12px] text-white">
 //                           Updated: {formatDate(video.updatedAt)}
 //                         </p>
 //                         {video.status === "DRAFT" ? (
@@ -181,10 +181,10 @@
 //                         )}
 //                       </Link>
 //                     </Td>
-//                     <Td className="text-sm font-medium text-richwhite-100">
+//                     <Td className="text-sm font-medium text-white">
 //                       {video.duration}
 //                     </Td>
-//                     <Td className="text-sm font-medium text-richwhite-100">
+//                     <Td className="text-sm font-medium text-white">
 //                       <button
 //                         disabled={loading}
 //                         onClick={() =>
@@ -353,7 +353,7 @@ const VideosList = () => {
       />
 
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-semibold text-richwhite-100">Videos</h1>
+        <h1 className="text-2xl font-semibold text-black">Videos</h1>
 
         {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
           <Tab tabData={tabData} field={filter} setField={setFilter} />
@@ -363,11 +363,11 @@ const VideosList = () => {
       <Table className="rounded-2xl border border-richwhite-800">
         <Thead>
           <Tr className="gap-x-10 rounded-t-3xl border-b border-b-richwhite-800 px-6 py-2">
-            <Th className="text-left text-sm font-medium uppercase p-4 text-richwhite-100">
+            <Th className="text-left text-sm font-medium uppercase p-4 text-black">
               Videos
             </Th>
             {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
-              <Th className="text-left text-sm font-medium uppercase p-4 text-richwhite-100">
+              <Th className="text-left text-sm font-medium uppercase p-4 text-black">
                 Actions
               </Th>
             )}
@@ -387,7 +387,7 @@ const VideosList = () => {
                 <Tr>
                   <Td
                     colSpan={3}
-                    className="py-10 text-center text-2xl font-medium text-richwhite-100"
+                    className="py-10 text-center text-2xl font-medium text-black"
                   >
                     No videos found
                   </Td>
@@ -424,10 +424,10 @@ const VideosList = () => {
                           {user &&
                             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
                               <div>
-                                <p className="text-[12px] text-richwhite-100 mt-4">
+                                <p className="text-[12px] text-black mt-4">
                                   Created: {formatDate(video.createdAt)}
                                 </p>
-                                <p className="text-[12px] text-richwhite-100">
+                                <p className="text-[12px] text-black">
                                   Updated: {formatDate(video.updatedAt)}
                                 </p>
                               </div>
@@ -454,7 +454,7 @@ const VideosList = () => {
                       </div>
                     </Td>
                     {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
-                      <Td className="text-sm font-medium text-richwhite-100">
+                      <Td className="text-sm font-medium text-black">
                         <div className="flex flex-col">
                           <div className="flex pb-5">
                             <button

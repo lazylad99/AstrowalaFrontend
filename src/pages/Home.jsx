@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import HighlightText from "../components/core/HomePage/HighlightText";
-import CTAButton from "../components/core/HomePage/Button";
-import CodeBlocks from "../components/core/HomePage/CodeBlocks";
-import TimelineSection from "../components/core/HomePage/TimelineSection";
-import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection";
-import InstructorSection from "../components/core/HomePage/InstructorSection";
+// import CTAButton from "../components/core/HomePage/Button";
+// import CodeBlocks from "../components/core/HomePage/CodeBlocks";
+// import TimelineSection from "../components/core/HomePage/TimelineSection";
+// import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection";
+// import InstructorSection from "../components/core/HomePage/InstructorSection";
 import Footer from "../components/common/Footer";
-import ExploreMore from "../components/core/HomePage/ExploreMore";
-import ReviewSlider from "../components/common/ReviewSlider";
-import Course_Slider from "../components/core/Catalog/Course_Slider";
+// import ExploreMore from "../components/core/HomePage/ExploreMore";
+// import ReviewSlider from "../components/common/ReviewSlider";
+// import Course_Slider from "../components/core/Catalog/Course_Slider";
 
 import { getCatalogPageData } from "../services/operations/pageAndComponentData";
 
-import { MdOutlineRateReview } from "react-icons/md";
+// import { MdOutlineRateReview } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
 
 import { motion } from "framer-motion";
@@ -29,70 +29,8 @@ import backgroundImg4 from "../assets/Images/astro_images/img3.jpg";
 import backgroundImg5 from "../assets/Images/astro_images/img4.jpg";
 import backgroundImg6 from "../assets/Images/astro_images/img5.jpg";
 import backgroundImg7 from "../assets/Images/astro_images/vastu.jpg";
-// import backgroundImg8 from "../assets/Images/astro_images/img1.jpg";
-
-// const categories = [
-//   {
-//     name: "Technology",
-//     description:
-//       "Dive into the world of technology with our comprehensive courses covering programming languages, software development, cloud computing, cybersecurity, and more.",
-//     courses: [
-//       "Web Development",
-//       "Data Science",
-//       "Mobile App Development",
-//       "Cybersecurity",
-//       "Cloud Computing",
-//     ],
-//   },
-//   {
-//     name: "Business & Finance",
-//     description:
-//       "Gain valuable skills in business management, finance, marketing, entrepreneurship, and project management to succeed in today's competitive business landscape.",
-//     courses: [
-//       "Business Administration",
-//       "Financial Management",
-//       "Marketing Strategies",
-//       "Entrepreneurship",
-//       "Project Management",
-//     ],
-//   },
-//   {
-//     name: "Creative Arts",
-//     description:
-//       "Unleash your creativity and explore your artistic talents with courses in photography, graphic design, video production, music production, and creative writing.",
-//     courses: [
-//       "Photography Basics",
-//       "Graphic Design Fundamentals",
-//       "Video Editing Mastery",
-//       "Music Composition",
-//       "Creative Writing Workshop",
-//     ],
-//   },
-//   {
-//     name: "Personal Development",
-//     description:
-//       "Invest in yourself and enhance your personal and professional growth with courses focused on communication skills, leadership development, time management, mindfulness, and goal setting.",
-//     courses: [
-//       "Effective Communication",
-//       "Leadership Essentials",
-//       "Time Management Techniques",
-//       "Mindfulness Practices",
-//       "Goal Setting Strategies",
-//     ],
-//   },
-//   {
-//     name: "Health & Wellness",
-//     description:
-//       "Take care of your mind and body with courses that promote physical and mental well-being, including yoga, nutrition, meditation, stress management, and holistic health.",
-//     courses: [
-//       "Yoga for Beginners",
-//       "Nutrition Fundamentals",
-//       "Meditation Practices",
-//       "Stress Relief Techniques",
-//       "Holistic Health & Healing",
-//     ],
-//   },
-// ];
+import SiteInfo from "../components/common/SiteInfo";
+import MoreInfo from "../components/common/Moreinfo";
 
 const randomImges = [
   backgroundImg1,
@@ -118,7 +56,9 @@ const Home = () => {
   // console.log('bg ==== ', backgroundImg)
 
   // get courses data
-  const [CatalogPageData, setCatalogPageData] = useState(null);
+  const [
+    // CatalogPageData, 
+    setCatalogPageData] = useState(null);
   const categoryID = "6662ad7dbb3aa094b1109871"; // hard coded
   const dispatch = useDispatch();
 
@@ -162,13 +102,13 @@ const Home = () => {
 
       <div className=" ">
         {/*Section1  */}
-        <div className="relative h-[450px] md:h-[550px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-richwhite-100 ">
+        <div className="relative h-[450px] md:h-[550px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white ">
           <motion.div
             variants={fadeIn("left", 0.1)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="text-center text-3xl lg:text-4xl font-semibold mt-7  "
+            className="text-center text-3xl lg:text-4xl font-semibold mt-7"
           >
             Explore the Cosmos,
             <HighlightText text={"Unlock Your Destiny"} />
@@ -190,12 +130,12 @@ const Home = () => {
           <div className="flex flex-row gap-7 mt-8">
             <Link to={"/catalog/6662ad7dbb3aa094b1109871"}>
               <div
-                className="z-0 group p-1 mx-auto rounded-full bg-yellow-50 font-bold text-black
+                className="z-0 group p-1 mx-auto rounded-full bg-blue-100 font-bold text-white
                                         transition-all duration-200 hover:scale-95 w-fit"
               >
                 <div
                   className="flex flex-row items-center gap-2 rounded-full px-10 py-[5px]
-                              transition-all duration-200 group-hover:bg-richwhite-100"
+                              transition-all duration-200 "
                 >
                   <p>Browse Courses</p>
                   <FaArrowRight />
@@ -206,9 +146,9 @@ const Home = () => {
         </div>
 
         {/* animated code */}
-        <div className="relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white justify-between">
+        {/* <div className="relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-blue-400 justify-between"> */}
           {/* Code block 1 */}
-          <div className="">
+          {/* <div className="">
             <CodeBlocks
               position={"lg:flex-col"}
               heading={
@@ -233,7 +173,7 @@ const Home = () => {
               //   codeblock={`<<!DOCTYPE html>\n<html>\n<head><title>Example</title>\n</head>\n<body>\n<h1><ahref="/">Header</a>\n</h1>\n<nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n</nav>`}
               //   codeColor={"text-yellow-25"}
               //   backgroundGradient={"code-block1-grad"}
-            />
+            /> */}
             {/* <div className="explore-courses bg-gray-100 py-10">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {categories.map((category, index) => (
@@ -255,7 +195,7 @@ const Home = () => {
                 ))}
               </div>
             </div> */}
-          </div>
+          {/* </div> */}
 
           {/* Code block 2 */}
           {/* <div>
@@ -285,7 +225,11 @@ const Home = () => {
               backgroundGradient={"code-block2-grad"}
             />
           </div> */}
-        </div>
+        {/* </div> */}
+
+        <SiteInfo />
+
+        <MoreInfo />
 
         <Footer />
       </div>
