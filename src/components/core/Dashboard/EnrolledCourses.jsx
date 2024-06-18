@@ -52,7 +52,7 @@ export default function EnrolledCourses() {
   // return if data is null
   if (enrolledCourses?.length == 0) {
     return (
-      <p className="grid h-[50vh] w-full place-content-center text-center text-richwhite-5 text-3xl">
+      <p className="grid h-[50vh] w-full place-content-center text-center text-black text-3xl">
         You have not enrolled in any course yet.
       </p>
     );
@@ -60,11 +60,11 @@ export default function EnrolledCourses() {
 
   return (
     <>
-      <div className="text-4xl text-richwhite-5 font-semibold text-center sm:text-left">
+      <div className="text-4xl text-black font-semibold text-center sm:text-left">
         Enrolled Courses
       </div>
       {
-        <div className="my-8 text-richwhite-5">
+        <div className="my-8 text-black">
           {/* Headings */}
           <div className="flex rounded-t-2xl bg-richwhite-800 ">
             <p className="w-[45%] px-5 py-3">Course Name</p>
@@ -94,7 +94,7 @@ export default function EnrolledCourses() {
               <div
                 className="flex sm:w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
                 onClick={() => navigate(`/dashboard/${course._id}/videos`)}
-                  >
+              >
                 <Img
                   src={course.thumbnailUrl}
                   alt="course_img"

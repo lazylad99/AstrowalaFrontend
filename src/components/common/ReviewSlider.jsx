@@ -86,8 +86,8 @@ function ReviewSlider() {
                       className="h-9 w-9 rounded-full object-cover"
                     />
                     <div className="flex flex-col">
-                      <h1 className="font-semibold text-richwhite-5 capitalize">{`${review?.user?.firstName} ${review?.user?.lastName}`}</h1>
-                      <h2 className="text-[12px] font-medium text-richwhite-500">
+                      <h1 className="font-semibold text-black capitalize">{`${review?.user?.firstName} ${review?.user?.lastName}`}</h1>
+                      <h2 className="text-[12px] font-medium text-black00">
                         {review?.course?.courseName}
                       </h2>
                     </div>

@@ -8,7 +8,7 @@ export default function Cart() {
 
   return (
     <>
-      <h1 className="mb-14 text-3xl font-medium text-richwhite-5 font-boogaloo text-center sm:text-left">
+      <h1 className="mb-14 text-3xl font-medium text-black font-boogaloo text-center sm:text-left">
         Cart
       </h1>
       <p className="border-b border-b-richwhite-400 pb-2 font-semibold text-richwhite-400">

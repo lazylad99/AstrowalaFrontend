@@ -36,7 +36,7 @@ function VerifyEmail() {
         <Loading />
       ) : (
         <div className="max-w-[500px] p-4 lg:p-8">
-          <h1 className="text-richwhite-5 font-semibold text-[1.875rem] leading-[2.375rem]">
+          <h1 className="text-black font-semibold text-[1.875rem] leading-[2.375rem]">
             Verify Email
           </h1>
 
@@ -56,7 +56,7 @@ function VerifyEmail() {
                   style={{
                     boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                   }}
-                  className="w-[48px] lg:w-[60px] border-0 bg-richwhite-800 rounded-[0.5rem] text-richwhite-5 aspect-square text-center focus:border-0 focus:outline-2 focus:outline-yellow-50"
+                  className="w-[48px] lg:w-[60px] border-0 bg-richwhite-800 rounded-[0.5rem] text-black aspect-square text-center focus:border-0 focus:outline-2 focus:outline-yellow-50"
                 />
               )}
               containerStyle={{
@@ -75,13 +75,13 @@ function VerifyEmail() {
 
           <div className="mt-6 flex items-center justify-between">
             <Link to="/signup">
-              <p className="text-richwhite-5 flex items-center gap-x-2">
+              <p className="text-black flex items-center gap-x-2">
                 <BiArrowBack /> Back To Signup
               </p>
             </Link>
 
             <button
-              className="flex items-center text-richwhite-5 gap-x-2"
+              className="flex items-center text-black gap-x-2"
               onClick={() =>
                 dispatch(sendOtp(signupData.email, navigate), setOtp(""))
               }

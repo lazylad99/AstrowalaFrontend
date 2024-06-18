@@ -150,7 +150,7 @@
 //                         to={`/dashboard/view-video/${video._id}`}
 //                         className="flex flex-col w-full md:w-auto"
 //                       >
-//                         <p className="text-lg font-semibold text-richwhite-5 capitalize">
+//                         <p className="text-lg font-semibold text-black capitalize">
 //                           {video.title}
 //                         </p>
 //                         <p className="text-xs text-richwhite-300 ">
@@ -408,7 +408,7 @@ const VideosList = () => {
                           className="h-[148px] min-w-[270px] max-w-[270px] m-2 mr-4 rounded-lg object-cover"
                         />
                         <div className="flex flex-col w-full md:w-auto m-1 mt-2">
-                          <p className="text-lg font-semibold text-richwhite-5 capitalize">
+                          <p className="text-lg font-semibold text-black capitalize">
                             {video.title}
                           </p>
                           <p className="text-xs text-richwhite-300">

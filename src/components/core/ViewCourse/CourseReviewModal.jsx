@@ -51,9 +51,9 @@ export default function CourseReviewModal({ setReviewModal }) {
       <div className="my-10 w-11/12 max-w-[700px] rounded-lg border border-richwhite-400 bg-richwhite-800">
         {/* Modal Header */}
         <div className="flex items-center justify-between rounded-t-lg bg-richwhite-700 p-5">
-          <p className="text-xl font-semibold text-richwhite-5">Add Review</p>
+          <p className="text-xl font-semibold text-black">Add Review</p>
           <button onClick={() => setReviewModal(false)}>
-            <RxCross2 className="text-2xl text-richwhite-5" />
+            <RxCross2 className="text-2xl text-black" />
           </button>
         </div>
 
@@ -66,10 +66,10 @@ export default function CourseReviewModal({ setReviewModal }) {
               className="aspect-square w-[50px] rounded-full object-cover"
             />
             <div className="">
-              <p className="font-semibold text-richwhite-5 capitalize">
+              <p className="font-semibold text-black capitalize">
                 {user?.firstName} {user?.lastName}
               </p>
-              <p className="text-sm text-richwhite-5">Posting Publicly</p>
+              <p className="text-sm text-black">Posting Publicly</p>
             </div>
           </div>
 
@@ -85,10 +85,7 @@ export default function CourseReviewModal({ setReviewModal }) {
             />
 
             <div className="flex w-11/12 flex-col space-y-2">
-              <label
-                className="text-sm text-richwhite-5"
-                htmlFor="courseExperience"
-              >
+              <label className="text-sm text-black" htmlFor="courseExperience">
                 Add Your Experience <sup className="text-pink-200">*</sup>
               </label>
               <textarea

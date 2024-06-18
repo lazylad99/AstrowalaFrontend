@@ -27,9 +27,9 @@ export default function SidebarLink({ link, iconName }) {
     <NavLink
       to={link.path}
       onClick={handleClick}
-      className={`relative px-8 py-2 text-sm font-semibold text-black ${
+      className={`relative px-8 py-2 text-sm font-semibold text-white ${
         matchRoute(link.path)
-          ? "bg-yellow-200"
+          ? "bg-blue-100"
           : " hover:bg-richwhite-800 text-shadow-md duration-200"
       } transition-all `}
     >

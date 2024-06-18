@@ -48,7 +48,7 @@ function CourseDetailsCard({ course, thumbnail, setConfirmationModal, handleBuyC
   };
 
   return (
-    <div className="flex flex-col gap-4 rounded-2xl bg-richwhite-700 p-4 text-richwhite-5">
+    <div className="flex flex-col gap-4 rounded-2xl bg-richwhite-700 p-4 text-black">
       <Img
         src={thumbnail}
         alt={course?.courseName}

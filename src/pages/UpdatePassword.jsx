@@ -46,7 +46,7 @@ function UpdatePassword() {
         <div className="spinner"></div>
       ) : (
         <div className="max-w-[500px] p-4 lg:p-8">
-          <h1 className="text-[1.875rem] font-semibold leading-[2.375rem] text-richwhite-5">
+          <h1 className="text-[1.875rem] font-semibold leading-[2.375rem] text-black">
             Choose new password
           </h1>
 
@@ -56,7 +56,7 @@ function UpdatePassword() {
 
           <form onSubmit={handleOnSubmit}>
             <label className="relative">
-              <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richwhite-5">
+              <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-black">
                 New Password <sup className="text-pink-200">*</sup>
               </p>
               <input
@@ -69,7 +69,7 @@ function UpdatePassword() {
                 style={{
                   boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                 }}
-                className="w-full rounded-[0.5rem] bg-richwhite-800 p-[12px] text-richwhite-5 "
+                className="w-full rounded-[0.5rem] bg-richwhite-800 p-[12px] text-black "
               />
               <span
                 onClick={() => setShowPassword((prev) => !prev)}
@@ -84,7 +84,7 @@ function UpdatePassword() {
             </label>
 
             <label className="relative mt-3 block">
-              <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richwhite-5">
+              <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-black">
                 Confirm New Password <sup className="text-pink-200">*</sup>
               </p>
               <input
@@ -97,7 +97,7 @@ function UpdatePassword() {
                 style={{
                   boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                 }}
-                className="w-full rounded-[0.5rem] bg-richwhite-800 p-[12px] text-richwhite-5 "
+                className="w-full rounded-[0.5rem] bg-richwhite-800 p-[12px] text-black "
               />
               <span
                 onClick={() => setShowConfirmPassword((prev) => !prev)}
@@ -121,7 +121,7 @@ function UpdatePassword() {
 
           <div className="mt-6 flex items-center justify-between">
             <Link to="/login">
-              <p className="flex items-center gap-x-2 text-richwhite-5">
+              <p className="flex items-center gap-x-2 text-black">
                 <BiArrowBack /> Back To Login
               </p>
             </Link>

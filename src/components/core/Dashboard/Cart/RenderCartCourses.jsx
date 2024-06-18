@@ -29,7 +29,7 @@ export default function RenderCartCourses() {
             />
 
             <div className="flex flex-col space-y-1">
-              <p className="text-lg font-medium text-richwhite-5">
+              <p className="text-lg font-medium text-black">
                 {course?.courseName}
               </p>
               <p className="text-sm text-richwhite-300">

@@ -24,7 +24,7 @@ function ForgotPassword() {
         <div className="spinner"></div>
       ) : (
         <div className="max-w-[500px] p-4 lg:p-8">
-          <h1 className="text-[1.875rem] font-semibold leading-[2.375rem] text-richwhite-5">
+          <h1 className="text-[1.875rem] font-semibold leading-[2.375rem] text-black">
             {!emailSent ? "Reset your password" : "Check email"}
           </h1>
           <div className="my-4 text-[1.125rem] leading-[1.625rem] text-black">
@@ -41,7 +41,7 @@ function ForgotPassword() {
           <form onSubmit={handleOnSubmit}>
             {!emailSent && (
               <label className="w-full">
-                <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richwhite-5">
+                <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-black">
                   Email Address <sup className="text-pink-200">*</sup>
                 </p>
                 <input
@@ -54,7 +54,7 @@ function ForgotPassword() {
                   style={{
                     boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                   }}
-                  className="w-full rounded-[0.5rem] bg-richwhite-800 p-[12px] text-richwhite-5 "
+                  className="w-full rounded-[0.5rem] bg-richwhite-800 p-[12px] text-black "
                 />
               </label>
             )}
@@ -69,7 +69,7 @@ function ForgotPassword() {
 
           <div className="mt-6 flex items-center justify-between">
             <Link to="/login">
-              <p className="flex items-center gap-x-2 text-richwhite-5">
+              <p className="flex items-center gap-x-2 text-black">
                 <BiArrowBack /> Back To Login
               </p>
             </Link>

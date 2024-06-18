@@ -39,7 +39,7 @@ const ContactDetails = () => {
             <div className="flex flex-row items-center gap-3">
               <Icon size={25} />
 
-              <h1 className="text-lg font-semibold text-richwhite-5">
+              <h1 className="text-lg font-semibold text-black">
                 {ele?.heading}
               </h1>
             </div>

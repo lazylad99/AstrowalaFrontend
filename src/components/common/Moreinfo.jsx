@@ -1,21 +1,21 @@
-import img from "../../assets/Images/astro_images/img10.png";
+import img from "../../assets/Images/astro_images/astrology-service-500x500.png";
 import { Link } from "react-router-dom";
 
 const MoreInfo = () => {
   return (
-    <div className="container bg-blue-800 text-white mb-8 m-3">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className="container bg-blue-800 text-white mb-8 mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Image Section */}
-        <div className="relative h-full lg:h-auto lg:w-full flex items-center">
+        <div className="relative flex items-center">
           <img
             src={img}
             alt="Astrowala Image"
-            className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg"
+            className="w-full h-full object-cover rounded-lg shadow-lg"
           />
         </div>
 
         {/* Text Section */}
-        <div className="flex flex-col text-center items-center justify-center mx-8 px-4 py-8">
+        <div className="flex flex-col text-center items-center justify-center p-8">
           <h1 className="text-3xl font-bold mb-4">
             Discover the Best Astrologer Online for Consultation
           </h1>

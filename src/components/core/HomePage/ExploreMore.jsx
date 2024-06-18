@@ -46,9 +46,9 @@ const ExploreMore = () => {
             <div
               className={` text-[16px] flex flex-row items-center gap-2 ${
                 currentTab === ele
-                  ? "bg-richwhite-900 text-richwhite-5 font-medium"
+                  ? "bg-richwhite-900 text-black font-medium"
                   : "text-richwhite-200"
-              } px-7 py-[7px] rounded-full transition-all duration-200 cursor-pointer hover:bg-richwhite-900 hover:text-richwhite-5`}
+              } px-7 py-[7px] rounded-full transition-all duration-200 cursor-pointer hover:bg-richwhite-900 hover:text-black`}
               key={index}
               onClick={() => setMyCards(ele)}
             >

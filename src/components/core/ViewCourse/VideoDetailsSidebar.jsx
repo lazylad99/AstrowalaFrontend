@@ -87,7 +87,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
           {/* course Name - total No Of Lectures*/}
           <div className="flex flex-col">
             <p>{courseEntireData?.courseName}</p>
-            <p className="text-sm font-semibold text-richwhite-500">
+            <p className="text-sm font-semibold text-black00">
               {completedLectures?.length} / {totalNoOfLectures}
             </p>
           </div>
@@ -97,7 +97,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
         <div className="h-[calc(100vh - 5rem)] overflow-y-auto">
           {courseSectionData.map((section, index) => (
             <div
-              className="mt-2 cursor-pointer text-sm text-richwhite-5"
+              className="mt-2 cursor-pointer text-sm text-black"
               onClick={() => setActiveStatus(section?._id)}
               key={index}
             >

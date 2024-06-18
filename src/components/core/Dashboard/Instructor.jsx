@@ -63,9 +63,7 @@ export default function Instructor() {
         {/* bottom row */}
         <div className="flex flex-col gap-y-6  mt-5">
           <div className="flex justify-between">
-            <p className="text-lg font-bold text-richwhite-5 pl-5">
-              Your Courses
-            </p>
+            <p className="text-lg font-bold text-black pl-5">Your Courses</p>
             <Link to="/dashboard/my-courses">
               <p className="text-xs font-semibold text-yellow-50 hover:underline pr-5">
                 View All
@@ -86,7 +84,7 @@ export default function Instructor() {
   return (
     <div>
       <div className="space-y-2">
-        <h1 className="text-2xl font-bold text-richwhite-5 text-center sm:text-left">
+        <h1 className="text-2xl font-bold text-black text-center sm:text-left">
           Hii {user?.firstName} 👋
         </h1>
         <p className="font-medium text-richwhite-200 text-center sm:text-left">
@@ -104,8 +102,8 @@ export default function Instructor() {
               <InstructorChart courses={instructorData} />
             ) : (
               <div className="flex-1 rounded-md bg-richwhite-800 p-6">
-                <p className="text-lg font-bold text-richwhite-5">Visualize</p>
-                <p className="mt-4 text-xl font-medium text-richwhite-50">
+                <p className="text-lg font-bold text-black">Visualize</p>
+                <p className="mt-4 text-xl font-medium text-black0">
                   Not Enough Data To Visualize
                 </p>
               </div>
@@ -114,23 +112,23 @@ export default function Instructor() {
             {/* left column */}
             {/* Total Statistics */}
             <div className="flex min-w-[250px] flex-col rounded-md bg-richwhite-800 p-6">
-              <p className="text-lg font-bold text-richwhite-5">Statistics</p>
+              <p className="text-lg font-bold text-black">Statistics</p>
               <div className="mt-4 space-y-4">
                 <div>
                   <p className="text-lg text-richwhite-200">Total Courses</p>
-                  <p className="text-3xl font-semibold text-richwhite-50">
+                  <p className="text-3xl font-semibold text-black0">
                     {courses.length}
                   </p>
                 </div>
                 <div>
                   <p className="text-lg text-richwhite-200">Total Students</p>
-                  <p className="text-3xl font-semibold text-richwhite-50">
+                  <p className="text-3xl font-semibold text-black0">
                     {totalStudents}
                   </p>
                 </div>
                 <div>
                   <p className="text-lg text-richwhite-200">Total Income</p>
-                  <p className="text-3xl font-semibold text-richwhite-50">
+                  <p className="text-3xl font-semibold text-black0">
                     Rs. {totalAmount}
                   </p>
                 </div>
@@ -141,7 +139,7 @@ export default function Instructor() {
           {/* Render 3 courses */}
           <div className="rounded-md bg-richwhite-800 p-6">
             <div className="flex items-center justify-between">
-              <p className="text-lg font-bold text-richwhite-5">Your Courses</p>
+              <p className="text-lg font-bold text-black">Your Courses</p>
               <Link to="/dashboard/my-courses">
                 <p className="text-xs font-semibold text-yellow-50 hover:underline">
                   View All
@@ -162,7 +160,7 @@ export default function Instructor() {
                   />
 
                   <div className="mt-3 w-full">
-                    <p className="text-sm font-medium text-richwhite-50">
+                    <p className="text-sm font-medium text-black0">
                       {course.courseName}
                     </p>
                     <div className="mt-1 flex items-center space-x-2">
@@ -184,7 +182,7 @@ export default function Instructor() {
         </div>
       ) : (
         <div className="mt-20 rounded-md bg-richwhite-800 p-6 py-20">
-          <p className="text-center text-2xl font-bold text-richwhite-5">
+          <p className="text-center text-2xl font-bold text-black">
             You have not created any courses yet
           </p>
 

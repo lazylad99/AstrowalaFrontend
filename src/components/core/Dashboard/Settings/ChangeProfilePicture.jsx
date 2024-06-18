@@ -64,7 +64,7 @@ export default function ChangeProfilePicture() {
 
   return (
     <>
-      <div className="flex items-center justify-between rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-8 px-3 sm:px-12 text-richwhite-5">
+      <div className="flex items-center justify-between rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-8 px-3 sm:px-12 text-black">
         <div className="flex items-center gap-x-4">
           <Img
             src={previewSource || user?.image}

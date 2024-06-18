@@ -38,7 +38,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="bg-pure-greys-100 mx-7 rounded-3xl mb-2">
+    <div className="bg-pure-greys-100 mx-7 rounded-3xl mb-4">
       <div className="grid lg:grid-cols-4 gap-8 items-start justify-between w-11/12 max-w-maxContent text-pure-greys-500 leading-6 mx-auto relative py-14">
         {/* Column 1 */}
         <div className="w-full mb-2 lg:pl-0">

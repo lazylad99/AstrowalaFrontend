@@ -22,7 +22,7 @@ export default function CourseAccordionBar({ course, isActive, handleActive }) {
 
 
   return (
-    <div className="overflow-hidden border border-solid border-richwhite-600 bg-richwhite-700 hover:bg-richwhite-600 text-richwhite-5 last:mb-0 duration-200 ">
+    <div className="overflow-hidden border border-solid border-richwhite-600 bg-richwhite-700 hover:bg-richwhite-600 text-black last:mb-0 duration-200 ">
       <div>
         <div
           className={`flex cursor-pointer items-start justify-between bg-opacity-20 px-7 py-6 transition-[0.3s]`}

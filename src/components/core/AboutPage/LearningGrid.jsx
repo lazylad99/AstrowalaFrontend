@@ -78,7 +78,7 @@ const LearningGrid = () => {
               </div>
             ) : (
               <div className="p-8 flex flex-col gap-8">
-                <h1 className="text-richwhite-5 text-lg">{card.heading}</h1>
+                <h1 className="text-black text-lg">{card.heading}</h1>
 
                 <p className="text-richwhite-300 font-medium">
                   {card.description}

@@ -84,7 +84,7 @@ function Catalog() {
                 {catalogPageData?.selectedCategory?.category?.name}
               </span>
             </p>
-            <p className="text-3xl text-richwhite-5">
+            <p className="text-3xl text-black">
               {catalogPageData?.selectedCategory?.category?.name}
             </p>
             <p className="max-w-[870px] text-richwhite-200">
@@ -101,7 +101,7 @@ function Catalog() {
               className={`px-4 py-2 ${
                 active === 1
                   ? "border-b border-b-yellow-25 text-yellow-25"
-                  : "text-richwhite-50"
+                  : "text-black0"
               } cursor-pointer`}
               onClick={() => setActive(1)}
             >
@@ -111,7 +111,7 @@ function Catalog() {
               className={`px-4 py-2 ${
                 active === 2
                   ? "border-b border-b-yellow-25 text-yellow-25"
-                  : "text-richwhite-50"
+                  : "text-black0"
               } cursor-pointer`}
               onClick={() => setActive(2)}
             >

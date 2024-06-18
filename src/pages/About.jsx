@@ -58,7 +58,7 @@ const About = () => {
       </section> */}
 
       {/* <section className="border-b border-richwhite-700">
-        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richwhite-500">
+        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-black00">
           <div className="h-[100px] "></div>
           <Quote />
         </div>

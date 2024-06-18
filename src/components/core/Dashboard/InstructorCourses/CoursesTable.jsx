@@ -138,7 +138,7 @@ export default function CoursesTable({
                       className="h-[148px] min-w-[270px] max-w-[270px] rounded-lg object-cover"
                     />
                     <div className="flex flex-col">
-                      <p className="text-lg font-semibold text-richwhite-5 capitalize">
+                      <p className="text-lg font-semibold text-black capitalize">
                         {course.courseName}
                       </p>
                       <p className="text-xs text-richwhite-300 ">

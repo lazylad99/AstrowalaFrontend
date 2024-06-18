@@ -64,7 +64,7 @@ const Navbar = () => {
     <>
       <ContactInfo />
       <nav
-        className={`z-[10] flex h-16 w-full items-center justify-center border-b-[1px] bg-white translate-y-0 transition-all ${showNavbar}`}
+        className={`z-[10] flex h-16 w-full items-center justify-center border-shadow bg-white translate-y-0 transition-all ${showNavbar}`}
       >
         <div className="flex w-11/12 max-w-maxContent items-center justify-between ">
           <Link to="/" className="logo-container">

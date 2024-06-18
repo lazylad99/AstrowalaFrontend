@@ -117,7 +117,7 @@ export default function CourseInformationForm() {
       className="space-y-8 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-6 "
     >
       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richwhite-5" htmlFor="courseTitle">
+        <label className="text-sm text-black" htmlFor="courseTitle">
           Course Title <sup className="text-pink-200">*</sup>
         </label>
         <input
@@ -134,7 +134,7 @@ export default function CourseInformationForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richwhite-5" htmlFor="courseShortDesc">
+        <label className="text-sm text-black" htmlFor="courseShortDesc">
           Course Short Description <sup className="text-pink-200">*</sup>
         </label>
         <textarea
@@ -151,7 +151,7 @@ export default function CourseInformationForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richwhite-5" htmlFor="coursePrice">
+        <label className="text-sm text-black" htmlFor="coursePrice">
           Course Price <sup className="text-pink-200">*</sup>
         </label>
         <div className="relative">
@@ -178,10 +178,7 @@ export default function CourseInformationForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label
-          className="text-sm text-richwhite-5"
-          htmlFor="courseCategory        "
-        >
+        <label className="text-sm text-black" htmlFor="courseCategory        ">
           Course Category
         </label>
         <select

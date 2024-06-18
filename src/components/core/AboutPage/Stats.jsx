@@ -16,10 +16,10 @@ const StatsComponenet = () => {
           {Stats.map((data, index) => {
             return (
               <div className="flex flex-col py-10" key={index}>
-                <h1 className="text-[30px] font-bold text-richwhite-5">
+                <h1 className="text-[30px] font-bold text-black">
                   {data.count}
                 </h1>
-                <h2 className="font-semibold text-[16px] text-richwhite-500">
+                <h2 className="font-semibold text-[16px] text-black00">
                   {data.label}
                 </h2>
               </div>
