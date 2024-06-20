@@ -353,7 +353,7 @@ const VideosList = () => {
       />
 
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-semibold text-black">Videos</h1>
+        <h1 className="text-2xl  font-semibold text-black">Videos</h1>
 
         {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
           <Tab tabData={tabData} field={filter} setField={setFilter} />
@@ -362,12 +362,12 @@ const VideosList = () => {
 
       <Table className="rounded-2xl border border-richwhite-800">
         <Thead>
-          <Tr className="gap-x-10 rounded-t-3xl border-b border-b-richwhite-800 px-6 py-2">
-            <Th className="text-left text-sm font-medium uppercase p-4 text-black">
+          <Tr className="gap-x-10 rounded-t-3xl border-b bg-blue-100 border-b-richwhite-800 px-6 py-2">
+            <Th className="text-left  text-sm font-medium uppercase p-4 text-white">
               Videos
             </Th>
             {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
-              <Th className="text-left text-sm font-medium uppercase p-4 text-black">
+              <Th className="text-left text-sm font-medium uppercase p-4 text-white">
                 Actions
               </Th>
             )}
@@ -387,7 +387,7 @@ const VideosList = () => {
                 <Tr>
                   <Td
                     colSpan={3}
-                    className="py-10 text-center text-2xl font-medium text-black"
+                    className="py-10 text-center text-2xl font-medium text-blue-400"
                   >
                     No videos found
                   </Td>
@@ -408,10 +408,10 @@ const VideosList = () => {
                           className="h-[148px] min-w-[270px] max-w-[270px] m-2 mr-4 rounded-lg object-cover"
                         />
                         <div className="flex flex-col w-full md:w-auto m-1 mt-2">
-                          <p className="text-lg font-semibold text-black capitalize">
+                          <p className="text-lg font-semibold text-blue-400 capitalize">
                             {video.title}
                           </p>
-                          <p className="text-xs text-richwhite-300">
+                          <p className="text-xs text-blue-400">
                             {video.description.split(" ").length >
                             TRUNCATE_LENGTH
                               ? video.description
@@ -424,10 +424,10 @@ const VideosList = () => {
                           {user &&
                             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
                               <div>
-                                <p className="text-[12px] text-black mt-4">
+                                <p className="text-[12px] text-blue-400 mt-4">
                                   Created: {formatDate(video.createdAt)}
                                 </p>
-                                <p className="text-[12px] text-black">
+                                <p className="text-[12px] text-blue-400">
                                   Updated: {formatDate(video.updatedAt)}
                                 </p>
                               </div>
@@ -436,8 +436,8 @@ const VideosList = () => {
                           {user &&
                             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
                               <div>
-                                {video.status === "DRAFT" ? (
-                                  <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-pink-100">
+                                {!video.isPublished ? (
+                                  <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-blue-800">
                                     <HiClock size={14} /> Drafted
                                   </p>
                                 ) : (
@@ -455,8 +455,8 @@ const VideosList = () => {
                     </Td>
                     {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
                       <Td className="text-sm font-medium text-black">
-                        <div className="flex flex-col">
-                          <div className="flex pb-5">
+                        <div className="flex flex-col mr-2">
+                          <div className="flex pb-5 ">
                             <button
                               disabled={loading}
                               onClick={(event) => {
@@ -496,7 +496,7 @@ const VideosList = () => {
                                 togglePublishStatus(video._id);
                               }}
                               className={`${
-                                video.status === "DRAFT"
+                                !video.isPublished
                                   ? "text-[#00ff00]"
                                   : "text-[#ff0000]"
                               } px-1 transition-all duration-200 hover:scale-110`}

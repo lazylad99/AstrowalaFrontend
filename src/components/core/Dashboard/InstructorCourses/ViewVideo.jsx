@@ -63,7 +63,7 @@ function ViewVideo() {
           "Loading..."
         )}
 
-        <div className="font-medium text-black">
+        <div className="font-medium text-white">
           <p>{videoData?.description}</p>
         </div>
 
@@ -74,7 +74,7 @@ function ViewVideo() {
             <a
               href={videoData.pdfUrl}
               download
-              className="flex items-center text-black"
+              className="flex items-center text-white"
             >
               <FaFilePdf className="mr-2" /> PDF
             </a>
@@ -87,7 +87,7 @@ function ViewVideo() {
                 key={index}
                 href={imgUrl}
                 download
-                className="flex items-center text-black"
+                className="flex items-center text-white"
               >
                 <FaImage className="mr-2" /> Image {index + 1}
               </a>

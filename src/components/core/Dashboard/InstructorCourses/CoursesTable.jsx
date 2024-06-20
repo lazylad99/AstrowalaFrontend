@@ -94,17 +94,17 @@ export default function CoursesTable({
 
       <Table className="rounded-2xl border border-richwhite-800 ">
         <Thead>
-          <Tr className="flex gap-x-10 rounded-t-3xl border-b border-b-richwhite-800 px-6 py-2">
-            <Th className="flex-1 text-left text-sm font-medium uppercase text-black">
+          <Tr className="flex gap-x-10 bg-blue-100 px-6 py-2">
+            <Th className="flex-1 text-left text-sm font-medium uppercase text-white">
               Courses
             </Th>
-            <Th className="text-left text-sm font-medium uppercase text-black">
+            <Th className="text-left text-sm font-medium uppercase text-white">
               Duration
             </Th>
-            <Th className="text-left text-sm font-medium uppercase text-black">
+            <Th className="text-left text-sm font-medium uppercase text-white">
               Price
             </Th>
-            <Th className="text-left ml-2 mr-10 text-sm font-medium uppercase text-black">
+            <Th className="text-left ml-2 mr-10 text-sm font-medium uppercase text-white">
               Actions
             </Th>
           </Tr>
@@ -120,7 +120,7 @@ export default function CoursesTable({
           <Tbody>
             {filteredCourses?.length === 0 ? (
               <Tr>
-                <Td className="py-10 text-center text-2xl font-medium text-black">
+                <Td className="py-10 text-center text-2xl font-medium text-blue-400">
                   No courses found
                 </Td>
               </Tr>
@@ -138,10 +138,10 @@ export default function CoursesTable({
                       className="h-[148px] min-w-[270px] max-w-[270px] rounded-lg object-cover"
                     />
                     <div className="flex flex-col">
-                      <p className="text-lg font-semibold text-black capitalize">
+                      <p className="text-lg font-semibold text-blue-400 capitalize">
                         {course.courseName}
                       </p>
-                      <p className="text-xs text-richwhite-300 ">
+                      <p className="text-xs text-blue-400 ">
                         {course.courseDescription.split(" ").length >
                         TRUNCATE_LENGTH
                           ? course.courseDescription
@@ -157,7 +157,7 @@ export default function CoursesTable({
                         Updated: {formatDate(course?.updatedAt)}
                       </p>
                       {!course.isPublished ? (
-                        <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-pink-500">
+                        <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-blue-800">
                           <HiClock size={14} /> Drafted
                         </p>
                       ) : (

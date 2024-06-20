@@ -33,7 +33,7 @@ export default function ProfileDropdown() {
           alt={`profile-${user?.firstName}`}
           className={"aspect-square w-[30px] rounded-full object-cover"}
         />
-        <AiOutlineCaretDown className="text-sm text-black" />
+        <AiOutlineCaretDown className="text-sm text-white" />
       </div>
 
       {open && (
@@ -43,7 +43,7 @@ export default function ProfileDropdown() {
           ref={ref}
         >
           <Link to="/dashboard/my-profile" onClick={() => setOpen(false)}>
-            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-black hover:bg-richwhite-700 hover:text-richwhite-25">
+            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white hover:bg-richwhite-700 hover:text-richwhite-25">
               <VscDashboard className="text-lg" />
               My Profile
             </div>
@@ -54,7 +54,7 @@ export default function ProfileDropdown() {
               dispatch(logout(navigate));
               setOpen(false);
             }}
-            className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-black hover:bg-richwhite-700 hover:text-richwhite-25"
+            className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white hover:bg-richwhite-700 hover:text-richwhite-25"
           >
             <VscSignOut className="text-lg" />
             Logout

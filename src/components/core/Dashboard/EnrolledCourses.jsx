@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react"
-// import ProgressBar from "@ramonak/react-progress-bar"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+// import ProgressBar from "@ramonak/react-progress-bar";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { getUserEnrolledCourses } from "../../../services/operations/profileAPI"
-import Img from './../../common/Img';
-
-
+import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
+import Img from "./../../common/Img";
 
 export default function EnrolledCourses() {
-  const { token } = useSelector((state) => state.auth)
-  const navigate = useNavigate()
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const TRUNCATE_LENGTH = 25;
 
-  const [enrolledCourses, setEnrolledCourses] = useState(null)
+  const [enrolledCourses, setEnrolledCourses] = useState(null);
 
   // fetch all users enrolled courses
   const getEnrolledCourses = async () => {
@@ -20,18 +19,18 @@ export default function EnrolledCourses() {
       const res = await getUserEnrolledCourses(token);
       setEnrolledCourses(res);
     } catch (error) {
-      console.log("Could not fetch enrolled courses.")
+      console.log("Could not fetch enrolled courses.");
     }
   };
 
   useEffect(() => {
     getEnrolledCourses();
-  }, [])
+  }, []);
 
   // Loading Skeleton
   const sklItem = () => {
     return (
-      <div className="flex border border-richwhite-700 px-5 py-3 w-full">
+      <div className="flex border border-richwhite-100 px-5 py-3 w-full">
         <div className="flex flex-1 gap-x-4 ">
           <div className="h-14 w-14 rounded-lg skeleton "></div>
 
@@ -64,11 +63,11 @@ export default function EnrolledCourses() {
         Enrolled Courses
       </div>
       {
-        <div className="my-8 text-black">
+        <div className="my-8 text-blue-400">
           {/* Headings */}
-          <div className="flex rounded-t-2xl bg-richwhite-800 ">
-            <p className="w-[45%] px-5 py-3">Course Name</p>
-            <p className="w-1/4 px-2 py-3">Duration</p>
+          <div className="flex rounded-t-2xl text-white bg-richwhite-800 ">
+            <p className="w-full px-5 py-3">Course Name</p>
+            {/* <p className="w-1/4 px-2 py-3">Duration</p> */}
             {/* <p className="flex-1 px-2 py-3">Progress</p> */}
           </div>
 
@@ -92,20 +91,26 @@ export default function EnrolledCourses() {
               key={i}
             >
               <div
-                className="flex sm:w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
+                className="flex w-full cursor-pointer items-center gap-4 px-5 py-3"
                 onClick={() => navigate(`/dashboard/${course._id}/videos`)}
               >
                 <Img
                   src={course.thumbnailUrl}
                   alt="course_img"
-                  className="h-14 w-20 rounded-lg object-cover"
+                  className="h-[148px] min-w-[270px] max-w-[270px] rounded-lg object-cover"
                 />
 
-                <div className="flex max-w-xs flex-col gap-2">
-                  <p className="font-semibold">{course.courseName}</p>
-                  <p className="text-xs text-richwhite-300">
-                    {course.courseDescription.length > 50
-                      ? `${course.courseDescription.slice(0, 50)}...`
+                <div className="flex flex-col w-full">
+                  <p className="text-lg font-semibold capitalize">
+                    {course.courseName}
+                  </p>
+                  <p>
+                    {course.courseDescription.split(" ").length >
+                    TRUNCATE_LENGTH
+                      ? course.courseDescription
+                          .split(" ")
+                          .slice(0, TRUNCATE_LENGTH)
+                          .join(" ") + "..."
                       : course.courseDescription}
                   </p>
                 </div>
@@ -114,7 +119,7 @@ export default function EnrolledCourses() {
               {/* only for smaller devices */}
               {/* duration -  progress */}
               <div className="sm:hidden">
-                <div className=" px-2 py-3">{course?.totalDuration}</div>
+                <div className="px-2 py-3">{course?.totalDuration}</div>
 
                 <div className="flex sm:w-2/5 flex-col gap-2 px-2 py-3">
                   {/* {console.log('Course ============== ', course.progressPercentage)} */}
@@ -130,9 +135,9 @@ export default function EnrolledCourses() {
 
               {/* only for larger devices */}
               {/* duration -  progress */}
-              <div className="hidden w-1/5 sm:flex px-2 py-3">
+              {/* <div className="hidden w-1/5 sm:flex px-2 py-3">
                 {course?.totalDuration}
-              </div>
+              </div> */}
               {/* <div className="hidden sm:flex w-1/5 flex-col gap-2 px-2 py-3">
                   <p>Progress: {course.progressPercentage || 0}%</p>
                   <ProgressBar

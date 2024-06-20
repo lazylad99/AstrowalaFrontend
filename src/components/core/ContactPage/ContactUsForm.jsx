@@ -51,9 +51,7 @@ const ContactUsForm = () => {
     >
       <div className="flex flex-col gap-5 lg:flex-row">
         <div className="flex flex-col gap-2 lg:w-[48%]">
-          <label htmlFor="firstname" className="lable-style">
-            First Name
-          </label>
+          <label htmlFor="firstname">First Name</label>
           <input
             type="text"
             name="firstname"
@@ -70,9 +68,7 @@ const ContactUsForm = () => {
         </div>
 
         <div className="flex flex-col gap-2 lg:w-[48%]">
-          <label htmlFor="lastname" className="lable-style">
-            Last Name
-          </label>
+          <label htmlFor="lastname">Last Name</label>
           <input
             type="text"
             name="lastname"
@@ -85,9 +81,7 @@ const ContactUsForm = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="lable-style">
-          Email Address
-        </label>
+        <label htmlFor="email">Email Address</label>
         <input
           type="email"
           name="email"
@@ -104,9 +98,7 @@ const ContactUsForm = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="phonenumber" className="lable-style">
-          Phone Number
-        </label>
+        <label htmlFor="phonenumber">Phone Number</label>
 
         <div className="flex gap-5">
           <div className="flex w-[81px] flex-col gap-2">
@@ -154,9 +146,7 @@ const ContactUsForm = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="lable-style">
-          Message
-        </label>
+        <label htmlFor="message">Message</label>
         <textarea
           name="message"
           id="message"

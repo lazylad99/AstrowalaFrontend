@@ -63,19 +63,19 @@ function CourseDetails() {
 
   // Collapse all
   const [isActive, setIsActive] = useState(Array(0));
-  const handleActive = (id) => {
-    setIsActive(
-      !isActive.includes(id)
-        ? isActive.concat([id])
-        : isActive.filter((e) => e !== id)
-    );
-  };
+  // const handleActive = (id) => {
+  //   setIsActive(
+  //     !isActive.includes(id)
+  //       ? isActive.concat([id])
+  //       : isActive.filter((e) => e !== id)
+  //   );
+  // };
 
   // // Total number of lectures
   // const [totalNoOfLectures, setTotalNoOfLectures] = useState(0);
   // useEffect(() => {
   //   let lectures = 0;
-    // response?.data?.courseDetails?.courseContent?.forEach((sec) => {
+  // response?.data?.courseDetails?.courseContent?.forEach((sec) => {
   //     lectures += sec.subSection.length || 0;
   //   });
   //   setTotalNoOfLectures(lectures);
@@ -100,9 +100,10 @@ function CourseDetails() {
         <p className="h-4 w-[35%] lg:w-[10%] rounded-xl skeleton"></p>
 
         {/* Floating Courses Card */}
-        <div className="right-[1.5rem] top-[20%] hidden lg:block lg:absolute min-h-[450px] w-1/3 max-w-[410px] 
-            translate-y-24 md:translate-y-0 rounded-xl skeleton">
-        </div>
+        <div
+          className="right-[1.5rem] top-[20%] hidden lg:block lg:absolute min-h-[450px] w-1/3 max-w-[410px] 
+            translate-y-24 md:translate-y-0 rounded-xl skeleton"
+        ></div>
 
         <p className="mt-24 h-60 lg:w-[60%] rounded-xl skeleton"></p>
       </div>
@@ -115,8 +116,8 @@ function CourseDetails() {
     courseDescription,
     thumbnailUrl,
     price,
-    courseContent,
-    ratingAndReviews,
+    // courseContent,
+    // ratingAndReviews,
     instructor,
     studentsEnrolled,
     createdAt,
@@ -186,9 +187,9 @@ function CourseDetails() {
 
             {/* Course data */}
             <div
-              className={`mb-5 flex flex-col justify-center gap-4 py-5 text-lg text-black`}
+              className={`mb-5 flex flex-col justify-center gap-4 py-5 text-lg text-white`}
             >
-              <p className="text-4xl font-bold text-black sm:text-[42px]">
+              <p className="text-4xl font-bold text-white sm:text-[42px]">
                 {courseName}
               </p>
               <p className="text-richwhite-200">{courseDescription}</p>
@@ -220,7 +221,7 @@ function CourseDetails() {
             {/* will appear only for small size */}
             {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
               <div className="flex w-full flex-col gap-4 border-y border-y-richwhite-500 py-4 lg:hidden">
-                <p className="space-x-3 pb-4 text-3xl font-semibold text-black">
+                <p className="space-x-3 pb-4 text-3xl font-semibold text-white">
                   Rs. {price}
                 </p>
                 <button
@@ -257,7 +258,7 @@ function CourseDetails() {
         </div>
       </div>
 
-      <div className="mx-auto box-content px-4 text-start text-black lg:w-[1260px]">
+      <div className="mx-auto box-content px-4 text-start text-white lg:w-[1260px]">
         <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
           {/* What will you learn section */}
           {/* <div className="my-8 border border-richwhite-600 p-8">
@@ -280,7 +281,7 @@ function CourseDetails() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {
                 tag && tag.map((item, ind) => (
-                  <p key={ind} className="bg-yellow-50 p-[2px] text-black rounded-full text-center font-semibold" >
+                  <p key={ind} className="bg-yellow-50 p-[2px] text-white rounded-full text-center font-semibold" >
                     {item}
                   </p>
                 ))
@@ -324,7 +325,7 @@ function CourseDetails() {
             </div> */}
 
             {/* Author Details */}
-            <div className="mb-12 py-4">
+            <div className="mb-12 py-4 text-black">
               <p className="text-[28px] font-semibold">Author</p>
               <div className="flex items-center gap-4 py-4">
                 <Img
@@ -339,9 +340,7 @@ function CourseDetails() {
                       <MdOutlineVerified className="w-5 h-5 text-[#00BFFF]" />
                     </span>
                   </p>
-                  <p className="text-black0">
-                    {instructor?.additionalDetails?.about}
-                  </p>
+                  <p>{instructor?.additionalDetails?.about}</p>
                 </div>
               </div>
             </div>

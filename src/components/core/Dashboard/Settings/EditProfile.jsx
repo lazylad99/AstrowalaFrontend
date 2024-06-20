@@ -25,16 +25,16 @@ export default function EditProfile() {
   }
   return (
     <>
-      <form onSubmit={handleSubmit(submitProfileForm)}>
+      <form className="text-white" onSubmit={handleSubmit(submitProfileForm)}>
         {/* Profile Information */}
         <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-8 px-6 sm:px-12">
-          <h2 className="text-lg font-semibold text-black">
+          <h2 className="text-lg font-semibold text-white">
             Profile Information
           </h2>
 
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="firstName" className="lable-style">
+              <label htmlFor="firstName" className="lable-style text-white">
                 First Name
               </label>
               <input
@@ -42,7 +42,7 @@ export default function EditProfile() {
                 name="firstName"
                 id="firstName"
                 placeholder="Enter first name"
-                className="form-style"
+                className="form-style text-white"
                 {...register("firstName", { required: true })}
                 defaultValue={user?.firstName}
               />
@@ -54,7 +54,7 @@ export default function EditProfile() {
             </div>
 
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="lastName" className="lable-style">
+              <label htmlFor="lastName" className="lable-style text-white">
                 Last Name
               </label>
               <input
@@ -186,7 +186,7 @@ export default function EditProfile() {
             onClick={() => {
               navigate("/dashboard/my-profile");
             }}
-            className="cursor-pointer rounded-md bg-richwhite-700 py-2 px-5 font-semibold text-black0"
+            className="cursor-pointer rounded-md bg-blue-100 py-2 px-5 font-semibold text-white"
           >
             Cancel
           </button>

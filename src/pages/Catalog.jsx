@@ -84,10 +84,10 @@ function Catalog() {
                 {catalogPageData?.selectedCategory?.category?.name}
               </span>
             </p>
-            <p className="text-3xl text-black">
+            <p className="text-3xl text-white">
               {catalogPageData?.selectedCategory?.category?.name}
             </p>
-            <p className="max-w-[870px] text-richwhite-200">
+            <p className="max-w-[870px] text-pure-greys-100">
               {catalogPageData?.selectedCategory?.category?.description}
             </p>
           </div>
@@ -99,9 +99,7 @@ function Catalog() {
           <div className="my-4 flex border-b border-b-richwhite-600 text-sm">
             <p
               className={`px-4 py-2 ${
-                active === 1
-                  ? "border-b border-b-yellow-25 text-yellow-25"
-                  : "text-black0"
+                active === 1 ? "border-b text-blue-100" : "text-black0"
               } cursor-pointer`}
               onClick={() => setActive(1)}
             >
@@ -109,9 +107,7 @@ function Catalog() {
             </p>
             <p
               className={`px-4 py-2 ${
-                active === 2
-                  ? "border-b border-b-yellow-25 text-yellow-25"
-                  : "text-black0"
+                active === 2 ? "border-b text-blue-100" : "text-black0"
               } cursor-pointer`}
               onClick={() => setActive(2)}
             >

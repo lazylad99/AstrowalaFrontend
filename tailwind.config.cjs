@@ -4,11 +4,11 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      sans: ["Poppins", "sans-serif"], // Use 'sans' for general text
+      sans: ["Poppins"], // Use 'sans' for general text
       inter: ["Inter", "sans-serif"],
       "edu-sa": ["Edu SA Beginner", "cursive"],
       mono: ["Roboto Mono", "monospace"],
-      boogaloo: ['Boogaloo', "sans-serif"]
+      boogaloo: ['Poppins', "sans-serif"]
     },
     colors: {
       white: "#ffffff",

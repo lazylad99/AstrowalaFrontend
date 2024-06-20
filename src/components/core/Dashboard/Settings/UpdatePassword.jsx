@@ -34,7 +34,7 @@ export default function UpdatePassword() {
     <>
       <form onSubmit={handleSubmit(submitPasswordForm)}>
         <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-8 px-6 sm:px-12">
-          <h2 className="text-lg font-semibold text-black">Password</h2>
+          <h2 className="text-lg font-semibold text-white">Password</h2>
 
           <div className="flex flex-col gap-5 lg:flex-row">
             {/* Current Password */}
@@ -141,7 +141,7 @@ export default function UpdatePassword() {
             onClick={() => {
               navigate("/dashboard/my-profile");
             }}
-            className="cursor-pointer rounded-md bg-richwhite-700 py-2 px-5 font-semibold text-black0"
+            className="cursor-pointer rounded-md bg-blue-100 py-2 px-5 font-semibold text-white"
           >
             Cancel
           </button>

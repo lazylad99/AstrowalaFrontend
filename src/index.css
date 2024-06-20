@@ -86,11 +86,11 @@ textarea::placeholder {
 }
 
 .lable-style {
-  @apply text-[14px] text-black;
+  @apply text-[14px] text-white;
 }
 
 .form-style {
-  @apply rounded-lg bg-richwhite-700 p-3 text-[16px] leading-[24px] text-black shadow-[0_1px_0_0] shadow-white/30 placeholder:text-richblue-800 focus:outline-none;
+  @apply rounded-lg bg-richwhite-700 p-3 text-[16px] leading-[24px] text-white shadow-[0_1px_0_0] shadow-white/30 placeholder:text-richblue-800 focus:outline-none;
 }
 
 .section_heading {

@@ -48,7 +48,7 @@ function CourseDetailsCard({ course, thumbnail, setConfirmationModal, handleBuyC
   };
 
   return (
-    <div className="flex flex-col gap-4 rounded-2xl bg-richwhite-700 p-4 text-black">
+    <div className="flex flex-col gap-4 rounded-2xl shadow-lg bg-richwhite-700 p-4 text-white">
       <Img
         src={thumbnail}
         alt={course?.courseName}
@@ -101,7 +101,7 @@ function CourseDetailsCard({ course, thumbnail, setConfirmationModal, handleBuyC
 
         <div className="text-center">
           <button
-            className="mx-auto flex items-center gap-2 py-6 text-black"
+            className="mx-auto flex items-center gap-2 py-6 text-white"
             onClick={handleShare}
           >
             <FaShareSquare size={15} /> Share

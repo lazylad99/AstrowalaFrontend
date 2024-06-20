@@ -130,14 +130,14 @@
 //       className="space-y-8 m-5 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-6 "
 //     >
 //       <div className="flex flex-col space-y-2">
-//         <label className="text-sm text-black" htmlFor="courseTitle">
+//         <label className="text-sm text-white" htmlFor="courseTitle">
 //           Course Title <sup className="text-pink-600">*</sup>
 //         </label>
 //         <input
 //           id="courseTitle"
 //           placeholder="Enter Course Title"
 //           {...register("courseTitle", { required: true })}
-//           className="form-style w-full"
+//           className="form-style w-full "
 //         />
 //         {errors.courseTitle && (
 //           <span className="ml-2 text-xs tracking-wide text-pink-600">
@@ -147,14 +147,14 @@
 //       </div>
 
 //       <div className="flex flex-col space-y-2">
-//         <label className="text-sm text-black" htmlFor="courseShortDesc">
+//         <label className="text-sm text-white" htmlFor="courseShortDesc">
 //           Course Short Description <sup className="text-pink-600">*</sup>
 //         </label>
 //         <textarea
 //           id="courseShortDesc"
 //           placeholder="Enter Description"
 //           {...register("courseShortDesc", { required: true })}
-//           className="form-style resize-x-none min-h-[130px] w-full"
+//           className="form-style resize-x-none min-h-[130px] w-full "
 //         />
 //         {errors.courseShortDesc && (
 //           <span className="ml-2 text-xs tracking-wide text-pink-600">
@@ -164,7 +164,7 @@
 //       </div>
 
 //       <div className="flex flex-col space-y-2">
-//         <label className="text-sm text-black" htmlFor="coursePrice">
+//         <label className="text-sm text-white" htmlFor="coursePrice">
 //           Course Price <sup className="text-pink-600">*</sup>
 //         </label>
 //         <div className="relative">
@@ -179,7 +179,7 @@
 //                 value: /^(0|[1-9]\d*)(\.\d+)?$/,
 //               },
 //             })}
-//             className="form-style w-full !pl-12"
+//             className="form-style w-full  !pl-12"
 //           />
 //           <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 inline-block -translate-y-1/2 text-2xl text-richwhite-400" />
 //         </div>
@@ -192,7 +192,7 @@
 
 //       <div className="flex flex-col space-y-2">
 //         <label
-//           className="text-sm text-black"
+//           className="text-sm text-white"
 //           htmlFor="courseCategory        "
 //         >
 //           Course Category
@@ -201,7 +201,7 @@
 //           {...register("courseCategory", { required: true })}
 //           defaultValue=""
 //           id="courseCategory"
-//           className="form-style w-full cursor-pointer"
+//           className="form-style w-full  cursor-pointer"
 //         >
 //           <option value="" disabled>
 //             Choose a Category
@@ -383,10 +383,10 @@ export default function AddCourse() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-8 m-5 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-6 "
+      className="space-y-8 m-5 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 text-white p-6 "
     >
-      <div className="flex flex-col space-y-2">
-        <label className="text-sm text-black" htmlFor="courseTitle">
+      <div className="flex flex-col text-white space-y-2">
+        <label className="text-sm text-white" htmlFor="courseTitle">
           Course Title <sup className="text-pink-600">*</sup>
         </label>
         <input
@@ -403,14 +403,14 @@ export default function AddCourse() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-black" htmlFor="courseShortDesc">
+        <label className="text-sm text-white" htmlFor="courseShortDesc">
           Course Short Description <sup className="text-pink-600">*</sup>
         </label>
         <textarea
           id="courseShortDesc"
           placeholder="Enter Description"
           {...register("courseShortDesc", { required: true })}
-          className="form-style resize-x-none min-h-[130px] w-full"
+          className="form-style resize-x-none min-h-[130px] w-full "
         />
         {errors.courseShortDesc && (
           <span className="ml-2 text-xs tracking-wide text-pink-600">
@@ -420,7 +420,7 @@ export default function AddCourse() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-black" htmlFor="coursePrice">
+        <label className="text-sm text-white" htmlFor="coursePrice">
           Course Price <sup className="text-pink-600">*</sup>
         </label>
         <div className="relative">
@@ -435,7 +435,7 @@ export default function AddCourse() {
                 value: /^(0|[1-9]\d*)(\.\d+)?$/,
               },
             })}
-            className="form-style w-full !pl-12"
+            className="form-style w-full  !pl-12"
           />
           <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 inline-block -translate-y-1/2 text-2xl text-richwhite-400" />
         </div>
@@ -447,14 +447,14 @@ export default function AddCourse() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-black" htmlFor="courseCategory">
+        <label className="text-sm text-white" htmlFor="courseCategory">
           Course Category
         </label>
         <select
           {...register("courseCategory", { required: true })}
           defaultValue=""
           id="courseCategory"
-          className="form-style w-full cursor-pointer"
+          className="form-style w-full  cursor-pointer"
         >
           <option value="" disabled>
             Choose a Category

@@ -31,6 +31,7 @@ import backgroundImg6 from "../assets/Images/astro_images/img5.jpg";
 import backgroundImg7 from "../assets/Images/astro_images/vastu.jpg";
 import SiteInfo from "../components/common/SiteInfo";
 import MoreInfo from "../components/common/Moreinfo";
+import Card from "../components/common/Card";
 
 const randomImges = [
   backgroundImg1,
@@ -57,8 +58,9 @@ const Home = () => {
 
   // get courses data
   const [
-    // CatalogPageData, 
-    setCatalogPageData] = useState(null);
+    // CatalogPageData,
+    setCatalogPageData,
+  ] = useState(null);
   const categoryID = "6662ad7dbb3aa094b1109871"; // hard coded
   const dispatch = useDispatch();
 
@@ -147,8 +149,8 @@ const Home = () => {
 
         {/* animated code */}
         {/* <div className="relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-blue-400 justify-between"> */}
-          {/* Code block 1 */}
-          {/* <div className="">
+        {/* Code block 1 */}
+        {/* <div className="">
             <CodeBlocks
               position={"lg:flex-col"}
               heading={
@@ -174,7 +176,7 @@ const Home = () => {
               //   codeColor={"text-yellow-25"}
               //   backgroundGradient={"code-block1-grad"}
             /> */}
-            {/* <div className="explore-courses bg-gray-100 py-10">
+        {/* <div className="explore-courses bg-gray-100 py-10">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {categories.map((category, index) => (
                   <div
@@ -195,10 +197,10 @@ const Home = () => {
                 ))}
               </div>
             </div> */}
-          {/* </div> */}
+        {/* </div> */}
 
-          {/* Code block 2 */}
-          {/* <div>
+        {/* Code block 2 */}
+        {/* <div>
             <CodeBlocks
               position={"lg:flex-row-reverse"}
               heading={
@@ -231,6 +233,7 @@ const Home = () => {
 
         <MoreInfo />
 
+        {/* <Card /> */}
         <Footer />
       </div>
     </React.Fragment>
