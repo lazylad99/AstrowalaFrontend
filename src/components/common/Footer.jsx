@@ -8,19 +8,14 @@ import AstroWalaLogo from "../../assets/Logo/GyanSrijanLogo.png";
 
 // footer data
 const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"];
-const Services = [
-  "Vedic Astrology",
-  "Advanced Vedic Astrology",
-  "Foundation of Numerology",
-  "Advance Level Numerology",
-  "Medical Astrology",
-  "Master Level Numerology",
-];
 const QuickLinks = ["Home", "About", "Contact"];
 
 const Footer = () => {
   const [subLinks, setSubLinks] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [
+    // loading,
+    setLoading,
+  ] = useState(false);
 
   const fetchSublinks = async () => {
     try {
@@ -106,7 +101,7 @@ const Footer = () => {
           <div className="flex flex-col gap-2 mt-2">
             {subLinks?.map((subLink, i) => (
               <Link
-                to={`/catalog/${subLink._id
+                to={`/catalog/${subLink?._id
                   .split(" ")
                   .join("-")
                   .toLowerCase()}`}

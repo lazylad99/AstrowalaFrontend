@@ -1,68 +1,14 @@
-import React from "react";
-
 import FoundingStory from "../assets/Images/FoundingStory.jpg";
-import BannerImage1 from "../assets/Images/aboutus1.webp";
-import BannerImage2 from "../assets/Images/aboutus2.webp";
-import BannerImage3 from "../assets/Images/aboutus3.webp";
 
 import Footer from "../components/common/Footer";
-import ContactFormSection from "../components/core/AboutPage/ContactFormSection";
-import LearningGrid from "../components/core/AboutPage/LearningGrid";
-import Quote from "../components/core/AboutPage/Quote";
-import StatsComponenet from "../components/core/AboutPage/Stats";
-import HighlightText from "../components/core/HomePage/HighlightText";
 import Img from "../components/common/Img";
-import ReviewSlider from "./../components/common/ReviewSlider";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "../components/common/motionFrameVarients";
 
 const About = () => {
   return (
-    <div>
-      {/* <section className="bg-richwhite-700">
-        <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-center text-white">
-          <motion.header
-            className="mx-auto py-20 text-4xl font-semibold lg:w-[70%]"
-          >
-            <motion.p
-              variants={fadeIn('down', 0.1)}
-              initial='hidden'
-              whileInView={'show'}
-              viewport={{ once: false, amount: 0.1 }}
-            > Driving Innovation in Online Education for a
-              <HighlightText text={"Brighter Future"} />
-            </motion.p>
-
-            <motion.p
-              variants={fadeIn('up', 0.1)}
-              initial='hidden'
-              whileInView={'show'}
-              viewport={{ once: false, amount: 0.1 }}
-              className="mx-auto mt-3 text-center text-base font-medium text-richwhite-300 lg:w-[95%]">
-              GyanSrijan is at the forefront of driving innovation in online
-              education. We're passionate about creating a brighter future by
-              offering cutting-edge courses, leveraging emerging technologies,
-              and nurturing a vibrant learning community.
-            </motion.p>
-          </motion.header>
-
-          <div className="sm:h-[70px] lg:h-[150px]"></div>
-
-          <div className=" absolute bottom-0 left-[50%] grid w-[100%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5">
-            <Img src={BannerImage1} alt="" />
-            <Img src={BannerImage2} alt="" />
-            <Img src={BannerImage3} alt="" />
-          </div>
-        </div>
-      </section> */}
-
-      {/* <section className="border-b border-richwhite-700">
-        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-black00">
-          <div className="h-[100px] "></div>
-          <Quote />
-        </div>
-      </section> */}
+    <div className="bg-pure-greys-25">
       <section className="flex flex-col items-center mt-10">
         <motion.div
           variants={fadeIn("left", 0.1)}
@@ -87,12 +33,12 @@ const About = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: false, amount: 0.1 }}
-              className="flex flex-col gap-10"
+              className="flex flex-col gap-10 text-pure-greys-500"
             >
-              <h1 className="bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%] mx-auto">
+              <h1 className="bg-gradient-to-b from-[#44799f] via-[#10c8e9] to-[#73d89d] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%] mx-auto">
                 Our Founding Story
               </h1>
-              <p className="text-base font-medium text-richwhite-300 lg:w-[95%] mx-auto">
+              <p className="text-base font-medium lg:w-[95%] mx-auto">
                 The Famous Indian Professional Astrology website is owned by
                 astrologer Mandiiip Chauhan who is registered member of
                 International Astrology Federation Inc (India & USA), which is a
@@ -103,7 +49,7 @@ const About = () => {
                 students in this field. Your problem is our concern & your
                 solution is our motive.
               </p>
-              <p className="text-base font-medium text-richwhite-300 lg:w-[95%] mx-auto">
+              <p className="text-base font-medium lg:w-[95%] mx-auto">
                 In our life, many people are happy & many are sad due to our
                 planets & karmas. Life is a memorable adventure where we aim to
                 follow our ambitious goals related to family, health, finance,
@@ -113,7 +59,7 @@ const About = () => {
                 Planets. Astrology is all about de-coding your life with the
                 help of this precious study of planets.
               </p>
-              <p className="text-base font-medium text-richwhite-300 lg:w-[95%] mx-auto">
+              <p className="text-base font-medium lg:w-[95%] mx-auto">
                 We are all connected with planets & elements in our life. If we
                 have faith in this field, then planets & elements are always
                 working for us 24X7 without any pause in our life. It’s like
@@ -122,7 +68,7 @@ const About = () => {
                 reflect the life of its component. Hence, our life is
                 predominantly governed by planets and their movements.
               </p>
-              <p className="text-base font-medium text-richwhite-300 lg:w-[95%] mx-auto">
+              <p className="text-base font-medium lg:w-[95%] mx-auto">
                 Astrology is a science and ancient knowledge repository to guide
                 each of us to gain the most out of our life on earth. This will
                 enable us to predict what is in store for you in this world,
