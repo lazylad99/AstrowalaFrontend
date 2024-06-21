@@ -20,7 +20,17 @@ export default function Upload({
 }) {
   const { course } = useSelector((state) => state.course);
   const [selectedFiles, setSelectedFiles] = useState([]);
-  const [previewSources, setPreviewSources] = useState(viewData ? viewData : editData ? editData : []);
+  const [previewSources, setPreviewSources] = useState(
+    Array.isArray(viewData)
+      ? viewData
+      : viewData
+      ? [viewData]
+      : Array.isArray(editData)
+      ? editData
+      : editData
+      ? [editData]
+      : []
+  );
   const inputRef = useRef(null);
 
   const onDrop = (acceptedFiles) => {
@@ -37,7 +47,11 @@ export default function Upload({
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: video ? { "video/*": [".mp4"] } : pdf ? { "application/pdf": [".pdf"] } : { "image/*": [".jpeg", ".jpg", ".png"] },
+    accept: video
+      ? { "video/*": [".mp4"] }
+      : pdf
+      ? { "application/pdf": [".pdf"] }
+      : { "image/*": [".jpeg", ".jpg", ".png"] },
     multiple: multiple,
     onDrop,
   });
@@ -51,26 +65,31 @@ export default function Upload({
   };
 
   const previewFiles = (files) => {
-    const readers = files.map(file => {
+    const readers = files.map((file) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       return reader;
     });
 
-    Promise.all(readers.map(reader => new Promise(resolve => {
-      reader.onloadend = () => resolve(reader.result);
-    }))).then(results => {
+    Promise.all(
+      readers.map(
+        (reader) =>
+          new Promise((resolve) => {
+            reader.onloadend = () => resolve(reader.result);
+          })
+      )
+    ).then((results) => {
       setPreviewSources(results);
     });
   };
 
   useEffect(() => {
     register(name, { required: true });
-  }, [register]);
+  }, [register, name]);
 
   useEffect(() => {
     setValue(name, multiple ? selectedFiles : selectedFiles[0]);
-  }, [selectedFiles, setValue, multiple]);
+  }, [selectedFiles, setValue, name, multiple]);
 
   return (
     <div className="flex flex-col space-y-2">
@@ -141,11 +160,11 @@ export default function Upload({
         )}
       </div>
 
-      {errors[name] && (
+      {/* {errors[name] && (
         <span className="ml-2 text-xs tracking-wide text-pink-200">
           {label} is required
         </span>
-      )}
+      )} */}
     </div>
   );
 }
