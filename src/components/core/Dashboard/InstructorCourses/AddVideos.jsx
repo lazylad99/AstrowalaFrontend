@@ -19,6 +19,7 @@ export default function AddVideos() {
     handleSubmit,
     setValue,
     getValues,
+    getValues,
     formState: { errors },
   } = useForm();
 
@@ -159,7 +160,7 @@ export default function AddVideos() {
 
           <Upload
             name="videoUrl"
-            label="Upload New Video"
+            label="Video"
             register={register}
             setValue={setValue}
             errors={errors}
@@ -168,7 +169,7 @@ export default function AddVideos() {
           />
           <Upload
             name="pdfUrl"
-            label="Upload New PDF"
+            label="PDF"
             register={register}
             setValue={setValue}
             errors={errors}
@@ -177,7 +178,7 @@ export default function AddVideos() {
           />
           <Upload
             name="imagesUrl"
-            label="Upload New Images"
+            label="Images"
             register={register}
             setValue={setValue}
             errors={errors}
@@ -187,7 +188,7 @@ export default function AddVideos() {
           <div className="mb-4 mt-4">
             <label
               htmlFor="title"
-              className="block text-white text-sm font-medium text-gray-700"
+              className="block text-white text-sm font-medium"
             >
               Video Title
             </label>
@@ -206,7 +207,7 @@ export default function AddVideos() {
           <div className="mb-4">
             <label
               htmlFor="description"
-              className="block text-white text-sm font-medium text-gray-700"
+              className="block text-white text-sm font-medium"
             >
               Video Description
             </label>
