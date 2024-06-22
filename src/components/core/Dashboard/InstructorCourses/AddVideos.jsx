@@ -19,7 +19,6 @@ export default function AddVideos() {
     handleSubmit,
     setValue,
     getValues,
-    getValues,
     formState: { errors },
   } = useForm();
 
@@ -117,47 +116,6 @@ export default function AddVideos() {
     <div className="container mx-auto mt-">
       <div className="max-w-lg mx-auto bg-richwhite-800 p-8 rounded-lg shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
-          {/* {video.videoUrl && (
-            <div className="mb-4">
-              <label className="block text-white text-sm font-medium text-gray-700 " >
-                Current Video
-              </label>
-              <video src={video.videoUrl} controls className="w-full mt-1 mb-4" />
-            </div>
-          )}
-          {video.pdfUrl && (
-            <div className="mb-4">
-              <label className="block text-white text-sm font-medium text-gray-700">
-                Current PDF
-              </label>
-              <a
-                href={video.pdfUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500"
-              >
-                View PDF
-              </a>
-            </div>
-          )}
-          {video.imagesUrl.length > 0 && (
-            <div className="mb-4">
-              <label className="block text-white text-sm font-medium text-gray-700">
-                Current Images
-              </label>
-              <div className="flex flex-wrap">
-                {video.imagesUrl.map((url, index) => (
-                  <img
-                    key={index}
-                    src={url}
-                    alt={`Image ${index + 1}`}
-                    className="w-1/4 h-auto mt-1 mr-2"
-                  />
-                ))}
-              </div>
-            </div>
-          )} */}
-
           <Upload
             name="videoUrl"
             label="Video"
