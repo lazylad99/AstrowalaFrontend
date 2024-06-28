@@ -1,94 +1,79 @@
-import { useEffect } from "react"
-import { RiEditBoxLine } from "react-icons/ri"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useEffect } from "react";
+import { RiEditBoxLine } from "react-icons/ri";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { formattedDate } from "../../../utils/dateFormatter"
-import IconBtn from "../../common/IconBtn"
-import Img from './../../common/Img';
-
-
+import { formattedDate } from "../../../utils/dateFormatter";
+import IconBtn from "../../common/IconBtn";
+import Img from "./../../common/Img";
 
 export default function MyProfile() {
-  const { user } = useSelector((state) => state.profile)
+  const { user } = useSelector((state) => state.profile);
   const navigate = useNavigate();
-
 
   // Scroll to the top of the page when the component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [])
+  }, []);
 
   return (
-    <>
-      <h1 className="mb-14 text-4xl text-black font-semibold text-center sm:text-left">
-        {" "}
-        My Profile
-      </h1>
-
-      <div className="flex items-center justify-between rounded-2xl border-[1px] border-richwhite-700 bg-richwhite-800 p-8 px-3 sm:px-12">
-        <div className="flex items-center gap-x-4">
+    <div className="p-8 rounded-2xl border-[1px] border-richwhite-700 bg-richwhite-800">
+      <div className="flex justify-between">
+        <div>
+          <h1 className="mb-8 text-4xl text-white font-semibold text-center sm:text-left">
+            My Profile
+          </h1>
+        </div>
+        <div>
+          <IconBtn
+            text="Edit"
+            onclick={() => {
+              navigate("/dashboard/settings");
+            }}
+          >
+            <RiEditBoxLine />
+          </IconBtn>
+        </div>
+      </div>
+      <div className="flex items-center justify-between">
+        <div className="flex w-2/4 items-center flex-col">
           <Img
             src={user?.image}
             alt={`profile-${user?.firstName}`}
-            className="aspect-square w-[78px] rounded-full object-cover"
+            className="aspect-squaremt-3 w-[150px] rounded-full object-cover"
           />
-          <div className="space-y-1">
-            <p className="text-lg font-semibold text-white capitalize">
+        </div>
+
+        <div className=" my-3 mb-3">
+          <div className="flex  items-center justify-between">
+            <p className="text-xl font-semibold text-white capitalize">
               {user?.firstName + " " + user?.lastName}
-            </p>
+            </p>{" "}
+          </div>
+          <div className="flex w-full items-center justify-between mb-3">
             <p className="text-sm text-pure-greys-100">{user?.email}</p>
           </div>
-        </div>
-
-        <IconBtn
-          text="Edit"
-          onclick={() => {
-            navigate("/dashboard/settings");
-          }}
-        >
-          <RiEditBoxLine />
-        </IconBtn>
-      </div>
-
-      <div className="my-10 flex flex-col gap-y-10 rounded-2xl border-[1px] border-richwhite-700 bg-richwhite-800 p-8 px-7 sm:px-12">
-        <div className="flex w-full items-center justify-between">
-          <p className="text-lg font-semibold text-white">About</p>
-          <IconBtn
-            text="Edit"
-            onclick={() => {
-              navigate("/dashboard/settings");
-            }}
+          <div className="flex w-full items-center justify-between">
+            <p className="text-lg font-semibold text-white">About</p>
+          </div>
+          <p
+            className={`${
+              user?.additionalDetails?.about
+                ? "text-white"
+                : "text-pure-greys-100"
+            } text-sm font-medium mt-2`}
           >
-            <RiEditBoxLine />
-          </IconBtn>
+            {user?.additionalDetails?.about ?? "Write Something About Yourself"}
+          </p>
         </div>
-
-        <p
-          className={`${
-            user?.additionalDetails?.about
-              ? "text-white"
-              : "text-pure-greys-100"
-          } text-sm font-medium`}
-        >
-          {user?.additionalDetails?.about ?? "Write Something About Yourself"}
-        </p>
       </div>
 
-      <div className="my-10 flex flex-col gap-y-10 rounded-2xl border-[1px] border-richwhite-700 bg-richwhite-800 p-8 px-7 sm:px-12">
+      <div className="my-10">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-white">Personal Details</p>
-          <IconBtn
-            text="Edit"
-            onclick={() => {
-              navigate("/dashboard/settings");
-            }}
-          >
-            <RiEditBoxLine />
-          </IconBtn>
         </div>
 
-        <div className="flex max-w-[500px] justify-between ">
+        <div className="flex max-w-[500px] justify-between mt-5">
           <div className="flex flex-col gap-y-5">
             <div>
               <p className="mb-2 text-sm text-pure-greys-100">First Name</p>
@@ -137,6 +122,6 @@ export default function MyProfile() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

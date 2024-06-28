@@ -153,9 +153,11 @@ export default function CoursesTable({
                       <p className="text-[12px] text-black mt-4">
                         Created: {formatDate(course?.createdAt)}
                       </p>
-                      <p className="text-[12px] text-black">
-                        Updated: {formatDate(course?.updatedAt)}
-                      </p>
+                      {course?.updatedAt && (
+                        <p className="text-[12px] text-black">
+                          Updated: {formatDate(course?.updatedAt)}
+                        </p>
+                      )}
                       {!course.isPublished ? (
                         <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-blue-800">
                           <HiClock size={14} /> Drafted

@@ -267,13 +267,7 @@ export const createRating = async (data, token) => {
 // ================= TOGGLE PUBLISH =================================
 export const togglePublishStatus = async (courseId, token) => {
   try {
-    // const response = await fetch(`${courseEndpoints.TOGGLE_PUBLISH_API.replace(':courseId', courseId)}`, {
-    //   method: 'PATCH',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${yourAuthToken}`
-    //   }
-    // });
+
     const response = await apiConnector("PATCH", TOGGLE_PUBLISH_API.replace(':courseId', courseId), {}, {
       Authorization: `Bearer ${token}`,
     })

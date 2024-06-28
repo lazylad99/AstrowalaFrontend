@@ -1,10 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useDropzone } from "react-dropzone";
-import { FiUploadCloud } from "react-icons/fi";
+import { FiUploadCloud, FiX } from "react-icons/fi";
 import { useSelector } from "react-redux";
-
-import "video-react/dist/video-react.css";
-import { Player } from "video-react";
 
 export default function Upload({
   name,
@@ -12,13 +8,12 @@ export default function Upload({
   register,
   setValue,
   errors,
-  video = false,
-  pdf = false,
   viewData = null,
   editData = null,
-  multiple = false
+  multiple = false,
+  pdf = false,
+  video = false,
 }) {
-  const { course } = useSelector((state) => state.course);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [previewSources, setPreviewSources] = useState(
     Array.isArray(viewData)
@@ -33,35 +28,23 @@ export default function Upload({
   );
   const inputRef = useRef(null);
 
-  const onDrop = (acceptedFiles) => {
-    if (multiple) {
-      setSelectedFiles(acceptedFiles);
-      previewFiles(acceptedFiles);
+  const fileAccept = () => {
+    if (pdf) {
+      return ".pdf";
+    } else if (video) {
+      return "video/*";
     } else {
-      const file = acceptedFiles[0];
-      if (file) {
-        previewFile(file);
-        setSelectedFiles([file]);
-      }
+      return "image/*";
     }
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: video
-      ? { "video/*": [".mp4"] }
-      : pdf
-      ? { "application/pdf": [".pdf"] }
-      : { "image/*": [".jpeg", ".jpg", ".png"] },
-    multiple: multiple,
-    onDrop,
-  });
-
-  const previewFile = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSources([reader.result]);
-    };
+  const onFileChange = (event) => {
+    const files = event.target.files;
+    if (files) {
+      const fileList = Array.from(files);
+      setSelectedFiles(fileList);
+      previewFiles(fileList);
+    }
   };
 
   const previewFiles = (files) => {
@@ -83,6 +66,14 @@ export default function Upload({
     });
   };
 
+  const removeFile = (index) => {
+    const updatedFiles = [...selectedFiles];
+    updatedFiles.splice(index, 1);
+    setSelectedFiles(updatedFiles);
+    setPreviewSources([]);
+    setValue(name, null);
+  };
+
   useEffect(() => {
     register(name, { required: true });
   }, [register, name]);
@@ -97,65 +88,50 @@ export default function Upload({
         {label} {!viewData && <sup className="text-pink-200">*</sup>}
       </label>
 
-      <div
-        className={`${
-          isDragActive ? "bg-richwhite-600" : "bg-richwhite-700"
-        } flex min-h-[250px] cursor-pointer items-center justify-center rounded-md border-2 border-dotted border-richwhite-500`}
-      >
+      <div className="flex flex-col items-center">
         {previewSources.length > 0 ? (
           <div className="flex w-full flex-col p-6">
             {previewSources.map((source, index) => (
-              <div key={index} className="mb-4">
-                {!video && !pdf ? (
-                  <img
-                    src={source}
-                    alt="Preview"
-                    className="h-full w-full rounded-md object-cover"
-                  />
-                ) : video ? (
-                  <Player aspectRatio="16:9" playsInline src={source} />
-                ) : (
-                  <embed
-                    src={source}
-                    type="application/pdf"
-                    className="h-full w-full rounded-md object-cover"
+              <div key={index} className="mb-4 flex items-center">
+                <span className="text-white p-3 rounded-lg bg-blue-100 truncate mr-2">
+                  {selectedFiles[index]?.name}
+                </span>
+                {!viewData && (
+                  <FiX
+                    className="text-red-500 cursor-pointer"
+                    onClick={() => {
+                      removeFile(index);
+                      setPreviewSources([]);
+                      setSelectedFiles([]);
+                      setValue(name, null);
+                    }}
                   />
                 )}
               </div>
             ))}
-            {!viewData && (
-              <button
-                type="button"
-                onClick={() => {
-                  setPreviewSources([]);
-                  setSelectedFiles([]);
-                  setValue(name, null);
-                }}
-                className="mt-3 text-richwhite-400 underline"
-              >
-                Cancel
-              </button>
-            )}
           </div>
         ) : (
-          <div
-            className="flex w-full flex-col items-center p-6"
-            {...getRootProps()}
-          >
-            <input {...getInputProps()} ref={inputRef} />
-            <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800">
+          <div className="flex items-center p-6">
+            <input
+              type="file"
+              accept={fileAccept()}
+              onChange={onFileChange}
+              ref={inputRef}
+              className="hidden"
+            />
+            <div
+              className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800 cursor-pointer"
+              onClick={() => inputRef.current.click()}
+            >
               <FiUploadCloud className="text-2xl text-yellow-50" />
             </div>
-            <p className="mt-2 max-w-[200px] text-center text-sm text-richwhite-200">
-              Drag and drop a {video ? "video" : pdf ? "PDF" : "image"}, or
-              click to{" "}
-              <span className="font-semibold text-yellow-50">Browse</span> a
+            <p className="ml-4 max-w-[200px] text-sm text-richwhite-200">
+              Click to{" "}
+              <span className="font-semibold text-yellow-50">
+                Browse a {pdf ? "PDF" : video ? "video" : "image"}
+              </span>{" "}
               file
             </p>
-            <ul className="mt-10 flex list-disc justify-between space-x-12 text-center text-xs text-richwhite-200">
-              <li>Aspect ratio 16:9</li>
-              <li>Recommended size 1024x576</li>
-            </ul>
           </div>
         )}
       </div>

@@ -328,7 +328,7 @@ const VideosList = () => {
   const skItem = () => (
     <Tr className="skeleton-row">
       <Td colSpan={3}>
-        <div className="flex flex-wrap border-b border-richwhite-800 px-6 py-8 w-full">
+        <div className="flex flex-wrap border-b border-richwhite-800  px-6 py-8 w-full">
           <div className="h-[148px] min-w-[300px] rounded-xl skeleton"></div>
           <div className="flex flex-col w-full md:w-[60%] ml-4">
             <p className="h-5 w-[50%] rounded-xl skeleton"></p>

@@ -52,6 +52,7 @@ export default function AddCourse() {
       setValue("coursePrice", course.price);
       setValue("courseCategory", course.category._id); // Assuming course.category is an object with _id
       setValue("courseImage", course.thumbnailUrl);
+      setValue("courseVideo", course.introductoryVideoUrl);
 
       // console.log("CategoryId", course.category._id);
     }
@@ -70,7 +71,8 @@ export default function AddCourse() {
       currentValues.courseShortDesc !== course.courseDescription ||
       currentValues.coursePrice !== course.price ||
       currentValues.courseCategory !== course.category._id ||
-      currentValues.courseImage !== course.thumbnailUrl
+      currentValues.courseImage !== course.thumbnailUrl ||
+      currentValues.courseVideo !== course.introductoryVideoUrl
     ) {
       return true;
     }
@@ -100,6 +102,9 @@ export default function AddCourse() {
         if (currentValues.courseImage !== course.thumbnailUrl) {
           formData.append("thumbnailUrl", data.courseImage);
         }
+        if (currentValues.courseVideo !== course.introductoryVideoUrl) {
+          formData.append("introductoryVideoUrl", data.courseVideo);
+        }
 
         setLoading(true);
         const result = await editCourseDetails(formData, token);
@@ -114,7 +119,7 @@ export default function AddCourse() {
       return;
     }
 
-    console.log(data.courseImage);
+    console.log(data.courseVideo);
 
     const formData = new FormData();
     formData.append("courseName", data.courseTitle);
@@ -122,6 +127,7 @@ export default function AddCourse() {
     formData.append("price", data.coursePrice);
     formData.append("category", data.courseCategory);
     formData.append("thumbnailUrl", data.courseImage);
+    formData.append("introductoryVideoUrl", data.courseVideo);
 
     setLoading(true);
     const result = await addCourseDetails(formData, token);
@@ -135,7 +141,7 @@ export default function AddCourse() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-8 m-5 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 text-white p-6 "
+      className="space-y-4 m-3 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 text-white p-6 "
     >
       <div className="flex flex-col text-white space-y-2">
         <label className="text-sm text-white" htmlFor="courseTitle">
@@ -229,7 +235,26 @@ export default function AddCourse() {
         editData={editCourse ? [course?.thumbnailUrl] : null}
       />
 
-      {/* <PublishCourse /> */}
+      {course?.introductoryVideoUrl ? (
+        <Upload
+          name="courseVideo"
+          label="Course Introductory Video"
+          register={register}
+          setValue={setValue}
+          errors={errors}
+          editData={editCourse ? [course?.introductoryVideoUrl] : null}
+          video
+        />
+      ) : (
+        <Upload
+          name="courseVideo"
+          label="Course Introductory Video"
+          register={register}
+          setValue={setValue}
+          errors={errors}
+          video
+        />
+      )}
 
       <div className="flex justify-end gap-x-2">
         {editCourse && (

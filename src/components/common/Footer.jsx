@@ -19,13 +19,12 @@ const Footer = () => {
 
   const fetchSublinks = async () => {
     try {
-      setLoading(true);
+      // setLoading(true);
       const res = await fetchCourseCategories();
       setSubLinks(res);
     } catch (error) {
       console.log("Could not fetch the category list = ", error);
     }
-    setLoading(false);
   };
 
   useEffect(() => {

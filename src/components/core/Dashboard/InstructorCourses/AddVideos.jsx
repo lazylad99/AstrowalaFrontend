@@ -114,35 +114,37 @@ export default function AddVideos() {
 
   return (
     <div className="container mx-auto mt-">
-      <div className="max-w-lg mx-auto bg-richwhite-800 p-8 rounded-lg shadow-lg">
+      <div className="max-w-4xl mx-auto bg-richwhite-800 p-8 rounded-lg shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
-          <Upload
-            name="videoUrl"
-            label="Video"
-            register={register}
-            setValue={setValue}
-            errors={errors}
-            editData={editVideo ? videos?.videoUrl : null}
-            video
-          />
-          <Upload
-            name="pdfUrl"
-            label="PDF"
-            register={register}
-            setValue={setValue}
-            errors={errors}
-            editData={editVideo ? videos?.pdfUrl : null}
-            pdf
-          />
-          <Upload
-            name="imagesUrl"
-            label="Images"
-            register={register}
-            setValue={setValue}
-            errors={errors}
-            editData={editVideo ? videos?.imagesUrl : null}
-            multiple
-          />
+          <div className="flex">
+            <Upload
+              name="videoUrl"
+              label="Video"
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              editData={editVideo ? videos?.videoUrl : null}
+              video
+            />
+            <Upload
+              name="pdfUrl"
+              label="PDF"
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              editData={editVideo ? videos?.pdfUrl : null}
+              pdf
+            />
+            <Upload
+              name="imagesUrl"
+              label="Images"
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              editData={editVideo ? videos?.imagesUrl : null}
+              multiple
+            />
+          </div>
           <div className="mb-4 mt-4">
             <label
               htmlFor="title"
