@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    user: localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null,
+    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
     loading: false,
 };
+
 // Problem occured and solved
 // initially i mark user data as nulll
 // as i refresh the page user becomes null , so login / signup buttons are not visible - In case of user not logged
