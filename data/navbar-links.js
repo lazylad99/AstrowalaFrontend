@@ -4,6 +4,10 @@ export const NavbarLinks = [
     path: "/",
   },
   {
+    title: "Profile",
+    path: "/dashboard/my-profile",
+  },
+  {
     title: "Categories",   
   },
   {

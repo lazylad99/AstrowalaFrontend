@@ -82,6 +82,7 @@ export default function Upload({
     setValue(name, multiple ? selectedFiles : selectedFiles[0]);
   }, [selectedFiles, setValue, name, multiple]);
 
+
   return (
     <div className="flex flex-col space-y-2">
       <label className="text-sm text-white" htmlFor={name}>
@@ -94,7 +95,7 @@ export default function Upload({
             {previewSources.map((source, index) => (
               <div key={index} className="mb-4 flex items-center">
                 <span className="text-white p-3 rounded-lg bg-blue-100 truncate mr-2">
-                  {selectedFiles[index]?.name}
+                  {source ? "previousfile" : selectedFiles[index]?.name}
                 </span>
                 {!viewData && (
                   <FiX

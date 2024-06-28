@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
 import Img from "./../../common/Img";
-// import Certificate from "./Certificate/Certificate";
 
 export default function EnrolledCourses() {
   const { token } = useSelector((state) => state.auth);
@@ -115,7 +114,6 @@ export default function EnrolledCourses() {
                           .join(" ") + "..."
                       : course.courseDescription}
                   </p>
-                  {/* <Certificate /> */}
                 </div>
               </div>
 

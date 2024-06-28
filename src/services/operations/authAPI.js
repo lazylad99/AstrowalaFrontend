@@ -94,27 +94,36 @@ export function login(email, password, navigate) {
         email,
         password,
       })
+      localStorage.setItem('sessionId', response.data.sessionId);
+      console.log('sessionId', response.data.sessionId);
+      console.log("LOGIN API RESPONSE............", response.data);
 
-      console.log("LOGIN API RESPONSE............", response);
+      // if (!response.data.success) {
+      //   throw new Error(response.data.message)
+      // }
 
-      if (!response.data.success) {
-        throw new Error(response.data.message)
-      }
+      console.log("LOGN IN RESPOSNE -> ", response)
+      if (response.data.status === 403) {
+        toast.error('You are already logged in from another device.');
+        // navigate('/login')
+      } else if (response.data.status === 401) {
+        toast.error('Invalid credentials');
+      } else {
+        toast.success("Login Successful")
+        dispatch(setToken(response.data.token))
 
-      toast.success("Login Successful")
-      dispatch(setToken(response.data.token))
-
-      const userImage = response.data?.user?.image
+        const userImage = response.data?.user?.image
         ? response.data.user.image
         : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
 
-      dispatch(setUser({ ...response.data.user, image: userImage }));
-      // console.log('User data - ', response.data.user);/
-      localStorage.setItem("token", JSON.stringify(response.data?.token));
+        dispatch(setUser({ ...response.data.user, image: userImage }));
+        // console.log('User data - ', response.data.user);/
+        localStorage.setItem("token", JSON.stringify(response.data?.token));
 
-      localStorage.setItem("user", JSON.stringify({ ...response.data.user, image: userImage }));
+        localStorage.setItem("user", JSON.stringify({ ...response.data.user, image: userImage }));
 
-      navigate("/dashboard/my-profile");
+        // navigate("/dashboard/my-profile");
+      }
     } catch (error) {
       console.log("LOGIN API ERROR.......", error)
       toast.error(error.response?.data?.message)

@@ -36,7 +36,7 @@ export default function MyProfile() {
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <div className="flex w-2/4 items-center flex-col">
+        <div className="flex w-2/4  p-3 items-center flex-col">
           <Img
             src={user?.image}
             alt={`profile-${user?.firstName}`}
@@ -50,10 +50,10 @@ export default function MyProfile() {
               {user?.firstName + " " + user?.lastName}
             </p>{" "}
           </div>
-          <div className="flex w-full items-center justify-between mb-3">
+          <div className="flex w-full items-center justify-between mt-1 mb-3">
             <p className="text-sm text-pure-greys-100">{user?.email}</p>
           </div>
-          <div className="flex w-full items-center justify-between">
+          <div className="flex mt-5 w-full items-center justify-between">
             <p className="text-lg font-semibold text-white">About</p>
           </div>
           <p
