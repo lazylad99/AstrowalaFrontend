@@ -81,63 +81,65 @@ const Navbar = () => {
           </Link>
 
           <ul className="hidden sm:flex gap-x-4 text-shadow-md font-semibold text-blue-100">
-            {NavbarLinks.map((link, index) => (
-              <li key={index}>
-                {link.title === "Categories" ? (
-                  <div
-                    className={`group relative flex cursor-pointer items-center gap-1 ${
-                      matchRoute("/catalog/:catID")
-                        ? "text-shadow-md text-blue-800 rounded-xl p-1 px-3"
-                        : "text-shadow-md text-blue-100 rounded-xl p-1 px-3"
-                    }`}
-                  >
-                    <p>{link.title}</p>
-                    <MdKeyboardArrowDown />
+            {NavbarLinks.map((link, index) =>
+              link.title === "Profile" && !user ? null : (
+                <li key={index}>
+                  {link.title === "Categories" ? (
                     <div
-                      className="invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] 
+                      className={`group relative flex cursor-pointer items-center gap-1 ${
+                        matchRoute("/catalog/:catID")
+                          ? "text-shadow-md text-blue-800 rounded-xl p-1 px-3"
+                          : "text-shadow-md text-blue-100 rounded-xl p-1 px-3"
+                      }`}
+                    >
+                      <p>{link.title}</p>
+                      <MdKeyboardArrowDown />
+                      <div
+                        className="invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] 
                                                     flex-col rounded-lg bg-richwhite-5 p-4  text-shadow-md  opacity-0 transition-all duration-150 group-hover:visible 
                                                     group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]"
-                    >
-                      <div className="absolute left-[50%] top-0 z-[100] h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded"></div>
-                      {loading ? (
-                        <p className="text-shadow-md text-center ">
-                          Loading...
-                        </p>
-                      ) : subLinks.length ? (
-                        <>
-                          {subLinks?.map((subLink, i) => (
-                            <Link
-                              to={`/catalog/${subLink._id
-                                .split(" ")
-                                .join("-")
-                                .toLowerCase()}`}
-                              className="rounded-lg bg-transparent py-4 pl-4 text-black hover:bg-richwhite-50"
-                              key={i}
-                            >
-                              <p>{subLink.name}</p>
-                            </Link>
-                          ))}
-                        </>
-                      ) : (
-                        <p className="text-center">No Courses Found</p>
-                      )}
+                      >
+                        <div className="absolute left-[50%] top-0 z-[100] h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded"></div>
+                        {loading ? (
+                          <p className="text-shadow-md text-center ">
+                            Loading...
+                          </p>
+                        ) : subLinks.length ? (
+                          <>
+                            {subLinks?.map((subLink, i) => (
+                              <Link
+                                to={`/catalog/${subLink._id
+                                  .split(" ")
+                                  .join("-")
+                                  .toLowerCase()}`}
+                                className="rounded-lg bg-transparent py-4 pl-4 text-black hover:bg-richwhite-50"
+                                key={i}
+                              >
+                                <p>{subLink.name}</p>
+                              </Link>
+                            ))}
+                          </>
+                        ) : (
+                          <p className="text-center">No Courses Found</p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <Link to={link?.path}>
-                    <p
-                      className={`${
-                        matchRoute(link?.path)
-                          ? "text-blue-800"
-                          : "text-blue-100"
-                      } rounded-xl p-1 px-3 `}
-                    >
-                      {link.title}
-                    </p>
-                  </Link>
-                )}
-              </li>
-            ))}
+                  ) : (
+                    <Link to={link?.path}>
+                      <p
+                        className={`${
+                          matchRoute(link?.path)
+                            ? "text-blue-800"
+                            : "text-blue-100"
+                        } rounded-xl p-1 px-3 `}
+                      >
+                        {link.title}
+                      </p>
+                    </Link>
+                  )}
+                </li>
+              )
+            )}
           </ul>
 
           <div className="flex gap-x-4 items-center">
@@ -189,6 +191,5 @@ const Navbar = () => {
     </>
   );
 };
-
 
 export default Navbar;

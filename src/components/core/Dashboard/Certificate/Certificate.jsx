@@ -140,7 +140,7 @@ const Certificate = ({ userId, courseId }) => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <IconBtn>
         <div onClick={generateAndUploadCertificate}>Issue Certificate</div>
       </IconBtn>

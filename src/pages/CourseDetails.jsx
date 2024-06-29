@@ -84,15 +84,15 @@ function CourseDetails() {
 
   const {
     _id,
-    courseName,
-    courseDescription,
-    thumbnailUrl,
-    price,
-    instructor,
-    studentsEnrolled,
-    createdAt,
-    introductoryVideoUrl,
-  } = response;
+    courseName = "",
+    courseDescription = "",
+    thumbnailUrl = "",
+    price = 0,
+    instructor = {},
+    studentsEnrolled = [],
+    createdAt = "",
+    introductoryVideoUrl = "",
+  } = response || {};
 
   const handleBuyCourse = () => {
     if (token) {

@@ -68,6 +68,14 @@ function CourseDetailsCard({
     });
   };
 
+  const handleGoToCourse = () => {
+    navigate(`/dashboard/${_id}/videos`);
+  };
+
+  const handleGoToVideos = () => {
+    navigate(`/dashboard/${_id}/videos`);
+  };
+
   return (
     <>
       <div className="flex flex-col gap-4 rounded-2xl shadow-lg bg-richwhite-700 p-4 text-white">
@@ -87,12 +95,12 @@ function CourseDetailsCard({
             <div className="flex flex-col gap-4">
               <IconBtn
                 onClick={
-                  user && course?.studentsEnrolled.includes(user?._id)
-                    ? () => navigate("/dashboard/enrolled-courses")
+                  user && studentsEnrolled.includes(user?._id)
+                    ? handleGoToCourse
                     : handleBuyCourse
                 }
               >
-                {user && course?.studentsEnrolled.includes(user?._id)
+                {user && studentsEnrolled.includes(user?._id)
                   ? "Go To Course"
                   : "Buy Now"}
               </IconBtn>
@@ -101,14 +109,14 @@ function CourseDetailsCard({
                 <IconBtn onClick={handleAddToCart}>Add to Cart</IconBtn>
               )}
               {user && course?.studentsEnrolled.includes(user?._id) ? (
-                <Certificate userId={user?._id} courseId={course?._id} />
+                <div>
+                  <Certificate userId={user?._id} courseId={course?._id} />
+                </div>
               ) : null}
             </div>
           ) : user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? (
             <div className="flex flex-col gap-4">
-              <IconBtn onClick={() => navigate("/dashboard/{_id}/videos")}>
-                Go to Videos
-              </IconBtn>
+              <IconBtn onClick={handleGoToVideos}>Go to Videos</IconBtn>
             </div>
           ) : null}
 
