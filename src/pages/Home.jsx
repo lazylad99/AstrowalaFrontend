@@ -23,6 +23,7 @@ import backgroundImg6 from "../assets/Images/astro_images/img5.jpg";
 import backgroundImg7 from "../assets/Images/astro_images/vastu.jpg";
 import SiteInfo from "../components/common/SiteInfo";
 import MoreInfo from "../components/common/Moreinfo";
+import Features from "../components/common/Features";
 
 const randomImges = [
   backgroundImg1,
@@ -61,7 +62,7 @@ const Home = () => {
       {/* background random image */}
       <div>
         <div
-          className="w-full h-[450px] md:h-[650px] absolute top-0 left-0 overflow-hidden object-cover"
+          className="w-full h-[450px] md:h-[690px] absolute top-0 left-0 overflow-hidden object-cover"
           style={{
             boxShadow: "inset 0 0 5rem rgba(0, 0, 0, 1)",
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)), url("${backgroundImg}")`,
@@ -75,7 +76,7 @@ const Home = () => {
               filter: "brightness(0.5)",
             }}
           />
-          <div className="absolute left-0 bottom-0 w-full h-[250px] opacity_layer_bg"></div>
+          {/* <div className="absolute left-0 bottom-0 w-full h-[150px] opacity_layer_bg"></div> */}
         </div>
       </div>
 
@@ -127,6 +128,8 @@ const Home = () => {
 
         <MoreInfo />
 
+        <Features />
+
         <Footer />
       </div>
     </React.Fragment>
@@ -134,3 +137,5 @@ const Home = () => {
 };
 
 export default Home;
+
+// import {bgImg} from "../../assets/Images/Horoscope Imgs/img.png"

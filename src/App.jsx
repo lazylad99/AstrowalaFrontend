@@ -40,6 +40,8 @@ import AddVideos from "./components/core/Dashboard/InstructorCourses/AddVideos";
 import VideosList from "./components/core/Dashboard/InstructorCourses/VideosList";
 import ViewVideo from "./components/core/Dashboard/InstructorCourses/ViewVideo";
 import EditVideo from "./components/core/Dashboard/InstructorCourses/EditVideo";
+import HandlePayment from "./components/core/Dashboard/Handle Payment/HandlePayment";
+import Profile from "./components/core/Dashboard/Profile";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -150,7 +152,7 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route path="dashboard/my-profile" element={<MyProfile />} />
+          <Route path="dashboard/my-profile" element={<Profile />} />
           <Route path="dashboard/Settings" element={<Settings />} />
 
           {/* Route only for Students */}
@@ -180,6 +182,7 @@ function App() {
               <Route path="dashboard/instructor" element={<Instructor />} />
               <Route path="dashboard/add-course" element={<AddCourse />} />
               <Route path="dashboard/my-courses" element={<MyCourses />} />
+              <Route path="dashboard/handlePayment" element={<HandlePayment />} />
               <Route
                 path="dashboard/:courseId/add-videos"
                 element={<AddVideos />}

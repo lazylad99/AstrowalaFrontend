@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ImFacebook, ImYoutube, ImInstagram } from "react-icons/im";
 import { fetchCourseCategories } from "./../../services/operations/courseDetailsAPI";
+import { FaPhoneSquareAlt, FaEnvelope } from "react-icons/fa";
 
 // Images
 import AstroWalaLogo from "../../assets/Logo/GyanSrijanLogo.png";
@@ -119,8 +120,26 @@ const Footer = () => {
             Contact Us
           </h1>
           <div className="flex flex-col gap-2 mt-2">
-            <div className="text-[14px]">+91-91157-17321</div>
-            <div className="text-[14px]">astrowala3@gmail.com</div>
+            <div className="text-[14px]">
+              {" "}
+              <a
+                href="tel:+919115717321"
+                className="flex items-center space-x-2 text-white mr-5"
+              >
+                <FaPhoneSquareAlt size={20} />
+                <span>+91-91157-17321</span>
+              </a>
+            </div>
+            <div className="text-[14px]">
+              {" "}
+              <a
+                href="mailto:astrowala3@gmail.com"
+                className="flex items-center space-x-2 text-white mr-3"
+              >
+                <FaEnvelope size={20} />
+                <span>astrowala3@gmail.com</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

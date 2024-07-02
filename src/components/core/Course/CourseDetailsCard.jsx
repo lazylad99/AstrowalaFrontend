@@ -78,7 +78,7 @@ function CourseDetailsCard({
 
   return (
     <>
-      <div className="flex flex-col gap-4 rounded-2xl shadow-lg bg-richwhite-700 p-4 text-white">
+      <div className="flex flex-col w-1/2 p-8 gap-2 rounded-2xl shadow-lg bg-richblue-800 border-richblue-800 rounded-2xl text-white">
         <div onClick={handleVideo} className="cursor-pointer">
           <Img
             src={thumbnail}

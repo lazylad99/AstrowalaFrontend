@@ -46,12 +46,14 @@ const ContactUsForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-7"
+      className="flex flex-col gap-7 form-style"
       onSubmit={handleSubmit(submitContactForm)}
     >
       <div className="flex flex-col gap-5 lg:flex-row">
         <div className="flex flex-col gap-2 lg:w-[48%]">
-          <label htmlFor="firstname">First Name</label>
+          <label htmlFor="firstname" className="lable-style">
+            First Name
+          </label>
           <input
             type="text"
             name="firstname"
@@ -61,14 +63,16 @@ const ContactUsForm = () => {
             {...register("firstname", { required: true })}
           />
           {errors.firstname && (
-            <span className="-mt-1 text-[12px] text-yellow-100">
+            <span className="-mt-1 text-[12px] text-pink-300">
               Please enter your name.
             </span>
           )}
         </div>
 
         <div className="flex flex-col gap-2 lg:w-[48%]">
-          <label htmlFor="lastname">Last Name</label>
+          <label htmlFor="lastname" className="lable-style">
+            Last Name
+          </label>
           <input
             type="text"
             name="lastname"
@@ -81,7 +85,9 @@ const ContactUsForm = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="email">Email Address</label>
+        <label htmlFor="email" className="lable-style">
+          Email Address
+        </label>
         <input
           type="email"
           name="email"
@@ -98,15 +104,17 @@ const ContactUsForm = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="phonenumber">Phone Number</label>
+        <label htmlFor="phonenumber" className="lable-style">
+          Phone Number
+        </label>
 
         <div className="flex gap-5">
           <div className="flex w-[81px] flex-col gap-2">
             <select
               type="text"
-              name="firstname"
-              id="firstname"
-              placeholder="Enter first name"
+              name="countrycode"
+              id="countrycode"
+              placeholder="Enter country code"
               className="form-style"
               {...register("countrycode", { required: true })}
             >
@@ -146,7 +154,9 @@ const ContactUsForm = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="message">Message</label>
+        <label htmlFor="message" className="lable-style">
+          Message
+        </label>
         <textarea
           name="message"
           id="message"
@@ -162,11 +172,10 @@ const ContactUsForm = () => {
           </span>
         )}
       </div>
-
       <button
         disabled={loading}
         type="submit"
-        className={`rounded-md bg-blue-100 px-6 py-3 text-center text-[13px] font-bold text-white shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
+        className={`rounded-md w-1/2 bg-pink-200 px-6 py-3 text-center text-[13px] font-bold text-white shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
          ${
            !loading &&
            "transition-all duration-200 hover:scale-95 hover:shadow-none"

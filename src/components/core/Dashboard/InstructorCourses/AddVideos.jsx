@@ -163,7 +163,7 @@ export default function AddVideo() {
             <IconBtn
               type="submit"
               disabled={loading}
-              text={loading ? "Adding..." : "Add Videos"}
+              text={loading ? "Uploading..." : "Upload Videos"}
             />
           </div>
                 </div>

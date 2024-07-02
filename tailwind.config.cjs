@@ -4,16 +4,18 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      sans: ["Poppins"], // Use 'sans' for general text
+      sans: ["Poppins", "sans-serif"], // Use 'sans' for general text
       inter: ["Inter", "sans-serif"],
       "edu-sa": ["Edu SA Beginner", "cursive"],
       mono: ["Roboto Mono", "monospace"],
-      boogaloo: ['Poppins', "sans-serif"]
+      boogaloo: ["Poppins", "sans-serif"]
     },
     colors: {
       white: "#ffffff",
       black: "#000000",
       transparent: "#ffffff00",
+      formColor: '#050C9C',
+      'button-color': '#EE6368',
       richblack: {
         5: "#F1F2FF",
         25: "#DBDDEA",
@@ -53,7 +55,7 @@ module.exports = {
         500: "#063544",
         600: "#042E3B",
         700: "#032833",
-        800: "#01212A",
+        800: "#050C9C",
         900: "#001B22",
       },
       blue: {
@@ -103,7 +105,7 @@ module.exports = {
         25: "#FBC7D1",
         50: "#F79CB0",
         100: "#F37290",
-        200: "#EF476F",
+        200: "#EE6368",
         300: "#D43D63",
         400: "#BA3356",
         500: "#9F294A",
@@ -140,6 +142,9 @@ module.exports = {
         800: "#171717",
         900: "#141414",
       },
+    },
+    boxShadow: {
+      'bottom-md': '0 2px 0 rgba(0, 0, 0, 0.1)',
     },
     extend: {
       maxWidth: {

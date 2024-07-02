@@ -4,8 +4,8 @@ export default function IconBtn({ text, onclick, children, disabled, outline = f
         disabled={disabled}
         onClick={onclick}
         className={`flex items-center justify-center outline-none ${
-          outline ? "border border-blue-50 bg-transparent" : "bg-blue-100"
-        } cursor-pointer gap-x-2 rounded-md py-2 px-5 font-semibold text-white hover:bg-blue-400 hover:text-blue-100 duration-300 ${customClasses}`}
+          outline ? "border border-pink-50 bg-transparent" : "bg-pink-200"
+        } cursor-pointer gap-x-2 rounded-md py-2 px-5 font-semibold text-white hover:bg-pink-400  duration-300 ${customClasses}`}
         type={type}
       >
         {children ? (

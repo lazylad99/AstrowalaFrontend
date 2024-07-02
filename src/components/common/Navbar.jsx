@@ -156,10 +156,10 @@ const Navbar = () => {
             {token === null && (
               <Link to="/login">
                 <button
-                  className={` px-[12px] py-[8px] text-white bg-blue-100 font-semibold rounded-md 
+                  className={` px-[12px] py-[8px] text-richblue-800 hover:text-white hover:bg-richblue-800 bg-white font-semibold rounded-md 
                                  ${
                                    matchRoute("/login")
-                                     ? "border-[2.5px] border-blue-100"
+                                     ? "border-[2.5px] border-richblue-800"
                                      : "border border-richwhite-700 bg-blue-100"
                                  } `}
                 >
@@ -170,10 +170,10 @@ const Navbar = () => {
             {token === null && (
               <Link to="/signup">
                 <button
-                  className={` px-[12px] py-[8px] text-white bg-blue-100 font-semibold rounded-md 
+                  className={` px-[12px] py-[8px] text-richblue-800 hover:text-white hover:bg-richblue-800 bg-white font-semibold rounded-md 
                                  ${
                                    matchRoute("/signup")
-                                     ? "border-[2.5px] border-blue-100"
+                                     ? "border-[2.5px] border-richblue-800"
                                      : "border border-richwhite-700 bg-blue-100"
                                  } `}
                 >
