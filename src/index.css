@@ -212,6 +212,10 @@ textarea::placeholder {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.shadow1{
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
 .opacity_layer_bg {
   background: linear-gradient(180deg, rgba(133, 134, 135, 0) 0%, #ffffff 99.99%);
 }
@@ -221,7 +225,61 @@ textarea::placeholder {
 }
 
 .bg2 {
-  background: rgb(5,12,156);
+  background: rgb(156, 106, 5);
 background: linear-gradient(270deg, rgba(224, 126, 28, 0.858) 0%, rgba(232,235,236,1) 100%);
   border-radius: 0% 5% 5% 0%;
+}
+
+
+.transform1 {
+  transform: rotate(-30deg)
+}
+
+
+
+/* CSS */
+.button-36 {
+  padding: 9px 23px;
+  padding-bottom: 15px;
+  border: 0;
+  font-size: 16px;
+  transition: all 150ms ease-in-out;
+
+  border-radius: 20px;
+
+  color: #071432;
+  font-weight: bold;
+  background: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0, inset 0px -6px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+}
+
+.button-36:hover {
+  filter: brightness(0.98);
+}
+
+.button-36:active {
+  filter: brightness(0.97);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 6px 0, inset 0px -1px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.bg {
+	background: linear-gradient(-45deg, #1b38f2, #3cb1e7, #23a6d5);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

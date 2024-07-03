@@ -62,7 +62,7 @@ const Navbar = () => {
 
   return (
     <>
-      <ContactInfo />
+      {/* <ContactInfo /> */}
       <nav
         className={`z-[10] flex h-16 w-full items-center justify-center border-shadow bg-white translate-y-0 transition-all ${showNavbar}`}
       >

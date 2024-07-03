@@ -25,6 +25,7 @@ export default function ConfirmationModal({
                                      py-[8px] px-[20px] font-semibold duration-300 z-[1100]"
                 onClick={modalData?.btn2Handler}
               >
+                
                 {modalData?.btn2Text}
               </button>
             </div>

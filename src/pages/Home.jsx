@@ -24,6 +24,7 @@ import backgroundImg7 from "../assets/Images/astro_images/vastu.jpg";
 import SiteInfo from "../components/common/SiteInfo";
 import MoreInfo from "../components/common/Moreinfo";
 import Features from "../components/common/Features";
+import ExploreMore from "../components/core/HomePage/ExploreMore";
 
 const randomImges = [
   backgroundImg1,
@@ -60,28 +61,27 @@ const Home = () => {
   return (
     <React.Fragment>
       {/* background random image */}
-      <div>
+      
         <div
-          className="w-full h-[450px] md:h-[690px] absolute top-0 left-0 overflow-hidden object-cover"
+          className="w-full h-[500px] md:h-[950px] absolute top-0 left-0 overflow-hidden object-cover "
           style={{
-            boxShadow: "inset 0 0 5rem rgba(0, 0, 0, 1)",
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)), url("${backgroundImg}")`,
+            // boxShadow: "inset 0 0 5rem rgba(0, 0, 0, 1)",
+            // backgroundImage: `linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)), url("${backgroundImg}")`,
           }}
         >
           <img
             src={backgroundImg}
             alt="Background"
-            className="w-full h-full object-cover darken-image"
+            className="w-full h-full"
             style={{
               filter: "brightness(0.5)",
             }}
           />
-          {/* <div className="absolute left-0 bottom-0 w-full h-[150px] opacity_layer_bg"></div> */}
+          <div className="absolute left-0 bottom-0 w-full h-[150px] opacity_layer_bg"></div>
         </div>
-      </div>
 
-      <div className=" ">
-        <div className="relative h-[450px] md:h-[550px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white ">
+      <div>
+        <div className="relative h-[450px] md:h-[550px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white translate1">
           <motion.div
             variants={fadeIn("left", 0.1)}
             initial="hidden"
@@ -127,6 +127,8 @@ const Home = () => {
         <SiteInfo />
 
         <MoreInfo />
+
+{/* <ExploreMore /> */}
 
         <Features />
 

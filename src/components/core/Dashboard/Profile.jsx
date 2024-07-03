@@ -23,7 +23,7 @@ export default function Profile() {
         <div className="col-span-4 lg:!mb-0 ">
           <CardComponent
             extra={
-              "items-center w-full h-3/4 p-[16px] bg-cover border border-richblue-800 shadow"
+              "items-center w-full h-3/4 p-[16px] bg-cover shadow1"
             }
           >
             {/* Background and profile */}
@@ -31,7 +31,7 @@ export default function Profile() {
               <Img
                 src={user?.image}
                 alt={`profile-${user?.firstName}`}
-                className="aspect-squaremt-3 w-[150px] rounded-full object-cover border border-richblue-800 "
+                className="aspect-squaremt-3 w-[150px] rounded-full object-cover shadow1 "
               />
             </div>
 
@@ -65,8 +65,8 @@ export default function Profile() {
           </CardComponent>
         </div>
 
-        <div className="col-span-5 lg:col-span-6 lg:mb-0 3xl:col-span-5 shadow  rounded-2xl ">
-          <CardComponent extra={"w-full h-full p-3 border border-richblue-800 mb-3"}>
+        <div className="col-span-5 lg:col-span-6 lg:mb-0 3xl:col-span-5 shadow1  rounded-2xl ">
+          <CardComponent extra={"w-full h-full p-3  mb-3"}>
             {/* Header */}
             <div className="mt-2 mb-8 w-full text-richblue-800">
               <h4 className="px-2 text-xl font-bold text-navy-700">About</h4>
