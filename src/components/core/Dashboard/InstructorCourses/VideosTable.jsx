@@ -84,7 +84,7 @@ const VideosTable = () => {
   const skItem = () => (
     <Tr className="skeleton-row">
       <Td colSpan={3}>
-        <div className="flex flex-wrap border-b border-richwhite-800  px-6 py-8 w-full">
+        <div className="flex flex-wrap border-b border-black  px-6 py-8 w-full">
           <div className="h-[148px] min-w-[300px] rounded-xl skeleton"></div>
           <div className="flex flex-col w-full md:w-[60%] ml-4">
             <p className="h-5 w-[50%] rounded-xl skeleton"></p>
@@ -103,27 +103,24 @@ const VideosTable = () => {
 
   return (
     <>
-      <GiReturnArrow
-        className="mb-5 lg:mt-10 lg:mb-0 w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer"
-        onClick={() => navigate(-1)}
-      />
-
+      
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl  font-semibold text-black">Videos</h1>
-
+      <h1 className="bg-gradient-to-b font-semibold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl">
+          Course Videos
+        </h1>
         {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
           <Tab tabData={tabData} field={filter} setField={setFilter} />
         )}
       </div>
 
-      <Table className="rounded-2xl border border-richwhite-800">
+      <Table className="rounded-2xl">
         <Thead>
-          <Tr className="gap-x-10 rounded-t-3xl border-b bg-blue-100 border-b-richwhite-800 px-6 py-2">
-            <Th className="text-left  text-sm font-medium uppercase p-4 text-white">
-              Videos
+        <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
+        <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
+        Videos
             </Th>
             {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
-              <Th className="text-left text-sm font-medium uppercase p-4 text-white">
+            <Th className="text-left mr-[100px] text-sm font-medium uppercase text-white">
                 Actions
               </Th>
             )}
@@ -143,7 +140,7 @@ const VideosTable = () => {
                 <Tr>
                   <Td
                     colSpan={3}
-                    className="py-10 text-center text-2xl font-medium text-blue-400"
+                    className="py-10 text-center text-2xl font-medium text-black"
                   >
                     No videos found
                   </Td>
@@ -152,22 +149,22 @@ const VideosTable = () => {
                 filteredVideos?.map((video) => (
                   <Tr
                     key={video._id}
-                    className="gap-x-10 border-b border-richwhite-800 px-6 py-8 cursor-pointer"
+                    className="flex gap-x-10 p-5 cursor-pointer m-10 shadow1 rounded-lg  transform hover:scale-105 transition-transform duration-300 "
                     onClick={() =>
                       navigate(`/dashboard/view-video/${video._id}`)
                     }
                   >
-                    <Td className="flex flex-wrap md:flex-nowrap gap-x-4 relative p-4">
-                      <div className="flex w-full md:w-auto">
+                  <Td className="flex flex-1 gap-x-4 relative">
+                  <div className="flex w-full md:w-auto">
                         <Img
                           src={video_bg}
-                          className="h-[148px] min-w-[270px] max-w-[270px] m-2 mr-4 rounded-lg object-cover"
-                        />
-                        <div className="flex flex-col w-full md:w-auto m-1 mt-2">
-                          <p className="text-lg font-semibold text-blue-400 capitalize">
+                          className="h-[160px] min-w-[270px] max-w-[270px] rounded-lg object-cover mr-5"
+                          />
+                           <div className="flex flex-col ">
+                           <p className="text-lg font-semibold text-black capitalize">
                             {video.title}
                           </p>
-                          <p className="text-xs text-blue-400">
+                          <p className="text-xs text-black">
                             {video.description.split(" ").length >
                             TRUNCATE_LENGTH
                               ? video.description
@@ -180,10 +177,10 @@ const VideosTable = () => {
                           {user &&
                             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
                               <div>
-                                <p className="text-[12px] text-blue-400 mt-4">
+                                <p className="text-[12px] text-black mt-4">
                                   Created: {formatDate(video.createdAt)}
                                 </p>
-                                <p className="text-[12px] text-blue-400">
+                                <p className="text-[12px] text-black">
                                   Updated: {formatDate(video.updatedAt)}
                                 </p>
                               </div>
@@ -193,13 +190,13 @@ const VideosTable = () => {
                             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
                               <div>
                                 {!video.isPublished ? (
-                                  <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-blue-800">
+                        <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black px-2 py-[2px] text-[12px] font-medium text-pink-25">
                                     <HiClock size={14} /> Drafted
                                   </p>
                                 ) : (
-                                  <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-yellow-5">
-                                    <p className="flex h-3 w-3 items-center justify-center rounded-full bg-yellow-5 text-richwhite-700">
-                                      <FaCheck size={8} />
+                                  <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black  px-2 py-[2px] text-[12px] font-medium text-blue-25">
+                          <p className="flex h-3 w-3 items-center justify-center rounded-full bg-blue-5 text-black">
+                          <FaCheck size={8} />
                                     </p>{" "}
                                     Added to Course
                                   </div>

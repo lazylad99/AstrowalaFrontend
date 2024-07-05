@@ -8,7 +8,8 @@ import { fadeIn } from "../components/common/motionFrameVarients";
 
 const About = () => {
   return (
-    <div className="bg-pure-greys-25">
+    <div className="bg-richblack-25">
+  
       <section className="flex flex-col items-center mt-10">
         <motion.div
           variants={fadeIn("left", 0.1)}
@@ -26,16 +27,16 @@ const About = () => {
             />
           </div>
         </motion.div>
-        <div className="mx-auto max-w-maxContent gap-10 text-center text-white mt-10">
+        <div className="mx-auto max-w-maxContent gap-10 text- mt-5">
           <div className="gap-10">
             <motion.div
               variants={fadeIn("right", 0.1)}
               initial="hidden"
               whileInView="show"
               viewport={{ once: false, amount: 0.1 }}
-              className="flex flex-col gap-10 text-pure-greys-500"
+              className="flex flex-col gap-10 text-black"
             >
-              <h1 className="bg-gradient-to-b from-[#44799f] via-[#10c8e9] to-[#73d89d] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%] mx-auto">
+              <h1 className="bg-gradient-to-b text-center from-[#000000] via-[#303232] to-[#b3afaf] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%] mx-auto">
                 Our Founding Story
               </h1>
               <p className="text-base font-medium lg:w-[95%] mx-auto">

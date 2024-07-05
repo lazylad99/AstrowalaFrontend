@@ -10,7 +10,7 @@ export default function IconBtn({ text, onclick, children, disabled, outline = f
       >
         {children ? (
           <>
-            <span className={`${outline && "text-blue-100"}`}>{text}</span>
+            <span className={`${outline && "text-richblack-500"}`}>{text}</span>
             {children}
           </>
         ) : (

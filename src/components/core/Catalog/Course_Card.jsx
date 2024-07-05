@@ -1,63 +1,67 @@
-import React, { useEffect, useState } from "react"
-// Icons
-// import { FaRegStar, FaStar } from "react-icons/fa"
-// import ReactStars from "react-rating-stars-component"
-import { Link } from "react-router-dom"
-
-import GetAvgRating from "../../../utils/avgRating"
-import RatingStars from "../../common/RatingStars"
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import GetAvgRating from "../../../utils/avgRating";
+import RatingStars from "../../common/RatingStars";
 import Img from './../../common/Img';
 
-
-
 function Course_Card({ course, Height }) {
-  // const avgReviewCount = GetAvgRating(course.ratingAndReviews)
-  // console.log(course.ratingAndReviews)
-  const [avgReviewCount, setAvgReviewCount] = useState(0)
+  const [avgReviewCount, setAvgReviewCount] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
   useEffect(() => {
-    const count = GetAvgRating(course.ratingAndReviews)
-    setAvgReviewCount(count)
-  }, [course])
-  // console.log("count............", avgReviewCount)
+    const count = GetAvgRating(course.ratingAndReviews);
+    setAvgReviewCount(count);
+  }, [course]);
 
   return (
-    <div className="hover:scale-[1.03] transition-all duration-200 z-50 ">
-      <Link to={`/courses/${course._id}`}>
-        <div className="">
-          <div className="rounded-lg">
-            <Img
-              src={course?.thumbnailUrl}
-              alt="course thumnail"
-              className={`${Height} w-full rounded-xl object-cover `}
-            />
-          </div>
-          <div className="flex flex-col gap-2 px-1 py-3">
-            <p className="text-xl text-black">{course?.courseName}</p>
-            <p className="text-sm text-black0">
-              {course?.instructor?.firstName} {course?.instructor?.lastName}
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-yellow-5">{avgReviewCount || 0}</span>
-              {/* <ReactStars
-                count={5}
-                value={avgReviewCount || 0}
-                size={20}
-                edit={false}
-                activeColor="#ffd700"
-                emptyIcon={<FaRegStar />}
-                fullIcon={<FaStar />}
-              /> */}
-              <RatingStars Review_Count={avgReviewCount} />
-              <span className="text-richwhite-400">
-                {course?.ratingAndReviews?.length} Ratings
-              </span>
-            </div>
-            <p className="text-xl text-black">Rs. {course?.price}</p>
-          </div>
+    <div
+      className={`relative flex flex-col mt-6 mb-3 text-gray-700 text-black bg-white shadow shadow-md bg-clip-border rounded-xl w-96 transition-all duration-200 ${
+        isHovered ? "hover:scale-105" : ""
+      }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className={`relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40 ${isHovered ? "transform rotateY-180" : ""}`}>
+        <div className={`absolute top-0 left-0 w-full h-full bg-white bg-opacity-90 flex flex-col justify-center items-center ${isHovered ? "transform rotateY-180" : ""}`}>
+          <h3 className="text-2xl font-semibold">{course?.courseName}</h3>
+          <p className="text-gray-600">{course?.description}</p>
         </div>
-      </Link>
+        <Img
+          src={course?.thumbnailUrl}
+          alt="course thumbnail"
+          className={`${Height} w-full object-cover transition-all duration-300 transform ${isHovered ? "rotateY-180" : ""}`}
+        />
+      </div>
+      <div className="p-6">
+        <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal truncate">
+          {course?.courseName}
+        </h5>
+        <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+          {course?.instructor?.firstName} {course?.instructor?.lastName}
+        </p>
+      </div>
+      <div className="p-6 pt-0">
+        <div className="flex items-center gap-2">
+          <span className="text-yellow-500">{avgReviewCount || 0}</span>
+          <RatingStars Review_Count={avgReviewCount} />
+          <span className="text-pink-600">
+            {course?.ratingAndReviews?.length} Ratings
+          </span>
+        </div>
+        <div className="flex justify-between">
+          <p className="text-xl">Rs. {course?.price}</p>
+          <Link to={`/courses/${course._id}`}>
+            <button
+              className=" button-36 "
+              type="button"
+            >
+              Read More
+            </button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default Course_Card
+export default Course_Card;

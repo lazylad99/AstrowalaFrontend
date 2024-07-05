@@ -19,7 +19,8 @@ import { GiReturnArrow } from "react-icons/gi";
 import { MdOutlineVerified } from "react-icons/md";
 import Img from "./../components/common/Img";
 import toast from "react-hot-toast";
-import bgImg from "../assets//Images/random bg img/img1.jpg";
+import bgImg from "../assets/Images/random bg img/img1.jpg";
+import img2 from "../assets/Images/astro_images/video_bg.png";
 
 import copy from "copy-to-clipboard";
 import { FaShareSquare } from "react-icons/fa";
@@ -56,7 +57,7 @@ function CourseDetails() {
   }, [courseId]);
 
   // Calculating Avg Review count
-  const [avgReviewCount, setAvgReviewCount] = useState(0);
+  const [avgReviewCount, setAvgReviewCount] = useState();
   useEffect(() => {
     const count = GetAvgRating(response?.ratingAndReviews);
     setAvgReviewCount(count);
@@ -145,15 +146,16 @@ function CourseDetails() {
 
   return (
     <>
-      <div className={`relative w-full bg-richwhite-800`}>
+      <div className="w-full h-[200px] md:h-[650px] absolute top-0 left-0 bg3 overflow-hidden object-cover "></div>
+      <div>
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
-            <div
+            {/* <div
               className="mb-5 lg:mt-10 lg:mb-0 z-[100]"
               onClick={() => navigate(-1)}
             >
               <GiReturnArrow className="w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer" />
-            </div>
+            </div> */}
 
             <div className="relative block max-h-[30rem] lg:hidden">
               <Img
@@ -167,21 +169,25 @@ function CourseDetails() {
             <div
               className={`mb-5 flex flex-col justify-center gap-4 py-5 text-lg text-white`}
             >
-              <p className="text-4xl font-bold text-white sm:text-[42px]">
+              <p className="text-sm text-white mb-2 mt-2">
+                {`Home / Categories /`}
+                <span className="text-[#f2dc34]">{courseName}</span>
+              </p>
+              <p className="text-4xl mt-2 font-bold text-white sm:text-[42px]">
                 {courseName}
               </p>
-              <p className="text-richwhite-200">{courseDescription}</p>
+              <p className="mb-2 text-white">{courseDescription}</p>
               <div className="text-md flex flex-wrap items-center gap-2">
-                <span className="text-yellow-25">{avgReviewCount}</span>
-                <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
+                <span className="text-white mt-1">4.1</span>
+                <RatingStars Review_Count={4.1} Star_Size={24} />
                 <span>{`${studentsEnrolled.length} students enrolled`}</span>
               </div>
-              <p className="capitalize">
+              {/* <p className="capitalize">
                 Created By{" "}
                 <span className="font-semibold underline">
                   {instructor.firstName} {instructor.lastName}
                 </span>
-              </p>
+              </p> */}
               <div className="flex flex-wrap gap-5 text-lg">
                 <p className="flex items-center gap-2">
                   <BiInfoCircle /> Created at {formatDate(createdAt)}
@@ -189,21 +195,47 @@ function CourseDetails() {
                 <p className="flex items-center gap-2">
                   <HiOutlineGlobeAlt /> English
                 </p>
+
+                <div>
+                  <button
+                    className="mx-auto flex items-center gap-2 py-6 text-white"
+                    onClick={handleShare}
+                  >
+                    <FaShareSquare size={15} /> Share
+                  </button>
+                </div>
+              </div>
+              <div className=" ">
+                <p className="text-[28px] mt-10 font-semibold">Instructors</p>
+                <div className="flex items-center gap-4 py-4">
+                  <Img
+                    src={instructor.image}
+                    alt="Author"
+                    className="h-14 w-14 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="text-lg capitalize flex items-center gap-2 font-semibold">
+                      {`${instructor.firstName} ${instructor.lastName}`}
+                      <span>
+                        <MdOutlineVerified className="w-5 h-5 text-[#699b1b]" />
+                      </span>
+                    </p>
+                    <p>{instructor?.additionalDetails?.about}</p>
+                  </div>
+                </div>
               </div>
             </div>
 
+            {/* -----------------------------Card Component-------------------------------- */}
             {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
-              <div className="flex w-full flex-col gap-4 border-y border-y-richwhite-500 py-4 lg:hidden">
+              <div className="flex w-full flex-col gap-4 border-y py-4 lg:hidden shadow">
                 <p className="space-x-3 pb-4 text-3xl font-semibold text-white">
                   Rs. {price}
                 </p>
-                <button
-                  className="yellowButton text-richblack-800"
-                  onClick={handleBuyCourse}
-                >
+                <button className="button-36" onClick={handleBuyCourse}>
                   Buy Now
                 </button>
-                <button onClick={handleAddToCart} className="blackButton">
+                <button onClick={handleAddToCart} className="button-36">
                   Add to Cart
                 </button>
               </div>
@@ -213,12 +245,17 @@ function CourseDetails() {
           </div>
 
           <div className="right-[1.5rem] top-[60px] mx-auto hidden lg:block lg:absolute min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0">
-            <div className="flex flex-col gap-4 rounded-2xl shadow-lg bg-richwhite-700 p-4 text-white">
-              <div onClick={handleVideo} className="cursor-pointer">
+            <div className="flex flex-col gap-4 rounded-2xl shadow-lg bg3 p-2 text-white">
+              <div onClick={handleVideo} className="cursor-pointer relative">
                 <Img
-                  src={thumbnailUrl || bgImg}
+                  src={thumbnailUrl}
                   alt={courseName}
-                  className="max-h-[300px] min-h-[180px] w-[400px] overflow-hidden rounded-2xl object-cover md:max-w-full"
+                  className="hidden rounded-2xl aspect-auto w-full max-h-[350px] lg:flex"
+                />
+                <img
+                  src={img2}
+                  alt="Overlay"
+                  className="absolute rounded-2xl top-0 left-0 w-full h-full  opacity-40"
                 />
               </div>
               {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
@@ -249,41 +286,13 @@ function CourseDetails() {
                   </IconBtn>
                 </div>
               ) : null}
-
-              <div className="text-center">
-                <button
-                  className="mx-auto flex items-center gap-2 py-6 text-white"
-                  onClick={handleShare}
-                >
-                  <FaShareSquare size={15} /> Share
-                </button>
-              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="mx-auto box-content px-4 bg-white text-start text-white lg:w-[1260px]">
+      <div className="px-4 bg-black text-start text-white lg:w-[1260px]">
         <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
           {/* Author Details */}
-          <div className=" py-4 text-black">
-            <p className="text-[28px] font-semibold">Author</p>
-            <div className="flex items-center gap-4 py-4">
-              <Img
-                src={instructor.image}
-                alt="Author"
-                className="h-14 w-14 rounded-full object-cover"
-              />
-              <div>
-                <p className="text-lg capitalize flex items-center gap-2 font-semibold">
-                  {`${instructor.firstName} ${instructor.lastName}`}
-                  <span>
-                    <MdOutlineVerified className="w-5 h-5 text-[#00BFFF]" />
-                  </span>
-                </p>
-                <p>{instructor?.additionalDetails?.about}</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       {/* Close the main content container */}

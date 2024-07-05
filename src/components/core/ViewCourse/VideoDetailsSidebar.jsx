@@ -50,7 +50,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-3.5rem)] w-[320px] max-w-[350px] flex-col border-r-[1px] border-r-richwhite-700 bg-richwhite-800">
+      <div className="flex h-[calc(100vh-3.5rem)] w-[320px] max-w-[350px] flex-col border-r-[1px] border-r-richwhite-700 bg-black">
         <div className="mx-5 flex flex-col items-start justify-between gap-2 gap-y-4 border-b border-richwhite-600 py-5 text-lg font-bold text-richwhite-25">
           <div className="flex w-full items-center justify-between ">
             {/* open - close side bar icons */}
@@ -129,7 +129,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                     <div
                       className={`flex gap-3  px-5 py-2 ${
                         videoBarActive === topic._id
-                          ? "bg-yellow-200 font-semibold text-richwhite-800"
+                          ? "bg-yellow-200 font-semibold text-black"
                           : "hover:bg-richwhite-900"
                       } `}
                       key={i}

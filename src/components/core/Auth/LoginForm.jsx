@@ -1,9 +1,8 @@
-import { useState } from "react"
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
-import { useDispatch } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
-
-import { login } from "../../../services/operations/authAPI"
+import { useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../../services/operations/authAPI";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ function LoginForm() {
     password: "",
   });
 
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
   const { email, password } = formData;
 
@@ -21,78 +20,78 @@ function LoginForm() {
     setFormData((prevData) => ({
       ...prevData,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(email, password, navigate))
-  }
+    dispatch(login(email, password, navigate));
+  };
 
   return (
-    <form
-      onSubmit={handleOnSubmit}
-      className="mt-6 flex w-full flex-col gap-y-4"
-    >
-      <label className="w-full">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-black">
-          Email Address <sup className="text-pink-200">*</sup>
-        </p>
-        <input
-          required
-          type="text"
-          name="email"
-          value={email}
-          onChange={handleOnChange}
-          placeholder="Enter email address"
-          style={{
-            boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-          }}
-          className="w-full rounded-[0.5rem] bg-richwhite-800 p-[12px] text-white outline-none"
-        />
-      </label>
+    <div className="relative flex items-center  justify-center bg-gray-100">
+      <div className="w-96 p-10  bg-black shadow rounded-lg ">
+        <h2 className="mb-8 text-2xl text-center text-white">Login</h2>
+        <form onSubmit={handleOnSubmit} className="flex flex-col gap-y-6 ">
+          <div className="relative mb-4 mt-2">
+            <input
+              required
+              type="text"
+              name="email"
+              value={email}
+              onChange={handleOnChange}
+              className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
+              placeholder=" "
+            />
+            <label className="absolute top-0 left-0 py-2 text-lg ml-4 text-white transition-all duration-500 transform -translate-y-6 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-focus:-translate-y-6 peer-focus:text-sm">
+              Email Address <sup className="text-pink-200">*</sup>
+            </label>
+          </div>
+          <div className="relative">
+            <input
+              required
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={password}
+              onChange={handleOnChange}
+              className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
+              placeholder=" "
+            />
+            <label className="absolute top-0 left-0 py-2 text-lg ml-4 text-white transition-all duration-500 transform -translate-y-6 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-focus:-translate-y-6 peer-focus:text-sm">
+              Password <sup className="text-pink-200">*</sup>
+            </label>
+            <span
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-0 mr-2 top-3 cursor-pointer"
+            >
+              {showPassword ? (
+                <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+              ) : (
+                <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+              )}
+            </span>
+            <Link to="/forgot-password">
+              <p className="mt-1 text-right text-xs text-white">
+                Forgot Password
+              </p>
+            </Link>
+          </div>
+          <button
+            type="submit"
+            className="mt-3 button-36 py-2 px-4"
+          >
+            Sign In
+          </button>
 
-      <label className="relative">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-black">
-          Password <sup className="text-pink-200">*</sup>
-        </p>
-        <input
-          required
-          type={showPassword ? "text" : "password"}
-          name="password"
-          value={password}
-          onChange={handleOnChange}
-          placeholder="Enter Password"
-          style={{
-            boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-          }}
-          className="w-full rounded-[0.5rem] bg-richwhite-800 p-[12px] pr-12 text-white outline-none"
-        />
-        <span
-          onClick={() => setShowPassword((prev) => !prev)}
-          className="absolute right-3 top-[38px] z-[10] cursor-pointer"
-        >
-          {showPassword ? (
-            <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
-          ) : (
-            <AiOutlineEye fontSize={24} fill="#AFB2BF" />
-          )}
-        </span>
-        <Link to="/forgot-password">
-          <p className="mt-1 ml-auto max-w-max text-xs text-black">
-            Forgot Password
-          </p>
-        </Link>
-      </label>
-
-      <button
-        type="submit"
-        className="mt-6 rounded-[8px] bg-blue-100 py-[8px] px-[12px] font-semibold text-white"
-      >
-        Sign In
-      </button>
-    </form>
+          
+              <p className=" text-center text-xs text-white">
+                New Here?<span className="text-md hover:underline"><Link to="/signup"> Sign Up</Link></span> 
+              </p>
+            
+        </form>
+      </div>
+    </div>
   );
 }
 
-export default LoginForm
+export default LoginForm;

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { bypassTransactionThroughTeacher } from "../../../../services/operations/studentFeaturesAPI"
+import { useSelector } from "react-redux";
 
 // Example courses data
 const courses = [
@@ -12,6 +14,8 @@ const courses = [
 ];
 
 export default function HandlePayment() {
+
+  const { token } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -24,13 +28,20 @@ export default function HandlePayment() {
     try {
       setLoading(true);
       // Submit form data to the server
-      console.log("Form Data - ", data);
+      const response = await bypassTransactionThroughTeacher(data, token)
       setLoading(false);
+      reset({
+        studentEmail: "",
+        courses: [],
+        amountPaid: "",
+        nextPaymentDate: "",
+      });
     } catch (error) {
-      console.log("ERROR WHILE SUBMITTING FORM - ", error.message);
+      console.error("Error while submitting form:", error);
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     if (isSubmitSuccessful) {

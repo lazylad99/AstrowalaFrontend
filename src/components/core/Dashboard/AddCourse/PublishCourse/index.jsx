@@ -60,7 +60,7 @@ export default function PublishCourse() {
   }
 
   return (
-    <div className=" bg-richwhite-800 ">
+    <div className=" bg-black ">
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Checkbox */}
         <div className="my-6 mb-8">

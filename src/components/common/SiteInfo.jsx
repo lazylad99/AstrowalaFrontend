@@ -11,14 +11,14 @@ const SiteInfo = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center">
       <div className="relative h-[600px] md:h-[800px] w-full justify-center mx-auto flex flex-col items-center">
         <div className="absolute top-0 left-0 w-full h-[650px] md:h-[880px] overflow-hidden object-cover">
-        <div className="absolute left-100 bottom-100 w-full h-[180px] opacity_layer_bg2"></div>
-          <img
+        {/* <div className="absolute left-100 bottom-100 w-full h-[180px] opacity_layer_bg2"></div> */}
+          {/* <img
             src={bgImg}
             alt="Background"
-            className="w-full h-full object-cover "
+            className="w-full h-full object-cover bg-black bg-opacity-25"
           />
-            <div className="absolute left-0 bottom-0 w-full h-[80px] opacity_layer_bg"></div>
-        </div>
+            {/* <div className="absolute left-0 bottom-0 w-full h-[80px] opacity_layer_bg"></div> */}
+        </div> 
 
         <div className="relative flex flex-col justify-center items-center text-white h-full w-full mt-[75px]">
           <motion.div
@@ -28,7 +28,7 @@ const SiteInfo = () => {
             viewport={{ once: false, amount: 0.1 }}
             className="text-center text-3xl lg:text-4xl font-semibold"
           >
-            <h1 className="bg-gradient-to-b from-[#bb4d4d] via-[#cf6f1a] to-[#d7c76a] text-transparent bg-clip-text text-3xl font-semibold lg:w-[60%] mx-auto">
+            <h1 className="bg-gradient-to-b text-bold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl font-semibold lg:w-[60%] mx-auto">
               Know Your Destiny with India's Top Astrologers
             </h1>
           </motion.div>
@@ -38,7 +38,7 @@ const SiteInfo = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="mt-4 lg:w-[33%] text-center text-base lg:text-lg font-bold text-brown-500"
+            className="mt-4 lg:w-[33%] text-center text-base lg:text-lg font-bold text-black"
             // style={{ textShadow: "1px 1px 1px" }}
 
           >
@@ -66,7 +66,7 @@ const SiteInfo = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="mt-4 w-[70%] lg:w-[30%] text-center text-base lg:text-lg font-bold text-brown-500"
+            className="mt-4 w-[70%] lg:w-[30%] text-center text-base lg:text-lg font-bold text-black"
           >
             Our mission is to provide you with accurate prediction astrology
             services that fits your life’s unique narrative. Astrology, simply

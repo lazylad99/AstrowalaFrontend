@@ -60,7 +60,7 @@ export default function AddVideo() {
 
   return (
     <div className="container mx-auto mt-4">
-      <div className="max-w-4xl mx-auto bg-richwhite-800 p-8 rounded-lg shadow-lg">
+      <div className="max-w-4xl mx-auto bg-black p-8 rounded-lg shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           {fields.map((field, index) => (
             <div>
@@ -135,7 +135,7 @@ export default function AddVideo() {
                   <div>
                     <button
                       type="button"
-                      className="mr-3 border border-blue-50 bg-blue-100 text-red-500 rounded-md py-2 px-5 font-semibold text-white hover:bg-blue-400 hover:text-blue-100 duration-300"
+                      className="mr-3 button-36"
                       onClick={() => remove(index)}
                     >
                       Remove Video
@@ -144,7 +144,7 @@ export default function AddVideo() {
                   <div>
                     <button
                       type="button"
-                      className="mr-3 border border-blue-50 bg-blue-100 text-red-500 rounded-md py-2 px-5 font-semibold text-white hover:bg-blue-400 hover:text-blue-100 duration-300"
+                      className="mr-3 button-36"
                       onClick={() =>
                         append({
                           title: "",
@@ -159,19 +159,17 @@ export default function AddVideo() {
                     </button>
                   </div>
 
-                  <div className="flex">
-            <IconBtn
-              type="submit"
-              disabled={loading}
-              text={loading ? "Uploading..." : "Upload Videos"}
-            />
-          </div>
                 </div>
               </div>
             </div>
           ))}
-
-          
+                  <div className="flex justify-end ">
+                    <IconBtn
+                      type="submit"
+                      disabled={loading}
+                      text={loading ? "Uploading..." : "Upload Videos"}
+                    />
+                  </div>
         </form>
       </div>
     </div>

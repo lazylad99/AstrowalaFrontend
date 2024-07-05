@@ -6,7 +6,7 @@ const Button = ({children, active, linkto}) => {
     <Link to={linkto}>
       <div
         className={`text-center text-[13px] px-6 py-3 rounded-md font-bold
-        ${active ? "bg-yellow-50 text-black" : " bg-richwhite-800"}
+        ${active ? "bg-yellow-50 text-black" : " bg-black"}
         hover:scale-95 transition-all duration-200
         `}
       >

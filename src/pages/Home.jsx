@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import HighlightText from "../components/core/HomePage/HighlightText";
@@ -9,6 +9,7 @@ import { getCatalogPageData } from "../services/operations/pageAndComponentData"
 
 // import { MdOutlineRateReview } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
+import img1 from "../assets/Images/astro_images/banner3.jpg";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "./../components/common/motionFrameVarients";
@@ -25,6 +26,7 @@ import SiteInfo from "../components/common/SiteInfo";
 import MoreInfo from "../components/common/Moreinfo";
 import Features from "../components/common/Features";
 import ExploreMore from "../components/core/HomePage/ExploreMore";
+import IconBtn from "../components/common/IconBtn";
 
 const randomImges = [
   backgroundImg1,
@@ -38,6 +40,7 @@ const randomImges = [
 
 const Home = () => {
   const [backgroundImg, setBackgroundImg] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const bg = randomImges[Math.floor(Math.random() * randomImges.length)];
@@ -61,66 +64,66 @@ const Home = () => {
   return (
     <React.Fragment>
       {/* background random image */}
-      
-        <div
-          className="w-full h-[500px] md:h-[950px] absolute top-0 left-0 overflow-hidden object-cover "
-          style={{
+
+      <div
+        className="w-full h-[200px] md:h-[750px] absolute top-0 left-0 overflow-hidden object-cover "
+        style={
+          {
             // boxShadow: "inset 0 0 5rem rgba(0, 0, 0, 1)",
             // backgroundImage: `linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)), url("${backgroundImg}")`,
+          }
+        }
+      >
+        <img
+          src={img1}
+          alt="Background"
+          className="w-full h-full"
+          style={{
+            filter: "brightness(0.5)",
           }}
-        >
-          <img
-            src={backgroundImg}
-            alt="Background"
-            className="w-full h-full"
-            style={{
-              filter: "brightness(0.5)",
-            }}
-          />
-          <div className="absolute left-0 bottom-0 w-full h-[150px] opacity_layer_bg"></div>
-        </div>
+        />
+        <div className="absolute left-0 bottom-0 w-full h-[30px] opacity_layer_bg3"></div>
+      </div>
 
       <div>
-        <div className="relative h-[450px] md:h-[550px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent items-center text-white translate1">
-          <motion.div
-            variants={fadeIn("left", 0.1)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className="text-center text-3xl lg:text-4xl font-semibold mt-7"
-          >
-            Explore the Cosmos,
-            <HighlightText text={"Unlock Your Destiny"} />
-          </motion.div>
+        <div className="relative h-[450px] md:h-[600px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent text-white translate1">
+          <div className="flex min-h-[40px] max-w-maxContentTab flex-col gap-4 lg:max-w-maxContent mb-10 ">
+            <motion.div
+              variants={fadeIn("left", 0.1)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className="bg-gradient-to-b text-bold from-[#ffffff] via-[#ffffff] to-[#928d8d] text-transparent bg-clip-text text-4xl"
+            >
+              Explore the Cosmos,
+              <HighlightText text={"Unlock Your Destiny"} />
+            </motion.div>
 
-          <motion.div
-            variants={fadeIn("right", 0.1)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className=" mt-4 w-[90%] text-center text-base lg:text-lg font-bold text-richwhite-200"
-          >
-            At Astrowala, we harness the celestial energies to empower your
-            journey towards self-discovery and personal growth. Explore the
-            mysteries of the stars, unlock your destiny, and embark on a
-            transformative learning experience with us.
-          </motion.div>
-
-          <div className="flex flex-row gap-7 mt-8">
-            <Link to={"/catalog/6662ad7dbb3aa094b1109871"}>
-              <div
-                className="z-0 group p-1 mx-auto rounded-full bg-blue-100 font-bold text-white
-                                        transition-all duration-200 hover:scale-95 w-fit"
+            <motion.div
+              variants={fadeIn("right", 0.1)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className="w-[50%] text-base lg:text-lg font-bold text-white"
+            >
+              Explore the mysteries of the stars, unlock your destiny, and
+              embark on a transformative learning experience with us.
+            </motion.div>
+            <motion.div
+              variants={fadeIn("left", 0.1)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.1 }}
+              className="w-[50%] text-base lg:text-lg font-bold text-white"
+            >
+              <IconBtn
+                onclick={() => navigate("/catalog/6662ad7dbb3aa094b1109871")}
+                customClasses={"flex flex-row gap-7 mr-5 w-fit "}
               >
-                <div
-                  className="flex flex-row items-center gap-2 rounded-full px-10 py-[5px]
-                              transition-all duration-200 "
-                >
-                  <p>Browse Courses</p>
-                  <FaArrowRight />
-                </div>
-              </div>
-            </Link>
+                <p>Browse Courses</p>
+                <FaArrowRight />
+              </IconBtn>
+            </motion.div>
           </div>
         </div>
 
@@ -128,7 +131,7 @@ const Home = () => {
 
         <MoreInfo />
 
-{/* <ExploreMore /> */}
+        {/* <ExploreMore /> */}
 
         <Features />
 

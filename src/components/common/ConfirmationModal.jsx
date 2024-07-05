@@ -9,7 +9,7 @@ export default function ConfirmationModal({
 }) {
   return (
     <div className="fixed inset-0 z-[1000] grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="w-full max-w-[800px] rounded-lg border border-richwhite-400 bg-richwhite-800 p-6">
+      <div className="w-full max-w-[800px] rounded-lg border border-richwhite-400 bg-black p-6">
         {isVideo ? (
           videoUrl ? (
             <div className="relative" style={{ paddingBottom: "56.25%" }}>
@@ -25,7 +25,6 @@ export default function ConfirmationModal({
                                      py-[8px] px-[20px] font-semibold duration-300 z-[1100]"
                 onClick={modalData?.btn2Handler}
               >
-                
                 {modalData?.btn2Text}
               </button>
             </div>

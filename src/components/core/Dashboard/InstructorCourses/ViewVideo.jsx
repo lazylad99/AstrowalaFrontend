@@ -41,15 +41,15 @@ function ViewVideo() {
 
   return (
     <>
-      <GiReturnArrow
+      {/* <GiReturnArrow
         className="mb-5 lg:mt-10 lg:mb-0 w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer"
         onClick={() => navigate(-1)}
-      />
+      /> */}
 
-      <div className="space-y-8 m-5 rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-6">
+      <div className="space-y-8 m-5 rounded-md border-[1px] border-richblack-700 shadow bg-black p-6">
         <div>
-          <h1 className="text-2xl font-medium text-white">
-            {videoData?.title}
+        <h1 className="bg-gradient-to-b text-bold from-[#ffffff] via-[#ffffff] to-[#928d8d] text-transparent bg-clip-text text-4xl">
+        {videoData?.title}
           </h1>
         </div>
         {videoData?.videoUrl ? (
@@ -74,6 +74,8 @@ function ViewVideo() {
             <a
               href={videoData.pdfUrl}
               download
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center text-white"
             >
               <FaFilePdf className="mr-2" /> PDF
@@ -87,6 +89,8 @@ function ViewVideo() {
                 key={index}
                 href={imgUrl}
                 download
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center text-white"
               >
                 <FaImage className="mr-2" /> Image {index + 1}

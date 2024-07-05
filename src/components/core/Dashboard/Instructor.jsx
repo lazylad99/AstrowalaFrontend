@@ -42,7 +42,7 @@ export default function Instructor() {
   const skItem = () => {
     return (
       <div className="mt-5 w-full flex flex-col justify-between  rounded-xl ">
-        <div className="flex border p-4 border-richwhite-600 ">
+        <div className="flex border p-4 border-richblack-600 ">
           <div className="w-full">
             <p className="w-[100px] h-4 rounded-xl skeleton"></p>
             <div className="mt-3 flex gap-x-5">
@@ -83,25 +83,17 @@ export default function Instructor() {
 
   return (
     <div>
-      <div className="space-y-2">
-        <h1 className="text-2xl font-bold text-black text-center sm:text-left">
-          Hii {user?.firstName} 👋
-        </h1>
-        <p className="font-medium text-black text-center sm:text-left">
-          Let's start something new
-        </p>
-      </div>
-
+  
       {loading ? (
         <div>{skItem()}</div>
       ) : courses.length > 0 ? (
         <div>
-          <div className="my-4 flex h-[450px] space-x-4">
+          <div className="my-2 flex h-[450px] space-x-4">
             {/* Render chart / graph */}
             {totalAmount > 0 || totalStudents > 0 ? (
               <InstructorChart courses={instructorData} />
             ) : (
-              <div className="flex-1 rounded-md bg-richwhite-800 p-6">
+              <div className="flex-1 rounded-md bg-black p-6">
                 <p className="text-lg font-bold text-white">Visualize</p>
                 <p className="mt-4 text-xl font-medium text-white">
                   Not Enough Data To Visualize
@@ -111,23 +103,25 @@ export default function Instructor() {
 
             {/* left column */}
             {/* Total Statistics */}
-            <div className="flex min-w-[250px] flex-col rounded-md bg-richwhite-800 p-6">
+            <div className="flex min-w-[250px] flex-col rounded-md bg-black p-6" style={{
+            background: "linear-gradient(to right, black)",
+          }}>
               <p className="text-lg font-bold text-white">Statistics</p>
               <div className="mt-4 space-y-4">
                 <div>
-                  <p className="text-lg text-richwhite-200">Total Courses</p>
+                  <p className="text-lg text-richblack-200">Total Courses</p>
                   <p className="text-3xl font-semibold text-white">
                     {courses.length}
                   </p>
                 </div>
                 <div>
-                  <p className="text-lg text-richwhite-200">Total Students</p>
+                  <p className="text-lg text-richblack-200">Total Students</p>
                   <p className="text-3xl font-semibold text-white">
                     {totalStudents}
                   </p>
                 </div>
                 <div>
-                  <p className="text-lg text-richwhite-200">Total Income</p>
+                  <p className="text-lg text-richblack-200">Total Income</p>
                   <p className="text-3xl font-semibold text-white">
                     Rs. {totalAmount}
                   </p>
@@ -137,7 +131,7 @@ export default function Instructor() {
           </div>
 
           {/* Render 3 courses */}
-          <div className="rounded-md bg-richwhite-800 p-6">
+          <div className="rounded-md bg-black p-6">
             <div className="flex items-center justify-between">
               <p className="text-lg font-bold text-white">Your Courses</p>
               <Link to="/dashboard/my-courses">
@@ -164,13 +158,13 @@ export default function Instructor() {
                       {course.courseName}
                     </p>
                     <div className="mt-1 flex items-center space-x-2">
-                      <p className="text-xs font-medium text-richwhite-300">
+                      <p className="text-xs font-medium text-richblack-300">
                         {course.studentsEnrolled.length} students
                       </p>
-                      <p className="text-xs font-medium text-richwhite-300">
+                      <p className="text-xs font-medium text-richblack-300">
                         |
                       </p>
-                      <p className="text-xs font-medium text-richwhite-300">
+                      <p className="text-xs font-medium text-richblack-300">
                         Rs. {course.price}
                       </p>
                     </div>
@@ -181,7 +175,7 @@ export default function Instructor() {
           </div>
         </div>
       ) : (
-        <div className="mt-20 rounded-md bg-richwhite-800 p-6 py-20">
+        <div className="mt-20 rounded-md bg-black p-6 py-20">
           <p className="text-center text-2xl font-bold text-white">
             You have not created any courses yet
           </p>

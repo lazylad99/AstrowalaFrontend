@@ -94,7 +94,7 @@ export default function Upload({
           <div className="flex w-full flex-col p-6">
             {previewSources.map((source, index) => (
               <div key={index} className="mb-4 flex items-center">
-                <span className="text-white p-3 rounded-lg bg-blue-100 truncate mr-2">
+                <span className="text-white p-3 rounded-lg bg-richblack-500 truncate mr-2">
                   {selectedFiles[index]?.name}
                 </span>
                 {!viewData && (

@@ -77,13 +77,13 @@ function App() {
   }, [showArrow]);
 
   return (
-    <div className="w-screen min-h-screen bg-white flex flex-col font-inter">
+    <div className="w-screen min-h-screen bg-white flex flex-col">
       <Navbar />
 
       {/* go upward arrow */}
       <button
         onClick={() => window.scrollTo(0, 0)}
-        className={`bg-blue-100 hover:bg-blue-400 hover:scale-110 p-3 text-lg text-white rounded-2xl fixed right-3 z-10 duration-500 ease-in-out ${
+        className={`bg-richblack-500 hover:bg-blue-400 hover:scale-110 p-3 text-lg text-white rounded-2xl fixed right-3 z-10 duration-500 ease-in-out ${
           showArrow ? "bottom-6" : "-bottom-24"
         } `}
       >

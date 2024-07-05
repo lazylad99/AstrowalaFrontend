@@ -17,7 +17,7 @@ export default function MyProfile() {
   }, []);
 
   return (
-    <div className="p-8 rounded-2xl border-[1px] border-richwhite-700 bg-richwhite-800">
+    <div className="p-8 rounded-2xl border-[1px] border-richwhite-700 bg-black">
       <div className="flex justify-between">
         <div>
           <h1 className="mb-8 text-4xl text-white font-semibold text-center sm:text-left">

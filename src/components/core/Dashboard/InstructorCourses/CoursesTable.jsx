@@ -88,7 +88,7 @@ export default function CoursesTable({
   return (
     <>
       <div className="flex justify-between items-center mb-4">
-      <h1 className="text-4xl text-blue-100 font-semibold text-center lg:text-left">
+      <h1 className="bg-gradient-to-b font-semibold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl">
           My Courses
         </h1>
         <Tab tabData={tabData} field={field} setField={setField} />
@@ -96,7 +96,7 @@ export default function CoursesTable({
 
       <Table className="rounded-2xl ">
         <Thead>
-          <Tr className="flex rounded-md px-6 py-2 shadow1 bg">
+          <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
             <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
               Courses
             </Th>
@@ -122,7 +122,7 @@ export default function CoursesTable({
           <Tbody>
             {filteredCourses?.length === 0 ? (
               <Tr>
-                <Td className="py-10 text-center text-2xl font-medium text-blue-100">
+                <Td className="py-10 text-center text-2xl font-medium text-black">
                   No courses found
                 </Td>
               </Tr>
@@ -140,10 +140,10 @@ export default function CoursesTable({
                       className="h-[160px] min-w-[270px] max-w-[270px] rounded-lg object-cover"
                     />
                     <div className="flex flex-col">
-                      <p className="text-lg font-semibold text-blue-100 capitalize">
+                      <p className="text-lg font-semibold text-black capitalize">
                         {course.courseName}
                       </p>
-                      <p className="text-xs text-blue-100 ">
+                      <p className="text-xs text-black ">
                         {course.courseDescription.split(" ").length >
                         TRUNCATE_LENGTH
                           ? course.courseDescription
@@ -152,21 +152,21 @@ export default function CoursesTable({
                               .join(" ") + "..."
                           : course.courseDescription}
                       </p>
-                      <p className="text-[12px] text-blue-100 mt-4">
+                      <p className="text-[12px] text-black mt-4">
                         Created: {formatDate(course?.createdAt)}
                       </p>
                       {course?.updatedAt && (
-                        <p className="text-[12px] text-blue-100">
+                        <p className="text-[12px] text-black">
                           Updated: {formatDate(course?.updatedAt)}
                         </p>
                       )}
                       {!course.isPublished ? (
-                        <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-blue-100 px-2 py-[2px] text-[12px] font-medium text-pink-25">
+                        <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black px-2 py-[2px] text-[12px] font-medium text-pink-25">
                           <HiClock size={14} /> Unpublished
                         </p>
                       ) : (
-                        <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-blue-100  px-2 py-[2px] text-[12px] font-medium text-yellow-5">
-                          <p className="flex h-3 w-3 items-center justify-center rounded-full bg-yellow-5 text-blue-100">
+                        <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black  px-2 py-[2px] text-[12px] font-medium text-blue-25">
+                          <p className="flex h-3 w-3 items-center justify-center rounded-full bg-blue-5 text-black">
                             <FaCheck size={8} />
                           </p>{" "}
                           Published
@@ -174,11 +174,11 @@ export default function CoursesTable({
                       )}
                     </div>
                   </Td>
-                  {/* <Td className="text-sm font-medium text-blue-100">2hr 30min</Td> */}
-                  <Td className="text-sm font-medium mr-[20px] text-blue-100">
+                  {/* <Td className="text-sm font-medium text-black">2hr 30min</Td> */}
+                  <Td className="text-sm font-medium mr-[20px] text-black">
                     ₹{course.price}
                   </Td>
-                  <Td className="flex flex-col text-sm font-medium text-blue-100 ">
+                  <Td className="flex flex-col text-sm font-medium text-black ">
                     <div className="flex ">
                       <button
                         disabled={loading}
