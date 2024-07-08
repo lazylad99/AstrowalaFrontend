@@ -66,24 +66,26 @@ const Home = () => {
       {/* background random image */}
 
       <div
-        className="w-full h-[200px] md:h-[750px] absolute top-0 left-0 overflow-hidden object-cover "
-        style={
-          {
-            // boxShadow: "inset 0 0 5rem rgba(0, 0, 0, 1)",
-            // backgroundImage: `linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)), url("${backgroundImg}")`,
-          }
-        }
+        className="w-full h-[200px] md:h-[650px] absolute top-0 left-0 overflow-hidden object-cover "
+       
       >
         <img
-          src={img1}
-          alt="Background"
-          className="w-full h-full"
-          style={{
-            filter: "brightness(0.5)",
-          }}
-        />
-        <div className="absolute left-0 bottom-0 w-full h-[30px] opacity_layer_bg3"></div>
-      </div>
+        src={img1}
+        alt="Background"
+        className="w-full h-full object-cover"
+        style={{
+          filter: 'brightness(0.5)',
+        }}
+      />
+      <div
+        className="absolute top-0 left-0 w-full h-full"
+        style={{
+          backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5))',
+        }}
+      />
+            <div className="absolute left-0 bottom-0 w-full h-[50px] opacity_layer_bg"></div>
+
+    </div>
 
       <div>
         <div className="relative h-[450px] md:h-[600px] justify-center mx-auto flex flex-col w-11/12 max-w-maxContent text-white translate1">

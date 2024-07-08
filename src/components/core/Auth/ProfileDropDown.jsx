@@ -39,11 +39,11 @@ export default function ProfileDropdown() {
       {open && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richwhite-700 overflow-hidden rounded-md border-[1px] border-richwhite-700 bg-black"
+          className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-white overflow-hidden rounded-md border-[1px] border-white bg-black"
           ref={ref}
         >
           <Link to="/dashboard/my-profile" onClick={() => setOpen(false)}>
-            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white hover:bg-richwhite-700 hover:text-richwhite-25">
+            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white hover:bg-white hover:text-black">
               <VscDashboard className="text-lg" />
               My Profile
             </div>
@@ -54,7 +54,7 @@ export default function ProfileDropdown() {
               dispatch(logout(navigate));
               setOpen(false);
             }}
-            className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white hover:bg-richwhite-700 hover:text-richwhite-25"
+            className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white hover:bg-white hover:text-black"
           >
             <VscSignOut className="text-lg" />
             Logout

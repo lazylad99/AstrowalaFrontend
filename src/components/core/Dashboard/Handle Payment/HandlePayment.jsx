@@ -56,7 +56,7 @@ export default function HandlePayment() {
 
   return (
     <form
-      className="flex flex-col gap-7 p-6 mx-auto mt-8 bg-white border border-richblue-800 rounded-lg shadow-lg w-full max-w-[600px]"
+      className="flex flex-col gap-7 p-6 mx-auto mt-8 bg-white border  rounded-lg shadow-lg w-full max-w-[600px]"
       onSubmit={handleSubmit(submitForm)}
     >
       <div className="flex flex-col gap-2">
@@ -148,7 +148,7 @@ export default function HandlePayment() {
       <button
         disabled={loading}
         type="submit"
-        className={`rounded-md w-full max-w-[300px] mx-auto bg-pink-200 px-6 py-3 text-center text-[13px] font-bold text-white shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
+        className={`rounded-md w-full max-w-[300px] mx-auto button-36 bg-pink-200 px-6 py-3 text-center text-[13px] font-bold text-white shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
          ${
            !loading &&
            "transition-all duration-200 hover:scale-95 hover:shadow-none"

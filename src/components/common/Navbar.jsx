@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, matchPath, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -65,10 +65,15 @@ const Navbar = () => {
       {/* <ContactInfo /> */}
       <nav
         className={`z-[10] flex w-full items-center justify-center border-shadow pt-4 p-6 translate-y-0 transition-all ${showNavbar}`}
-        style={{ background: "linear-gradient(to bottom, black, transparent)" }}
+        style={{
+          background:
+            location.pathname === "/" || location.pathname.startsWith("/catalog")
+              ? "linear-gradient(to bottom, black, transparent)"
+              : "black",
+        }}
       >
         <div className="flex w-11/12 max-w-maxContent items-center justify-between ">
-          <Link to="/" className="logo-container">
+          <Link to="/" className="logo-container hover:shadow-white">
             <img
               src={AstrowalaLogo}
               alt="Logo"
@@ -91,10 +96,10 @@ const Navbar = () => {
                         matchRoute("/catalog/:catID")
                           ? "text-shadow-md text-richwhite-100 rounded-xl p-1 px-3"
                           : "text-shadow-md text-richwhite-100 rounded-xl p-1 px-3"
-                      }`}
+                      } hoverable`}
                     >
-                      <p>{link.title}</p>
-                      <MdKeyboardArrowDown />
+                      <p className="flex"><span>{link.title}</span><span className="mt-1"><MdKeyboardArrowDown /></span></p>
+                      
                       <div
                         className="invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] 
                                                     flex-col rounded-lg bg-richwhite-5 p-4  text-shadow-md  opacity-0 transition-all duration-150 group-hover:visible 
@@ -113,7 +118,7 @@ const Navbar = () => {
                                   .split(" ")
                                   .join("-")
                                   .toLowerCase()}`}
-                                className="rounded-lg bg-transparent py-4 pl-4 text-black hover:bg-richblack-25"
+                                className="rounded-lg bg-transparent py-4 pl-4 text-black hover:bg-richblack-25 hoverable"
                                 key={i}
                               >
                                 <p>{subLink.name}</p>
@@ -126,7 +131,7 @@ const Navbar = () => {
                       </div>
                     </div>
                   ) : (
-                    <Link to={link?.path}>
+                    <Link to={link?.path} className="hoverable">
                       <p
                         className={`${
                           matchRoute(link?.path)
@@ -145,7 +150,7 @@ const Navbar = () => {
 
           <div className="flex gap-x-4 items-center">
             {user && user?.accountType !== "Instructor" && (
-              <Link to="/dashboard/cart" className="relative">
+              <Link to="/dashboard/cart" className="relative hoverable">
                 <AiOutlineShoppingCart className="text-[2.35rem] text-white hover:bg-richblack-700 rounded-full p-2 duration-200" />
                 {totalItems > 0 && (
                   <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
@@ -155,14 +160,14 @@ const Navbar = () => {
               </Link>
             )}
             {token === null && (
-              <Link to="/login">
+              <Link to="/login" className="hoverable">
                 <button className={"px-[12px] py-[8px] button-36"}>
                   Log in
                 </button>
               </Link>
             )}
             {token === null && (
-              <Link to="/signup">
+              <Link to="/signup" className="hoverable">
                 <button className={"px-[12px] py-[8px] button-36"}>
                   Sign Up
                 </button>

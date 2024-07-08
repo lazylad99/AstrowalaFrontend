@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BiInfoCircle } from "react-icons/bi";
 import { HiOutlineGlobeAlt } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import Footer from "../components/common/Footer";
@@ -19,7 +19,7 @@ import { GiReturnArrow } from "react-icons/gi";
 import { MdOutlineVerified } from "react-icons/md";
 import Img from "./../components/common/Img";
 import toast from "react-hot-toast";
-import bgImg from "../assets/Images/random bg img/img1.jpg";
+import bgImg from "../assets/Images/random bg img/img1.jpg"; // Ensure the image path is correct
 import img2 from "../assets/Images/astro_images/video_bg.png";
 
 import copy from "copy-to-clipboard";
@@ -69,7 +69,7 @@ function CourseDetails() {
 
   if (paymentLoading || loading || !response) {
     return (
-      <div className={`mt-24 p-5 flex flex-col justify-center gap-4`}>
+      <div className={`mt-24 p-5 flex flex-col justify-center gap-4 bg-course-details`}>
         <div className="flex flex-col sm:flex-col-reverse gap-4">
           <p className="h-44 sm:h-24 sm:w-[60%] rounded-xl skeleton"></p>
           <p className="h-9 sm:w-[39%] rounded-xl skeleton"></p>
@@ -145,49 +145,31 @@ function CourseDetails() {
   };
 
   return (
-    <>
-      <div className="w-full h-[200px] md:h-[650px] absolute top-0 left-0 bg3 overflow-hidden object-cover "></div>
+    <div claas>
+      <div className="w-full h-[200px] md:h-[750px] absolute top-0 left-0 overflow-hidden object-cover bg-course-details"></div>
       <div>
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
-            {/* <div
-              className="mb-5 lg:mt-10 lg:mb-0 z-[100]"
-              onClick={() => navigate(-1)}
-            >
-              <GiReturnArrow className="w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer" />
-            </div> */}
-
-            <div className="relative block max-h-[30rem] lg:hidden">
-              <Img
-                src={thumbnailUrl}
-                alt="course thumbnail"
-                className="aspect-auto w-full rounded-2xl"
-              />
-              <div className="absolute bottom-0 left-0 h-full w-full shadow-[#161D29_0px_-64px_36px_-28px_inset]"></div>
-            </div>
-
             <div
-              className={`mb-5 flex flex-col justify-center gap-4 py-5 text-lg text-white`}
+              className={`mb-5 flex flex-col justify-center gap-4 py-5 text-lg text-black`}
             >
-              <p className="text-sm text-white mb-2 mt-2">
-                {`Home / Categories /`}
-                <span className="text-[#f2dc34]">{courseName}</span>
+              <p className="text-sm text-black mb-2 mt-2">
+                <Link to={"/"} className="hover:underline"> Home</Link>
+                / 
+                <span onClick={() => navigate(-1)} className="cursor-pointer hover:underline">
+      Categories
+    </span>                /
+                <span className="text-richblack-600">{courseName}</span>
               </p>
-              <p className="text-4xl mt-2 font-bold text-white sm:text-[42px]">
+              <p className="text-4xl mt-2 font-bold text-black sm:text-[42px]">
                 {courseName}
               </p>
-              <p className="mb-2 text-white">{courseDescription}</p>
+              <p className="mb-2 text-black">{courseDescription}</p>
               <div className="text-md flex flex-wrap items-center gap-2">
-                <span className="text-white mt-1">4.1</span>
+                <span className="text-black mt-1">4.1</span>
                 <RatingStars Review_Count={4.1} Star_Size={24} />
                 <span>{`${studentsEnrolled.length} students enrolled`}</span>
               </div>
-              {/* <p className="capitalize">
-                Created By{" "}
-                <span className="font-semibold underline">
-                  {instructor.firstName} {instructor.lastName}
-                </span>
-              </p> */}
               <div className="flex flex-wrap gap-5 text-lg">
                 <p className="flex items-center gap-2">
                   <BiInfoCircle /> Created at {formatDate(createdAt)}
@@ -198,7 +180,7 @@ function CourseDetails() {
 
                 <div>
                   <button
-                    className="mx-auto flex items-center gap-2 py-6 text-white"
+                    className="mx-auto flex items-center gap-2 py-6 text-black"
                     onClick={handleShare}
                   >
                     <FaShareSquare size={15} /> Share
@@ -226,10 +208,9 @@ function CourseDetails() {
               </div>
             </div>
 
-            {/* -----------------------------Card Component-------------------------------- */}
             {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
               <div className="flex w-full flex-col gap-4 border-y py-4 lg:hidden shadow">
-                <p className="space-x-3 pb-4 text-3xl font-semibold text-white">
+                <p className="space-x-3 pb-4 text-3xl font-semibold text-black">
                   Rs. {price}
                 </p>
                 <button className="button-36" onClick={handleBuyCourse}>
@@ -245,7 +226,7 @@ function CourseDetails() {
           </div>
 
           <div className="right-[1.5rem] top-[60px] mx-auto hidden lg:block lg:absolute min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0">
-            <div className="flex flex-col gap-4 rounded-2xl shadow-lg bg3 p-2 text-white">
+            <div className="flex flex-col gap-4 rounded-2xl shadow-lg bg3 p-2 text-black">
               <div onClick={handleVideo} className="cursor-pointer relative">
                 <Img
                   src={thumbnailUrl}
@@ -290,17 +271,12 @@ function CourseDetails() {
           </div>
         </div>
       </div>
-      <div className="px-4 bg-black text-start text-white lg:w-[1260px]">
-        <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
-          {/* Author Details */}
-        </div>
-      </div>
-      {/* Close the main content container */}
+      
       <Footer /> {/* This appears to be outside the main container div */}
       {video && (
         <ConfirmationModal modalData={modalData} videoUrl={video} isVideo />
       )}
-    </>
+    </div>
   );
 }
 

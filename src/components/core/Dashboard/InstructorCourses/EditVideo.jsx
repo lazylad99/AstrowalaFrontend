@@ -102,7 +102,7 @@ export default function EditVideo() {
 
   return (
     <div className="container mx-auto mt-">
-      <div className="max-w-4xl mx-auto bg-black p-8 rounded-lg shadow-lg">
+      <div className="max-w-4xl mx-auto bg-black p-8 rounded-2xl shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           <div className="flex">
             <Upload

@@ -23,7 +23,7 @@ const Dashboard = () => {
     }, [])
 
     return (
-      <div className="relative bg-pure-greys-25 flex min-h-[calc(100vh-3.5rem)] ">
+      <div className="relative bg-course-details flex min-h-[calc(100vh-3.5rem)] ">
         <Sidebar />
 
         <div className="h-[calc(100vh-3.5rem)] overflow-auto w-full">

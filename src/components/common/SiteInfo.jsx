@@ -1,5 +1,5 @@
 import React from "react";
-import bgImg from "../../assets/Images/Horoscope Imgs/img2.gif";
+import bgImg from "../../assets/Images/Horoscope Imgs/bW.png";
 import { motion } from "framer-motion";
 import { fadeIn } from "../common/motionFrameVarients";
 
@@ -10,15 +10,15 @@ const SiteInfo = () => {
     
     <div className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center">
       <div className="relative h-[600px] md:h-[800px] w-full justify-center mx-auto flex flex-col items-center">
-        <div className="absolute top-0 left-0 w-full h-[650px] md:h-[880px] overflow-hidden object-cover">
-        {/* <div className="absolute left-100 bottom-100 w-full h-[180px] opacity_layer_bg2"></div> */}
-          {/* <img
+        <div className="absolute w-full h-[650px] md:h-[880px] overflow-hidden object-cover">
+        <div className="absolute left-100 bottom-100 w-full h-[180px] opacity_layer_bg2"></div>
+          <img
             src={bgImg}
             alt="Background"
-            className="w-full h-full object-cover bg-black bg-opacity-25"
-          />
-            {/* <div className="absolute left-0 bottom-0 w-full h-[80px] opacity_layer_bg"></div> */}
-        </div> 
+            className="w-full h-full object-cover"
+            />
+      <div className="absolute left-0 bottom-0 w-full h-[80px] opacity_layer_bg"></div>
+      </div> 
 
         <div className="relative flex flex-col justify-center items-center text-white h-full w-full mt-[75px]">
           <motion.div
@@ -49,7 +49,7 @@ const SiteInfo = () => {
                 href="https://astrowala.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-brown-600 hover:underline"
+                className="text-black hover:underline"
               >
                 the best astrologer in India
               </a>
