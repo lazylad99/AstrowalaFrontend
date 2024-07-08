@@ -9,7 +9,7 @@ export default function ConfirmationModal({
 }) {
   return (
     <div className="fixed inset-0 z-[1000] grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="w-full max-w-[800px] rounded-lg border border-richwhite-400 bg-black p-6">
+      <div className="w-full max-w-[800px] rounded-lg border border-richblack-400 bg-black p-6">
         {isVideo ? (
           videoUrl ? (
             <div className="relative" style={{ paddingBottom: "56.25%" }}>
@@ -21,7 +21,7 @@ export default function ConfirmationModal({
                 style={{ position: "absolute", top: 0, left: 0 }}
               />
               <button
-                className="absolute top-0 right-0 mt-3 mr-3 cursor-pointer rounded-md bg-richwhite-200 text-richwhite-900 hover:bg-richwhite-900 hover:text-richwhite-200
+                className="absolute top-0 right-0 mt-3 mr-3 button-36
                                      py-[8px] px-[20px] font-semibold duration-300 z-[1100]"
                 onClick={modalData?.btn2Handler}
               >
@@ -37,7 +37,7 @@ export default function ConfirmationModal({
               {modalData?.text1}
             </p>
 
-            <p className="mt-3 mb-5 leading-6 text-richwhite-200">
+            <p className="mt-3 mb-5 leading-6 text-white">
               {modalData?.text2}
             </p>
 
@@ -47,8 +47,7 @@ export default function ConfirmationModal({
                 text={modalData?.btn1Text}
               />
               <button
-                className="cursor-pointer rounded-md bg-richwhite-200 text-richwhite-900 hover:bg-richwhite-900 hover:text-richwhite-200
-                                     py-[8px] px-[20px] font-semibold duration-300"
+                className="button-36"
                 onClick={modalData?.btn2Handler}
               >
                 {modalData?.btn2Text}

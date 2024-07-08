@@ -60,11 +60,11 @@ export default function EnrolledCourses() {
 
   return (
     <>
-      <div className="text-4xl text-black font-semibold text-center sm:text-left">
-        Enrolled Courses
-      </div>
+      <h1 className="bg-gradient-to-b font-semibold from-[#0b0b0b] via-[#464545] to-[#424141] text-transparent bg-clip-text text-4xl">
+      Enrolled Courses
+      </h1>
       {
-        <div className="my-8 text-blue-400">
+        <div className="my-8 text-black">
           {/* Headings */}
           <div className="flex rounded-t-2xl text-white bg-black ">
             <p className="w-full px-5 py-3">Course Name</p>
@@ -86,7 +86,7 @@ export default function EnrolledCourses() {
           {/* Course Names */}
           {enrolledCourses?.map((course, i, arr) => (
             <div
-              className={`flex flex-col sm:flex-row sm:items-center border border-richwhite-700 ${
+              className={`flex flex-col sm:flex-row sm:items-center gap-x-10 p-5 cursor-pointer m-10 shadow1 rounded-lg  transform hover:scale-105 transition-transform duration-300  ${
                 i === arr.length - 1 ? "rounded-b-2xl" : "rounded-none"
               }`}
               key={i}
@@ -123,30 +123,11 @@ export default function EnrolledCourses() {
                 <div className="px-2 py-3">{course?.totalDuration}</div>
 
                 <div className="flex sm:w-2/5 flex-col gap-2 px-2 py-3">
-                  {/* {console.log('Course ============== ', course.progressPercentage)} */}
-
-                  {/* <p>Progress: {course.progressPercentage || 0}%</p>
-                    <ProgressBar
-                      completed={course.progressPercentage || 0}
-                      height="8px"
-                      isLabelVisible={false}
-                    /> */}
+                  
                 </div>
               </div>
 
-              {/* only for larger devices */}
-              {/* duration -  progress */}
-              {/* <div className="hidden w-1/5 sm:flex px-2 py-3">
-                {course?.totalDuration}
-              </div> */}
-              {/* <div className="hidden sm:flex w-1/5 flex-col gap-2 px-2 py-3">
-                  <p>Progress: {course.progressPercentage || 0}%</p>
-                  <ProgressBar
-                    completed={course.progressPercentage || 0}
-                    height="8px"
-                    isLabelVisible={false}
-                  />
-                </div> */}
+              
             </div>
           ))}
         </div>

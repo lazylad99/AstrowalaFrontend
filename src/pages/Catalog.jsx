@@ -47,7 +47,7 @@ function Catalog() {
   }
 
   return (
-    <div>
+    <div className="bg-">
       <div className="w-full h-[200px] md:h-[500px] absolute top-0 left-0 overflow-hidden object-cover ">
         <img src={img1} alt="Background" className="w-full h-full" />
       </div>
@@ -76,7 +76,7 @@ function Catalog() {
                     <img src={img2} alt="Background" className="w-full h-full" />
                 </div> */}
         <h1 className="z-50 section_heading">Courses to get you started</h1>
-        <div className="my-4 flex border-b border-b-richwhite-600 text-sm">
+        <div className="my-4 flex border-b border-b-richblack-500 text-sm">
           <p
             className={`px-4 py-2 ${
               active === 1 ? "border-b text-richblack-500" : "text-black0"

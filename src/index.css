@@ -428,3 +428,10 @@ nav li a {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+ .bg-course-details1 {
+  background-image: url('./assets/Images/new7.jpg'); /* Update the path as necessary */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

@@ -15,7 +15,7 @@ function Course_Card({ course, Height }) {
 
   return (
     <div
-      className={`relative flex flex-col mt-6 mb-3 text-gray-700 text-black bg-white shadow shadow-md bg-clip-border rounded-xl w-96 transition-all duration-200 ${
+      className={`relative flex flex-col mt-6 mb-3 text-gray-700 text-black bg-course-details shadow shadow-md bg-clip-border rounded-xl w-96 transition-all duration-200 ${
         isHovered ? "hover:scale-105" : ""
       }`}
       onMouseEnter={() => setIsHovered(true)}
