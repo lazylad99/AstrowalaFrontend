@@ -7,7 +7,6 @@ import Course_Slider from "../components/core/Catalog/Course_Slider";
 import Loading from "./../components/common/Loading";
 import { getCatalogPageData } from "../services/operations/pageAndComponentData";
 import img1 from "../assets/Images/astro_images/banner6.png";
-import img2 from "../assets/Images/Horoscope Imgs/img4.jpg";
 
 function Catalog() {
   const { catID } = useParams();
