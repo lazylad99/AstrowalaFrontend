@@ -26,6 +26,7 @@ export default function Upload({
       ? [editData]
       : []
   );
+  const [uploadProgress, setUploadProgress] = useState({});
   const inputRef = useRef(null);
 
   const fileAccept = () => {
@@ -44,6 +45,7 @@ export default function Upload({
       const fileList = Array.from(files);
       setSelectedFiles(fileList);
       previewFiles(fileList);
+      uploadFiles(fileList);
     }
   };
 
@@ -66,12 +68,47 @@ export default function Upload({
     });
   };
 
+  const uploadFiles = (files) => {
+    files.forEach((file, index) => {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "/upload-endpoint"); // replace with your upload endpoint
+
+      xhr.upload.onprogress = (event) => {
+        if (event.lengthComputable) {
+          const progress = Math.round((event.loaded * 100) / event.total);
+          setUploadProgress((prevProgress) => ({
+            ...prevProgress,
+            [index]: progress,
+          }));
+        }
+      };
+
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          // Handle successful upload
+        } else {
+          // Handle error
+        }
+      };
+
+      xhr.send(formData);
+    });
+  };
+
   const removeFile = (index) => {
     const updatedFiles = [...selectedFiles];
     updatedFiles.splice(index, 1);
     setSelectedFiles(updatedFiles);
     setPreviewSources([]);
     setValue(name, null);
+    setUploadProgress((prevProgress) => {
+      const newProgress = { ...prevProgress };
+      delete newProgress[index];
+      return newProgress;
+    });
   };
 
   useEffect(() => {
@@ -81,7 +118,6 @@ export default function Upload({
   useEffect(() => {
     setValue(name, multiple ? selectedFiles : selectedFiles[0]);
   }, [selectedFiles, setValue, name, multiple]);
-
 
   return (
     <div className="flex flex-col space-y-2">
@@ -136,6 +172,23 @@ export default function Upload({
           </div>
         )}
       </div>
+
+      {Object.keys(uploadProgress).length > 0 && (
+        <div className="fixed bottom-4 right-4 w-64 p-4 bg-richblack-500 text-white rounded-lg shadow-lg">
+          <h3 className="text-lg mb-2">Uploading...</h3>
+          {Object.keys(uploadProgress).map((fileIndex) => (
+            <div key={fileIndex} className="mb-2">
+              <span className="block mb-1">{selectedFiles[fileIndex]?.name}</span>
+              <div className="w-full bg-gray-300 rounded-full h-2.5">
+                <div
+                  className="bg-blue-600 h-2.5 rounded-full"
+                  style={{ width: `${uploadProgress[fileIndex]}%` }}
+                ></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* {errors[name] && (
         <span className="ml-2 text-xs tracking-wide text-pink-200">

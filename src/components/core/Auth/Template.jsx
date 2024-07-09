@@ -5,7 +5,7 @@ import Img from "./../../common/Img";
 
 function Template({ title, description1, description2, image, formType }) {
   return (
-    <div className="relative flex min-h-[calc(100vh-3.5rem)] items-center justify-center bg-pure-greys-25 overflow-hidden">
+    <div className="relative flex min-h-[calc(100vh-3.5rem)] items-center justify-center bg-course-details1 overflow-hidden">
       {/* Background Image */}
       <Img
         src={img1}
@@ -13,16 +13,16 @@ function Template({ title, description1, description2, image, formType }) {
         className="absolute inset-0 object-cover w-full h-full opacity-30"
       />
 
-      <div className="relative flex w-11/12 max-w-4xl mx-auto bg-black rounded-lg shadow-lg">
+      <div className="relative flex w-11/12 max-w-5xl mx-auto bg-black rounded-lg shadow2">
         {/* Form container */}
-        <div className="w-full  p-12 rounded-l-lg">
+        <div className="w-1/2 p-12 rounded-l-lg">
           <div className="mt-6">
             {formType === "signup" ? <SignupForm /> : <LoginForm />}
           </div>
         </div>
 
         {/* Text container */}
-        <div className="flex flex-col justify-center w-full max-w-md p-12 bg-white rounded-r-lg">
+        <div className="w-1/2 flex flex-col justify-center p-12 bg-white rounded-r-lg">
           <h1 className="text-[1.875rem] font-semibold leading-[2.375rem] text-black">
             {title}
           </h1>

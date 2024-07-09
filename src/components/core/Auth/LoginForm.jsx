@@ -29,65 +29,58 @@ function LoginForm() {
   };
 
   return (
-    <div className="relative flex items-center  justify-center bg-gray-100">
-      <div className="w-96 p-10  bg-black shadow rounded-lg ">
+    <div className="flex items-center justify-center bg-gray-900">
+      <div className="w-96 p-10 bg-black bg-opacity-50 shadow-lg rounded-lg login-box">
         <h2 className="mb-8 text-2xl text-center text-white">Login</h2>
-        <form onSubmit={handleOnSubmit} className="flex flex-col gap-y-6 ">
-          <div className="relative mb-4 mt-2">
+        <form onSubmit={handleOnSubmit} className="flex flex-col gap-y-6">
+          <div className="user-box mb-2">
             <input
               required
               type="text"
               name="email"
               value={email}
               onChange={handleOnChange}
-              className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
-              placeholder=" "
-            />
-            <label className="absolute top-0 left-0 py-2 text-lg ml-4 text-white transition-all duration-500 transform -translate-y-6 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-focus:-translate-y-6 peer-focus:text-sm">
-              Email Address <sup className="text-pink-200">*</sup>
-            </label>
+              className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700 p-5 rounded"
+            />          
+              <label className=" text-black ml-2 mb-2">Email Address</label>
+
           </div>
-          <div className="relative">
+          <div className=" user-box">
             <input
-              required
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={password}
-              onChange={handleOnChange}
-              className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
-              placeholder=" "
-            />
-            <label className="absolute top-0 left-0 py-2 text-lg ml-4 text-white transition-all duration-500 transform -translate-y-6 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-focus:-translate-y-6 peer-focus:text-sm">
-              Password <sup className="text-pink-200">*</sup>
-            </label>
-            <span
-              onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-0 mr-2 top-3 cursor-pointer"
-            >
-              {showPassword ? (
-                <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
-              ) : (
-                <AiOutlineEye fontSize={24} fill="#AFB2BF" />
-              )}
-            </span>
-            <Link to="/forgot-password">
-              <p className="mt-1 text-right text-xs text-white">
-                Forgot Password
-              </p>
-            </Link>
+          required
+          type={showPassword ? "text" : "password"}
+          name="password"
+          value={password}
+          onChange={handleOnChange}
+          className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700  rounded"
+          />            
+          <label className=" text-black ml-2 mb-2">Password</label>
+
+        <span
+          onClick={() => setShowPassword((prev) => !prev)}
+          className="absolute right-3 top-[12px] z-[10] cursor-pointer"
+        >
+          {showPassword ? (
+            <AiOutlineEyeInvisible fontSize={24} fill="#000" />
+          ) : (
+            <AiOutlineEye fontSize={24} fill="#000" />
+          )}
+        </span>
+           <Link to="/forgot-password">
+          <p className="mt-1 ml-auto max-w-max text-xs text-white hover:underline">
+            Forgot Password
+          </p>
+        </Link>
           </div>
           <button
             type="submit"
-            className="mt-3 button-36 py-2 px-4"
+            className="button-36"
           >
             Sign In
           </button>
-
-          
-              <p className=" text-center text-xs text-white">
-                New Here?<span className="text-md hover:underline"><Link to="/signup"> Sign Up</Link></span> 
-              </p>
-            
+          <p className="text-center text-xs text-white">
+            New Here? <span className="text-md hover:underline"><Link to="/signup">Sign Up</Link></span>
+          </p>
         </form>
       </div>
     </div>

@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { sendOtp } from "../../../services/operations/authAPI";
 import { setSignupData } from "../../../slices/authSlice";
 import { ACCOUNT_TYPE } from "../../../utils/constants";
-import Tab from "../../common/Tab";
 
 function SignupForm() {
   const navigate = useNavigate();
@@ -59,116 +58,105 @@ function SignupForm() {
   };
 
   return (
-    <div className="relative h-auto w-[400px] shadow flex items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-opacity-50 bg-black shadow-lg rounded-lg">
-        <form onSubmit={handleOnSubmit} className="flex flex-col gap-y-4">
+    <div className="flex items-center justify-center bg-gray-900">
+      <div className="w-96 p-10 bg-black bg-opacity-50 shadow-lg rounded-lg login-box">
+        <h2 className="mb-8 text-2xl text-center text-black">Sign Up</h2>
+        <form onSubmit={handleOnSubmit} className="flex flex-col gap-y-6">
           <div className="flex gap-x-4">
-            <div className="relative w-full">
+            <div className="user-box mb-4 w-full">
               <input
                 required
                 type="text"
                 name="firstName"
                 value={firstName}
                 onChange={handleOnChange}
-                className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
-                placeholder=" "
+                className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700 text-black rounded"
               />
-              <label className="absolute ml-2 top-0 left-0 py-2 text-lg text-white transition-all duration-500 transform -translate-y-6 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-focus:-translate-y-6 peer-focus:text-sm">
-                First Name <sup className="text-pink-200">*</sup>
-              </label>
+              <label className="text-black ml-2 mb-2">First Name</label>
             </div>
 
-            <div className="relative mb-4 w-full">
+            <div className="user-box mb-4 w-full">
               <input
                 required
                 type="text"
                 name="lastName"
                 value={lastName}
                 onChange={handleOnChange}
-                className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
-                placeholder=" "
+                className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700 text-black rounded"
               />
-              <label className="absolute ml-2 top-0 left-0 py-2 text-lg text-white transition-all duration-500 transform -translate-y-6 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-focus:-translate-y-6 peer-focus:text-sm">
-                Last Name <sup className="text-pink-200">*</sup>
-              </label>
+              <label className="text-black ml-2 mb-2">Last Name</label>
             </div>
           </div>
 
-          <div className="relative mb-4 w-full">
+          <div className="user-box mb-4 w-full">
             <input
               required
               type="text"
               name="email"
               value={email}
               onChange={handleOnChange}
-              className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
-              placeholder="  "
+              className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700 text-black rounded"
             />
-            <label className="absolute ml-2 top-0 left-0 py-2 text-lg text-white transition-all duration-500 transform -translate-y-6 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-focus:-translate-y-6 peer-focus:text-sm">
-              Email Address <sup className="text-pink-200">*</sup>
-            </label>
+            <label className="text-black ml-2 mb-2">Email Address</label>
           </div>
 
-          <div className="relative mb-4 w-full">
+          <div className="user-box mb-4 w-full relative">
             <input
               required
               type={showPassword ? "text" : "password"}
               name="password"
               value={password}
               onChange={handleOnChange}
-              className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
-              placeholder=" "
+              className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700 text-black rounded"
             />
-            <label className="absolute ml-2 top-0 left-0 py-2 text-lg text-white transition-all duration-500 transform -translate-y-6 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-focus:-translate-y-6 peer-focus:text-sm">
-              Create Password <sup className="text-pink-200">*</sup>
-            </label>
+            <label className="text-black ml-2 mb-2">Create Password</label>
             <span
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute ml-2 right-3 top-2 cursor-pointer"
+              className="absolute right-3 top-3 cursor-pointer"
             >
               {showPassword ? (
-                <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+                <AiOutlineEyeInvisible fontSize={24} fill="#000" />
               ) : (
-                <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+                <AiOutlineEye fontSize={24} fill="#000" />
               )}
             </span>
           </div>
 
-          <div className="relative mb-4 w-full">
+          <div className="user-box w-full relative">
             <input
               required
               type={showConfirmPassword ? "text" : "password"}
               name="confirmPassword"
               value={confirmPassword}
               onChange={handleOnChange}
-              className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
-              placeholder=" "
+              className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700 text-black rounded"
             />
-            <label className="absolute ml-2 top-0 left-0 py-2 text-lg text-white transition-all duration-500 transform -translate-y-6 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-focus:-translate-y-6 peer-focus:text-sm">
-              Confirm Password <sup className="text-pink-200">*</sup>
-            </label>
+            <label className="text-black ml-2 mb-2">Confirm Password</label>
             <span
               onClick={() => setShowConfirmPassword((prev) => !prev)}
-              className="absolute right-3 top-2 cursor-pointer"
+              className="absolute right-3 top-3 cursor-pointer"
             >
               {showConfirmPassword ? (
-                <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+                <AiOutlineEyeInvisible fontSize={24} fill="#000" />
               ) : (
-                <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+                <AiOutlineEye fontSize={24} fill="#000" />
               )}
             </span>
           </div>
 
           <button
             type="submit"
-            className=" button-36"
+            className="button-36"
           >
             Create Account
           </button>
 
-          <p className=" text-center text-xs text-white">
-                Already have a account?<span className="text-md hover:underline"><Link to="/login"> Login</Link></span> 
-              </p>
+          <p className="text-center text-xs text-white">
+            Already have an account?{" "}
+            <span className="text-md hover:underline">
+              <Link to="/login">Login</Link>
+            </span>
+          </p>
         </form>
       </div>
     </div>

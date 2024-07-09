@@ -149,7 +149,7 @@ const VideosTable = () => {
                 filteredVideos?.map((video) => (
                   <Tr
                     key={video._id}
-                    className="flex gap-x-10 p-5 cursor-pointer m-10 shadow1 rounded-lg  transform hover:scale-105 transition-transform duration-300 "
+                    className="flex gap-x-10 p-5 cursor-pointer m-10 shadow1 rounded-lg bg-white bg-opacity-15 transform hover:scale-105 transition-transform duration-300 "
                     onClick={() =>
                       navigate(`/dashboard/view-video/${video._id}`)
                     }

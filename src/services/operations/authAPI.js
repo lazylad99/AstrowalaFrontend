@@ -122,7 +122,7 @@ export function login(email, password, navigate) {
 
         localStorage.setItem("user", JSON.stringify({ ...response.data.user, image: userImage }));
 
-        // navigate("/dashboard/my-profile");
+        navigate("/dashboard/instructor");
       }
     } catch (error) {
       console.log("LOGIN API ERROR.......", error)

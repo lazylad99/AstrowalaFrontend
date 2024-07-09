@@ -160,14 +160,14 @@ const Navbar = () => {
               </Link>
             )}
             {token === null && (
-              <Link to="/login" className="hoverable">
+              <Link to="/login" >
                 <button className={"px-[12px] py-[8px] button-36"}>
                   Log in
                 </button>
               </Link>
             )}
             {token === null && (
-              <Link to="/signup" className="hoverable">
+              <Link to="/signup" >
                 <button className={"px-[12px] py-[8px] button-36"}>
                   Sign Up
                 </button>

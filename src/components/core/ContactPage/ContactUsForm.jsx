@@ -43,7 +43,7 @@ const ContactUsForm = () => {
     <div className="relative flex items-center justify-center bg-black">
       <div className="w-100 p-5 bg-black shadow rounded-lg">
         {/* <h2 className="text-2xl text-center text-white">Contact Us</h2> */}
-        <form onSubmit={handleSubmit(submitContactForm)} className="flex flex-col gap-7">
+        <form onSubmit={handleSubmit(submitContactForm)} className="flex flex-col gap-7 newform">
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="firstname" className="text-lg text-white">
@@ -54,7 +54,7 @@ const ContactUsForm = () => {
                 name="firstname"
                 id="firstname"
                 placeholder="Enter first name"
-                className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
+                className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700 p-5 rounded text-black"
                 {...register("firstname", { required: true })}
               />
               {errors.firstname && (
@@ -73,7 +73,7 @@ const ContactUsForm = () => {
                 name="lastname"
                 id="lastname"
                 placeholder="Enter last name"
-                className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
+                className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700 p-5 rounded text-black"
                 {...register("lastname")}
               />
             </div>
@@ -88,7 +88,7 @@ const ContactUsForm = () => {
               name="email"
               id="email"
               placeholder="Enter email address"
-              className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
+                className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700 p-5 rounded text-black"
               {...register("email", { required: true })}
             />
             {errors.email && (
@@ -109,7 +109,7 @@ const ContactUsForm = () => {
                   name="countrycode"
                   id="countrycode"
                   placeholder="Enter country code"
-                  className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
+                  className="peer w-full py-2 text-lg bg-white border-b-2 border-white text-black outline-none"
                   {...register("countrycode", { required: true })}
                 >
                   {CountryCode.map((ele, i) => (
@@ -125,7 +125,7 @@ const ContactUsForm = () => {
                   name="phonenumber"
                   id="phonenumber"
                   placeholder="12345 67890"
-                  className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
+                className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700 p-5 rounded text-black"
                   {...register("phoneNo", {
                     required: {
                       value: true,
@@ -154,7 +154,8 @@ const ContactUsForm = () => {
               cols="30"
               rows="7"
               placeholder="Enter your message here"
-              className="peer w-full py-2 text-lg bg-transparent border-b-2 border-white text-white outline-none"
+              style={{ color: 'black' }} 
+              className="w-full py-2 px-3 text-lg bg-gray-800 border border-gray-700 p-5 rounded text-black"
               {...register("message", { required: true })}
             />
             {errors.message && (
