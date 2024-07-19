@@ -66,7 +66,7 @@ const VideosTable = () => {
     toast.dismiss(toastId);
   };
 
-  const togglePublishStatus = async (videoId) => {
+  const togglePublishStatus = async (videoId, newStatus) => {
     setLoading(true);
     const toastId = toast.loading("Updating status...");
     const result = await toggleVideoPublishStatus(videoId, token);
@@ -74,6 +74,7 @@ const VideosTable = () => {
       toast.success(result.message);
       const updatedVideos = await fetchCourseVideos(courseId, token);
       setVideos(updatedVideos);
+      setFilter(newStatus ? "Added to Course" : "Drafted");
     } else {
       toast.error(result.message);
     }
@@ -103,9 +104,8 @@ const VideosTable = () => {
 
   return (
     <>
-      
       <div className="flex justify-between items-center mb-4">
-      <h1 className="bg-gradient-to-b font-semibold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl">
+        <h1 className="bg-gradient-to-b font-semibold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl">
           Course Videos
         </h1>
         {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
@@ -115,12 +115,12 @@ const VideosTable = () => {
 
       <Table className="rounded-2xl">
         <Thead>
-        <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
-        <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
-        Videos
+          <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
+            <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
+              Videos
             </Th>
             {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
-            <Th className="text-left mr-[100px] text-sm font-medium uppercase text-white">
+              <Th className="text-left mr-[100px] text-sm font-medium uppercase text-white">
                 Actions
               </Th>
             )}
@@ -154,14 +154,14 @@ const VideosTable = () => {
                       navigate(`/dashboard/view-video/${video._id}`)
                     }
                   >
-                  <Td className="flex flex-1 gap-x-4 relative">
-                  <div className="flex w-full md:w-auto">
+                    <Td className="flex flex-1 gap-x-4 relative">
+                      <div className="flex w-full md:w-auto">
                         <Img
                           src={video_bg}
                           className="h-[160px] min-w-[270px] max-w-[270px] rounded-lg object-cover mr-5"
-                          />
-                           <div className="flex flex-col ">
-                           <p className="text-lg font-semibold text-black capitalize">
+                        />
+                        <div className="flex flex-col ">
+                          <p className="text-lg font-semibold text-black capitalize">
                             {video.title}
                           </p>
                           <p className="text-xs text-black">
@@ -190,13 +190,13 @@ const VideosTable = () => {
                             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
                               <div>
                                 {!video.isPublished ? (
-                        <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black px-2 py-[2px] text-[12px] font-medium text-pink-25">
+                                  <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black px-2 py-[2px] text-[12px] font-medium text-pink-25">
                                     <HiClock size={14} /> Drafted
                                   </p>
                                 ) : (
                                   <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black  px-2 py-[2px] text-[12px] font-medium text-blue-25">
-                          <p className="flex h-3 w-3 items-center justify-center rounded-full bg-blue-5 text-black">
-                          <FaCheck size={8} />
+                                    <p className="flex h-3 w-3 items-center justify-center rounded-full bg-blue-5 text-black">
+                                      <FaCheck size={8} />
                                     </p>{" "}
                                     Added to Course
                                   </div>
@@ -246,7 +246,34 @@ const VideosTable = () => {
                             <button
                               onClick={(event) => {
                                 event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                                togglePublishStatus(video._id);
+                                setConfirmationModal({
+                                  text1: `Do you want to ${
+                                    !video.isPublished
+                                      ? "add this video to the course?"
+                                      : "move this video to draft?"
+                                  }`,
+                                  text2: `This video will be ${
+                                    !video.isPublished
+                                      ? "added to the course"
+                                      : "moved to draft"
+                                  }`,
+                                  btn1Text: !video.isPublished
+                                    ? "Add to Course"
+                                    : "Draft",
+                                  btn2Text: "Cancel",
+                                  btn1Handler: !loading
+                                    ? () => {
+                                        togglePublishStatus(
+                                          video._id,
+                                          !video.isPublished
+                                        );
+                                        setConfirmationModal(null);
+                                      }
+                                    : () => {},
+                                  btn2Handler: !loading
+                                    ? () => setConfirmationModal(null)
+                                    : () => {},
+                                });
                               }}
                               className={`${
                                 !video.isPublished

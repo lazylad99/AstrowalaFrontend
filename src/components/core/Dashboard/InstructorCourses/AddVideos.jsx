@@ -7,6 +7,7 @@ import { setVideos } from "../../../../slices/videosSlice";
 import { toast } from "react-hot-toast";
 import Upload from "../AddCourse/Upload";
 import IconBtn from "../../../common/IconBtn";
+import ConfirmationModal from "../../../common/ConfirmationModal"; // Import your ConfirmationModal component
 
 export default function AddVideo() {
   const {
@@ -29,6 +30,7 @@ export default function AddVideo() {
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -51,11 +53,16 @@ export default function AddVideo() {
 
     if (results.every((result) => result)) {
       dispatch(setVideos(results));
-      navigate(`/dashboard/${courseId}/videos`);
+      setIsModalOpen(true); // Open the modal
     } else {
       toast.error("Failed to upload one or more videos");
     }
     setLoading(false);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    navigate(`/dashboard/${courseId}/videos`);
   };
 
   return (
@@ -63,115 +70,127 @@ export default function AddVideo() {
       <div className="max-w-4xl mx-auto bg-black p-8 rounded-lg shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           {fields.map((field, index) => (
-            <div>
-              <div key={field.id} className="mb-4">
-                <div className="flex">
-                  <Upload
-                    name={`videos[${index}].videoUrl`}
-                    label="Video"
-                    register={register}
-                    setValue={setValue}
-                    errors={errors}
-                    video
-                  />
-                  <Upload
-                    name={`videos[${index}].pdfUrl`}
-                    label="PDF"
-                    register={register}
-                    setValue={setValue}
-                    errors={errors}
-                    pdf
-                  />
-                  <Upload
-                    name={`videos[${index}].imagesUrl`}
-                    label="Images"
-                    register={register}
-                    setValue={setValue}
-                    errors={errors}
-                    multiple
-                  />
-                </div>
-                <div className="mb-4 mt-4">
-                  <label
-                    htmlFor={`videos[${index}].title`}
-                    className="block text-white text-sm font-medium"
-                  >
-                    Video Title
-                  </label>
-                  <input
-                    id={`videos[${index}].title`}
-                    type="text"
-                    {...register(`videos[${index}].title`, { required: true })}
-                    className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  />
-                  {errors.videos?.[index]?.title && (
-                    <span className="text-red-500 text-sm">
-                      Video title is required
-                    </span>
-                  )}
-                </div>
-                <div className="mb-4">
-                  <label
-                    htmlFor={`videos[${index}].description`}
-                    className="block text-white text-sm font-medium"
-                  >
-                    Video Description
-                  </label>
-                  <textarea
-                    id={`videos[${index}].description`}
-                    {...register(`videos[${index}].description`, {
-                      required: true,
-                    })}
-                    className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  />
-                  {errors.videos?.[index]?.description && (
-                    <span className="text-red-500 text-sm">
-                      Video description is required
-                    </span>
-                  )}
-                </div>
+            <div key={field.id} className="mb-4">
+              <div className="flex">
+                <Upload
+                  name={`videos[${index}].videoUrl`}
+                  label="Video"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  video
+                />
+                <Upload
+                  name={`videos[${index}].pdfUrl`}
+                  label="PDF"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  pdf
+                />
+                <Upload
+                  name={`videos[${index}].imagesUrl`}
+                  label="Images"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  multiple
+                />
+              </div>
+              <div className="mb-4 mt-4">
+                <label
+                  htmlFor={`videos[${index}].title`}
+                  className="block text-white text-sm font-medium"
+                >
+                  Video Title
+                </label>
+                <input
+                  id={`videos[${index}].title`}
+                  type="text"
+                  {...register(`videos[${index}].title`, { required: true })}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                {errors.videos?.[index]?.title && (
+                  <span className="text-red-500 text-sm">
+                    Video title is required
+                  </span>
+                )}
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor={`videos[${index}].description`}
+                  className="block text-white text-sm font-medium"
+                >
+                  Video Description
+                </label>
+                <textarea
+                  id={`videos[${index}].description`}
+                  {...register(`videos[${index}].description`, {
+                    required: true,
+                  })}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                {errors.videos?.[index]?.description && (
+                  <span className="text-red-500 text-sm">
+                    Video description is required
+                  </span>
+                )}
+              </div>
 
-                <div className="flex">
-                  <div>
-                    <button
-                      type="button"
-                      className="mr-3 button-36"
-                      onClick={() => remove(index)}
-                    >
-                      Remove Video
-                    </button>
-                  </div>
-                  <div>
-                    <button
-                      type="button"
-                      className="mr-3 button-36"
-                      onClick={() =>
-                        append({
-                          title: "",
-                          description: "",
-                          videoUrl: "",
-                          pdfUrl: "",
-                          imagesUrl: [],
-                        })
-                      }
-                    >
-                      Add Another Video
-                    </button>
-                  </div>
-
+              <div className="flex">
+                <div>
+                  <button
+                    type="button"
+                    className="mr-3 button-36"
+                    onClick={() => remove(index)}
+                  >
+                    Remove Video
+                  </button>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    className="mr-3 button-36"
+                    onClick={() =>
+                      append({
+                        title: "",
+                        description: "",
+                        videoUrl: "",
+                        pdfUrl: "",
+                        imagesUrl: [],
+                      })
+                    }
+                  >
+                    Add Another Video
+                  </button>
                 </div>
               </div>
             </div>
           ))}
-                  <div className="flex justify-end ">
-                    <IconBtn
-                      type="submit"
-                      disabled={loading}
-                      text={loading ? "Uploading..." : "Upload Videos"}
-                    />
-                  </div>
+          <div className="flex justify-end">
+            <IconBtn
+              type="submit"
+              disabled={loading}
+              text={loading ? "Uploading..." : "Upload Videos"}
+            />
+          </div>
         </form>
       </div>
+      {isModalOpen && (
+        <ConfirmationModal
+          modalData={{
+            text1: "Videos Uploaded Successfully",
+            text2: "Your videos have been successfully uploaded.",
+            btn1Text: "Go to Videos",
+            btn2Text: "Close",
+            btn1Handler: () => {
+              navigate(`/dashboard/${courseId}/videos`);
+              handleModalClose();
+            },
+            btn2Handler: handleModalClose,
+          }}
+        />
+      )}
     </div>
   );
 }

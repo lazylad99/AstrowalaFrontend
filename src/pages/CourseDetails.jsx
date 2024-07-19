@@ -4,7 +4,6 @@ import { HiOutlineGlobeAlt } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
-import ConfirmationModal from "../components/common/ConfirmationModal";
 import Footer from "../components/common/Footer";
 import RatingStars from "../components/common/RatingStars";
 import { formatDate } from "../services/formatDate";
@@ -26,6 +25,7 @@ import copy from "copy-to-clipboard";
 import { FaShareSquare } from "react-icons/fa";
 import IconBtn from "../components/common/IconBtn";
 import Certificate from "../components/core/Dashboard/Certificate/Certificate";
+import VideoModal from "../components/core/Catalog/VideoModal";
 
 function CourseDetails() {
   const { user } = useSelector((state) => state.profile);
@@ -40,7 +40,6 @@ function CourseDetails() {
 
   // Declare states
   const [response, setResponse] = useState(null);
-  const [confirmationModal, setConfirmationModal] = useState(null);
   const [video, setVideo] = useState(null);
 
   useEffect(() => {
@@ -101,14 +100,7 @@ function CourseDetails() {
       buyCourse(token, coursesId, user, navigate, dispatch);
       return;
     }
-    setConfirmationModal({
-      text1: "You are not logged in!",
-      text2: "Please login to Purchase Course.",
-      btn1Text: "Login",
-      btn2Text: "Cancel",
-      btn1Handler: () => navigate("/login"),
-      btn2Handler: () => setConfirmationModal(null),
-    });
+    toast.error("You are not logged in!");
   };
 
   const handleAddToCart = () => {
@@ -120,14 +112,7 @@ function CourseDetails() {
       dispatch(addToCart(response));
       return;
     }
-    setConfirmationModal({
-      text1: "You are not logged in!",
-      text2: "Please login to add To Cart",
-      btn1Text: "Login",
-      btn2Text: "Cancel",
-      btn1Handler: () => navigate("/login"),
-      btn2Handler: () => setConfirmationModal(null),
-    });
+    toast.error("You are not logged in!");
   };
 
   const handleShare = () => {
@@ -139,28 +124,27 @@ function CourseDetails() {
     setVideo(introductoryVideoUrl);
   };
 
-  const modalData = {
-    btn2Text: "Cancel",
-    btn2Handler: () => setVideo(null),
-  };
-
   return (
-    <div claas>
-      <div className="w-full h-[200px] md:h-[750px] absolute top-0 left-0 overflow-hidden object-cover bg-course-details"></div>
+    <div>
+      <div className="w-full h-[200px] md:h-[750px] absolute top-0 left-0 overflow-hidden object-cover "></div>
       <div>
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
             <div
               className={`mb-5 flex flex-col justify-center gap-4 py-5 text-lg text-black`}
             >
+              {/* Breadcrumbs  */}
               <p className="text-sm text-black mb-2 mt-2">
                 <Link to={"/"} className="hover:underline"> Home</Link>
                 / 
                 <span onClick={() => navigate(-1)} className="cursor-pointer hover:underline">
-      Categories
-    </span>                /
+                  Categories
+                </span> / 
                 <span className="text-richblack-600">{courseName}</span>
               </p>
+              {/* End of Breadcrumbs  */}
+
+<div className="mt-10 bg-course-details p-10 rounded-xl shadow">
               <p className="text-4xl mt-2 font-bold text-black sm:text-[42px]">
                 {courseName}
               </p>
@@ -236,7 +220,7 @@ function CourseDetails() {
                 <img
                   src={img2}
                   alt="Overlay"
-                  className="absolute rounded-2xl top-0 left-0 w-full h-full  opacity-40"
+                  className="absolute rounded-2xl top-0 left-0 w-full h-full"
                 />
               </div>
               {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
@@ -269,13 +253,11 @@ function CourseDetails() {
               ) : null}
             </div>
           </div>
+          </div>
         </div>
       </div>
       
-      <Footer /> {/* This appears to be outside the main container div */}
-      {video && (
-        <ConfirmationModal modalData={modalData} videoUrl={video} isVideo />
-      )}
+      {video && <VideoModal videoUrl={video} setShowVideo={setVideo} />}
     </div>
   );
 }
