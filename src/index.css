@@ -10,6 +10,7 @@ body {
 
 
 
+
 * {
   margin: 0;
   padding: 0;
@@ -82,11 +83,11 @@ textarea::placeholder {
 }
 
 .label-style {
-  @apply text-[14px] text-richblack-800;
+  @apply text-[14px] text-white;
 }
 
 .form-style {
-  @apply rounded-lg bg-black p-3 text-[16px] leading-[24px] text-white border border-richblack-800 focus:outline-none;
+  @apply rounded-lg bg-white p-3 text-[16px] leading-[24px] text-black placeholder:text-black border border-richblack-800 focus:outline-richblack-100;
 }
 
 .section_heading {
@@ -101,6 +102,23 @@ textarea::placeholder {
 .blackButton {
   @apply cursor-pointer rounded-md bg-black px-[20px] py-[8px] font-semibold text-black hover:bg-richwhite-5 hover:text-black duration-300;
 }
+
+
+@layer utilities {
+  input {
+      @apply bg-white text-black;
+  }
+
+  textarea {
+      @apply bg-white text-black;
+  }
+
+  select {
+      @apply bg-white text-black;
+  }
+}
+
+
 
 /* Loading skeleton */
 .skeleton {
@@ -152,10 +170,6 @@ textarea::placeholder {
   background-color: rgba(17, 25, 40, 0.84);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.125);
-}
-
-.form-style::placeholder {
-  color: white;
 }
 
 /* used in code block component for background  */
@@ -225,9 +239,9 @@ textarea::placeholder {
   background: linear-gradient(180deg, rgba(133, 134, 135, 0) 0%, #ffffff 99.99%);
 }
 
-/* .opacity_layer_bg2 {
+.opacity_layer_bg2 {
   background: linear-gradient(360deg, rgba(133, 134, 135, 0) 0%, #ffffff 99.99%);
-} */
+}
 
 .opacity_layer_bg3 {
 
@@ -434,6 +448,17 @@ nav li a {
 
  .bg-course-details1 {
   background-image: url('./assets/Images/new7.jpg'); /* Update the path as necessary */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg-course-details2 {
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),  /* Adjust the opacity (0.5 for 50% opacity) */
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('./assets/Images/astro_images/i.jpg'); /* Update the path as necessary */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
