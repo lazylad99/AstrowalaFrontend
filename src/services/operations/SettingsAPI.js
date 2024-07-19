@@ -21,7 +21,7 @@ export function updateUserProfileImage(token, formData) {
 
     try {
       const response = await apiConnector(
-        "PUT",
+        "PATCH",
         UPDATE_DISPLAY_PICTURE_API,
         formData,
         {

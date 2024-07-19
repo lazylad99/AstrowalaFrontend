@@ -6,7 +6,7 @@ import { setPaymentLoading } from "../../slices/courseSlice";
 import { resetCart } from "../../slices/cartSlice";
 
 
-const { COURSE_PAYMENT_API, COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API } = studentEndpoints;
+const { COURSE_PAYMENT_API, COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API, BYPASS_TRANSACTION } = studentEndpoints;
 
 function loadScript(src) {
     return new Promise((resolve) => {
@@ -128,4 +128,30 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
     }
     toast.dismiss(toastId);
     dispatch(setPaymentLoading(false));
+}
+
+
+// ================ bypass transaction ================
+export async function bypassTransactionThroughTeacher(bodyData, token) {
+    return async (dispatch) => {
+    const toastId = toast.loading("Adding New Payment....");
+    dispatch(setPaymentLoading(true));
+
+    try {
+        const response = await apiConnector("POST", BYPASS_TRANSACTION, bodyData, {
+            Authorization: `Bearer ${token}`,
+        })
+
+        if (!response.data.success) {
+            throw new Error(response.data.message);
+        }
+        toast.success("New Payment Added");
+    }
+    catch (error) {
+        console.log("ERROR ADDING PAYMENT....", error);
+        toast.error("Could not verify Payment");
+    }
+    toast.dismiss(toastId);
+    dispatch(setPaymentLoading(false));
+ }
 }

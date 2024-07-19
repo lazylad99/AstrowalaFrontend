@@ -1,27 +1,25 @@
-import { useRef, useState } from "react"
-import { AiOutlineCaretDown } from "react-icons/ai"
-import { VscDashboard, VscSignOut } from "react-icons/vsc"
-import { useDispatch, useSelector } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import { useRef, useState } from "react";
+import { AiOutlineCaretDown } from "react-icons/ai";
+import { VscDashboard, VscSignOut } from "react-icons/vsc";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
-import useOnClickOutside from "../../../hooks/useOnClickOutside"
-import { logout } from "../../../services/operations/authAPI"
-import Img from './../../common/Img';
-
+import useOnClickOutside from "../../../hooks/useOnClickOutside";
+import { logout } from "../../../services/operations/authAPI";
+import Img from "./../../common/Img";
+import { ACCOUNT_TYPE } from "../../../utils/constants";
 
 export default function ProfileDropdown() {
-  const { user } = useSelector((state) => state.profile)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [open, setOpen] = useState(false)
-  const ref = useRef(null)
+  const { user } = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
 
-  useOnClickOutside(ref, () => setOpen(false))
+  useOnClickOutside(ref, () => setOpen(false));
 
-  if (!user) return null
+  if (!user) return null;
   // console.log('user data from store = ', user )
-
-
 
   return (
     // only for large devices
@@ -39,13 +37,23 @@ export default function ProfileDropdown() {
       {open && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richwhite-700 overflow-hidden rounded-md border-[1px] border-richwhite-700 bg-richwhite-800"
+          className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-white overflow-hidden rounded-md border-[1px] border-white bg-black"
           ref={ref}
         >
-          <Link to="/dashboard/my-profile" onClick={() => setOpen(false)}>
-            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white hover:bg-richwhite-700 hover:text-richwhite-25">
-              <VscDashboard className="text-lg" />
-              My Profile
+          <Link
+            to={
+              user?.accountType === ACCOUNT_TYPE.INSTRUCTOR
+                ? "/dashboard/instructor"
+                : "/dashboard/my-profile"
+            }
+            onClick={() => setOpen(false)} // Assuming setOpen is a state updater function
+          >
+            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white hover:bg-white hover:text-black">
+              <VscDashboard className="text-lg" />{" "}
+              {/* Assuming VscDashboard is an icon component */}
+              {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR
+                ? "Dashboard"
+                : "My Profile"}
             </div>
           </Link>
 
@@ -54,7 +62,7 @@ export default function ProfileDropdown() {
               dispatch(logout(navigate));
               setOpen(false);
             }}
-            className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white hover:bg-richwhite-700 hover:text-richwhite-25"
+            className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white hover:bg-white hover:text-black"
           >
             <VscSignOut className="text-lg" />
             Logout

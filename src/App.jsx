@@ -37,9 +37,11 @@ import { ACCOUNT_TYPE } from "./utils/constants";
 
 import { HiArrowNarrowUp } from "react-icons/hi";
 import AddVideos from "./components/core/Dashboard/InstructorCourses/AddVideos";
-import VideosList from "./components/core/Dashboard/InstructorCourses/VideosList";
+import VideosTable from "./components/core/Dashboard/InstructorCourses/VideosTable";
 import ViewVideo from "./components/core/Dashboard/InstructorCourses/ViewVideo";
 import EditVideo from "./components/core/Dashboard/InstructorCourses/EditVideo";
+import HandlePayment from "./components/core/Dashboard/Handle Payment/HandlePayment";
+import Profile from "./components/core/Dashboard/Profile";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -75,13 +77,13 @@ function App() {
   }, [showArrow]);
 
   return (
-    <div className="w-screen min-h-screen bg-white flex flex-col font-inter">
+    <div className="w-screen min-h-screen bg-white flex flex-col">
       <Navbar />
 
       {/* go upward arrow */}
       <button
         onClick={() => window.scrollTo(0, 0)}
-        className={`bg-blue-100 hover:bg-blue-400 hover:scale-110 p-3 text-lg text-white rounded-2xl fixed right-3 z-10 duration-500 ease-in-out ${
+        className={`bg-richblack-500 hover:bg-blue-400 hover:scale-110 p-3 text-lg text-white rounded-2xl fixed right-3 z-10 duration-500 ease-in-out ${
           showArrow ? "bottom-6" : "-bottom-24"
         } `}
       >
@@ -150,7 +152,7 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route path="dashboard/my-profile" element={<MyProfile />} />
+          <Route path="dashboard/my-profile" element={<Profile />} />
           <Route path="dashboard/Settings" element={<Settings />} />
 
           {/* Route only for Students */}
@@ -164,7 +166,7 @@ function App() {
               />
               <Route
                 path="dashboard/:courseId/videos"
-                element={<VideosList />}
+                element={<VideosTable />}
               />
               <Route
                 path="dashboard/view-video/:videoId"
@@ -181,6 +183,10 @@ function App() {
               <Route path="dashboard/add-course" element={<AddCourse />} />
               <Route path="dashboard/my-courses" element={<MyCourses />} />
               <Route
+                path="dashboard/handlePayment"
+                element={<HandlePayment />}
+              />
+              <Route
                 path="dashboard/:courseId/add-videos"
                 element={<AddVideos />}
               />
@@ -190,7 +196,7 @@ function App() {
               />
               <Route
                 path="dashboard/:courseId/videos"
-                element={<VideosList />}
+                element={<VideosTable />}
               />
               <Route
                 path="dashboard/view-video/:videoId"

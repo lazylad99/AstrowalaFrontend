@@ -29,12 +29,12 @@ export default function SidebarLink({ link, iconName }) {
       onClick={handleClick}
       className={`relative px-8 py-2 text-sm font-semibold text-white ${
         matchRoute(link.path)
-          ? "bg-blue-100"
-          : " hover:bg-richwhite-800 text-shadow-md duration-200"
+          ? "bg-richblack-500"
+          : " hover:bg-richblack-500 text-shadow-md duration-200"
       } transition-all `}
     >
       <span
-        className={`absolute left-0 top-0 h-full w-[0.15rem] bg-yellow-50 ${
+        className={`absolute left-0 top-0 h-full w-[0.15rem] bg-blue-50 ${
           matchRoute(link.path) ? "opacity-100" : "opacity-0"
         }`}
       ></span>

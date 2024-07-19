@@ -45,6 +45,7 @@ export const fetchVideoData = async (videoId) => {
   try {
     const response = await axios.get(`${BASE_URL}/video/${videoId}`);
     if (response?.data.success) {
+      console.log("Fetching Video", response.data.data)
       return response?.data.data;
     } else {
       throw new Error(response?.data.message);
@@ -114,12 +115,12 @@ export const toggleVideoPublishStatus = async (videoId, token) => {
 
 // ================ EDITING VIDEO ================
 
-export const updateVideo = async (videoId, formData, token) => {
+export const editVideoDetails = async (videoId, formData, token) => {
   const toastId = toast.loading("Updating video...");
   let result = null;
 
   try {
-    const response = await apiConnector("POST", `${BASE_URL}/video/update`, formData, {
+    const response = await apiConnector("PUT", `${BASE_URL}/video/update/${videoId}`, formData, {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${token}`,
     });

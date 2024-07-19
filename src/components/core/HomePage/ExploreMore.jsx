@@ -4,11 +4,12 @@ import CourseCard from "./CourseCard";
 import HighlightText from "./HighlightText";
 
 const tabsName = [
-  "Free",
-  "New to coding",
-  "Most popular",
-  "Skills paths",
-  "Career paths",
+  "Vedic Astrology",
+  "Advanced Vedic Astrology",
+  "Foundation of Numerology",
+  "Advance Level Numerology",
+  "",
+  "Master Level Numerology"
 ];
 
 
@@ -40,7 +41,7 @@ const ExploreMore = () => {
       </div>
 
       {/* Tabs Section */}
-      <div className="hidden lg:flex gap-5 -mt-5 mx-auto w-max bg-richwhite-800 text-richwhite-200 p-1 rounded-full font-medium drop-shadow-[0_1.5px_rgba(255,255,255,0.25)]">
+      <div className="hidden lg:flex gap-5 -mt-5 mx-auto w-max bg-black text-richwhite-200 p-1 rounded-full font-medium drop-shadow-[0_1.5px_rgba(255,255,255,0.25)]">
         {tabsName.map((ele, index) => {
           return (
             <div

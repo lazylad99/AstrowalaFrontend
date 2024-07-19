@@ -1,3 +1,5 @@
+// export const BASE_URL = "https://astrowala-bd-deployed-ffmpeg-71b9ee08cfa4.herokuapp.com";
+
 export const BASE_URL = "https://astrowala-backend-deployed.onrender.com/api/v1";
 
 // export const BASE_URL = "http://localhost:5000/api/v1";
@@ -7,6 +9,7 @@ export const endpoints = {
   SENDOTP_API: BASE_URL + "/auth/sendotp",
   SIGNUP_API: BASE_URL + "/auth/signup",
   LOGIN_API: BASE_URL + "/auth/login",
+  // LOGOUT_API: BASE_URL + "/auth/logout",
   RESETPASSTOKEN_API: BASE_URL + "/auth/reset-password-token",
   RESETPASSWORD_API: BASE_URL + "/auth/reset-password",
 }
@@ -23,6 +26,7 @@ export const studentEndpoints = {
   COURSE_PAYMENT_API: BASE_URL + "/payment/capturePayment",
   COURSE_VERIFY_API: BASE_URL + "/payment/verifyPayment",
   SEND_PAYMENT_SUCCESS_EMAIL_API: BASE_URL + "/payment/sendPaymentSuccessEmail",
+  BYPASS_TRANSACTION: BASE_URL + "/payment/bypass-transaction",
 }
 
 // COURSE ENDPOINTS
@@ -73,4 +77,8 @@ export const settingsEndpoints = {
   UPDATE_PROFILE_API: BASE_URL + "/profile/updateProfile",
   CHANGE_PASSWORD_API: BASE_URL + "/auth/changepassword",
   DELETE_PROFILE_API: BASE_URL + "/profile/deleteProfile",
+}
+
+export const certificateEndpoints = {
+  GENERATE_UPLOAD_CERTIFICATE: BASE_URL + "/certificate"
 }

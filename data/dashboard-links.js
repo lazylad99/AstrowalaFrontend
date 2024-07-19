@@ -42,11 +42,11 @@ export const sidebarLinks = [
     type: ACCOUNT_TYPE.STUDENT,
     icon: "VscMortarBoard",
   },
-  // {
-  //   id: 6,
-  //   name: "Purchase History",
-  //   path: "/dashboard/purchase-history",
-  //   type: ACCOUNT_TYPE.STUDENT,
-  //   icon: "VscHistory",
-  // },
+  {
+    id: 7,
+    name: "Handle Payment",
+    path: "/dashboard/handlePayment",
+    type: ACCOUNT_TYPE.INSTRUCTOR,
+    icon: "VscMortarBoard",
+  },
 ];

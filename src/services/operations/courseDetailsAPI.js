@@ -97,7 +97,7 @@ export const addCourseDetails = async (data, token) => {
     }
 
     result = response?.data?.data
-    toast.success("Course Details Added Successfully")
+    toast.success("Course Added Successfully")
   } catch (error) {
     // console.log("CREATE COURSE API ERROR............", error)
     toast.error(error.message)
@@ -267,13 +267,7 @@ export const createRating = async (data, token) => {
 // ================= TOGGLE PUBLISH =================================
 export const togglePublishStatus = async (courseId, token) => {
   try {
-    // const response = await fetch(`${courseEndpoints.TOGGLE_PUBLISH_API.replace(':courseId', courseId)}`, {
-    //   method: 'PATCH',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${yourAuthToken}`
-    //   }
-    // });
+
     const response = await apiConnector("PATCH", TOGGLE_PUBLISH_API.replace(':courseId', courseId), {}, {
       Authorization: `Bearer ${token}`,
     })

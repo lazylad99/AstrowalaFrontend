@@ -1,198 +1,196 @@
-// AddVideos.jsx
-
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useForm, useFieldArray } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  updateVideo,
-  uploadVideo,
-} from "../../../../services/operations/videoAPI";
+import { uploadVideo } from "../../../../services/operations/videoAPI";
 import { setVideos } from "../../../../slices/videosSlice";
 import { toast } from "react-hot-toast";
 import Upload from "../AddCourse/Upload";
 import IconBtn from "../../../common/IconBtn";
+import ConfirmationModal from "../../../common/ConfirmationModal"; // Import your ConfirmationModal component
 
-export default function AddVideos() {
+export default function AddVideo() {
   const {
     register,
     handleSubmit,
+    control,
     setValue,
-    getValues,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      videos: [
+        { title: "", description: "", videoUrl: "", pdfUrl: "", imagesUrl: [] },
+      ],
+    },
+  });
+  const { fields, append, remove } = useFieldArray({ control, name: "videos" });
 
-  const { videoId } = useParams();
   const { courseId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
-  const { videos, editVideo } = useSelector((state) => state.videos);
   const [loading, setLoading] = useState(false);
-
-  const courseID = courseId || videos?.courseId;
-
-  useEffect(() => {
-    if (editVideo && videos) {
-      setValue("title", videos?.title);
-      setValue("description", videos?.description);
-      setValue("videoUrl", videos?.videoUrl);
-      setValue("pdfUrl", videos?.pdfUrl);
-      setValue("imagesUrl", videos?.imagesUrl);
-    }
-  }, [editVideo, videos, setValue]);
-
-  const isFormUpdated = () => {
-    const currentValues = getValues();
-    if (
-      currentValues.title !== videos?.title ||
-      currentValues.description !== videos?.description ||
-      currentValues.videoUrl !== videos?.videoUrl ||
-      currentValues.pdfUrl !== videos?.pdfUrl ||
-      currentValues.imagesUrl !== videos?.imagesUrl
-    ) {
-      return true;
-    }
-    return false;
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onSubmit = async (data) => {
-    const formData = new FormData();
-
-    if (editVideo) {
-      if (isFormUpdated()) {
-        const currentValues = getValues();
-        formData.append("videoId", videoId);
-
-        if (currentValues.title !== videos?.title) {
-          formData.append("title", data.title);
-        }
-        if (currentValues.description !== videos?.description) {
-          formData.append("description", data.description);
-        }
-        if (currentValues.videoUrl !== videos?.videoUrl) {
-          formData.append("video", data.videoUrl);
-        }
-        if (currentValues.pdfUrl !== videos?.pdfUrl) {
-          formData.append("pdf", data.pdfUrl);
-        }
-        if (currentValues.imagesUrl !== videos?.imagesUrl) {
-          for (let i = 0; i < data.imagesUrl.length; i++) {
-            formData.append("imagesUrl", data.imagesUrl[i]);
-          }
-        }
-
-        setLoading(true);
-        const result = await updateVideo(videoId, formData, token);
-        setLoading(false);
-        if (result) {
-          dispatch(setVideos(result));
-          navigate(`/dashboard/${courseID}/videos`);
-        }
-      } else {
-        toast.error("No changes made to the form");
-      }
-    } else {
-      formData.append("title", data.title);
-      formData.append("description", data.description);
+    setLoading(true);
+    const formDataArray = data.videos.map((videoData) => {
+      const formData = new FormData();
+      formData.append("title", videoData.title);
+      formData.append("description", videoData.description);
       formData.append("courseId", courseId);
-      formData.append("videoUrl", data.videoUrl);
-      formData.append("pdfUrl", data.pdfUrl);
-      for (let i = 0; i < data.imagesUrl.length; i++) {
-        formData.append("imagesUrl", data.imagesUrl[i]);
-      }
+      formData.append("videoUrl", videoData.videoUrl);
+      formData.append("pdfUrl", videoData.pdfUrl);
+      videoData.imagesUrl.forEach((image) =>
+        formData.append("imagesUrl", image)
+      );
+      return formData;
+    });
 
-      setLoading(true);
-      const result = await uploadVideo(formData, token);
-      if (result) {
-        dispatch(setVideos(result));
-        navigate(`/dashboard/${courseID}/videos`);
-      }
-      setLoading(false);
+    const results = await Promise.all(
+      formDataArray.map((formData) => uploadVideo(formData, token))
+    );
+
+    if (results.every((result) => result)) {
+      dispatch(setVideos(results));
+      setIsModalOpen(true); // Open the modal
+    } else {
+      toast.error("Failed to upload one or more videos");
     }
+    setLoading(false);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    navigate(`/dashboard/${courseId}/videos`);
   };
 
   return (
-    <div className="container mx-auto mt-">
-      <div className="max-w-lg mx-auto bg-richwhite-800 p-8 rounded-lg shadow-lg">
+    <div className="container mx-auto mt-4">
+      <div className="max-w-4xl mx-auto bg-black p-8 rounded-lg shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
-          <Upload
-            name="videoUrl"
-            label="Video"
-            register={register}
-            setValue={setValue}
-            errors={errors}
-            editData={editVideo ? videos?.videoUrl : null}
-            video
-          />
-          <Upload
-            name="pdfUrl"
-            label="PDF"
-            register={register}
-            setValue={setValue}
-            errors={errors}
-            editData={editVideo ? videos?.pdfUrl : null}
-            pdf
-          />
-          <Upload
-            name="imagesUrl"
-            label="Images"
-            register={register}
-            setValue={setValue}
-            errors={errors}
-            editData={editVideo ? videos?.imagesUrl : null}
-            multiple
-          />
-          <div className="mb-4 mt-4">
-            <label
-              htmlFor="title"
-              className="block text-white text-sm font-medium"
-            >
-              Video Title
-            </label>
-            <input
-              id="title"
-              type="text"
-              {...register("title", { required: true })}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            />
-            {errors.title && (
-              <span className="text-red-500 text-sm">
-                Video title is required
-              </span>
-            )}
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="description"
-              className="block text-white text-sm font-medium"
-            >
-              Video Description
-            </label>
-            <textarea
-              id="description"
-              {...register("description", { required: true })}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            />
-            {errors.description && (
-              <span className="text-red-500 text-sm">
-                Video description is required
-              </span>
-            )}
-          </div>
+          {fields.map((field, index) => (
+            <div key={field.id} className="mb-4">
+              <div className="flex">
+                <Upload
+                  name={`videos[${index}].videoUrl`}
+                  label="Video"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  video
+                />
+                <Upload
+                  name={`videos[${index}].pdfUrl`}
+                  label="PDF"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  pdf
+                />
+                <Upload
+                  name={`videos[${index}].imagesUrl`}
+                  label="Images"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  multiple
+                />
+              </div>
+              <div className="mb-4 mt-4">
+                <label
+                  htmlFor={`videos[${index}].title`}
+                  className="block text-white text-sm font-medium"
+                >
+                  Video Title
+                </label>
+                <input
+                  id={`videos[${index}].title`}
+                  type="text"
+                  {...register(`videos[${index}].title`, { required: true })}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                {errors.videos?.[index]?.title && (
+                  <span className="text-red-500 text-sm">
+                    Video title is required
+                  </span>
+                )}
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor={`videos[${index}].description`}
+                  className="block text-white text-sm font-medium"
+                >
+                  Video Description
+                </label>
+                <textarea
+                  id={`videos[${index}].description`}
+                  {...register(`videos[${index}].description`, {
+                    required: true,
+                  })}
+                  className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                {errors.videos?.[index]?.description && (
+                  <span className="text-red-500 text-sm">
+                    Video description is required
+                  </span>
+                )}
+              </div>
+
+              <div className="flex">
+                <div>
+                  <button
+                    type="button"
+                    className="mr-3 button-36"
+                    onClick={() => remove(index)}
+                  >
+                    Remove Video
+                  </button>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    className="mr-3 button-36"
+                    onClick={() =>
+                      append({
+                        title: "",
+                        description: "",
+                        videoUrl: "",
+                        pdfUrl: "",
+                        imagesUrl: [],
+                      })
+                    }
+                  >
+                    Add Another Video
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
           <div className="flex justify-end">
             <IconBtn
               type="submit"
               disabled={loading}
-              text={
-                loading
-                  ? `${videoId ? "Updating..." : "Adding..."} `
-                  : `${videoId ? "Update Video" : "Add Video"}`
-              }
+              text={loading ? "Uploading..." : "Upload Videos"}
             />
           </div>
         </form>
       </div>
+      {isModalOpen && (
+        <ConfirmationModal
+          modalData={{
+            text1: "Videos Uploaded Successfully",
+            text2: "Your videos have been successfully uploaded.",
+            btn1Text: "Go to Videos",
+            btn2Text: "Close",
+            btn1Handler: () => {
+              navigate(`/dashboard/${courseId}/videos`);
+              handleModalClose();
+            },
+            btn2Handler: handleModalClose,
+          }}
+        />
+      )}
     </div>
   );
 }

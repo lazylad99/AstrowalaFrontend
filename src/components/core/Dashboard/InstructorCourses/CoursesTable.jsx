@@ -9,9 +9,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../../../services/formatDate";
 import {
-  // deleteCourse,
   fetchInstructorCourses,
-  togglePublishStatus, // Import the new API function
+  togglePublishStatus,
 } from "../../../../services/operations/courseDetailsAPI";
 import ConfirmationModal from "../../../common/ConfirmationModal";
 import Img from "../../../common/Img";
@@ -27,7 +26,6 @@ export default function CoursesTable({
 }) {
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
-  // const dispatch = useDispatch();
 
   const [confirmationModal, setConfirmationModal] = useState(null);
   const [field, setField] = useState("Published"); // State to toggle published/unpublished courses
@@ -35,24 +33,10 @@ export default function CoursesTable({
 
   const tabData = [
     { id: 1, type: "Published", tabName: "Published" },
-    { id: 2, type: "Drafted", tabName: "Drafted" },
+    { id: 2, type: "Unpublished", tabName: "Unpublished" },
   ];
 
-  // const handleCourseDelete = async (courseId) => {
-  //   setLoading(true);
-  //   const toastId = toast.loading("Deleting...");
-  //   await deleteCourse({ courseId: courseId }, token);
-  //   const result = await fetchInstructorCourses(token);
-  //   if (result) {
-  //     setCourses(result);
-  //   }
-  //   setConfirmationModal(null);
-  //   setLoading(false);
-  //   toast.dismiss(toastId);
-  // };
-
-  const toggleCoursePublishStatus = async (courseId) => {
-    console.log(courseId);
+  const toggleCoursePublishStatus = async (courseId, newStatus) => {
     setLoading(true);
     const toastId = toast.loading("Updating status...");
     const result = await togglePublishStatus(courseId, token);
@@ -60,6 +44,7 @@ export default function CoursesTable({
       toast.success(result.message);
       const updatedCourses = await fetchInstructorCourses(token);
       setCourses(updatedCourses);
+      setField(newStatus ? "Published" : "Unpublished");
     } else {
       toast.error(result.message);
     }
@@ -88,23 +73,22 @@ export default function CoursesTable({
   return (
     <>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-semibold text-black">Courses</h1>
+        <h1 className="bg-gradient-to-b font-semibold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl">
+          My Courses
+        </h1>
         <Tab tabData={tabData} field={field} setField={setField} />
       </div>
 
-      <Table className="rounded-2xl border border-richwhite-800 ">
+      <Table className="rounded-2xl ">
         <Thead>
-          <Tr className="flex gap-x-10 bg-blue-100 px-6 py-2">
-            <Th className="flex-1 text-left text-sm font-medium uppercase text-white">
+          <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
+            <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
               Courses
             </Th>
-            <Th className="text-left text-sm font-medium uppercase text-white">
-              Duration
-            </Th>
-            <Th className="text-left text-sm font-medium uppercase text-white">
+            <Th className="text-left mr-[100px] text-sm font-medium uppercase text-white">
               Price
             </Th>
-            <Th className="text-left ml-2 mr-10 text-sm font-medium uppercase text-white">
+            <Th className="text-left ml-2 mr-[120px] text-sm font-medium uppercase text-white">
               Actions
             </Th>
           </Tr>
@@ -120,7 +104,7 @@ export default function CoursesTable({
           <Tbody>
             {filteredCourses?.length === 0 ? (
               <Tr>
-                <Td className="py-10 text-center text-2xl font-medium text-blue-400">
+                <Td className="py-10 text-center text-2xl font-medium text-black">
                   No courses found
                 </Td>
               </Tr>
@@ -128,20 +112,20 @@ export default function CoursesTable({
               filteredCourses.map((course) => (
                 <Tr
                   key={course._id}
-                  className="flex gap-x-10 border-b border-richwhite-800 px-6 py-8 cursor-pointer"
+                  className="flex gap-x-10 p-5 cursor-pointer m-10 shadow1 rounded-lg bg-white bg-opacity-15 transform hover:scale-105 transition-transform duration-300 "
                   onClick={() => navigate(`/dashboard/${course._id}/videos`)}
                 >
                   <Td className="flex flex-1 gap-x-4 relative">
                     <Img
                       src={course?.thumbnailUrl}
                       alt={course?.courseName}
-                      className="h-[148px] min-w-[270px] max-w-[270px] rounded-lg object-cover"
+                      className="h-[160px] min-w-[270px] max-w-[270px] rounded-lg object-cover"
                     />
                     <div className="flex flex-col">
-                      <p className="text-lg font-semibold text-blue-400 capitalize">
+                      <p className="text-lg font-semibold text-black capitalize">
                         {course.courseName}
                       </p>
-                      <p className="text-xs text-blue-400 ">
+                      <p className="text-xs text-black ">
                         {course.courseDescription.split(" ").length >
                         TRUNCATE_LENGTH
                           ? course.courseDescription
@@ -153,16 +137,18 @@ export default function CoursesTable({
                       <p className="text-[12px] text-black mt-4">
                         Created: {formatDate(course?.createdAt)}
                       </p>
-                      <p className="text-[12px] text-black">
-                        Updated: {formatDate(course?.updatedAt)}
-                      </p>
+                      {course?.updatedAt && (
+                        <p className="text-[12px] text-black">
+                          Updated: {formatDate(course?.updatedAt)}
+                        </p>
+                      )}
                       {!course.isPublished ? (
-                        <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-blue-800">
-                          <HiClock size={14} /> Drafted
+                        <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black px-2 py-[2px] text-[12px] font-medium text-pink-25">
+                          <HiClock size={14} /> Unpublished
                         </p>
                       ) : (
-                        <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-richwhite-700 px-2 py-[2px] text-[12px] font-medium text-yellow-5">
-                          <p className="flex h-3 w-3 items-center justify-center rounded-full bg-yellow-5 text-richwhite-700">
+                        <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black  px-2 py-[2px] text-[12px] font-medium text-blue-25">
+                          <p className="flex h-3 w-3 items-center justify-center rounded-full bg-blue-5 text-black">
                             <FaCheck size={8} />
                           </p>{" "}
                           Published
@@ -170,12 +156,11 @@ export default function CoursesTable({
                       )}
                     </div>
                   </Td>
-                  <Td className="text-sm font-medium text-black">2hr 30min</Td>
-                  <Td className="text-sm font-medium text-black">
+                  <Td className="text-sm font-medium mr-[20px] text-black">
                     ₹{course.price}
                   </Td>
                   <Td className="flex flex-col text-sm font-medium text-black ">
-                    <div className="flex pb-5">
+                    <div className="flex ">
                       <button
                         disabled={loading}
                         onClick={(event) => {
@@ -189,23 +174,6 @@ export default function CoursesTable({
                       </button>
                       <button
                         disabled={loading}
-                        // onClick={(event) => {
-                        //   event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                        //   setConfirmationModal({
-                        //     text1: "Do you want to delete this course?",
-                        //     text2:
-                        //       "All the data related to this course will be deleted",
-                        //     btn1Text: !loading ? "Delete" : "Loading...",
-                        //     btn2Text: "Cancel",
-                        //     btn1Handler: !loading
-                        //       ? () => handleCourseDelete(course._id)
-                        //       : () => {},
-                        //     btn2Handler: !loading
-                        //       ? () => setConfirmationModal(null)
-                        //       : () => {},
-                        //   });
-                        // }}
-
                         onClick={(event) => {
                           event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
                           toggleCoursePublishStatus(course._id); // Call the function to toggle publish status
@@ -222,24 +190,43 @@ export default function CoursesTable({
                           event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
                           navigate(`/dashboard/${course._id}/add-videos`);
                         }}
-                        className="z-40 m-4"
+                        className="z-40 m-2"
                       >
-                        <IconBtn text="Add Videos"></IconBtn>
+                        <IconBtn customClasses={"w-[180px]"} text="Add Videos"></IconBtn>
                       </button>
                     </div>
                     <div>
                       <button
                         onClick={(event) => {
                           event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                          toggleCoursePublishStatus(course._id); // Call the function to toggle publish status
+                          setConfirmationModal({
+                            text1: `Are you sure you want to ${
+                              course.isPublished ? "unpublish" : "publish"
+                            } this course?`,
+                            text2: "",
+                            btn1Text: !loading ? "Yes" : "Loading...",
+                            btn2Text: "Cancel",
+                            btn1Handler: !loading
+                              ? () => {
+                                  toggleCoursePublishStatus(
+                                    course._id,
+                                    !course.isPublished
+                                  );
+                                  setConfirmationModal(null);
+                                }
+                              : () => {},
+                            btn2Handler: !loading
+                              ? () => setConfirmationModal(null)
+                              : () => {},
+                          });
                         }}
-                        className="z-40 m-4"
+                        className="z-40 m-2"
                       >
                         <IconBtn
                           text={
                             !course.isPublished
                               ? "Publish Course"
-                              : "Draft Course"
+                              : "Unpublish Course"
                           }
                         ></IconBtn>
                       </button>
@@ -252,9 +239,9 @@ export default function CoursesTable({
         )}
       </Table>
 
-      {confirmationModal ? (
+      {confirmationModal && (
         <ConfirmationModal modalData={confirmationModal} />
-      ) : null}
+      )}
     </>
   );
 }

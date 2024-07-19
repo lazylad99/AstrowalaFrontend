@@ -64,7 +64,7 @@ export default function ChangeProfilePicture() {
 
   return (
     <>
-      <div className="flex items-center justify-between rounded-md border-[1px] border-richwhite-700 bg-richwhite-800 p-8 px-3 sm:px-12 text-white">
+      <div className="flex items-center justify-between rounded-md border-[1px] border-richwhite-700 bg-black p-8 px-3 sm:px-12 text-white">
         <div className="flex items-center gap-x-4">
           <Img
             src={previewSource || user?.image}
@@ -86,7 +86,7 @@ export default function ChangeProfilePicture() {
               <button
                 onClick={handleClick}
                 disabled={loading}
-                className="cursor-pointer rounded-md py-2 px-5 font-semibold bg-blue-100 text-white hover:bg-richwhite-900 hover:text-richwhite-200 duration-300"
+                className="cursor-pointer rounded-md py-2 px-5 font-semibold bg-richblack-500 text-white hover:bg-richwhite-900 hover:text-richwhite-200 duration-300"
               >
                 Select
               </button>

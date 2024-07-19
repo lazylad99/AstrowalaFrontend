@@ -33,7 +33,7 @@ function ForgotPassword() {
             ) : (
               <p>
                 We have sent the reset email to{" "}
-                <span className="text-yellow-200">{email}</span>
+                <span className="text-richblack-500">{email}</span>
               </p>
             )}
           </div>
@@ -51,17 +51,14 @@ function ForgotPassword() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter email address"
-                  style={{
-                    boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-                  }}
-                  className="w-full rounded-[0.5rem] bg-richwhite-800 p-[12px] text-black "
+                  className="w-full rounded-[0.5rem] bg-black p-[12px] text-white "
                 />
               </label>
             )}
 
             <button
               type="submit"
-              className="mt-6 w-full rounded-[8px] bg-yellow-50 py-[12px] px-[12px] font-medium text-richwhite-900"
+              className="mt-6 w-full rounded-[8px] button-36 "
             >
               {!emailSent ? "Sumbit" : "Resend Email"}
             </button>

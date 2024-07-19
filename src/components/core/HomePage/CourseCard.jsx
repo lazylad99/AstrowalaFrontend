@@ -11,14 +11,14 @@ const CourseCard = ({ cardData, currentCard, setCurrentCard }) => {
       className={`w-[360px] lg:w-[30%] ${
         currentCard === cardData?.heading
           ? "bg-white shadow-[12px_12px_0_0] shadow-yellow-50"
-          : "bg-richwhite-800"
+          : "bg-black"
       }  text-richwhite-25 h-[300px] box-border cursor-pointer`}
       onClick={() => setCurrentCard(cardData?.heading)}
     >
       <div className="border-b-[2px] border-richwhite-400 border-dashed h-[80%] p-6 flex flex-col gap-3">
         <div
           className={` ${
-            currentCard === cardData?.heading && "text-richwhite-800"
+            currentCard === cardData?.heading && "text-black"
           } font-semibold text-[20px]`}
         >
           {cardData?.heading}

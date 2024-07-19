@@ -56,7 +56,7 @@ const LearningGrid = () => {
               card.order % 2 === 1
                 ? "bg-richwhite-700 h-[294px]"
                 : card.order % 2 === 0
-                ? "bg-richwhite-800 h-[294px]"
+                ? "bg-black h-[294px]"
                 : "bg-transparent"
             } ${card.order === 3 && "lg:col-start-2"}  `}
           >
