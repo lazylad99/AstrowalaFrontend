@@ -88,17 +88,20 @@ export default function Instructor() {
         <div>{skItem()}</div>
       ) : courses.length > 0 ? (
         <div>
-          <div className="my-2 flex h-[450px] space-x-4">
+          <div className="my-2 flex flex-col md:flex-row h-auto md:h-[450px] space-y-4 md:space-y-0 md:space-x-4">
             {/* Render chart / graph */}
             {totalAmount > 0 || totalStudents > 0 ? (
               <InstructorChart courses={instructorData} />
             ) : (
-              <div className="flex-1 rounded-md bg-black p-6">
-                <p className="text-lg font-bold text-white">Visualize</p>
-                <p className="mt-4 text-xl font-medium text-white">
+              <div className="flex-1 rounded-md bg-black p-4 sm:p-6 flex flex-col justify-center items-center h-auto min-h-[18rem] sm:min-h-[20rem] md:min-h-[24rem] lg:min-h-[28rem]">
+                <p className="text-base sm:text-lg font-bold text-white text-center">Visualize</p>
+                <p className="mt-2 sm:mt-4 text-lg sm:text-xl font-medium text-white text-center">
                   Not Enough Data To Visualize
                 </p>
               </div>
+
+
+
             )}
 
             {/* left column */}

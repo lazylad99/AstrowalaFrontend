@@ -66,7 +66,7 @@ const Home = () => {
       {/* background random image */}
 
       <div
-        className="w-full h-[200px] md:h-[650px] absolute top-0 left-0 overflow-hidden object-cover "
+        className="w-full h-[200px] md:h-[650px] absolute top-0 left-0 overflow-hidden object-cover"
        
       >
         <img
@@ -95,7 +95,7 @@ const Home = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.1 }}
-              className="bg-gradient-to-b text-bold from-[#ffffff] via-[#ffffff] to-[#928d8d] text-transparent bg-clip-text text-4xl"
+              className="bg-gradient-to-b text-bold from-[#ffffff] via-[#ffffff] to-[#928d8d] text-transparent bg-clip-text text-2xl md:text-4xl"
             >
               Explore the Cosmos,
               <HighlightText text={"Unlock Your Destiny"} />
