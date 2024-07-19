@@ -274,9 +274,9 @@ export default function AddCourse() {
           )}
           <IconBtn
             disabled={loading}
-            text={!editCourse ? "Next" : "Save Changes"}
+            text={!editCourse ? (loading ? "Creating..." : "Next" ) : "Save Changes"}
           >
-            <MdNavigateNext />
+            {loading & <MdNavigateNext />}
           </IconBtn>
         </div>
       </form>
@@ -285,13 +285,8 @@ export default function AddCourse() {
           modalData={{
             text1: "Course Created",
             text2: "Your course has been created and is currently in the unpublished section. Publish it to make it available to the public.",
-            btn1Text: "",
-            btn2Text: "Close",
-            btn1Handler: () => {
-              // Add your publish course logic here
-              handleModalClose();
-            },
-            btn2Handler: handleModalClose,
+            btn1Text: "Close",
+            btn1Handler: handleModalClose,
           }}
         />
       )}

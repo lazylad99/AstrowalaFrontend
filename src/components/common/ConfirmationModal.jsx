@@ -9,7 +9,7 @@ export default function ConfirmationModal({
 }) {
   return (
     <div className="fixed inset-0 z-[1000] grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="w-full max-w-[800px] rounded-lg border border-richblack-400 bg-black p-6">
+      <div className="w-full max-w-[800px] rounded-lg border border-richblack-400 bg-black p-8">
         {isVideo ? (
           videoUrl ? (
             <div className="relative" style={{ paddingBottom: "56.25%" }}>
@@ -21,11 +21,10 @@ export default function ConfirmationModal({
                 style={{ position: "absolute", top: 0, left: 0 }}
               />
               <button
-                className="absolute top-0 right-0 mt-3 mr-3 button-36
-                                     py-[8px] px-[20px] font-semibold duration-300 z-[1100]"
+                          className="absolute text-white top-2 right-1 text-xl text-gray-700"
                 onClick={modalData?.btn2Handler}
               >
-                {modalData?.btn2Text}
+                &times;
               </button>
             </div>
           ) : (
@@ -46,12 +45,12 @@ export default function ConfirmationModal({
                 onclick={modalData?.btn1Handler}
                 text={modalData?.btn1Text}
               />
-              <button
+              {modalData?.btn2Text & <button
                 className="button-36"
                 onClick={modalData?.btn2Handler}
               >
                 {modalData?.btn2Text}
-              </button>
+              </button>}
             </div>
           </>
         )}

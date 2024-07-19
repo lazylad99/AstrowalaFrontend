@@ -20,7 +20,7 @@ import OpenRoute from "./components/core/Auth/OpenRoute";
 import ProtectedRoute from "./components/core/Auth/ProtectedRoute";
 
 import Dashboard from "./pages/Dashboard";
-import MyProfile from "./components/core/Dashboard/MyProfile";
+// import MyProfile from "./components/core/Dashboard/MyProfile";
 import Settings from "./components/core/Dashboard/Settings/Settings";
 import MyCourses from "./components/core/Dashboard/MyCourses";
 import EditCourse from "./components/core/Dashboard/EditCourse/EditCourse";
@@ -42,6 +42,7 @@ import ViewVideo from "./components/core/Dashboard/InstructorCourses/ViewVideo";
 import EditVideo from "./components/core/Dashboard/InstructorCourses/EditVideo";
 import HandlePayment from "./components/core/Dashboard/Handle Payment/HandlePayment";
 import Profile from "./components/core/Dashboard/Profile";
+import Categories from "./pages/Categories";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -94,8 +95,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
-        <Route path="catalog/:catID" element={<Catalog />} />
-        <Route path="courses/:courseId" element={<CourseDetails />} />
+        <Route path="/catalog/:catID" element={<Catalog />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/courses/:courseId" element={<CourseDetails />} />
 
         {/* Open Route - for Only Non Logged in User */}
         <Route
@@ -153,7 +155,7 @@ function App() {
           }
         >
           <Route path="dashboard/my-profile" element={<Profile />} />
-          <Route path="dashboard/Settings" element={<Settings />} />
+          <Route path="dashboard/settings" element={<Settings />} />
 
           {/* Route only for Students */}
           {/* cart , EnrolledCourses */}
@@ -176,7 +178,7 @@ function App() {
           )}
 
           {/* Route only for Instructors */}
-          {/* add course , MyCourses, EditCourse*/}
+          {/* add course , , EditCourse*/}
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
               <Route path="dashboard/instructor" element={<Instructor />} />
