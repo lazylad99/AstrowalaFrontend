@@ -6,7 +6,7 @@ import Course_Card from "../components/core/Catalog/Course_Card";
 import Course_Slider from "../components/core/Catalog/Course_Slider";
 import Loading from "./../components/common/Loading";
 import { getCatalogPageData } from "../services/operations/pageAndComponentData";
-import img1 from "../assets/Images/astro_images/banner6.png";
+import img1 from "../assets/Images/astro_images/1.jpg";
 
 function Catalog() {
   const { catID } = useParams();
@@ -46,9 +46,9 @@ function Catalog() {
   }
 
   return (
-    <div className="bg-">
-      <div className="w-full h-[200px] md:h-[500px] absolute top-0 left-0 overflow-hidden object-cover ">
-        <img src={img1} alt="Background" className="w-full h-full" />
+    <div>
+      <div className="w-full h-[200px] md:h-[500px] absolute shadow1 top-0 left-0 overflow-hidden object-cover ">
+        <img src={img1} alt="Background" className="w-full h-full" style={{ filter: "brightness(0.6)" }} />
       </div>
 
       {/* Hero Section */}
@@ -60,7 +60,7 @@ function Catalog() {
               {catalogPageData?.selectedCategory?.category?.name}
             </span>
           </p>
-          <p className="text-3xl text-white">
+          <p className="text-3xl mt-10 text-white">
             {catalogPageData?.selectedCategory?.category?.name}
           </p>
           <p className="max-w-[870px] text-pure-greys-100">
@@ -74,8 +74,8 @@ function Catalog() {
         {/* <div className="absolute w-full h-[200px] md:h-[500px] top-0 left-0 overflow-hidden object-cover ">
                     <img src={img2} alt="Background" className="w-full h-full" />
                 </div> */}
-        <h1 className="z-50 section_heading">Courses to get you started</h1>
-        <div className="my-4 flex border-b border-b-richblack-500 text-sm">
+        <h1 className="z-50 mt-10 section_heading">Courses to get you started</h1>
+        {/* <div className="my-4 flex border-b border-b-richblack-500 text-sm">
           <p
             className={`px-4 py-2 ${
               active === 1 ? "border-b text-richblack-500" : "text-black0"
@@ -92,7 +92,7 @@ function Catalog() {
           >
             New
           </p>
-        </div>
+        </div> */}
         <div>
           <Course_Slider Courses={catalogPageData?.selectedCategory?.courses} />
         </div>

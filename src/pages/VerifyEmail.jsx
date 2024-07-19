@@ -35,7 +35,7 @@ function VerifyEmail() {
       {loading ? (
         <Loading />
       ) : (
-        <div className="max-w-[500px] p-4 lg:p-8">
+        <div className="max-w-[500px] p-4 lg:p-4">
           <h1 className="text-black font-semibold text-[1.875rem] leading-[2.375rem]">
             Verify Email
           </h1>
@@ -44,7 +44,7 @@ function VerifyEmail() {
             A verification code has been sent to you. Enter the code below
           </p>
 
-          <form onSubmit={handleVerifyAndSignup}>
+          <form onSubmit={handleVerifyAndSignup} className="bg-richblack-100 p-10 rounded-xl">
             <OtpInput
               value={otp}
               onChange={setOtp}
@@ -56,7 +56,7 @@ function VerifyEmail() {
                   style={{
                     boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                   }}
-                  className="w-[48px] lg:w-[60px] border-0 bg-black rounded-[0.5rem] text-black aspect-square text-center focus:border-0 focus:outline-2 focus:outline-yellow-50"
+                  className="w-[48px] lg:w-[60px] border-0 bg-black rounded-[0.5rem] text-white aspect-square text-center focus:border-0 focus:outline-2 focus:outline-white"
                 />
               )}
               containerStyle={{
@@ -67,7 +67,7 @@ function VerifyEmail() {
 
             <button
               type="submit"
-              className="w-full bg-yellow-50 py-[12px] px-[12px] rounded-[8px] mt-6 font-medium text-richblue-900"
+              className="w-full button-36 py-[12px] px-[12px] rounded-[8px] mt-6 font-medium text-richblue-900"
             >
               Verify Email
             </button>
