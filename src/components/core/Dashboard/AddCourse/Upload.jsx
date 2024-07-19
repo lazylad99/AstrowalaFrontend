@@ -173,7 +173,7 @@ export default function Upload({
         )}
       </div>
 
-      {Object.keys(uploadProgress).length > 0 && (
+      {/* {Object.keys(uploadProgress).length > 0 && (
         <div className="fixed bottom-4 right-4 w-64 p-4 bg-richblack-500 text-white rounded-lg shadow-lg">
           <h3 className="text-lg mb-2">Uploading...</h3>
           {Object.keys(uploadProgress).map((fileIndex) => (
@@ -188,7 +188,7 @@ export default function Upload({
             </div>
           ))}
         </div>
-      )}
+      )} */}
 
       {/* {errors[name] && (
         <span className="ml-2 text-xs tracking-wide text-pink-200">

@@ -225,9 +225,9 @@ textarea::placeholder {
   background: linear-gradient(180deg, rgba(133, 134, 135, 0) 0%, #ffffff 99.99%);
 }
 
-.opacity_layer_bg2 {
+/* .opacity_layer_bg2 {
   background: linear-gradient(360deg, rgba(133, 134, 135, 0) 0%, #ffffff 99.99%);
-}
+} */
 
 .opacity_layer_bg3 {
 

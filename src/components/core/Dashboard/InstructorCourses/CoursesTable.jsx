@@ -9,9 +9,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../../../services/formatDate";
 import {
-  // deleteCourse,
   fetchInstructorCourses,
-  togglePublishStatus, // Import the new API function
+  togglePublishStatus,
 } from "../../../../services/operations/courseDetailsAPI";
 import ConfirmationModal from "../../../common/ConfirmationModal";
 import Img from "../../../common/Img";
@@ -27,7 +26,6 @@ export default function CoursesTable({
 }) {
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
-  // const dispatch = useDispatch();
 
   const [confirmationModal, setConfirmationModal] = useState(null);
   const [field, setField] = useState("Published"); // State to toggle published/unpublished courses
@@ -38,21 +36,7 @@ export default function CoursesTable({
     { id: 2, type: "Unpublished", tabName: "Unpublished" },
   ];
 
-  // const handleCourseDelete = async (courseId) => {
-  //   setLoading(true);
-  //   const toastId = toast.loading("Deleting...");
-  //   await deleteCourse({ courseId: courseId }, token);
-  //   const result = await fetchInstructorCourses(token);
-  //   if (result) {
-  //     setCourses(result);
-  //   }
-  //   setConfirmationModal(null);
-  //   setLoading(false);
-  //   toast.dismiss(toastId);
-  // };
-
-  const toggleCoursePublishStatus = async (courseId) => {
-    console.log(courseId);
+  const toggleCoursePublishStatus = async (courseId, newStatus) => {
     setLoading(true);
     const toastId = toast.loading("Updating status...");
     const result = await togglePublishStatus(courseId, token);
@@ -60,6 +44,7 @@ export default function CoursesTable({
       toast.success(result.message);
       const updatedCourses = await fetchInstructorCourses(token);
       setCourses(updatedCourses);
+      setField(newStatus ? "Published" : "Unpublished");
     } else {
       toast.error(result.message);
     }
@@ -88,7 +73,7 @@ export default function CoursesTable({
   return (
     <>
       <div className="flex justify-between items-center mb-4">
-      <h1 className="bg-gradient-to-b font-semibold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl">
+        <h1 className="bg-gradient-to-b font-semibold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl">
           My Courses
         </h1>
         <Tab tabData={tabData} field={field} setField={setField} />
@@ -100,9 +85,6 @@ export default function CoursesTable({
             <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
               Courses
             </Th>
-            {/* <Th className="text-left text-sm font-medium uppercase text-white">
-              Duration
-            </Th> */}
             <Th className="text-left mr-[100px] text-sm font-medium uppercase text-white">
               Price
             </Th>
@@ -174,7 +156,6 @@ export default function CoursesTable({
                       )}
                     </div>
                   </Td>
-                  {/* <Td className="text-sm font-medium text-black">2hr 30min</Td> */}
                   <Td className="text-sm font-medium mr-[20px] text-black">
                     ₹{course.price}
                   </Td>
@@ -193,23 +174,6 @@ export default function CoursesTable({
                       </button>
                       <button
                         disabled={loading}
-                        // onClick={(event) => {
-                        //   event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                        //   setConfirmationModal({
-                        //     text1: "Do you want to delete this course?",
-                        //     text2:
-                        //       "All the data related to this course will be deleted",
-                        //     btn1Text: !loading ? "Delete" : "Loading...",
-                        //     btn2Text: "Cancel",
-                        //     btn1Handler: !loading
-                        //       ? () => handleCourseDelete(course._id)
-                        //       : () => {},
-                        //     btn2Handler: !loading
-                        //       ? () => setConfirmationModal(null)
-                        //       : () => {},
-                        //   });
-                        // }}
-
                         onClick={(event) => {
                           event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
                           toggleCoursePublishStatus(course._id); // Call the function to toggle publish status
@@ -235,7 +199,26 @@ export default function CoursesTable({
                       <button
                         onClick={(event) => {
                           event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                          toggleCoursePublishStatus(course._id); // Call the function to toggle publish status
+                          setConfirmationModal({
+                            text1: `Are you sure you want to ${
+                              course.isPublished ? "unpublish" : "publish"
+                            } this course?`,
+                            text2: "",
+                            btn1Text: !loading ? "Yes" : "Loading...",
+                            btn2Text: "Cancel",
+                            btn1Handler: !loading
+                              ? () => {
+                                  toggleCoursePublishStatus(
+                                    course._id,
+                                    !course.isPublished
+                                  );
+                                  setConfirmationModal(null);
+                                }
+                              : () => {},
+                            btn2Handler: !loading
+                              ? () => setConfirmationModal(null)
+                              : () => {},
+                          });
                         }}
                         className="z-40 m-2"
                       >
@@ -256,9 +239,9 @@ export default function CoursesTable({
         )}
       </Table>
 
-      {confirmationModal ? (
+      {confirmationModal && (
         <ConfirmationModal modalData={confirmationModal} />
-      ) : null}
+      )}
     </>
   );
 }

@@ -25,7 +25,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white mx-7 rounded-3xl mb-4">
+    <div className="bg-richblack-800 text-white mx-7 rounded-3xl mb-4">
 
 <div className="absolute left-100 bottom-100 w-full h-[30px] opacity_layer_bg2"></div>
 

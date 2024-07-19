@@ -1,5 +1,3 @@
-//AddCourse.jsx
-
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -15,6 +13,7 @@ import {
 import { setCourse } from "../../../../slices/courseSlice";
 import IconBtn from "../../../common/IconBtn";
 import Upload from "./Upload";
+import ConfirmationModal from "../../../common/ConfirmationModal";
 
 export default function AddCourse() {
   const {
@@ -31,6 +30,7 @@ export default function AddCourse() {
   const { course, editCourse } = useSelector((state) => state.course);
   const [loading, setLoading] = useState(false);
   const [courseCategories, setCourseCategories] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -133,147 +133,168 @@ export default function AddCourse() {
     const result = await addCourseDetails(formData, token);
     if (result) {
       dispatch(setCourse(result));
-      navigate("/dashboard/my-courses");
+      setIsModalOpen(true); // Open the modal
     }
     setLoading(false);
   };
 
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    navigate("/dashboard/my-courses");
+  };
+
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4 m-3 rounded-2xl border-[1px]  bg-black text-white p-6 "
-    >
-      <div className="flex flex-col text-white space-y-2">
-        <label className="text-sm text-white" htmlFor="courseTitle">
-          Course Title <sup className="text-pink-600">*</sup>
-        </label>
-        <input
-          id="courseTitle"
-          placeholder="Enter Course Title"
-          {...register("courseTitle", { required: true })}
-          className="form-style w-full"
-        />
-        {errors.courseTitle && (
-          <span className="ml-2 text-xs tracking-wide text-pink-600">
-            Course title is required
-          </span>
-        )}
-      </div>
-
-      <div className="flex flex-col space-y-2">
-        <label className="text-sm text-white" htmlFor="courseShortDesc">
-          Course Short Description <sup className="text-pink-600">*</sup>
-        </label>
-        <textarea
-          id="courseShortDesc"
-          placeholder="Enter Description"
-          {...register("courseShortDesc", { required: true })}
-          className="form-style resize-x-none min-h-[130px] w-full "
-        />
-        {errors.courseShortDesc && (
-          <span className="ml-2 text-xs tracking-wide text-pink-600">
-            Course Description is required
-          </span>
-        )}
-      </div>
-
-      <div className="flex flex-col space-y-2">
-        <label className="text-sm text-white" htmlFor="coursePrice">
-          Course Price <sup className="text-pink-600">*</sup>
-        </label>
-        <div className="relative">
+    <>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 m-3 rounded-2xl border-[1px]  bg-black text-white p-6 "
+      >
+        <div className="flex flex-col text-white space-y-2">
+          <label className="text-sm text-white" htmlFor="courseTitle">
+            Course Title <sup className="text-pink-600">*</sup>
+          </label>
           <input
-            id="coursePrice"
-            type="number"
-            placeholder="Enter Course Price"
-            {...register("coursePrice", {
-              required: true,
-              valueAsNumber: true,
-              pattern: {
-                value: /^(0|[1-9]\d*)(\.\d+)?$/,
-              },
-            })}
-            className="form-style w-full  !pl-12"
+            id="courseTitle"
+            placeholder="Enter Course Title"
+            {...register("courseTitle", { required: true })}
+            className="form-style w-full"
           />
-          <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 inline-block -translate-y-1/2 text-2xl text-richwhite-400" />
+          {errors.courseTitle && (
+            <span className="ml-2 text-xs tracking-wide text-pink-600">
+              Course title is required
+            </span>
+          )}
         </div>
-        {errors.coursePrice && (
-          <span className="ml-2 text-xs tracking-wide text-pink-600">
-            Enter a valid course price
-          </span>
-        )}
-      </div>
 
-      <div className="flex flex-col space-y-2">
-        <label className="text-sm text-white" htmlFor="courseCategory">
-          Course Category
-        </label>
-        <select
-          {...register("courseCategory", { required: true })}
-          defaultValue=""
-          id="courseCategory"
-          className="form-style w-full  cursor-pointer"
-        >
-          <option value="" disabled>
-            Choose a Category
-          </option>
-          {!loading &&
-            courseCategories?.map((category, indx) => (
-              <option key={indx} value={category?._id}>
-                {category?.name}
-              </option>
-            ))}
-        </select>
-      </div>
+        <div className="flex flex-col space-y-2">
+          <label className="text-sm text-white" htmlFor="courseShortDesc">
+            Course Short Description <sup className="text-pink-600">*</sup>
+          </label>
+          <textarea
+            id="courseShortDesc"
+            placeholder="Enter Description"
+            {...register("courseShortDesc", { required: true })}
+            className="form-style resize-x-none min-h-[130px] w-full "
+          />
+          {errors.courseShortDesc && (
+            <span className="ml-2 text-xs tracking-wide text-pink-600">
+              Course Description is required
+            </span>
+          )}
+        </div>
 
-      <Upload
-        name="courseImage"
-        label="Course Thumbnail"
-        register={register}
-        setValue={setValue}
-        errors={errors}
-        editData={editCourse ? [course?.thumbnailUrl] : null}
-      />
+        <div className="flex flex-col space-y-2">
+          <label className="text-sm text-white" htmlFor="coursePrice">
+            Course Price <sup className="text-pink-600">*</sup>
+          </label>
+          <div className="relative">
+            <input
+              id="coursePrice"
+              type="number"
+              placeholder="Enter Course Price"
+              {...register("coursePrice", {
+                required: true,
+                valueAsNumber: true,
+                pattern: {
+                  value: /^(0|[1-9]\d*)(\.\d+)?$/,
+                },
+              })}
+              className="form-style w-full  !pl-12"
+            />
+            <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 inline-block -translate-y-1/2 text-2xl text-richwhite-400" />
+          </div>
+          {errors.coursePrice && (
+            <span className="ml-2 text-xs tracking-wide text-pink-600">
+              Enter a valid course price
+            </span>
+          )}
+        </div>
 
-      {course?.introductoryVideoUrl ? (
+        <div className="flex flex-col space-y-2">
+          <label className="text-sm text-white" htmlFor="courseCategory">
+            Course Category
+          </label>
+          <select
+            {...register("courseCategory", { required: true })}
+            defaultValue=""
+            id="courseCategory"
+            className="form-style w-full  cursor-pointer"
+          >
+            <option value="" disabled>
+              Choose a Category
+            </option>
+            {!loading &&
+              courseCategories?.map((category, indx) => (
+                <option key={indx} value={category?._id}>
+                  {category?.name}
+                </option>
+              ))}
+          </select>
+        </div>
+
         <Upload
-          name="courseVideo"
-          label="Course Introductory Video"
+          name="courseImage"
+          label="Course Thumbnail"
           register={register}
           setValue={setValue}
           errors={errors}
-          editData={editCourse ? [course?.introductoryVideoUrl] : null}
-          video
+          editData={editCourse ? [course?.thumbnailUrl] : null}
         />
-      ) : (
-        <Upload
-          name="courseVideo"
-          label="Course Introductory Video"
-          register={register}
-          setValue={setValue}
-          errors={errors}
-          video
+
+        {course?.introductoryVideoUrl ? (
+          <Upload
+            name="courseVideo"
+            label="Course Introductory Video"
+            register={register}
+            setValue={setValue}
+            errors={errors}
+            editData={editCourse ? [course?.introductoryVideoUrl] : null}
+            video
+          />
+        ) : (
+          <Upload
+            name="courseVideo"
+            label="Course Introductory Video"
+            register={register}
+            setValue={setValue}
+            errors={errors}
+            video
+          />
+        )}
+
+        <div className="flex justify-end gap-x-2">
+          {editCourse && (
+            <button
+              onClick={() => navigate("/dashboard/my-courses")}
+              disabled={loading}
+              className={`flex button-36`}
+            >
+              Continue Without Saving
+            </button>
+          )}
+          <IconBtn
+            disabled={loading}
+            text={!editCourse ? "Next" : "Save Changes"}
+          >
+            <MdNavigateNext />
+          </IconBtn>
+        </div>
+      </form>
+      {isModalOpen && (
+        <ConfirmationModal
+          modalData={{
+            text1: "Course Created",
+            text2: "Your course has been created and is currently in the unpublished section. Publish it to make it available to the public.",
+            btn1Text: "",
+            btn2Text: "Close",
+            btn1Handler: () => {
+              // Add your publish course logic here
+              handleModalClose();
+            },
+            btn2Handler: handleModalClose,
+          }}
         />
       )}
-
-      <div className="flex justify-end gap-x-2">
-        {editCourse && (
-          <button
-            onClick={() => navigate("/dashboard/my-courses")}
-            disabled={loading}
-            className={`flex cursor-pointer items-center gap-x-2 rounded-md py-[8px] px-[20px] font-semibold
-              text-richwhite-900 bg-richwhite-300 hover:bg-richwhite-900 hover:text-richwhite-300 duration-300`}
-          >
-            Continue Without Saving
-          </button>
-        )}
-        <IconBtn
-          disabled={loading}
-          text={!editCourse ? "Next" : "Save Changes"}
-        >
-          <MdNavigateNext />
-        </IconBtn>
-      </div>
-    </form>
+    </>
   );
 }

@@ -35,8 +35,8 @@ export default function EditCourse() {
   return (
     <div className="flex w-full items-start gap-x-6">
       <div className="flex flex-1 flex-col">
-        <h1 className="mb-14 text-3xl font-medium text-black text-center sm:text-left">
-          Edit Course
+      <h1 className="bg-gradient-to-b text-bold from-[#000000] via-[#545353] to-[#928d8d] text-transparent bg-clip-text text-4xl">
+      Edit Course
         </h1>
         <div className="flex-1">
           {course ? (

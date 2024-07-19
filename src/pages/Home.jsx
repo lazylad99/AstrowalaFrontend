@@ -74,7 +74,7 @@ const Home = () => {
         alt="Background"
         className="w-full h-full object-cover"
         style={{
-          filter: 'brightness(0.5)',
+          filter: 'brightness(0.9)',
         }}
       />
       <div
