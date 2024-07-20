@@ -50,7 +50,7 @@ export default function EnrolledCourses() {
   };
 
   // return if data is null
-  if (enrolledCourses?.length == 0) {
+  if (enrolledCourses?.length === 0) {
     return (
       <p className="grid h-[50vh] w-full place-content-center text-center text-black text-3xl">
         You have not enrolled in any course yet.
@@ -61,77 +61,72 @@ export default function EnrolledCourses() {
   return (
     <>
       <h1 className="bg-gradient-to-b font-semibold from-[#0b0b0b] via-[#464545] to-[#424141] text-transparent bg-clip-text text-4xl">
-      Enrolled Courses
+        Enrolled Courses
       </h1>
-      {
-        <div className="my-8 text-black">
-          {/* Headings */}
-          <div className="flex rounded-t-2xl text-white bg-black ">
-            <p className="w-full px-5 py-3">Course Name</p>
-            {/* <p className="w-1/4 px-2 py-3">Duration</p> */}
-            {/* <p className="flex-1 px-2 py-3">Progress</p> */}
-          </div>
-
-          {/* loading Skeleton */}
-          {!enrolledCourses && (
-            <div>
-              {sklItem()}
-              {sklItem()}
-              {sklItem()}
-              {sklItem()}
-              {sklItem()}
-            </div>
-          )}
-
-          {/* Course Names */}
-          {enrolledCourses?.map((course, i, arr) => (
-            <div
-              className={`flex flex-col sm:flex-row sm:items-center gap-x-10 p-5 cursor-pointer m-10 shadow1 rounded-lg  transform hover:scale-105 transition-transform duration-300  ${
-                i === arr.length - 1 ? "rounded-b-2xl" : "rounded-none"
-              }`}
-              key={i}
-            >
-              <div
-                className="flex w-full cursor-pointer items-center gap-4 px-5 py-3"
-                onClick={() => navigate(`/dashboard/${course._id}/videos`)}
-              >
-                <Img
-                  src={course.thumbnailUrl}
-                  alt="course_img"
-                  className="h-[148px] min-w-[270px] max-w-[270px] rounded-lg object-cover"
-                />
-
-                <div className="flex flex-col w-full">
-                  <p className="text-lg font-semibold capitalize">
-                    {course.courseName}
-                  </p>
-                  <p className="pb-4">
-                    {course.courseDescription.split(" ").length >
-                    TRUNCATE_LENGTH
-                      ? course.courseDescription
-                          .split(" ")
-                          .slice(0, TRUNCATE_LENGTH)
-                          .join(" ") + "..."
-                      : course.courseDescription}
-                  </p>
-                </div>
-              </div>
-
-              {/* only for smaller devices */}
-              {/* duration -  progress */}
-              <div className="sm:hidden">
-                <div className="px-2 py-3">{course?.totalDuration}</div>
-
-                <div className="flex sm:w-2/5 flex-col gap-2 px-2 py-3">
-                  
-                </div>
-              </div>
-
-              
-            </div>
-          ))}
+      <div className="my-8 text-black">
+        {/* Headings */}
+        <div className="flex rounded-t-2xl text-white bg-black ">
+          <p className="w-full px-5 py-3">Course Name</p>
+          {/* <p className="w-1/4 px-2 py-3">Duration</p> */}
+          {/* <p className="flex-1 px-2 py-3">Progress</p> */}
         </div>
-      }
+
+        {/* loading Skeleton */}
+        {!enrolledCourses && (
+          <div>
+            {sklItem()}
+            {sklItem()}
+            {sklItem()}
+            {sklItem()}
+            {sklItem()}
+          </div>
+        )}
+
+        {/* Course Names */}
+        {enrolledCourses?.map((course, i, arr) => (
+          <div
+            className={`flex flex-col sm:flex-row sm:items-center gap-x-10 p-5 cursor-pointer m-10 shadow1 rounded-lg transform hover:scale-105 transition-transform duration-300 ${
+              i === arr.length - 1 ? "rounded-b-2xl" : "rounded-none"
+            }`}
+            key={i}
+          >
+            <div
+              className="flex flex-col sm:flex-row sm:items-center gap-4 w-full cursor-pointer"
+              onClick={() => navigate(`/dashboard/${course._id}/videos`)}
+            >
+              <Img
+                src={course.thumbnailUrl}
+                alt="course_img"
+                className=" pr-4 sm:pr-0 h-[148px] min-w-[270px] max-w-[270px] rounded-lg object-cover mb-4 sm:mb-0"
+              />
+
+              <div className="flex flex-col w-full">
+                <p className="text-lg font-semibold capitalize">
+                  {course.courseName}
+                </p>
+                <p className="pb-4">
+                  {course.courseDescription.split(" ").length > TRUNCATE_LENGTH
+                    ? course.courseDescription
+                        .split(" ")
+                        .slice(0, TRUNCATE_LENGTH)
+                        .join(" ") + "..."
+                    : course.courseDescription}
+                </p>
+              </div>
+            </div>
+
+            {/* only for smaller devices */}
+            {/* duration - progress */}
+            <div className="sm:hidden">
+              <div className="px-2 py-3">{course?.totalDuration}</div>
+
+              <div className="flex sm:w-2/5 flex-col gap-2 px-2 py-3">
+                {/* Progress bar or other details here */}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
