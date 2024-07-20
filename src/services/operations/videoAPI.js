@@ -120,7 +120,7 @@ export const editVideoDetails = async (videoId, formData, token) => {
   let result = null;
 
   try {
-    const response = await apiConnector("PUT", `${BASE_URL}/video/update/${videoId}`, formData, {
+    const response = await apiConnector("POST", `${BASE_URL}/video/update/${videoId}`, formData, {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${token}`,
     });

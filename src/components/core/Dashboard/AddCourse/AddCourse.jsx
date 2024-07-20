@@ -274,9 +274,9 @@ export default function AddCourse() {
           )}
           <IconBtn
             disabled={loading}
-            text={!editCourse ? (loading ? "Creating..." : "Next" ) : "Save Changes"}
+            text={!editCourse ? (loading ? "Creating..." : "Next" ) : (loading ? "Saving..." :"Save Changes") }
           >
-            {loading & <MdNavigateNext />}
+            {loading && <MdNavigateNext />}
           </IconBtn>
         </div>
       </form>

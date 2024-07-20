@@ -45,7 +45,7 @@ export default function ConfirmationModal({
                 onclick={modalData?.btn1Handler}
                 text={modalData?.btn1Text}
               />
-              {modalData?.btn2Text & <button
+              {modalData?.btn2Text && <button
                 className="button-36"
                 onClick={modalData?.btn2Handler}
               >

@@ -27,7 +27,7 @@ const Footer = () => {
   return (
     <div className="bg-richblack-800 text-white mx-7 rounded-3xl mb-4">
 
-<div className="absolute left-100 bottom-100 w-full h-[30px] opacity_layer_bg2"></div>
+{/* <div className="absolute left-100 bottom-100 w-full h-[30px] opacity_layer_bg2"></div> */}
 
       <div className="grid lg:grid-cols-4 gap-8 items-start justify-evenly w-11/12 max-w-maxContent leading-6 mx-auto relative py-14">
 

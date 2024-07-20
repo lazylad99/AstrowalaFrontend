@@ -43,6 +43,7 @@ import EditVideo from "./components/core/Dashboard/InstructorCourses/EditVideo";
 import HandlePayment from "./components/core/Dashboard/Handle Payment/HandlePayment";
 import Profile from "./components/core/Dashboard/Profile";
 import Categories from "./pages/Categories";
+import StudentVideosTable from "./components/core/Dashboard/InstructorCourses/StudentVideosTable";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -167,8 +168,8 @@ function App() {
                 element={<EnrolledCourses />}
               />
               <Route
-                path="dashboard/:courseId/videos"
-                element={<VideosTable />}
+                path="dashboard/:courseId/lectureVideos"
+                element={<StudentVideosTable />}
               />
               <Route
                 path="dashboard/view-video/:videoId"
@@ -200,6 +201,7 @@ function App() {
                 path="dashboard/:courseId/videos"
                 element={<VideosTable />}
               />
+              
               <Route
                 path="dashboard/view-video/:videoId"
                 element={<ViewVideo />}

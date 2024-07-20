@@ -9,6 +9,7 @@ export const NavbarLinks = [
   },
   {
     title: "Categories",   
+    path: "/categories",
   },
   {
     title: "About Us",

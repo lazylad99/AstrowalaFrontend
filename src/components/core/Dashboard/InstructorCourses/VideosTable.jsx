@@ -45,6 +45,7 @@ const VideosTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetchCourseVideos(courseId, token);
+      console.log("Fetched videos:", result); // Add logging here
       if (result) {
         setVideos(result);
       }
@@ -99,8 +100,14 @@ const VideosTable = () => {
   );
 
   const filteredVideos = videos.filter((video) =>
-    filter === "Added to Course" ? video.isPublished : !video.isPublished
+    user?.accountType === ACCOUNT_TYPE.STUDENT
+      ? video.isPublished
+      : filter === "Added to Course"
+      ? video.isPublished
+      : !video.isPublished
   );
+
+  console.log("Filtered videos:", filteredVideos); // Add logging here
 
   return (
     <>
