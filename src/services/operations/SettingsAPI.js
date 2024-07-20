@@ -17,7 +17,7 @@ const {
 // ================ update User Profile Image  ================
 export function updateUserProfileImage(token, formData) {
   return async (dispatch) => {
-    const toastId = toast.loading("Loading...")
+    const toastId = toast.loading("Image Uploading...")
 
     try {
       const response = await apiConnector(
@@ -34,15 +34,12 @@ export function updateUserProfileImage(token, formData) {
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
-      toast.success("Display Picture Updated Successfully")
+      toast.success("Image Uploaded")
       dispatch(setUser(response.data.data));
 
-      // below line is must - if not code - then as we refresh the page after changing profile image then old profile image will show 
-      // as we only changes in user(store) not in localStorage
       localStorage.setItem("user", JSON.stringify(response.data.data));
     } catch (error) {
       console.log("UPDATE_DISPLAY_PICTURE_API API ERROR............", error)
-      toast.error("Could Not Update Profile Picture")
     }
     toast.dismiss(toastId)
   }

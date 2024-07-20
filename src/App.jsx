@@ -44,6 +44,7 @@ import HandlePayment from "./components/core/Dashboard/Handle Payment/HandlePaym
 import Profile from "./components/core/Dashboard/Profile";
 import Categories from "./pages/Categories";
 import StudentVideosTable from "./components/core/Dashboard/InstructorCourses/StudentVideosTable";
+import EditProfile from "./components/core/Dashboard/Settings/EditProfile";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -156,6 +157,7 @@ function App() {
           }
         >
           <Route path="dashboard/my-profile" element={<Profile />} />
+          <Route path="dashboard/edit-profile" element={<EditProfile />} />
           <Route path="dashboard/settings" element={<Settings />} />
 
           {/* Route only for Students */}

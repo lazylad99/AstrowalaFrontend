@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 
 import { updateProfile } from "../../../../services/operations/SettingsAPI"
 import IconBtn from "../../../common/IconBtn"
+import ChangeProfilePicture from "./ChangeProfilePicture"
 
 const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
 
@@ -16,18 +17,24 @@ export default function EditProfile() {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   const submitProfileForm = async (data) => {
-    // console.log("Form Data - ", data)
     try {
-      dispatch(updateProfile(token, data))
+      await dispatch(updateProfile(token, data));
+      navigate("/dashboard/my-profile");
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
+      console.log("ERROR MESSAGE - ", error.message);
     }
-  }
+  };
+  
   return (
     <>
+      <h1 className="mb-5 text-3xl font-medium text-black font-boogaloo text-center sm:text-left">
+        Edit Profile
+      </h1>      
+      <ChangeProfilePicture />
+
       <form className="text-white" onSubmit={handleSubmit(submitProfileForm)}>
         {/* Profile Information */}
-        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richwhite-700 bg-black p-8 px-6 sm:px-12">
+        <div className="mb-10 flex flex-col gap-y-6 rounded-b-md  border-richwhite-700 bg-black p-4 pb-8 mt-0 px-6 sm:px-12">
           <h2 className="text-lg font-semibold text-white">
             Profile Information
           </h2>
@@ -178,10 +185,9 @@ export default function EditProfile() {
                 </span>
               )}
             </div>
-          </div>
-        </div>
 
-        <div className="flex justify-end gap-2">
+            
+          </div><div className="flex justify-end  gap-2">
           <button
             onClick={() => {
               navigate("/dashboard/my-profile");
@@ -192,6 +198,10 @@ export default function EditProfile() {
           </button>
           <IconBtn type="submit" text="Save" />
         </div>
+        
+        </div>
+
+        
       </form>
     </>
   );

@@ -5,10 +5,9 @@ const ContactForm = () => {
   return (
     <div className="border bg-black text-white shadow rounded-xl p-7 lg:p-14 flex gap-3 flex-col">
       <h1 className="text-4xl leading-10 font-semibold">
-        Got a Idea? We&apos;ve got the skills. Let&apos;s team up
-      </h1>
+      Get in Touch      </h1>
       <p className="">
-        Tell us more about yourself and what you&apos;re got in mind.
+      We&apos;d love to here for you, Please fill out this form.
       </p>
 
       <div className="mt-4">

@@ -17,6 +17,8 @@ import SiteInfo from "../components/common/SiteInfo";
 import MoreInfo from "../components/common/Moreinfo";
 import Features from "../components/common/Features";
 import IconBtn from "../components/common/IconBtn";
+import CoursesCatalog from "../components/core/HomePage/CoursesCatalog";
+import ContactForm from "../components/core/ContactPage/ContactForm";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -36,9 +38,10 @@ const Home = () => {
   }, [categoryID, dispatch]);
 
   return (
+    <>
     <React.Fragment>
       {/* background video */}
-      <div className="w-full h-screen absolute top-0 left-0 overflow-hidden">
+      <div className="w-full h-screen absolute top-0 left-0 shadow overflow-hidden">
         <video
           src={videoSrc}
           autoPlay
@@ -47,12 +50,7 @@ const Home = () => {
           className="w-full h-full object-cover"
           style={{ filter: "brightness(0.5)" }}
         ></video>
-        <div
-          className="absolute top-0 left-0 w-full h-full"
-          style={{
-            backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5))",
-          }}
-        />
+        
       </div>
 
       <div className="relative w-full h-screen flex flex-col justify-center items-center text-center text-white">
@@ -94,11 +92,18 @@ const Home = () => {
         </motion.div>
       </div>
 
-      <SiteInfo />
+      <CoursesCatalog />
+      {/* <SiteInfo /> */}
       <MoreInfo />
       <Features />
+      {/* <div className="relative mx-auto box-content w-full max-w-maxContentTab lg:max-w-maxContent">
+        <div className="flex justify-center">
+            <ContactForm />
+        </div>
+        </div> */}
+      
       <Footer />
-    </React.Fragment>
+    </React.Fragment></>
   );
 };
 
