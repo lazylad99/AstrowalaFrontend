@@ -1,9 +1,11 @@
+// pages/CourseDetails.js
 import { useEffect, useState } from "react";
 import { BiInfoCircle } from "react-icons/bi";
 import { HiOutlineGlobeAlt } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
+import ConfirmationModal from "../components/common/ConfirmationModal";
 import Footer from "../components/common/Footer";
 import RatingStars from "../components/common/RatingStars";
 import { formatDate } from "../services/formatDate";
@@ -18,14 +20,11 @@ import { GiReturnArrow } from "react-icons/gi";
 import { MdOutlineVerified } from "react-icons/md";
 import Img from "./../components/common/Img";
 import toast from "react-hot-toast";
-import bgImg from "../assets/Images/random bg img/img1.jpg"; // Ensure the image path is correct
-import img2 from "../assets/Images/astro_images/video_bg.png";
-
 import copy from "copy-to-clipboard";
 import { FaShareSquare } from "react-icons/fa";
 import IconBtn from "../components/common/IconBtn";
 import Certificate from "../components/core/Dashboard/Certificate/Certificate";
-import VideoModal from "../components/core/Catalog/VideoModal";
+import VideoCard from "../components/common/VideoCard";
 
 function CourseDetails() {
   const { user } = useSelector((state) => state.profile);
@@ -35,11 +34,10 @@ function CourseDetails() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Getting courseId from url parameter
   const { courseId } = useParams();
 
-  // Declare states
   const [response, setResponse] = useState(null);
+  const [confirmationModal, setConfirmationModal] = useState(null);
   const [video, setVideo] = useState(null);
 
   useEffect(() => {
@@ -55,7 +53,6 @@ function CourseDetails() {
     fetchCourseDetailsData();
   }, [courseId]);
 
-  // Calculating Avg Review count
   const [avgReviewCount, setAvgReviewCount] = useState();
   useEffect(() => {
     const count = GetAvgRating(response?.ratingAndReviews);
@@ -100,7 +97,14 @@ function CourseDetails() {
       buyCourse(token, coursesId, user, navigate, dispatch);
       return;
     }
-    toast.error("You are not logged in!");
+    setConfirmationModal({
+      text1: "You are not logged in!",
+      text2: "Please login to Purchase Course.",
+      btn1Text: "Login",
+      btn2Text: "Cancel",
+      btn1Handler: () => navigate("/login"),
+      btn2Handler: () => setConfirmationModal(null),
+    });
   };
 
   const handleAddToCart = () => {
@@ -112,7 +116,14 @@ function CourseDetails() {
       dispatch(addToCart(response));
       return;
     }
-    toast.error("You are not logged in!");
+    setConfirmationModal({
+      text1: "You are not logged in!",
+      text2: "Please login to add To Cart",
+      btn1Text: "Login",
+      btn2Text: "Cancel",
+      btn1Handler: () => navigate("/login"),
+      btn2Handler: () => setConfirmationModal(null),
+    });
   };
 
   const handleShare = () => {
@@ -120,31 +131,29 @@ function CourseDetails() {
     toast.success("Link copied to clipboard");
   };
 
-  const handleVideo = () => {
-    setVideo(introductoryVideoUrl);
+  const modalData = {
+    btn2Text: "Cancel",
+    btn2Handler: () => setVideo(null),
   };
 
   return (
     <div>
-      <div className="w-full h-[200px] md:h-[750px] absolute top-0 left-0 overflow-hidden object-cover "></div>
+      <div className="w-full h-[200px] md:h-[750px] absolute top-0 left-0 overflow-hidden object-cover bg-course-details"></div>
       <div>
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
             <div
               className={`mb-5 flex flex-col justify-center gap-4 py-5 text-lg text-black`}
             >
-              {/* Breadcrumbs  */}
               <p className="text-sm text-black mb-2 mt-2">
                 <Link to={"/"} className="hover:underline"> Home</Link>
                 / 
                 <span onClick={() => navigate(-1)} className="cursor-pointer hover:underline">
                   Categories
-                </span> / 
-                <span className="text-richblack-600">{courseName}</span>
+                </span>
+                /
+                <span className="text-yellow-300 underline">{courseName}</span>
               </p>
-              {/* End of Breadcrumbs  */}
-
-<div className="mt-10 bg-course-details p-10 rounded-xl shadow">
               <p className="text-4xl mt-2 font-bold text-black sm:text-[42px]">
                 {courseName}
               </p>
@@ -209,55 +218,23 @@ function CourseDetails() {
             ) : null}
           </div>
 
-          <div className="right-[1.5rem] top-[60px] mx-auto hidden lg:block lg:absolute min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0">
-            <div className="flex flex-col gap-4 rounded-2xl shadow-lg bg3 p-2 text-black">
-              <div onClick={handleVideo} className="cursor-pointer relative">
-                <Img
-                  src={thumbnailUrl}
-                  alt={courseName}
-                  className="hidden rounded-2xl aspect-auto w-full max-h-[350px] lg:flex"
-                />
-                <img
-                  src={img2}
-                  alt="Overlay"
-                  className="absolute rounded-2xl top-0 left-0 w-full h-full"
-                />
-              </div>
-              {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
-                <div className="flex flex-col gap-4">
-                  <IconBtn
-                    onClick={
-                      user && studentsEnrolled.includes(user?._id)
-                        ? () => navigate("/dashboard/enrolled-courses")
-                        : handleBuyCourse
-                    }
-                  >
-                    {user && studentsEnrolled.includes(user?._id)
-                      ? "Go To Course"
-                      : "Buy Now"}
-                  </IconBtn>
-
-                  {(!user || !studentsEnrolled.includes(user?._id)) && (
-                    <IconBtn onClick={handleAddToCart}>Add to Cart</IconBtn>
-                  )}
-                  {user && studentsEnrolled.includes(user?._id) ? (
-                    <Certificate userId={user?._id} courseId={_id} />
-                  ) : null}
-                </div>
-              ) : user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? (
-                <div className="flex flex-col gap-4">
-                  <IconBtn onClick={() => navigate("/dashboard/{_id}/videos")}>
-                    Go to Videos
-                  </IconBtn>
-                </div>
-              ) : null}
-            </div>
-          </div>
-          </div>
+          <VideoCard
+            course={response}
+            user={user}
+            handleVideo={() => setVideo(introductoryVideoUrl)}
+            handleBuyCourse={handleBuyCourse}
+            handleAddToCart={handleAddToCart}
+            studentsEnrolled={studentsEnrolled}
+            setVideo={setVideo}
+            video={video}
+          />
         </div>
       </div>
       
-      {video && <VideoModal videoUrl={video} setShowVideo={setVideo} />}
+      <Footer /> {/* This appears to be outside the main container div */}
+      {video && (
+        <ConfirmationModal modalData={modalData} videoUrl={video} isVideo />
+      )}
     </div>
   );
 }

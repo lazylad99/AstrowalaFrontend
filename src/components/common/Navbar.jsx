@@ -135,7 +135,7 @@ const Navbar = () => {
                       <p
                         className={`${
                           matchRoute(link?.path)
-                            ? "text-richwhite-500"
+                            ? "text-richwhite-300"
                             : "text-richwhite-100"
                         } rounded-xl p-1 px-3`}
                       >

@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import Upload from "../AddCourse/Upload";
 import IconBtn from "../../../common/IconBtn";
 import ConfirmationModal from "../../../common/ConfirmationModal"; // Import your ConfirmationModal component
+import UploadMultipleImages from "./UploadMultipleImages";
 
 export default function AddVideo() {
   const {
@@ -71,32 +72,39 @@ export default function AddVideo() {
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           {fields.map((field, index) => (
             <div key={field.id} className="mb-4">
-              <div className="flex">
-                <Upload
-                  name={`videos[${index}].videoUrl`}
-                  label="Video"
-                  register={register}
-                  setValue={setValue}
-                  errors={errors}
-                  video
-                />
-                <Upload
-                  name={`videos[${index}].pdfUrl`}
-                  label="PDF"
-                  register={register}
-                  setValue={setValue}
-                  errors={errors}
-                  pdf
-                />
-                <Upload
-                  name={`videos[${index}].imagesUrl`}
-                  label="Images"
-                  register={register}
-                  setValue={setValue}
-                  errors={errors}
-                  multiple
-                />
+              <div className="flex flex-col">
+                  <Upload
+                    name={`videos[${index}].videoUrl`}
+                    label="Video"
+                    register={register}
+                    setValue={setValue}
+                    errors={errors}
+                    video
+                  />
+                <hr className="text-white p-4 m-4" />
+                {/* <div className="flex justify-evenly px-4"> */}
+                    <Upload
+                      name={`videos[${index}].pdfUrl`}
+                      label="PDF"
+                      register={register}
+                      setValue={setValue}
+                      errors={errors}
+                      pdf
+                    />
+                <hr className="text-white p-4 m-4" />
+
+                    <UploadMultipleImages
+                      name={`videos[${index}].imagesUrl`}
+                      label="Images"
+                      register={register}
+                      setValue={setValue}
+                      errors={errors}
+                      multiple
+                    />
+                {/* </div> */}
               </div>
+              <hr className="text-white p-4 m-4" />
+
               <div className="mb-4 mt-4">
                 <label
                   htmlFor={`videos[${index}].title`}

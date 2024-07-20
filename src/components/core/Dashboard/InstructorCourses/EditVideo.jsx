@@ -8,6 +8,7 @@ import Loading from "../../../common/Loading";
 import Upload from "../AddCourse/Upload";
 import IconBtn from "../../../common/IconBtn";
 import { toast } from "react-hot-toast";
+import UploadMultipleImages from "./UploadMultipleImages";
 
 export default function EditVideo() {
   const {
@@ -101,10 +102,10 @@ export default function EditVideo() {
   }
 
   return (
-    <div className="container mx-auto mt-">
+    <div className="container mx-auto mt-8">
       <div className="max-w-4xl mx-auto bg-black p-8 rounded-2xl shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
-          <div className="flex">
+          <div className="flex flex-col">
             <Upload
               name="videoUrl"
               label="Video"
@@ -123,21 +124,17 @@ export default function EditVideo() {
               editData={editVideo ? videos?.pdfUrl : null}
               pdf
             />
-            <Upload
+            <UploadMultipleImages
               name="imagesUrl"
               label="Images"
               register={register}
               setValue={setValue}
               errors={errors}
               editData={editVideo ? videos?.imagesUrl : null}
-              multiple
             />
           </div>
           <div className="mb-4 mt-4">
-            <label
-              htmlFor="title"
-              className="block text-white text-sm font-medium"
-            >
+            <label htmlFor="title" className="block text-white text-sm font-medium">
               Video Title
             </label>
             <input
@@ -147,16 +144,11 @@ export default function EditVideo() {
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
             {errors.title && (
-              <span className="text-red-500 text-sm">
-                Video title is required
-              </span>
+              <span className="text-red-500 text-sm">Video title is required</span>
             )}
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="description"
-              className="block text-white text-sm font-medium"
-            >
+            <label htmlFor="description" className="block text-white text-sm font-medium">
               Video Description
             </label>
             <textarea
@@ -165,17 +157,11 @@ export default function EditVideo() {
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
             {errors.description && (
-              <span className="text-red-500 text-sm">
-                Video description is required
-              </span>
+              <span className="text-red-500 text-sm">Video description is required</span>
             )}
           </div>
           <div className="flex justify-end">
-            <IconBtn
-              type="submit"
-              disabled={loading}
-              text={loading ? "Updating..." : "Update Video"}
-            />
+            <IconBtn type="submit" disabled={loading} text={loading ? "Updating..." : "Update Video"} />
           </div>
         </form>
       </div>

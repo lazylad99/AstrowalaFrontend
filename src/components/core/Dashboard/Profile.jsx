@@ -21,7 +21,7 @@ export default function Profile() {
     <div className="flex w-full flex-col gap-5 text-black ">
       <div className="w-full mt-3 flex h-fit flex-col gap-5 lg:grid lg:grid-cols-12">
         <div className="col-span-12 lg:col-span-4 lg:!mb-0 ">
-          <CardComponent extra="items-center w-full h-3/4 p-[16px] bg-white shadow1">
+          <CardComponent extra="items-center w-full p-[16px] bg-white shadow1">
             {/* Background and profile */}
             <div className="relative mt-1 flex h-32 w-full justify-center rounded-xl bg-cover">
               <Img
