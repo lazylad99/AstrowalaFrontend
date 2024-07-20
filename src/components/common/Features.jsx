@@ -2,17 +2,17 @@ import React from "react";
 import img from "../../assets/Images/astro_images/download.gif";
 
 const FeatureCard = ({ title, content }) => (
-  <div className="p-6  shadow-md rounded-full text-white border border-yellow-50 text-center hover:scale-1 relative mb-10">
+  <div className="p-6 shadow-md rounded-full text-white border border-yellow-50 text-center hover:scale-1 relative mb-10">
     <div className="absolute inset-0 w-full h-full object-cover rounded-full pointer-events-none">
       <img
         src={img}
         alt="feature border"
-        className="w-full h-full object-cover rounded-full"
+        className="w-full h-full object-cover rounded-full transform scale-110"
       />
     </div>
-    <div className="relative p-6 rounded-full ">
-      <h3 className="text-xl font-semibold mb-4">{title}</h3>
-      <p>{content}</p>
+    <div className="relative p-6 rounded-full">
+      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+      <p className="text-sm">{content}</p>
     </div>
     <div
       className="absolute inset-0 rounded-full border border-transparent"
@@ -56,7 +56,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="px-4 md:px-8 lg:px-8">
+    <section className="px-4 md:px-8 lg:px-8 lg:m-10">
       <div className="max-w-7xl mx-auto">
         <h1 className="bg-gradient-to-b text-center from-[#000000] via-[#303232] to-[#b3afaf] text-transparent p-4 mb-3 bg-clip-text text-4xl font-semibold lg:w-[100%] mx-auto">
           Why Choose Astrowala?

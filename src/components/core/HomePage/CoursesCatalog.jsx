@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import img from "../../../assets/Images/border.png";
 
 const CategoryCard = ({ category }) => (
-  <div className="category-card h-60 relative flex items-center justify-center w-full sm:w-64 md:w-72 lg:w-full">
+  <div className="category-card h-60 relative flex items-center hover:scale-105 justify-center w-[95%] sm:w-64 md:w-72 lg:w-full">
     <img
       src={img}
       alt="border"
@@ -51,7 +51,7 @@ const CoursesCatalog = () => {
   return (
     <div>
       {/* Categories Section */}
-      <div className="relative mx-auto box-content w-full max-w-maxContentTab px-4 py-12 mt-5 lg:max-w-maxContent">
+      <div className="relative mx-auto box-content w-full max-w-maxContentTab px-4 py-4 mt-5 mb-12 lg:max-w-maxContent">
         <div className="flex justify-between">
           <h1 className="bg-gradient-to-b text-center from-[#000000] via-[#303232] to-[#b3afaf] text-transparent p-4 mb-3 bg-clip-text text-4xl font-semibold lg:w-[100%] mx-auto">
             Explore Our Courses

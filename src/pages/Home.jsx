@@ -39,8 +39,7 @@ const Home = () => {
 
   return (
     <>
-    <React.Fragment>
-      {/* background video */}
+      {/* Background video */}
       <div className="w-full h-screen absolute top-0 left-0 shadow overflow-hidden">
         <video
           src={videoSrc}
@@ -48,9 +47,8 @@ const Home = () => {
           loop
           muted
           className="w-full h-full object-cover"
-          style={{ filter: "brightness(0.5)" }}
+          style={{ filter: "brightness(0.3)" }}
         ></video>
-        
       </div>
 
       <div className="relative w-full h-screen flex flex-col justify-center items-center text-center text-white">
@@ -59,9 +57,10 @@ const Home = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="bg-gradient-to-b text-bold from-[#ffffff] via-[#ffffff] to-[#928d8d] text-transparent bg-clip-text text-2xl md:text-4xl lg:text-6xl"
+          className="bg-gradient-to-b text-bold from-[#ffffff] via-[#ffffff] to-[#928d8d] text-transparent bg-clip-text text-2xl md:text-4xl lg:text-6xl mb-4"
         >
-          Explore the Cosmos, Unlock Your Destiny
+          Explore the Cosmos,
+          <div>Unlock Your Destiny</div>
           {/* <HighlightText text={"Unlock Your Destiny"} /> */}
         </motion.div>
 
@@ -70,7 +69,7 @@ const Home = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="w-[90%] md:w-[70%] lg:w-[50%] text-sm md:text-lg lg:text-xl font-bold mt-4"
+          className="w-[90%] md:w-[70%] lg:w-[50%] text-sm md:text-lg lg:text-xl font-bold mb-6"
         >
           Explore the mysteries of the stars, unlock your destiny, and embark on a transformative learning experience with us.
         </motion.div>
@@ -80,7 +79,7 @@ const Home = () => {
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="mt-6"
+          className="mb-6"
         >
           <IconBtn
             onclick={() => navigate("/catalog/6662ad7dbb3aa094b1109871")}
@@ -103,7 +102,7 @@ const Home = () => {
         </div> */}
       
       <Footer />
-    </React.Fragment></>
+    </>
   );
 };
 
