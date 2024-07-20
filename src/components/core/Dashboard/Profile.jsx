@@ -31,6 +31,7 @@ export default function Profile() {
               />
             </div>
 
+
             {/* Name and position */}
             <div className="mt-12 flex flex-col items-center text-black">
               <h4 className="text-xl font-bold text-navy-700">
