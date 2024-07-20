@@ -8,7 +8,7 @@ import Footer from "../components/common/Footer";
 import { getCatalogPageData } from "../services/operations/pageAndComponentData";
 
 import { FaArrowRight } from "react-icons/fa";
-import videoSrc from "../assets/Images/herosection.mp4"; // Replace with your video file
+import videoSrc from "../assets/Images/astro_images/heroSection.mp4"; // Replace with your video file
 
 import { motion } from "framer-motion";
 import { fadeIn } from "./../components/common/motionFrameVarients";
