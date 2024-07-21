@@ -28,7 +28,7 @@ function Template({ title, description1, description2, image, formType }) {
         </div>
 
         {/* Form container */}
-        <div className="w-full lg:w-1/2 p-6 pt-0 lg:p-12 bg-black rounded-b-lg lg:rounded-r-lg lg:rounded-bl-none h-auto max-h-[65vh] lg:max-h-[initial] order-2 lg:order-2">
+        <div className="w-full lg:w-1/2 p-10 pt-0 lg:p-12 bg-black rounded-b-lg lg:rounded-r-lg lg:rounded-bl-none h-auto max-h-[65vh] lg:max-h-[initial] order-2 lg:order-2">
           <div className="mt-6">
             {formType === "signup" ? <SignupForm /> : <LoginForm />}
           </div>

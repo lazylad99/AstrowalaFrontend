@@ -54,26 +54,27 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Column 2 */}
-        <div className="w-full ml-10 mb-2 lg:pl-0 lg:w-auto">
-          <h1 className="text-richblack-100 font-semibold text-[16px]">
-            Quick Links
-          </h1>
-          <div className="flex flex-col gap-2 mt-2">
-            {QuickLinks.map((ele, index) => (
-              <div
-                key={index}
-                className="text-[14px] cursor-pointer hover:text-pure-greys-500 transition-all duration-200"
-              >
-                {ele === "Home" ? (
-                  <Link to="#">Home</Link>
-                ) : (
-                  <Link to={ele.toLowerCase().replace(/\s+/g, "-")}>{ele}</Link>
-                )}
-              </div>
-            ))}
+        {/* <!-- Column 2: Quick Links --> */}
+          <div className="w-full mb-2 lg:pl-0 lg:w-auto sm:text-left">
+            <h1 className="text-richblack-100 font-semibold text-[16px]">
+              Quick Links
+            </h1>
+            <div className="flex flex-col gap-2 mt-2 text-left">
+              {QuickLinks.map((ele, index) => (
+                <div
+                  key={index}
+                  className="text-[14px] cursor-pointer hover:text-pure-greys-500 transition-all duration-200"
+                >
+                  {ele === "Home" ? (
+                    <Link to="#">Home</Link>
+                  ) : (
+                    <Link to={ele.toLowerCase().replace(/\s+/g, "-")}>{ele}</Link>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+
 
         {/* Column 3 */}
         <div className="w-full mb-2 lg:pl-0 lg:w-auto">
