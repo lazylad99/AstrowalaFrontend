@@ -10,7 +10,7 @@ import Img from "./../../common/Img";
 export default function Profile() {
   const { user } = useSelector((state) => state.profile);
   const navigate = useNavigate();
-
+  console.log(user);
   // Scroll to the top of the page when the component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,7 +52,8 @@ export default function Profile() {
                 </div>
               </div>
               <p className="mt-2 px-2 text-base text-gray-600">
-                {user?.additionalDetails?.about ?? "Write Something About Yourself"}
+                {user?.additionalDetails?.about ??
+                  "Write Something About Yourself"}
               </p>
             </div>
 
@@ -73,24 +74,26 @@ export default function Profile() {
               </div>
 
               <div className="flex flex-col justify-center rounded-2xl bg-richblack-400 bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-              <div className="flex justify-between">
-                <p className="text-sm text-gray-600">Date Of Birth</p>
-                <RiEditBoxLine
-                      className="ml-2 cursor-pointer text-white"
-                      onClick={() => navigate("/dashboard/edit-profile")}
-                    /></div>
-                    <div className="flex items-center">
+                <div className="flex justify-between">
+                  <p className="text-sm text-gray-600">Date Of Birth</p>
+                  {/* <RiEditBoxLine
+                    className="ml-2 cursor-pointer text-white"
+                    onClick={() => navigate("/dashboard/edit-profile")}
+                  /> */}
+                </div>
+                <div className="flex items-center">
                   <p className="  text-base font-medium text-navy-700">
-                      Add Date Of Birth
-                  </p> 
-                    
+                    {formattedDate(user?.additionalDetails?.dob) ??
+                      "Add Date Of Birth"}
+                  </p>
                 </div>
               </div>
 
               <div className="flex flex-col justify-center rounded-2xl bg-richblack-400 bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Phone Number</p>
                 <p className="text-base font-medium text-navy-700">
-                  {user?.additionalDetails?.contactNumber ?? "Add Contact Number"}
+                  {user?.additionalDetails?.contactNumber ??
+                    "Add Contact Number"}
                 </p>
               </div>
             </div>

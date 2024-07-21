@@ -19,6 +19,7 @@ import Features from "../components/common/Features";
 import IconBtn from "../components/common/IconBtn";
 import CoursesCatalog from "../components/core/HomePage/CoursesCatalog";
 import ContactForm from "../components/core/ContactPage/ContactForm";
+import { HeroSection } from "../components/core/HomePage/HeroSection";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -39,68 +40,11 @@ const Home = () => {
 
   return (
     <>
-      {/* Background video */}
-      <div className="w-full h-screen absolute top-0 left-0 shadow overflow-hidden">
-        <video
-          src={videoSrc}
-          autoPlay
-          loop
-          muted
-          className="w-full h-full object-cover"
-          style={{ filter: "brightness(0.3)" }}
-        ></video>
-      </div>
-
-      <div className="relative w-full h-screen flex flex-col justify-center items-center text-center text-white">
-        <motion.div
-          variants={fadeIn("left", 0.1)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className="bg-gradient-to-b text-bold from-[#ffffff] via-[#ffffff] to-[#928d8d] text-transparent bg-clip-text text-2xl md:text-4xl lg:text-6xl mb-4"
-        >
-          Explore the Cosmos,
-          <div>Unlock Your Destiny</div>
-          {/* <HighlightText text={"Unlock Your Destiny"} /> */}
-        </motion.div>
-
-        <motion.div
-          variants={fadeIn("right", 0.1)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className="w-[90%] md:w-[70%] lg:w-[50%] text-sm md:text-lg lg:text-xl font-bold mb-6"
-        >
-          Explore the mysteries of the stars, unlock your destiny, and embark on a transformative learning experience with us.
-        </motion.div>
-
-        <motion.div
-          variants={fadeIn("left", 0.1)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.1 }}
-          className="mb-6"
-        >
-          <IconBtn
-            onclick={() => navigate("/catalog/6662ad7dbb3aa094b1109871")}
-            customClasses={"flex flex-row gap-7 mr-5 w-fit "}
-          >
-            <p>Browse Courses</p>
-            <FaArrowRight />
-          </IconBtn>
-        </motion.div>
-      </div>
-
+      <HeroSection />
       <CoursesCatalog />
-      {/* <SiteInfo /> */}
       <MoreInfo />
       <Features />
-      {/* <div className="relative mx-auto box-content w-full max-w-maxContentTab lg:max-w-maxContent">
-        <div className="flex justify-center">
-            <ContactForm />
-        </div>
-        </div> */}
-      
+         {/* <SiteInfo /> */}
       <Footer />
     </>
   );

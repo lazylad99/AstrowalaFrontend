@@ -60,7 +60,7 @@ function SignupForm() {
   return (
     <div className="flex items-center justify-center bg-gray-900">
       <div className="w-96 p-10 bg-black bg-opacity-50 shadow-lg rounded-lg login-box">
-        <h2 className="mb-8 text-2xl text-center text-black">Sign Up</h2>
+        <h2 className="mb-8 text-2xl text-center text-white">Sign Up</h2>
         <form onSubmit={handleOnSubmit} className="flex flex-col gap-y-6">
           <div className="flex gap-x-4">
             <div className="user-box mb-4 w-full">

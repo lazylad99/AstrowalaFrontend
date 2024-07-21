@@ -181,7 +181,7 @@ function CourseDetails() {
                 </div>
               </div>
               <div className=" ">
-                <p className="text-[28px] mt-10 font-semibold">Instructors</p>
+                <p className="text-[28px] mt-5 font-semibold">Instructors</p>
                 <div className="flex items-center gap-4 py-4">
                   <Img
                     src={instructor.image}
@@ -230,8 +230,9 @@ function CourseDetails() {
           />
         </div>
       </div>
-      
+      <div className="mt-10">
       <Footer /> {/* This appears to be outside the main container div */}
+      </div>
       {video && (
         <ConfirmationModal modalData={modalData} videoUrl={video} isVideo />
       )}

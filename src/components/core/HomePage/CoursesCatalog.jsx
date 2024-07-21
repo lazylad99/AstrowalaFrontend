@@ -42,7 +42,7 @@ const CoursesCatalog = () => {
 
   if (!loading && (!categoriesData || categoriesData.length === 0)) {
     return (
-      <div className="text-white text-4xl flex justify-center items-center mt-[20%]">
+      <div className="text-white text-4xl flex justify-center items-center mt-[10%]">
         No Categories found
       </div>
     );
@@ -51,7 +51,7 @@ const CoursesCatalog = () => {
   return (
     <div>
       {/* Categories Section */}
-      <div className="relative mx-auto box-content w-full max-w-maxContentTab px-4 py-4 mt-5 mb-12 lg:max-w-maxContent">
+      <div className="relative mx-auto box-content w-full max-w-maxContentTab px-4 pb-4 mb-12 lg:max-w-maxContent">
         <div className="flex justify-between">
           <h1 className="bg-gradient-to-b text-center from-[#000000] via-[#303232] to-[#b3afaf] text-transparent p-4 mb-3 bg-clip-text text-4xl font-semibold lg:w-[100%] mx-auto">
             Explore Our Courses

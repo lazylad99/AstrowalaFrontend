@@ -83,15 +83,15 @@ export default function EditProfile() {
 
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="dateOfBirth" className="lable-style">
+              <label htmlFor="dob" className="lable-style">
                 Date of Birth
               </label>
               <input
                 type="date"
-                name="dateOfBirth"
-                id="dateOfBirth"
+                name="dob"
+                id="dob"
                 className="form-style"
-                {...register("dateOfBirth", {
+                {...register("dob", {
                   required: {
                     value: true,
                     message: "Please enter your Date of Birth.",
@@ -101,11 +101,11 @@ export default function EditProfile() {
                     message: "Date of Birth cannot be in the future.",
                   },
                 })}
-                defaultValue={user?.additionalDetails?.dateOfBirth}
+                defaultValue={user?.dob}
               />
-              {errors.dateOfBirth && (
+              {errors.dob && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
-                  {errors.dateOfBirth.message}
+                  {errors.dob.message}
                 </span>
               )}
             </div>
