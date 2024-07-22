@@ -92,7 +92,7 @@ export default function EnrolledCourses() {
           >
             <div
               className="flex flex-col sm:flex-row sm:items-center gap-4 w-full cursor-pointer"
-              onClick={() => navigate(`/dashboard/${course._id}/lectureVideos`)}
+              onClick={() => navigate(`/dashboard/${course._id}/videos`)}
               >
               <Img
                 src={course.thumbnailUrl}

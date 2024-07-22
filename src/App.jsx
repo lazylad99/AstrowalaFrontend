@@ -1,20 +1,19 @@
-
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import Home from "./pages/Home"
-import Login from "./pages/Login"
-import Signup from "./pages/Signup"
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import PageNotFound from "./pages/PageNotFound";
-import CourseDetails from './pages/CourseDetails';
-import Catalog from './pages/Catalog';
- 
+import CourseDetails from "./pages/CourseDetails";
+import Catalog from "./pages/Catalog";
+
 import Navbar from "./components/common/Navbar";
 import OpenRoute from "./components/core/Auth/OpenRoute";
 import ProtectedRoute from "./components/core/Auth/ProtectedRoute";
@@ -169,9 +168,14 @@ function App() {
                 path="dashboard/enrolled-courses"
                 element={<EnrolledCourses />}
               />
-              <Route
-                path="dashboard/:courseId/lectureVideos"
+              {/* <Route
+                path="dashboard/:courseId/videos"
                 element={<StudentVideosTable />}
+              /> */}
+
+              <Route
+                path="dashboard/:courseId/videos"
+                element={<VideosTable />}
               />
               <Route
                 path="dashboard/view-video/:videoId"
@@ -203,7 +207,7 @@ function App() {
                 path="dashboard/:courseId/videos"
                 element={<VideosTable />}
               />
-              
+
               <Route
                 path="dashboard/view-video/:videoId"
                 element={<ViewVideo />}

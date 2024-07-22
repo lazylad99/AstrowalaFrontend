@@ -17,6 +17,7 @@ import Img from "../../../common/Img";
 import IconBtn from "../../../common/IconBtn";
 import toast from "react-hot-toast";
 import Tab from "../../../common/Tab";
+import CourseCard from "./CourseCard";
 
 export default function CoursesTable({
   courses,
@@ -73,27 +74,175 @@ export default function CoursesTable({
   return (
     <>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="bg-gradient-to-b font-semibold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl">
+        <h1 className="bg-gradient-to-b font-semibold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text lg:text-4xl text-3xl ">
           My Courses
         </h1>
         <Tab tabData={tabData} field={field} setField={setField} />
       </div>
 
-      <Table className="rounded-2xl ">
-        <Thead>
-          <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
-            <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
-              Courses
-            </Th>
-            <Th className="text-left mr-[100px] text-sm font-medium uppercase text-white">
-              Price
-            </Th>
-            <Th className="text-left ml-2 mr-[120px] text-sm font-medium uppercase text-white">
-              Actions
-            </Th>
-          </Tr>
-        </Thead>
+      <div className="hidden md:block">
+        <Table className="rounded-2xl ">
+          <Thead>
+            <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
+              <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
+                Courses
+              </Th>
+              <Th className="text-left mr-[100px] text-sm font-medium uppercase text-white">
+                Price
+              </Th>
+              <Th className="text-left ml-2 mr-[120px] text-sm font-medium uppercase text-white">
+                Actions
+              </Th>
+            </Tr>
+          </Thead>
 
+          {loading ? (
+            <div>
+              {skItem()}
+              {skItem()}
+              {skItem()}
+            </div>
+          ) : (
+            <Tbody>
+              {filteredCourses?.length === 0 ? (
+                <Tr>
+                  <Td className="py-10 text-center text-2xl font-medium text-black">
+                    No courses found
+                  </Td>
+                </Tr>
+              ) : (
+                filteredCourses.map((course) => (
+                  <Tr
+                    key={course._id}
+                    className="flex gap-x-10 p-5 cursor-pointer m-10 shadow1 rounded-lg bg-white bg-opacity-15 transform hover:scale-105 transition-transform duration-300 "
+                    onClick={() => navigate(`/dashboard/${course._id}/videos`)}
+                  >
+                    <Td className="flex flex-1 gap-x-4 relative">
+                      <Img
+                        src={course?.thumbnailUrl}
+                        alt={course?.courseName}
+                        className="h-[160px] min-w-[270px] max-w-[270px] rounded-lg object-cover"
+                      />
+                      <div className="flex flex-col">
+                        <p className="text-lg font-semibold text-black capitalize">
+                          {course.courseName}
+                        </p>
+                        <p className="text-xs text-black ">
+                          {course.courseDescription.split(" ").length >
+                          TRUNCATE_LENGTH
+                            ? course.courseDescription
+                                .split(" ")
+                                .slice(0, TRUNCATE_LENGTH)
+                                .join(" ") + "..."
+                            : course.courseDescription}
+                        </p>
+                        <p className="text-[12px] text-black mt-4">
+                          Created: {formatDate(course?.createdAt)}
+                        </p>
+                        {course?.updatedAt && (
+                          <p className="text-[12px] text-black">
+                            Updated: {formatDate(course?.updatedAt)}
+                          </p>
+                        )}
+                        {!course.isPublished ? (
+                          <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black px-2 py-[2px] text-[12px] font-medium text-pink-25">
+                            <HiClock size={14} /> Unpublished
+                          </p>
+                        ) : (
+                          <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black  px-2 py-[2px] text-[12px] font-medium text-blue-25">
+                            <p className="flex h-3 w-3 items-center justify-center rounded-full bg-blue-5 text-black">
+                              <FaCheck size={8} />
+                            </p>{" "}
+                            Published
+                          </div>
+                        )}
+                      </div>
+                    </Td>
+                    <Td className="text-sm font-medium mr-[20px] text-black">
+                      ₹{course.price}
+                    </Td>
+                    <Tr className="flex flex-col text-sm font-medium text-black ">
+                      <div className="flex ">
+                        <button
+                          disabled={loading}
+                          onClick={(event) => {
+                            event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
+                            navigate(`/dashboard/edit-course/${course._id}`);
+                          }}
+                          title="Edit"
+                          className="px-5 transition-all duration-200 hover:scale-110 hover:text-caribbeangreen-300 "
+                        >
+                          <FiEdit2 size={20} />
+                        </button>
+                        <button
+                          disabled={loading}
+                          onClick={(event) => {
+                            event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
+                            toggleCoursePublishStatus(course._id); // Call the function to toggle publish status
+                          }}
+                          title="Delete"
+                          className="px-1 transition-all duration-200 hover:scale-110 hover:text-[#ff0000]"
+                        >
+                          <RiDeleteBin6Line size={20} />
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          onClick={(event) => {
+                            event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
+                            navigate(`/dashboard/${course._id}/add-videos`);
+                          }}
+                          className="z-40 m-2"
+                        >
+                          <IconBtn customClasses={"w-[180px]"} text="Add Videos"></IconBtn>
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          onClick={(event) => {
+                            event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
+                            setConfirmationModal({
+                              text1: `Are you sure you want to ${
+                                course.isPublished ? "unpublish" : "publish"
+                              } this course?`,
+                              text2: "",
+                              btn1Text: !loading ? "Yes" : "Loading...",
+                              btn2Text: "Cancel",
+                              btn1Handler: !loading
+                                ? () => {
+                                    toggleCoursePublishStatus(
+                                      course._id,
+                                      !course.isPublished
+                                    );
+                                    setConfirmationModal(null);
+                                  }
+                                : () => {},
+                              btn2Handler: !loading
+                                ? () => setConfirmationModal(null)
+                                : () => {},
+                            });
+                          }}
+                          className="z-40 m-2"
+                        >
+                          <IconBtn
+                            text={
+                              !course.isPublished
+                                ? "Publish Course"
+                                : "Unpublish Course"
+                            }
+                          ></IconBtn>
+                        </button>
+                      </div>
+                    </Tr>
+                  </Tr>
+                ))
+              )}
+            </Tbody>
+          )}
+        </Table>
+      </div>
+
+      <div className="block md:hidden">
         {loading ? (
           <div>
             {skItem()}
@@ -101,143 +250,17 @@ export default function CoursesTable({
             {skItem()}
           </div>
         ) : (
-          <Tbody>
-            {filteredCourses?.length === 0 ? (
-              <Tr>
-                <Td className="py-10 text-center text-2xl font-medium text-black">
-                  No courses found
-                </Td>
-              </Tr>
-            ) : (
-              filteredCourses.map((course) => (
-                <Tr
-                  key={course._id}
-                  className="flex gap-x-10 p-5 cursor-pointer m-10 shadow1 rounded-lg bg-white bg-opacity-15 transform hover:scale-105 transition-transform duration-300 "
-                  onClick={() => navigate(`/dashboard/${course._id}/videos`)}
-                >
-                  <Td className="flex flex-1 gap-x-4 relative">
-                    <Img
-                      src={course?.thumbnailUrl}
-                      alt={course?.courseName}
-                      className="h-[160px] min-w-[270px] max-w-[270px] rounded-lg object-cover"
-                    />
-                    <div className="flex flex-col">
-                      <p className="text-lg font-semibold text-black capitalize">
-                        {course.courseName}
-                      </p>
-                      <p className="text-xs text-black ">
-                        {course.courseDescription.split(" ").length >
-                        TRUNCATE_LENGTH
-                          ? course.courseDescription
-                              .split(" ")
-                              .slice(0, TRUNCATE_LENGTH)
-                              .join(" ") + "..."
-                          : course.courseDescription}
-                      </p>
-                      <p className="text-[12px] text-black mt-4">
-                        Created: {formatDate(course?.createdAt)}
-                      </p>
-                      {course?.updatedAt && (
-                        <p className="text-[12px] text-black">
-                          Updated: {formatDate(course?.updatedAt)}
-                        </p>
-                      )}
-                      {!course.isPublished ? (
-                        <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black px-2 py-[2px] text-[12px] font-medium text-pink-25">
-                          <HiClock size={14} /> Unpublished
-                        </p>
-                      ) : (
-                        <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black  px-2 py-[2px] text-[12px] font-medium text-blue-25">
-                          <p className="flex h-3 w-3 items-center justify-center rounded-full bg-blue-5 text-black">
-                            <FaCheck size={8} />
-                          </p>{" "}
-                          Published
-                        </div>
-                      )}
-                    </div>
-                  </Td>
-                  <Td className="text-sm font-medium mr-[20px] text-black">
-                    ₹{course.price}
-                  </Td>
-                  <Td className="flex flex-col text-sm font-medium text-black ">
-                    <div className="flex ">
-                      <button
-                        disabled={loading}
-                        onClick={(event) => {
-                          event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                          navigate(`/dashboard/edit-course/${course._id}`);
-                        }}
-                        title="Edit"
-                        className="px-5 transition-all duration-200 hover:scale-110 hover:text-caribbeangreen-300 "
-                      >
-                        <FiEdit2 size={20} />
-                      </button>
-                      <button
-                        disabled={loading}
-                        onClick={(event) => {
-                          event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                          toggleCoursePublishStatus(course._id); // Call the function to toggle publish status
-                        }}
-                        title="Delete"
-                        className="px-1 transition-all duration-200 hover:scale-110 hover:text-[#ff0000]"
-                      >
-                        <RiDeleteBin6Line size={20} />
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        onClick={(event) => {
-                          event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                          navigate(`/dashboard/${course._id}/add-videos`);
-                        }}
-                        className="z-40 m-2"
-                      >
-                        <IconBtn customClasses={"w-[180px]"} text="Add Videos"></IconBtn>
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        onClick={(event) => {
-                          event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                          setConfirmationModal({
-                            text1: `Are you sure you want to ${
-                              course.isPublished ? "unpublish" : "publish"
-                            } this course?`,
-                            text2: "",
-                            btn1Text: !loading ? "Yes" : "Loading...",
-                            btn2Text: "Cancel",
-                            btn1Handler: !loading
-                              ? () => {
-                                  toggleCoursePublishStatus(
-                                    course._id,
-                                    !course.isPublished
-                                  );
-                                  setConfirmationModal(null);
-                                }
-                              : () => {},
-                            btn2Handler: !loading
-                              ? () => setConfirmationModal(null)
-                              : () => {},
-                          });
-                        }}
-                        className="z-40 m-2"
-                      >
-                        <IconBtn
-                          text={
-                            !course.isPublished
-                              ? "Publish Course"
-                              : "Unpublish Course"
-                          }
-                        ></IconBtn>
-                      </button>
-                    </div>
-                  </Td>
-                </Tr>
-              ))
-            )}
-          </Tbody>
+          filteredCourses.map((course) => (
+            <CourseCard
+              key={course._id}
+              course={course}
+              toggleCoursePublishStatus={toggleCoursePublishStatus}
+              loading={loading}
+              setConfirmationModal={setConfirmationModal}
+            />
+          ))
         )}
-      </Table>
+      </div>
 
       {confirmationModal && (
         <ConfirmationModal modalData={confirmationModal} />

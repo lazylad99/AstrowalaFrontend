@@ -3,8 +3,11 @@ import { fadeIn } from "../../common/motionFrameVarients";
 import videoSrc from "../../../assets/Images/astro_images/heroSection.mp4"; // Replace with your video file
 import IconBtn from "../../common/IconBtn";
 import { FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export const HeroSection = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       {/* Background video */}

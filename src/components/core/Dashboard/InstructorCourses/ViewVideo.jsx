@@ -46,7 +46,7 @@ function ViewVideo() {
         onClick={() => navigate(-1)}
       /> */}
 
-      <div className="space-y-8 m-5 rounded-md border-[1px] border-richblack-700 shadow bg-black p-6">
+      <div className="space-y-8 m-3  rounded-md border-[1px] border-richblack-700 shadow bg-black p-5">
         <div>
         <h1 className="bg-gradient-to-b text-bold from-[#ffffff] via-[#ffffff] to-[#928d8d] text-transparent bg-clip-text text-4xl">
         {videoData?.title}

@@ -25,7 +25,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white mx-7 rounded-3xl mb-4">
+    <div className="bg-richblack-800 text-white mx-7 rounded-3xl mb-4">
       <div className="grid lg:grid-cols-4 gap-8 items-start justify-evenly w-11/12 max-w-maxContent leading-6 mx-auto relative py-14">
 
 

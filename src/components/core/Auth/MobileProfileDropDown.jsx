@@ -14,7 +14,7 @@ import { MdOutlineContactPhone } from "react-icons/md"
 import { TbMessage2Plus } from "react-icons/tb"
 import { PiNotebook } from "react-icons/pi"
 import { fetchCourseCategories } from './../../../services/operations/courseDetailsAPI';
-
+impor
 
 // const CatalogDropDown = ({ subLinks }) => {
 //     if (!subLinks) return

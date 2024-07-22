@@ -19,7 +19,7 @@ import {
 } from "../../../../services/operations/videoAPI";
 import IconBtn from "../../../common/IconBtn";
 import { ACCOUNT_TYPE } from "../../../../utils/constants";
-import { GiReturnArrow } from "react-icons/gi";
+import VideoCard from "./VideoCard"; // Import the VideoCard component
 
 const deleteVideo = async ({ videoId }, token) => {
   return true;
@@ -120,7 +120,33 @@ const VideosTable = () => {
         )}
       </div>
 
-      <Table className="rounded-2xl">
+      <div className="block md:hidden">
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <>
+            {filteredVideos?.length === 0 ? (
+              <div className="py-10 text-center text-2xl font-medium text-black">
+                No videos found
+              </div>
+            ) : (
+              filteredVideos?.map((video) => (
+                <VideoCard
+                  key={video._id}
+                  video={video}
+                  user={user}
+                  loading={loading}
+                  setConfirmationModal={setConfirmationModal}
+                  togglePublishStatus={togglePublishStatus}
+                  handleVideoDelete={handleVideoDelete}
+                />
+              ))
+            )}
+          </>
+        )}
+      </div>
+
+      <Table className="rounded-2xl hidden md:block">
         <Thead>
           <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
             <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">

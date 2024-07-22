@@ -9,7 +9,7 @@ const MoreInfo = () => {
         className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
         style={{ 
           backgroundImage: `url(${bg})`,
-          transform: 'rotate(-1deg)', // Rotate the image slightly counterclockwise
+          // transform: 'rotate(-1deg)', // Rotate the image slightly counterclockwise
         }}
       ></div>
       <div className="relative h-[800px] md:h-[800px] lg:h-[550px] w-full flex flex-col items-center justify-center text-center p-8 text-white">
