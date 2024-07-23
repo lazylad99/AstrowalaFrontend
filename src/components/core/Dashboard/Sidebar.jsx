@@ -25,7 +25,13 @@ export default function Sidebar() {
   // to keep track of confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(null);
 
+  // handle side bar menu - open / close
+  // const [openSideMenu, setOpenSideMenu] = useState(false)
+  // const [screenSize, setScreenSize] = useState(undefined)
+
   const { openSideMenu, screenSize } = useSelector((state) => state.sidebar);
+  // console.log('openSideMenu ======' , openSideMenu)
+  // console.log('screenSize ======' , screenSize)
 
   useEffect(() => {
     const handleResize = () => dispatch(setScreenSize(window.innerWidth));
@@ -33,15 +39,14 @@ export default function Sidebar() {
     window.addEventListener("resize", handleResize);
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
-  }, [dispatch]);
+  }, []);
 
+  // If screen size is small then close the side bar
   useEffect(() => {
     if (screenSize <= 640) {
       dispatch(setOpenSideMenu(false));
-    } else {
-      dispatch(setOpenSideMenu(true));
-    }
-  }, [screenSize, dispatch]);
+    } else dispatch(setOpenSideMenu(true));
+  }, [screenSize]);
 
   if (profileLoading || authLoading) {
     return (
@@ -54,23 +59,18 @@ export default function Sidebar() {
   return (
     <>
       <div
-        className="sm:hidden absolute left-7 top-3 cursor-pointer"
+        className="sm:hidden text-white absolute left-7 top-3 cursor-pointer "
         onClick={() => dispatch(setOpenSideMenu(!openSideMenu))}
       >
-        {openSideMenu ? (
-          <IoMdClose className="text-white" size={33} />
-        ) : (
-          <HiMenuAlt1 size={33} className="text-black" />
-        )}
+        {openSideMenu ? <IoMdClose size={33} className="text-white" /> : <HiMenuAlt1 size={33} className="text-black" />}
       </div>
 
       {openSideMenu && (
         <div
-          className="absolute z-50 h-[calc(100vh-3.5rem)] min-w-[220px] bg-black py-10 shadow1"
-          style={{
-            left: screenSize <= 640 ? "0" : "initial",
-            width: screenSize <= 640 ? "100%" : "220px",
-          }}
+          className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col bg-black  py-10 shadow1 "
+          // style={{
+          //   background: "linear-gradient(to right, black)",
+          // }}
         >
           <div className="flex flex-col mt-6">
             {sidebarLinks.map((link) => {
@@ -89,16 +89,16 @@ export default function Sidebar() {
           <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richwhite-100" />
 
           <div className="flex flex-col">
-            <SidebarLink
+            {/* <SidebarLink
               link={{ name: "Settings", path: "/dashboard/settings" }}
               iconName={"VscSettingsGear"}
-              setOpenSideMenu={setOpenSideMenu}
-            />
+              setOpenSideMen={setOpenSideMenu}
+            /> */}
 
             <button
               onClick={() =>
                 setConfirmationModal({
-                  text1: "Are you sure?",
+                  text1: "Are you sure ?",
                   text2: "You will be logged out of your account.",
                   btn1Text: "Logout",
                   btn2Text: "Cancel",

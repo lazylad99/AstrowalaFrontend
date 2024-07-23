@@ -35,12 +35,12 @@ export default function Profile() {
               <h4 className="text-xl font-bold text-navy-700">
                 {user?.firstName + " " + user?.lastName}
               </h4>
-              <p className="text-base font-normal text-gray-600">
+              <p className="text-base font-normal text-gray-600 ">
                 {user?.email}
               </p>
             </div>
 
-            {/* Header */}
+  
             <div className="mt-2 mb-8 w-full text-black">
               <div className="flex justify-between">
                 <h4 className="px-2 text-xl font-bold text-navy-700">About</h4>
