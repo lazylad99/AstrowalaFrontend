@@ -120,33 +120,8 @@ const VideosTable = () => {
         )}
       </div>
 
-      <div className="block md:hidden">
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <>
-            {filteredVideos?.length === 0 ? (
-              <div className="py-10 text-center text-2xl font-medium text-black">
-                No videos found
-              </div>
-            ) : (
-              filteredVideos?.map((video) => (
-                <VideoCard
-                  key={video._id}
-                  video={video}
-                  user={user}
-                  loading={loading}
-                  setConfirmationModal={setConfirmationModal}
-                  togglePublishStatus={togglePublishStatus}
-                  handleVideoDelete={handleVideoDelete}
-                />
-              ))
-            )}
-          </>
-        )}
-      </div>
-
-      <Table className="rounded-2xl hidden md:block">
+      <div className="hidden md:block">
+      <Table className="rounded-2xl">
         <Thead>
           <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
             <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
@@ -160,15 +135,14 @@ const VideosTable = () => {
           </Tr>
         </Thead>
 
-        <Tbody>
-          {loading ? (
-            <>
+        {loading ? (
+            <div>
               {skItem()}
               {skItem()}
               {skItem()}
-            </>
+            </div>
           ) : (
-            <>
+            <Tbody>
               {filteredVideos?.length === 0 ? (
                 <Tr>
                   <Td
@@ -329,10 +303,34 @@ const VideosTable = () => {
                   </Tr>
                 ))
               )}
-            </>
+            </Tbody>
           )}
-        </Tbody>
       </Table>
+      </div>
+
+      <div className="block md:hidden">
+      {loading ? (
+          <div>
+            {skItem()}
+            {skItem()}
+            {skItem()}
+          </div>
+        ) : (
+              filteredVideos?.map((video) => (
+                <VideoCard
+                  key={video._id}
+                  video={video}
+                  user={user}
+                  loading={loading}
+                  setConfirmationModal={setConfirmationModal}
+                  togglePublishStatus={togglePublishStatus}
+                  handleVideoDelete={handleVideoDelete}
+                  />
+                ))
+              )}
+            </div>
+
+      
 
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </>
