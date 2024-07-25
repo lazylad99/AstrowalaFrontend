@@ -1,4 +1,3 @@
-import img from "../../assets/Images/Horoscope Imgs/new8.png";
 import { Link } from "react-router-dom";
 import bg from "../../assets/Images/astro_images/black.png";
 

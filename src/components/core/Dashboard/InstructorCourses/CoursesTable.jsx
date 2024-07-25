@@ -54,7 +54,7 @@ export default function CoursesTable({
   };
 
   const skItem = () => (
-    <div className="flex border-b border-richwhite-800 px-6 py-8 w-full">
+    <div className="flex border-b border-black px-6 py-8 w-full">
       <div className="flex flex-1 gap-x-4 ">
         <div className="h-[148px] min-w-[300px] rounded-xl skeleton "></div>
         <div className="flex flex-col w-[40%]">

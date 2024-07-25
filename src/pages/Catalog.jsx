@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import Footer from "../components/common/Footer";
 import Course_Card from "../components/core/Catalog/Course_Card";
-import Course_Slider from "../components/core/Catalog/Course_Slider";
 import Loading from "./../components/common/Loading";
 import { getCatalogPageData } from "../services/operations/pageAndComponentData";
 import img1 from "../assets/Images/astro_images/banner6.png";
@@ -47,25 +46,19 @@ function Catalog() {
 
   return (
     <div className="bg-">
-      {/* <div className="w-full h-[200px] md:h-[500px] absolute top-0 left-0 overflow-hidden object-cover ">
-        <img src={img1} alt="Background" className="w-full h-full" />
-      </div> */}
-
       <div className="w-full h-[400px] sm:h-[400px] md:h-[500px] lg:h-[300px] xl:h-[600px] absolute top-0 left-0 overflow-hidden">
         <img src={img1} alt="Background" className="w-full h-full object-cover" />
       </div>
 
-
-
       {/* Hero Section */}
       <div className="relative h-[200px] sm:h-[300px] md:h-[350px] lg:h-[400px] mx-auto flex flex-col w-11/12 max-w-maxContent text-white translate1 sm:justify-center  text-left">
         <div className="flex min-h-[30px] m-3 max-w-maxContentTab mt-10 flex-col gap-5 lg:max-w-maxContent text-left sm:text-left">
-        <p className="hidden sm:block text-sm text-richwhite-300 mb-2">
-          {`Home / Categories / `}
-          <span className="text-yellow-25">
-            {catalogPageData?.selectedCategory?.category?.name}
-          </span>
-        </p>
+          <p className="hidden sm:block text-sm text-richwhite-300 mb-2">
+            {`Home / Categories / `}
+            <span className="text-yellow-25">
+              {catalogPageData?.selectedCategory?.category?.name}
+            </span>
+          </p>
 
           <p className="text-xl sm:text-2xl md:text-3xl item-left text-white">
             {catalogPageData?.selectedCategory?.category?.name}
@@ -78,53 +71,21 @@ function Catalog() {
 
       {/* Section 1 */}
       <div className="relative z-10 mx-auto box-content w-[100%] max-w-maxContentTab px-4 py-12 mt-[120px] lg:max-w-maxContent">
-        {/* <div className="absolute w-full h-[200px] md:h-[500px] top-0 left-0 overflow-hidden object-cover ">
-                    <img src={img2} alt="Background" className="w-full h-full" />
-                </div> */}
-        <h1 className="z-50 section_heading">Courses to get you started</h1>
-        <div className="my-4 flex flex-wrap border-b border-b-richblack-500 text-sm justify-center sm:justify-start">
-          <p
-            className={`px-4 py-2 ${
-              active === 1 ? "border-b text-richblack-500" : "text-black0"
-            } cursor-pointer`}
-            onClick={() => setActive(1)}
-          >
-            Most Popular
-          </p>
-          <p
-            className={`px-4 py-2 ${
-              active === 2 ? "border-b text-richblack-500" : "text-black0"
-            } cursor-pointer`}
-            onClick={() => setActive(2)}
-          >
-            New
-          </p>
-        </div>
-
-        <div>
-          <Course_Slider Courses={catalogPageData?.selectedCategory?.courses} />
+        <h1 className="z-50 section_heading mb-5 m-1">Courses to get you started</h1>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+          {catalogPageData?.selectedCategory?.courses?.map((course, i) => (
+            <Course_Card course={course} key={i} Height={"h-[300px]"} />
+          ))}
         </div>
       </div>
-
-      {/* Section 2 */}
-      {/* <div className="mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
-                <div className="section_heading">
-                    Top courses in {catalogPageData?.differentCategory?.name}
-                </div>
-                <div>
-                    <Course_Slider Courses={catalogPageData?.differentCategory?.courses} />
-                </div>
-            </div> */}
 
       {/* Section 3 */}
       <div className="mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
         <div className="section_heading">Frequently Bought</div>
         <div className="py-8">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-            {" "}
-            {/* Adjusted grid-cols */}
             {catalogPageData?.mostSellingCourses
-              ?.slice(0, 6) // Displaying 6 items in 3 columns (2 per column)
+              ?.slice(0, 6)
               .map((course, i) => (
                 <Course_Card course={course} key={i} Height={"h-[300px]"} />
               ))}
@@ -137,4 +98,4 @@ function Catalog() {
   );
 }
 
-export default Catalog
+export default Catalog;

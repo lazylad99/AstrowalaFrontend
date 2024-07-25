@@ -1,10 +1,8 @@
-//CourseDetailsCard.jsx
-
 import { useState } from "react";
 import copy from "copy-to-clipboard";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaShareSquare } from "react-icons/fa";
 import { addToCart } from "../../../slices/cartSlice";
 import { ACCOUNT_TYPE } from "../../../utils/constants";
@@ -24,6 +22,8 @@ function CourseDetailsCard({
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [video, setVideo] = useState(null);
+  const courseId = useParams();
+  const id = courseId.courseId;
 
   if (!course) {
     return null;
@@ -33,6 +33,7 @@ function CourseDetailsCard({
     _id: _id,
     price: CurrentPrice,
     introductoryVideoUrl: introductoryVideoUrl,
+    studentsEnrolled = [],
   } = course;
 
   const handleShare = () => {
@@ -69,16 +70,16 @@ function CourseDetailsCard({
   };
 
   const handleGoToCourse = () => {
-    navigate(`/dashboard/${_id}/videos`);
+    navigate(`/dashboard/${id}/videos`);
   };
 
   const handleGoToVideos = () => {
-    navigate(`/dashboard/${_id}/videos`);
+    navigate(`/dashboard/${id}/videos`);
   };
 
   return (
     <>
-      <div className="flex flex-col w-1/2 p-8 gap-2 rounded-2xl shadow-lg bg-richblue-800 border-richblue-800 rounded-2xl text-white">
+      <div className="flex flex-col w-[90%] p-6 gap-2  rounded-2xl shadow1 bg-black border-white text-white">
         <div onClick={handleVideo} className="cursor-pointer">
           <Img
             src={thumbnail}
@@ -93,7 +94,7 @@ function CourseDetailsCard({
 
           {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
             <div className="flex flex-col gap-4">
-              <IconBtn
+              <button className="button-36"
                 onClick={
                   user && studentsEnrolled.includes(user?._id)
                     ? handleGoToCourse
@@ -103,10 +104,10 @@ function CourseDetailsCard({
                 {user && studentsEnrolled.includes(user?._id)
                   ? "Go To Course"
                   : "Buy Now"}
-              </IconBtn>
+              </button>
 
               {(!user || !course?.studentsEnrolled.includes(user?._id)) && (
-                <IconBtn onClick={handleAddToCart}>Add to Cart</IconBtn>
+                <button className="button-36" onClick={handleAddToCart}>Add to Cart</button>
               )}
               {user && course?.studentsEnrolled.includes(user?._id) ? (
                 <div>
@@ -116,7 +117,7 @@ function CourseDetailsCard({
             </div>
           ) : user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? (
             <div className="flex flex-col gap-4">
-              <IconBtn onClick={handleGoToVideos}>Go to Videos</IconBtn>
+              <button className="button-36" onClick={handleGoToVideos}>Go to Videos</button>
             </div>
           ) : null}
 
@@ -125,12 +126,12 @@ function CourseDetailsCard({
           </div>
 
           <div className="text-center">
-            <button
+            {/* <button
               className="mx-auto flex items-center gap-2 py-6 text-white"
               onClick={handleShare}
             >
               <FaShareSquare size={15} /> Share
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
