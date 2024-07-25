@@ -40,18 +40,23 @@ export default function AddVideo() {
       formData.append("title", videoData.title);
       formData.append("description", videoData.description);
       formData.append("courseId", courseId);
-      formData.append("videoUrl", videoData.videoUrl);
-      formData.append("pdfUrl", videoData.pdfUrl);
-      videoData.imagesUrl.forEach((image) =>
-        formData.append("imagesUrl", image)
-      );
+      formData.append("videoUrl", videoData.videoUrl[0]);
+  
+      if (videoData.pdfUrl && videoData.pdfUrl.length > 0) {
+        formData.append("pdfUrl", videoData.pdfUrl[0]);
+      }
+  
+      if (videoData.imagesUrl && videoData.imagesUrl.length > 0) {
+        Array.from(videoData.imagesUrl).forEach((image) => formData.append("imagesUrl", image));
+      }
+  
       return formData;
     });
-
+  
     const results = await Promise.all(
       formDataArray.map((formData) => uploadVideo(formData, token))
     );
-
+  
     if (results.every((result) => result)) {
       dispatch(setVideos(results));
       setIsModalOpen(true); // Open the modal
@@ -60,6 +65,7 @@ export default function AddVideo() {
     }
     setLoading(false);
   };
+  
 
   const handleModalClose = () => {
     setIsModalOpen(false);

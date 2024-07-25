@@ -8,7 +8,6 @@ export default function Upload({
   label,
   register,
   setValue,
-  errors,
   viewData = null,
   editData = null,
   multiple = false,
@@ -22,7 +21,7 @@ export default function Upload({
   const inputRef = useRef(null);
 
   useEffect(() => {
-    register(name, { required: true });
+    register(name); // Register without validation
   }, [register, name]);
 
   useEffect(() => {
@@ -73,7 +72,7 @@ export default function Upload({
   return (
     <div className="flex flex-col space-y-2">
       <label className="text-sm text-white" htmlFor={name}>
-        {label} <sup className="text-pink-200">*</sup>
+        {label}
       </label>
 
       <div className="flex flex-col items-center">

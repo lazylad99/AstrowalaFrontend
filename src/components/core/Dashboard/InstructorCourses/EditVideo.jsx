@@ -5,10 +5,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { fetchVideoData, editVideoDetails } from "../../../../services/operations/videoAPI";
 import { setEditVideo, setVideos } from "../../../../slices/videosSlice";
 import Loading from "../../../common/Loading";
-import Upload from "../AddCourse/Upload";
 import IconBtn from "../../../common/IconBtn";
 import { toast } from "react-hot-toast";
-import UploadMultipleImages from "./UploadMultipleImages";
 
 export default function EditVideo() {
   const {
@@ -74,10 +72,10 @@ export default function EditVideo() {
         formData.append("description", data.description);
       }
       if (currentValues.videoUrl !== videos?.videoUrl) {
-        formData.append("video", data.videoUrl);
+        formData.append("video", data.videoUrl[0]);
       }
       if (currentValues.pdfUrl !== videos?.pdfUrl) {
-        formData.append("pdf", data.pdfUrl);
+        formData.append("pdf", data.pdfUrl[0]);
       }
       if (currentValues.imagesUrl !== videos?.imagesUrl) {
         for (let i = 0; i < data.imagesUrl.length; i++) {
@@ -106,36 +104,52 @@ export default function EditVideo() {
       <div className="max-w-4xl mx-auto bg-black p-8 rounded-2xl shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           <div className="flex flex-col">
-            <Upload
-              name="videoUrl"
-              label="Video"
-              register={register}
-              setValue={setValue}
-              errors={errors}
-              editData={editVideo ? videos?.videoUrl : null}
-              video
-            />
-            <Upload
-              name="pdfUrl"
-              label="PDF"
-              register={register}
-              setValue={setValue}
-              errors={errors}
-              editData={editVideo ? videos?.pdfUrl : null}
-              pdf
-            />
-            <UploadMultipleImages
-              name="imagesUrl"
-              label="Images"
-              register={register}
-              setValue={setValue}
-              errors={errors}
-              editData={editVideo ? videos?.imagesUrl : null}
-            />
+            <div className="mb-4">
+              <label className="text-white text-sm font-medium" htmlFor="videoUrl">
+                Video <sup className="text-pink-200">*</sup>
+              </label>
+              <input
+                type="file"
+                id="videoUrl"
+                {...register("videoUrl", { required: true })}
+                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                accept="video/*"
+              />
+              {errors.videoUrl && (
+                <span className="text-red-500 text-sm">Video is required</span>
+              )}
+            </div>
+
+            <div className="mb-4">
+              <label className="text-white text-sm font-medium" htmlFor="pdfUrl">
+                PDF
+              </label>
+              <input
+                type="file"
+                id="pdfUrl"
+                {...register("pdfUrl")}
+                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                accept=".pdf"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="text-white text-sm font-medium" htmlFor="imagesUrl">
+                Images
+              </label>
+              <input
+                type="file"
+                id="imagesUrl"
+                {...register("imagesUrl")}
+                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                accept="image/*"
+                multiple
+              />
+            </div>
           </div>
           <div className="mb-4 mt-4">
             <label htmlFor="title" className="block text-white text-sm font-medium">
-              Video Title
+              Video Title <sup className="text-pink-200">*</sup>
             </label>
             <input
               id="title"
@@ -149,7 +163,7 @@ export default function EditVideo() {
           </div>
           <div className="mb-4">
             <label htmlFor="description" className="block text-white text-sm font-medium">
-              Video Description
+              Video Description <sup className="text-pink-200">*</sup>
             </label>
             <textarea
               id="description"

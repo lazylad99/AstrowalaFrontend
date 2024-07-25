@@ -80,7 +80,7 @@ const VideoCard = ({
             >
               <FiEdit2 size={20} />
             </button>
-            <button
+            {/* <button
               disabled={loading}
               onClick={(event) => {
                 event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
@@ -97,7 +97,7 @@ const VideoCard = ({
               title="Delete"
             >
               <RiDeleteBin6Line size={20} />
-            </button>
+            </button> */}
           </div>
           <div>
             <button

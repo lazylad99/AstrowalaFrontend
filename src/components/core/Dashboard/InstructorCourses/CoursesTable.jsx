@@ -9,6 +9,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../../../services/formatDate";
 import {
+  deleteCourse,
   fetchInstructorCourses,
   togglePublishStatus,
 } from "../../../../services/operations/courseDetailsAPI";
@@ -49,6 +50,19 @@ export default function CoursesTable({
     } else {
       toast.error(result.message);
     }
+    setLoading(false);
+    toast.dismiss(toastId);
+  };
+
+  const handleCourseDelete = async (courseId) => {
+    setLoading(true);
+    const toastId = toast.loading("Deleting...");
+    await deleteCourse({ courseId: courseId }, token);
+    const result = await fetchInstructorCourses(token);
+    if (result) {
+      setCourses(result);
+    }
+    setConfirmationModal(null);
     setLoading(false);
     toast.dismiss(toastId);
   };
@@ -174,11 +188,35 @@ export default function CoursesTable({
                         >
                           <FiEdit2 size={20} />
                         </button>
+                        {/* <button
+                          disabled={loading}
+                          onClick={(event) => {
+                            event.stopPropagation(); 
+                            toggleCoursePublishStatus(course._id); 
+                          }}
+                          title="Delete"
+                          className="px-1 transition-all duration-200 hover:scale-110 hover:text-[#ff0000]"
+                        >
+                          <RiDeleteBin6Line size={20} />
+                        </button> */}
+
                         <button
                           disabled={loading}
                           onClick={(event) => {
                             event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
-                            toggleCoursePublishStatus(course._id); // Call the function to toggle publish status
+                            setConfirmationModal({
+                              text1: "Do you want to delete this course?",
+                              text2:
+                                "All the data related to this course will be deleted",
+                              btn1Text: !loading ? "Delete" : "Loading...",
+                              btn2Text: "Cancel",
+                              btn1Handler: !loading
+                                ? () => handleCourseDelete(course._id)
+                                : () => {},
+                              btn2Handler: !loading
+                                ? () => setConfirmationModal(null)
+                                : () => {},
+                            });
                           }}
                           title="Delete"
                           className="px-1 transition-all duration-200 hover:scale-110 hover:text-[#ff0000]"
@@ -194,7 +232,10 @@ export default function CoursesTable({
                           }}
                           className="z-40 m-2"
                         >
-                          <IconBtn customClasses={"w-[180px]"} text="Add Videos"></IconBtn>
+                          <IconBtn
+                            customClasses={"w-[180px]"}
+                            text="Add Videos"
+                          ></IconBtn>
                         </button>
                       </div>
                       <div>
@@ -262,9 +303,7 @@ export default function CoursesTable({
         )}
       </div>
 
-      {confirmationModal && (
-        <ConfirmationModal modalData={confirmationModal} />
-      )}
+      {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </>
   );
 }
