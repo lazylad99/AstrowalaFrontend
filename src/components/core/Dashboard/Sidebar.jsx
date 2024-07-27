@@ -89,11 +89,11 @@ export default function Sidebar() {
           <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richwhite-100" />
 
           <div className="flex flex-col">
-            {/* <SidebarLink
+            <SidebarLink
               link={{ name: "Settings", path: "/dashboard/settings" }}
               iconName={"VscSettingsGear"}
               setOpenSideMen={setOpenSideMenu}
-            /> */}
+            />
 
             <button
               onClick={() =>

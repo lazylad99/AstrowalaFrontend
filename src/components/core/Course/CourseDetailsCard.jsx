@@ -79,7 +79,7 @@ function CourseDetailsCard({
 
   return (
     <>
-      <div className="flex flex-col w-[90%] p-6 gap-2  rounded-2xl shadow1 bg-black border-white text-white">
+      <div className="flex flex-col w-[90%] p-6 gap-2  rounded-2xl shadow1 bg-richblack-25 border-white text-black">
         <div onClick={handleVideo} className="cursor-pointer">
           <Img
             src={thumbnail}
@@ -91,6 +91,13 @@ function CourseDetailsCard({
           <div className="space-x-3 pb-4 text-3xl font-semibold">
             Rs. {CurrentPrice}
           </div>
+
+          {!user && 
+          <button className="button-36"
+                onClick={ handleBuyCourse}
+              >
+                Buy Now
+              </button>}
 
           {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
             <div className="flex flex-col gap-4">

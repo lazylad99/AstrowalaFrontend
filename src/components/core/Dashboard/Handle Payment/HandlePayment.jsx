@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { bypassTransactionThroughTeacher } from "../../../../services/operations/studentFeaturesAPI"
+import { bypassTransactionThroughTeacher } from "../../../../services/operations/studentFeaturesAPI";
 import { useSelector } from "react-redux";
-
-// Example courses data
-const courses = [
-  "Vedic Astrology",
-  "Medical Astrology",
-  "Advance Level Numerology",
-  "Advanced Vedic Astrology",
-  "Foundation of Numerology",
-  "Master Level Numerology",
-];
+import { getAllCourses } from "../../../../services/operations/courseDetailsAPI";
 
 export default function HandlePayment() {
-
   const { token } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(false);
+  const [subLinks, setSubLinks] = useState([]);
   const {
     register,
     handleSubmit,
@@ -24,15 +15,28 @@ export default function HandlePayment() {
     formState: { errors, isSubmitSuccessful },
   } = useForm();
 
+  const fetchSublinks = async () => {
+    try {
+      const res = await getAllCourses();
+      setSubLinks(res);
+    } catch (error) {
+      console.log("Could not fetch the category list = ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSublinks();
+  }, []);
+
   const submitForm = async (data) => {
     try {
       setLoading(true);
       // Submit form data to the server
-      const response = await bypassTransactionThroughTeacher(data, token)
+      await bypassTransactionThroughTeacher(data, token);
       setLoading(false);
       reset({
         studentEmail: "",
-        courses: [],
+        courses: "",
         amountPaid: "",
         nextPaymentDate: "",
       });
@@ -42,12 +46,11 @@ export default function HandlePayment() {
     }
   };
 
-
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset({
         studentEmail: "",
-        courses: [],
+        courses: "",
         amountPaid: "",
         nextPaymentDate: "",
       });
@@ -56,7 +59,7 @@ export default function HandlePayment() {
 
   return (
     <form
-      className="flex flex-col gap-7 p-6 mx-auto mt-8 bg-white border  rounded-lg shadow-lg w-full max-w-[600px]"
+      className="flex flex-col gap-7 p-6 mx-auto mt-3 bg-white text-black rounded-2xl shadow1 w-full max-w-[600px]"
       onSubmit={handleSubmit(submitForm)}
     >
       <div className="flex flex-col gap-2">
@@ -79,33 +82,27 @@ export default function HandlePayment() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label className="lable-style">Courses</label>
-        <div className="flex flex-col gap-2 lg:flex-row">
-          <div className="flex flex-col gap-2 lg:w-1/2">
-            {courses.slice(0, 3).map((course, index) => (
-              <label key={index} className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  value={course}
-                  {...register("courses")}
-                />
-                {course}
-              </label>
-            ))}
-          </div>
-          <div className="flex flex-col gap-2 lg:w-1/2">
-            {courses.slice(3).map((course, index) => (
-              <label key={index} className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  value={course}
-                  {...register("courses")}
-                />
-                {course}
-              </label>
-            ))}
-          </div>
-        </div>
+        <label htmlFor="courses" className="lable-style">
+          Courses
+        </label>
+        <select
+          name="courses"
+          id="courses"
+          className=" text-black"
+          {...register("courses", { required: true })}
+        >
+          <option value="">Select a course</option>
+          {subLinks.map((course, index) => (
+            <option key={index} value={course.name}>
+              {course.name}
+            </option>
+          ))}
+        </select>
+        {errors.courses && (
+          <span className="-mt-1 text-[12px] text-yellow-100">
+            Please select a course.
+          </span>
+        )}
       </div>
 
       <div className="flex flex-col gap-2">
