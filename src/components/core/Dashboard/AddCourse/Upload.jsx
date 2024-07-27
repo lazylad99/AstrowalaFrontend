@@ -97,9 +97,8 @@ export default function Upload({
                 )}
                 <div className="flex items-center mt-2 max-w-xs">
                   <span className="text-white p-3 rounded-lg bg-richblack-500 truncate">
-                    {selectedFiles[index]?.name.length > 20
-                      ? selectedFiles[index]?.name.substring(0, 20) + "..."
-                      : selectedFiles[index]?.name}
+                    {selectedFiles[index]?.name ||
+                      source.split("/").pop().split("?")[0]} {/* Display filename or source */}
                   </span>
                   <FiX
                     className="text-white cursor-pointer ml-2"

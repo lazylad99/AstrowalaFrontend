@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { fetchVideoData, editVideoDetails } from "../../../../services/operations/videoAPI";
 import { setEditVideo, setVideos } from "../../../../slices/videosSlice";
 import Loading from "../../../common/Loading";
+import Upload from "../AddCourse/Upload";
 import IconBtn from "../../../common/IconBtn";
 import { toast } from "react-hot-toast";
 
@@ -29,6 +30,7 @@ export default function EditVideo() {
     const getVideoDetails = async () => {
       setLoading(true);
       const result = await fetchVideoData(videoId, token);
+      console.log(result)
       if (result) {
         dispatch(setEditVideo(true));
         dispatch(setVideos(result));
@@ -41,7 +43,10 @@ export default function EditVideo() {
       setLoading(false);
     };
 
-    getVideoDetails();
+    getVideoDetails().catch((error) => {
+      toast.error("Failed to fetch video details");
+      setLoading(false);
+    });
   }, [videoId, token, dispatch, setValue]);
 
   const isFormUpdated = () => {
@@ -72,10 +77,10 @@ export default function EditVideo() {
         formData.append("description", data.description);
       }
       if (currentValues.videoUrl !== videos?.videoUrl) {
-        formData.append("video", data.videoUrl[0]);
+        formData.append("videoUrl", data.videoUrl);
       }
       if (currentValues.pdfUrl !== videos?.pdfUrl) {
-        formData.append("pdf", data.pdfUrl[0]);
+        formData.append("pdfUrl", data.pdfUrl);
       }
       if (currentValues.imagesUrl !== videos?.imagesUrl) {
         for (let i = 0; i < data.imagesUrl.length; i++) {
@@ -84,11 +89,16 @@ export default function EditVideo() {
       }
 
       setLoading(true);
-      const result = await editVideoDetails(videoId, formData, token);
-      setLoading(false);
-      if (result) {
-        dispatch(setVideos(result));
-        navigate(`/dashboard/${courseId || videos?.courseId}/videos`);
+      try {
+        const result = await editVideoDetails(videoId, formData, token);
+        if (result) {
+          dispatch(setVideos(result));
+          navigate(`/dashboard/${courseId || videos?.courseId}/videos`);
+        }
+      } catch (error) {
+        toast.error("Failed to update video details");
+      } finally {
+        setLoading(false);
       }
     } else {
       toast.error("No changes made to the form");
@@ -100,56 +110,44 @@ export default function EditVideo() {
   }
 
   return (
-    <div className="container mx-auto mt-8">
-      <div className="max-w-4xl mx-auto bg-black p-8 rounded-2xl shadow-lg">
+    <div className="container mx-auto mt-4">
+      <div className="max-w-4xl mx-auto bg-black p-8 rounded-lg shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           <div className="flex flex-col">
-            <div className="mb-4">
-              <label className="text-white text-sm font-medium" htmlFor="videoUrl">
-                Video <sup className="text-pink-200">*</sup>
-              </label>
-              <input
-                type="file"
-                id="videoUrl"
-                {...register("videoUrl", { required: true })}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                accept="video/*"
-              />
-              {errors.videoUrl && (
-                <span className="text-red-500 text-sm">Video is required</span>
-              )}
-            </div>
-
-            <div className="mb-4">
-              <label className="text-white text-sm font-medium" htmlFor="pdfUrl">
-                PDF
-              </label>
-              <input
-                type="file"
-                id="pdfUrl"
-                {...register("pdfUrl")}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                accept=".pdf"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="text-white text-sm font-medium" htmlFor="imagesUrl">
-                Images
-              </label>
-              <input
-                type="file"
-                id="imagesUrl"
-                {...register("imagesUrl")}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                accept="image/*"
-                multiple
-              />
-            </div>
+            <Upload
+              name="videoUrl"
+              label="Video"
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              editData={editVideo ? videos?.videoUrl : null}
+              video
+            />
+            <Upload
+              name="pdfUrl"
+              label="PDF"
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              editData={editVideo ? videos?.pdfUrl : null}
+              pdf
+            />
+            <Upload
+              name="imagesUrl"
+              label="Images"
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              editData={editVideo ? videos?.imagesUrl : null}
+              multiple
+            />
           </div>
           <div className="mb-4 mt-4">
-            <label htmlFor="title" className="block text-white text-sm font-medium">
-              Video Title <sup className="text-pink-200">*</sup>
+            <label
+              htmlFor="title"
+              className="block text-white text-sm font-medium"
+            >
+              Video Title
             </label>
             <input
               id="title"
@@ -158,12 +156,17 @@ export default function EditVideo() {
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
             {errors.title && (
-              <span className="text-red-500 text-sm">Video title is required</span>
+              <span className="text-red-500 text-sm">
+                Video title is required
+              </span>
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="description" className="block text-white text-sm font-medium">
-              Video Description <sup className="text-pink-200">*</sup>
+            <label
+              htmlFor="description"
+              className="block text-white text-sm font-medium"
+            >
+              Video Description
             </label>
             <textarea
               id="description"
@@ -171,11 +174,17 @@ export default function EditVideo() {
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
             {errors.description && (
-              <span className="text-red-500 text-sm">Video description is required</span>
+              <span className="text-red-500 text-sm">
+                Video description is required
+              </span>
             )}
           </div>
           <div className="flex justify-end">
-            <IconBtn type="submit" disabled={loading} text={loading ? "Updating..." : "Update Video"} />
+            <IconBtn
+              type="submit"
+              disabled={loading}
+              text={loading ? "Updating..." : "Update Video"}
+            />
           </div>
         </form>
       </div>

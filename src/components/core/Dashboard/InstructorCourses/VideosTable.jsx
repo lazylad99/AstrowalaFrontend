@@ -19,7 +19,7 @@ import {
 } from "../../../../services/operations/videoAPI";
 import IconBtn from "../../../common/IconBtn";
 import { ACCOUNT_TYPE } from "../../../../utils/constants";
-import VideoCard from "./VideoCard"; // Import the VideoCard component
+import VideoCard from "./VideoCard"; 
 
 const VideosTable = () => {
   const navigate = useNavigate();
@@ -50,6 +50,8 @@ const VideosTable = () => {
     fetchData();
   }, [courseId, token]);
 
+
+
   // const handleVideoDelete = async (videoId) => {
   //   setLoading(true);
   //   const toastId = toast.loading("Deleting...");
@@ -62,6 +64,8 @@ const VideosTable = () => {
   //   setLoading(false);
   //   toast.dismiss(toastId);
   // };
+
+  
 
   const togglePublishStatus = async (videoId, newStatus) => {
     setLoading(true);
@@ -103,7 +107,6 @@ const VideosTable = () => {
       : !video.isPublished
   );
 
-  console.log("Filtered videos:", filteredVideos); // Add logging here
 
   return (
     <>

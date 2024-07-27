@@ -45,7 +45,6 @@ export const fetchVideoData = async (videoId) => {
   try {
     const response = await axios.get(`${BASE_URL}/video/${videoId}`);
     if (response?.data.success) {
-      console.log("Fetching Video", response.data.data)
       return response?.data.data;
     } else {
       throw new Error(response?.data.message);
@@ -121,7 +120,7 @@ export const editVideoDetails = async (videoId, formData, token) => {
 
   try {
     const response = await apiConnector("POST", `${BASE_URL}/video/update/${videoId}`, formData, {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "mulapiConnectortipart/form-data",
       Authorization: `Bearer ${token}`,
     });
 

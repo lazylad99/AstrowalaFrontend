@@ -8,7 +8,6 @@ import { toast } from "react-hot-toast";
 import Upload from "../AddCourse/Upload";
 import IconBtn from "../../../common/IconBtn";
 import ConfirmationModal from "../../../common/ConfirmationModal"; // Import your ConfirmationModal component
-import UploadMultipleImages from "./UploadMultipleImages";
 
 export default function AddVideo() {
   const {
@@ -40,23 +39,18 @@ export default function AddVideo() {
       formData.append("title", videoData.title);
       formData.append("description", videoData.description);
       formData.append("courseId", courseId);
-      formData.append("videoUrl", videoData.videoUrl[0]);
-  
-      if (videoData.pdfUrl && videoData.pdfUrl.length > 0) {
-        formData.append("pdfUrl", videoData.pdfUrl[0]);
-      }
-  
-      if (videoData.imagesUrl && videoData.imagesUrl.length > 0) {
-        Array.from(videoData.imagesUrl).forEach((image) => formData.append("imagesUrl", image));
-      }
-  
+      formData.append("videoUrl", videoData.videoUrl);
+      formData.append("pdfUrl", videoData.pdfUrl);
+      videoData.imagesUrl.forEach((image) =>
+        formData.append("imagesUrl", image)
+      );
       return formData;
     });
-  
+
     const results = await Promise.all(
       formDataArray.map((formData) => uploadVideo(formData, token))
     );
-  
+
     if (results.every((result) => result)) {
       dispatch(setVideos(results));
       setIsModalOpen(true); // Open the modal
@@ -65,7 +59,6 @@ export default function AddVideo() {
     }
     setLoading(false);
   };
-  
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -79,38 +72,31 @@ export default function AddVideo() {
           {fields.map((field, index) => (
             <div key={field.id} className="mb-4">
               <div className="flex flex-col">
-                  <Upload
-                    name={`videos[${index}].videoUrl`}
-                    label="Video"
-                    register={register}
-                    setValue={setValue}
-                    errors={errors}
-                    video
-                  />
-                <hr className="text-white p-4 m-4" />
-                {/* <div className="flex justify-evenly px-4"> */}
-                    <Upload
-                      name={`videos[${index}].pdfUrl`}
-                      label="PDF"
-                      register={register}
-                      setValue={setValue}
-                      errors={errors}
-                      pdf
-                    />
-                <hr className="text-white p-4 m-4" />
-
-                    <UploadMultipleImages
-                      name={`videos[${index}].imagesUrl`}
-                      label="Images"
-                      register={register}
-                      setValue={setValue}
-                      errors={errors}
-                      multiple
-                    />
-                {/* </div> */}
+                <Upload
+                  name={`videos[${index}].videoUrl`}
+                  label="Video"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  video
+                />
+                <Upload
+                  name={`videos[${index}].pdfUrl`}
+                  label="PDF"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  pdf
+                />
+                <Upload
+                  name={`videos[${index}].imagesUrl`}
+                  label="Images"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  multiple
+                />
               </div>
-              <hr className="text-white p-4 m-4" />
-
               <div className="mb-4 mt-4">
                 <label
                   htmlFor={`videos[${index}].title`}
@@ -194,7 +180,7 @@ export default function AddVideo() {
         <ConfirmationModal
           modalData={{
             text1: "Videos Uploaded Successfully",
-            text2: "Your videos have been successfully uploaded.",
+            text2: "Your videos have been successfully uploaded and is in Draft Section. Add them to course to make them available to the public.",
             btn1Text: "Go to Videos",
             btn2Text: "Close",
             btn1Handler: () => {
