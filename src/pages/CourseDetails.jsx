@@ -177,9 +177,9 @@ function CourseDetails() {
 
             {/* Course data */}
             <div
-              className={` flex flex-col ml-12 justify-center gap-4 py-5 text-lg text-black`}
+              className={` flex flex-col mx-2 justify-center gap-4 py-5 text-lg text-black`}
             >
-              <p className="text-4xl font-bold text-black sm:text-[42px]">
+              <p className="text-4xl font-bold text-center lg:text-left text-black sm:text-[42px]">
                 {courseName}
               </p>
               <p className="text-black">{courseDescription}</p>
@@ -222,7 +222,8 @@ function CourseDetails() {
 
 
               {/* Author Details */}
-            <div className="mb-12 mt-5">
+              <div className="mb-8 mt-5 sm:mb-2">
+
               <p className="text-[28px] font-semibold">Author</p>
               <div className="flex items-center gap-4 py-4">
                 <Img
@@ -237,7 +238,7 @@ function CourseDetails() {
                       <MdOutlineVerified className="w-5 h-5 text-[#00BFFF]" />
                     </span>
                   </p>
-                  <p className="text-black0">
+                  <p className="text-black">
                     {instructor?.additionalDetails?.about}
                   </p>
                 </div>
@@ -246,9 +247,9 @@ function CourseDetails() {
             </div>
 
             {/* will appear only for small size */}
-            {user?.accountType === ACCOUNT_TYPE.STUDENT ? (
+            {user?.accountType === ACCOUNT_TYPE.STUDENT && (
               <div className="flex w-full flex-col gap-4  lg:hidden">
-                <p className="space-x-3 pb-4 text-3xl font-semibold text-black">
+                <p className="space-x-3  text-3xl font-semibold text-black">
                   Rs. {price}
                 </p>
                 <button
@@ -261,11 +262,13 @@ function CourseDetails() {
                   Add to Cart
                 </button>
               </div>
-            ) : user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? (
-              <div className="flex flex-col gap-4">
-               
-              </div>
-            ) : null}
+            )}
+
+{!user && 
+  <button className="button-36 block sm:hidden" onClick={handleBuyCourse}>
+    Buy Now
+  </button>}
+
           </div>
 
           {/* Floating Courses Card */}
