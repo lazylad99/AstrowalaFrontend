@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { BASE_URL } from '../apis';
 
-const CATALOGPAGEDATA_API = 'https://astrowala-backend-deployed.onrender.com/api/v1/course/getCategoryPageDetails';
+// const CATALOGPAGEDATA_API = 'https://astrowala-backend-deployed.onrender.com/api/v1/course/getCategoryPageDetails';
 
 // const CATALOGPAGEDATA_API = 'https://astrowala-bd-deployed-ffmpeg-71b9ee08cfa4.herokuapp.com/api/v1/course/getCategoryPageDetails';
 
-// const CATALOGPAGEDATA_API = BASE_URL + "/course/getCategoryPageDetails";
+const CATALOGPAGEDATA_API = BASE_URL + "/course/getCategoryPageDetails";
 
 // ================ get Catalog Page Data ================
 export const getCatalogPageData = async (categoryId) => {

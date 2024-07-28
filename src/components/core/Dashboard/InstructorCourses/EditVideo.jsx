@@ -8,7 +8,6 @@ import Loading from "../../../common/Loading";
 import Upload from "../AddCourse/Upload";
 import IconBtn from "../../../common/IconBtn";
 import { toast } from "react-hot-toast";
-import UploadMultipleImages from "./UploadMultipleImages";
 
 export default function EditVideo() {
   const {
@@ -31,6 +30,7 @@ export default function EditVideo() {
     const getVideoDetails = async () => {
       setLoading(true);
       const result = await fetchVideoData(videoId, token);
+      console.log(result)
       if (result) {
         dispatch(setEditVideo(true));
         dispatch(setVideos(result));
@@ -43,7 +43,10 @@ export default function EditVideo() {
       setLoading(false);
     };
 
-    getVideoDetails();
+    getVideoDetails().catch((error) => {
+      toast.error("Failed to fetch video details");
+      setLoading(false);
+    });
   }, [videoId, token, dispatch, setValue]);
 
   const isFormUpdated = () => {
@@ -74,10 +77,10 @@ export default function EditVideo() {
         formData.append("description", data.description);
       }
       if (currentValues.videoUrl !== videos?.videoUrl) {
-        formData.append("video", data.videoUrl);
+        formData.append("videoUrl", data.videoUrl);
       }
       if (currentValues.pdfUrl !== videos?.pdfUrl) {
-        formData.append("pdf", data.pdfUrl);
+        formData.append("pdfUrl", data.pdfUrl);
       }
       if (currentValues.imagesUrl !== videos?.imagesUrl) {
         for (let i = 0; i < data.imagesUrl.length; i++) {
@@ -86,11 +89,16 @@ export default function EditVideo() {
       }
 
       setLoading(true);
-      const result = await editVideoDetails(videoId, formData, token);
-      setLoading(false);
-      if (result) {
-        dispatch(setVideos(result));
-        navigate(`/dashboard/${courseId || videos?.courseId}/videos`);
+      try {
+        const result = await editVideoDetails(videoId, formData, token);
+        if (result) {
+          dispatch(setVideos(result));
+          navigate(`/dashboard/${courseId || videos?.courseId}/videos`);
+        }
+      } catch (error) {
+        toast.error("Failed to update video details");
+      } finally {
+        setLoading(false);
       }
     } else {
       toast.error("No changes made to the form");
@@ -102,8 +110,8 @@ export default function EditVideo() {
   }
 
   return (
-    <div className="container mx-auto mt-8">
-      <div className="max-w-4xl mx-auto bg-black p-8 rounded-2xl shadow-lg">
+    <div className="container mx-auto mt-4">
+      <div className="max-w-4xl mx-auto bg-black p-8 rounded-lg shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           <div className="flex flex-col">
             <Upload
@@ -124,17 +132,21 @@ export default function EditVideo() {
               editData={editVideo ? videos?.pdfUrl : null}
               pdf
             />
-            <UploadMultipleImages
+            <Upload
               name="imagesUrl"
               label="Images"
               register={register}
               setValue={setValue}
               errors={errors}
               editData={editVideo ? videos?.imagesUrl : null}
+              multiple
             />
           </div>
           <div className="mb-4 mt-4">
-            <label htmlFor="title" className="block text-white text-sm font-medium">
+            <label
+              htmlFor="title"
+              className="block text-white text-sm font-medium"
+            >
               Video Title
             </label>
             <input
@@ -144,11 +156,16 @@ export default function EditVideo() {
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
             {errors.title && (
-              <span className="text-red-500 text-sm">Video title is required</span>
+              <span className="text-red-500 text-sm">
+                Video title is required
+              </span>
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="description" className="block text-white text-sm font-medium">
+            <label
+              htmlFor="description"
+              className="block text-white text-sm font-medium"
+            >
               Video Description
             </label>
             <textarea
@@ -157,11 +174,17 @@ export default function EditVideo() {
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
             {errors.description && (
-              <span className="text-red-500 text-sm">Video description is required</span>
+              <span className="text-red-500 text-sm">
+                Video description is required
+              </span>
             )}
           </div>
           <div className="flex justify-end">
-            <IconBtn type="submit" disabled={loading} text={loading ? "Updating..." : "Update Video"} />
+            <IconBtn
+              type="submit"
+              disabled={loading}
+              text={loading ? "Updating..." : "Update Video"}
+            />
           </div>
         </form>
       </div>

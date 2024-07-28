@@ -8,7 +8,6 @@ export default function Upload({
   label,
   register,
   setValue,
-  errors,
   viewData = null,
   editData = null,
   multiple = false,
@@ -22,7 +21,7 @@ export default function Upload({
   const inputRef = useRef(null);
 
   useEffect(() => {
-    register(name, { required: true });
+    register(name); // Register without validation
   }, [register, name]);
 
   useEffect(() => {
@@ -73,7 +72,7 @@ export default function Upload({
   return (
     <div className="flex flex-col space-y-2">
       <label className="text-sm text-white" htmlFor={name}>
-        {label} <sup className="text-pink-200">*</sup>
+        {label}
       </label>
 
       <div className="flex flex-col items-center">
@@ -98,9 +97,8 @@ export default function Upload({
                 )}
                 <div className="flex items-center mt-2 max-w-xs">
                   <span className="text-white p-3 rounded-lg bg-richblack-500 truncate">
-                    {selectedFiles[index]?.name.length > 20
-                      ? selectedFiles[index]?.name.substring(0, 20) + "..."
-                      : selectedFiles[index]?.name}
+                    {selectedFiles[index]?.name ||
+                      source.split("/").pop().split("?")[0]} {/* Display filename or source */}
                   </span>
                   <FiX
                     className="text-white cursor-pointer ml-2"

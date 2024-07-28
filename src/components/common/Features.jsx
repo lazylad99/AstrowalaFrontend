@@ -1,52 +1,77 @@
 import React from "react";
-import bgImg from "../../assets/Images/Horoscope Imgs/new7.jpg";
-import img1 from "../../assets/Images/Horoscope Imgs/new10.gif";
-import img2 from "../../assets/Images/Horoscope Imgs/new.png";
-import { motion } from "framer-motion";
-import { fadeIn } from "../common/motionFrameVarients";
+import img from "../../assets/Images/astro_images/download.gif";
+
+const FeatureCard = ({ title, content }) => (
+  <div className="p-6 shadow-md rounded-full text-white border border-yellow-50 text-center hover:scale-1 relative mb-10">
+    <div className="absolute inset-0 w-full h-full object-cover rounded-full pointer-events-none">
+      <img
+        src={img}
+        alt="feature border"
+        className="w-full h-full object-cover rounded-full transform scale-110"
+      />
+    </div>
+    <div className="relative p-6 rounded-full">
+      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+      <p className="text-sm">{content}</p>
+    </div>
+    <div
+      className="absolute inset-0 rounded-full border border-transparent"
+      style={{ boxShadow: "inset 0 0 10px 5px rgba(255, 223, 0, 0.5)" }}
+    ></div>
+  </div>
+);
 
 const Features = () => {
+  const featuresData = [
+    {
+      title: "Expert Astrologers",
+      content:
+        "Our team includes some of the best astrologers in India, each with their own area of specialization. Each astrologer is skilled in interpreting birth charts and planetary movements, providing best prediction astrology for your unique situation.",
+    },
+    {
+      title: "Accuracy",
+      content:
+        "We pride ourselves on providing accurate prediction astrology that you can trust.",
+    },
+    {
+      title: "Personalized Astrology Consultations",
+      content:
+        "Every reading is tailored to your life, your questions, and your path. Our astrologers will review your birth chart and provide advice and precise astrological predictions for your concerns about love, job, finances, or health.",
+    },
+    {
+      title: "Convenience and Flexibility",
+      content:
+        "With online consultations, you can seek guidance from the comfort of your home. Schedule online astrology consultations at your convenience, from anywhere in the world. Our platform allows you to connect with the best astrologer online, making valuable astrological guidance readily accessible.",
+    },
+    {
+      title: "Free Daily & Weekly Horoscopes",
+      content:
+        "Gain a glimpse into your day or week with our free horoscope online feature. Explore planetary influences and potential transits impacting your zodiac sign. While free horoscopes offer a general outlook, astrology consultations provide a personalized roadmap for your journey.",
+    },
+    {
+      title: "Safe and Secure Platform",
+      content:
+        "Astrowala prioritizes your privacy. Our secure platform ensures all communications and information shared with our astrologers remain confidential.",
+    },
+  ];
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center">
-       <div className="absolute left-100 bottom-100 w-full h-[180px] opacity_layer_bg2 "></div>
-
-      <div className="relative h-[600px] md:h-[850px] w-full justify-center mx-auto flex flex-col items-center">
-        <div className="absolute top-0 left-0 w-full h-[600px] md:h-[850px] overflow-hidden object-cover">
-            
-          <img
-            src={bgImg}
-            alt="Background"
-            className="w-full h-full object-cover bg-blend-lighten"
-          />
-      <div className="absolute left-0 bottom-0 w-full h-[100px] opacity_layer_bg"></div>
-      </div>
-
-        <div className="relative flex flex-col justify-center items-center text-white h-full w-full mt-[150px] ">
-          <motion.div
-            variants={fadeIn("left", 0.1)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.1 }}
-            className="text-center text-3xl lg:text-4xl font-semibold"
-          >
-              <h1 className="bg-gradient-to-b text-center from-[#000000] via-[#303232] to-[#b3afaf] text-transparent bg-clip-text text-4xl font-semibold lg:w-[100%] mx-auto">
-              Why Choose AstroWala?
-            </h1>
-          </motion.div>
-        </div>
-
-        <div className="relative">
-          <img src={img1} className="h-[85%] w-full object-cover" alt="Background" />
-          <motion.img 
-            src={img2} 
-            className="absolute h-1/2 top-[15%] left-[33%] transform -translate-x-1/2 -translate-y-1/2" 
-            alt="Overlay" 
-            animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
-          />
+    <section className="px-4 md:px-8 lg:px-8 lg:m-10">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="bg-gradient-to-b text-center from-[#000000] via-[#303232] to-[#b3afaf] text-transparent p-4 mb-3 bg-clip-text text-4xl font-semibold lg:w-[100%] mx-auto">
+          Why Choose Astrowala?
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuresData.map((feature, index) => (
+            <FeatureCard
+              key={index}
+              title={feature.title}
+              content={feature.content}
+            />
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

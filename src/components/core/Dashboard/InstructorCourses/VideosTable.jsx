@@ -19,11 +19,7 @@ import {
 } from "../../../../services/operations/videoAPI";
 import IconBtn from "../../../common/IconBtn";
 import { ACCOUNT_TYPE } from "../../../../utils/constants";
-import { GiReturnArrow } from "react-icons/gi";
-
-const deleteVideo = async ({ videoId }, token) => {
-  return true;
-};
+import VideoCard from "./VideoCard"; 
 
 const VideosTable = () => {
   const navigate = useNavigate();
@@ -54,18 +50,22 @@ const VideosTable = () => {
     fetchData();
   }, [courseId, token]);
 
-  const handleVideoDelete = async (videoId) => {
-    setLoading(true);
-    const toastId = toast.loading("Deleting...");
-    await deleteVideo({ videoId }, token);
-    const result = await fetchCourseVideos(courseId, token);
-    if (result) {
-      setVideos(result);
-    }
-    setConfirmationModal(null);
-    setLoading(false);
-    toast.dismiss(toastId);
-  };
+
+
+  // const handleVideoDelete = async (videoId) => {
+  //   setLoading(true);
+  //   const toastId = toast.loading("Deleting...");
+  //   await deleteVideo({ videoId }, token);
+  //   const result = await fetchCourseVideos(courseId, token);
+  //   if (result) {
+  //     setVideos(result);
+  //   }
+  //   setConfirmationModal(null);
+  //   setLoading(false);
+  //   toast.dismiss(toastId);
+  // };
+
+  
 
   const togglePublishStatus = async (videoId, newStatus) => {
     setLoading(true);
@@ -107,7 +107,6 @@ const VideosTable = () => {
       : !video.isPublished
   );
 
-  console.log("Filtered videos:", filteredVideos); // Add logging here
 
   return (
     <>
@@ -120,6 +119,7 @@ const VideosTable = () => {
         )}
       </div>
 
+      <div className="hidden md:block">
       <Table className="rounded-2xl">
         <Thead>
           <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
@@ -134,15 +134,14 @@ const VideosTable = () => {
           </Tr>
         </Thead>
 
-        <Tbody>
-          {loading ? (
-            <>
+        {loading ? (
+            <div>
               {skItem()}
               {skItem()}
               {skItem()}
-            </>
+            </div>
           ) : (
-            <>
+            <Tbody>
               {filteredVideos?.length === 0 ? (
                 <Tr>
                   <Td
@@ -228,7 +227,7 @@ const VideosTable = () => {
                             >
                               <FiEdit2 size={20} />
                             </button>
-                            <button
+                            {/* <button
                               disabled={loading}
                               onClick={(event) => {
                                 event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
@@ -247,7 +246,7 @@ const VideosTable = () => {
                               title="Delete"
                             >
                               <RiDeleteBin6Line size={20} />
-                            </button>
+                            </button> */}
                           </div>
                           <div>
                             <button
@@ -303,10 +302,34 @@ const VideosTable = () => {
                   </Tr>
                 ))
               )}
-            </>
+            </Tbody>
           )}
-        </Tbody>
       </Table>
+      </div>
+
+      <div className="block md:hidden">
+      {loading ? (
+          <div>
+            {skItem()}
+            {skItem()}
+            {skItem()}
+          </div>
+        ) : (
+              filteredVideos?.map((video) => (
+                <VideoCard
+                  key={video._id}
+                  video={video}
+                  user={user}
+                  loading={loading}
+                  setConfirmationModal={setConfirmationModal}
+                  togglePublishStatus={togglePublishStatus}
+                  // handleVideoDelete={handleVideoDelete}
+                  />
+                ))
+              )}
+            </div>
+
+      
 
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </>

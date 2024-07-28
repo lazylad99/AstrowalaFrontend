@@ -8,7 +8,6 @@ import { toast } from "react-hot-toast";
 import Upload from "../AddCourse/Upload";
 import IconBtn from "../../../common/IconBtn";
 import ConfirmationModal from "../../../common/ConfirmationModal"; // Import your ConfirmationModal component
-import UploadMultipleImages from "./UploadMultipleImages";
 
 export default function AddVideo() {
   const {
@@ -73,38 +72,31 @@ export default function AddVideo() {
           {fields.map((field, index) => (
             <div key={field.id} className="mb-4">
               <div className="flex flex-col">
-                  <Upload
-                    name={`videos[${index}].videoUrl`}
-                    label="Video"
-                    register={register}
-                    setValue={setValue}
-                    errors={errors}
-                    video
-                  />
-                <hr className="text-white p-4 m-4" />
-                {/* <div className="flex justify-evenly px-4"> */}
-                    <Upload
-                      name={`videos[${index}].pdfUrl`}
-                      label="PDF"
-                      register={register}
-                      setValue={setValue}
-                      errors={errors}
-                      pdf
-                    />
-                <hr className="text-white p-4 m-4" />
-
-                    <UploadMultipleImages
-                      name={`videos[${index}].imagesUrl`}
-                      label="Images"
-                      register={register}
-                      setValue={setValue}
-                      errors={errors}
-                      multiple
-                    />
-                {/* </div> */}
+                <Upload
+                  name={`videos[${index}].videoUrl`}
+                  label="Video"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  video
+                />
+                <Upload
+                  name={`videos[${index}].pdfUrl`}
+                  label="PDF"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  pdf
+                />
+                <Upload
+                  name={`videos[${index}].imagesUrl`}
+                  label="Images"
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  multiple
+                />
               </div>
-              <hr className="text-white p-4 m-4" />
-
               <div className="mb-4 mt-4">
                 <label
                   htmlFor={`videos[${index}].title`}
@@ -188,7 +180,7 @@ export default function AddVideo() {
         <ConfirmationModal
           modalData={{
             text1: "Videos Uploaded Successfully",
-            text2: "Your videos have been successfully uploaded.",
+            text2: "Your videos have been successfully uploaded and is in Draft Section. Add them to course to make them available to the public.",
             btn1Text: "Go to Videos",
             btn2Text: "Close",
             btn1Handler: () => {

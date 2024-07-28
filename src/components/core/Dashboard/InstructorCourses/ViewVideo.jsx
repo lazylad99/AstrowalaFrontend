@@ -1,24 +1,33 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useRef, useState, useEffect } from "react";
+import videojs from "video.js";
+import VideoPlayer from "./VideoPlayer";
+import { useParams } from "react-router-dom";
 import { fetchVideoData } from "../../../../services/operations/videoAPI";
-import ReactPlayer from "react-player";
 import { FaFilePdf, FaImage } from "react-icons/fa";
-import { GiReturnArrow } from "react-icons/gi";
+import {BACKEND_URL} from "../../../../services/apis"
 
 function ViewVideo() {
   const { videoId } = useParams();
-  const navigate = useNavigate();
+  const playerRef = useRef(null);
+  const [keyInfo, setKeyInfo] = useState(null);
   const [videoData, setVideoData] = useState(null);
 
+  // const port = 5000;
+  // const API = `http://localhost:${port}`;
+  // const API = `https://astrowala-backend-deployed.onrender.com`;
+  const API = BACKEND_URL;
+
+
   useEffect(() => {
-    console.log("Video ID from params:", videoId);
+    console.log("Video ID from params:", videoId); // Debugging line
 
     const fetchData = async () => {
       try {
         if (videoId) {
+          // Ensure videoId is defined before calling fetchVideoData
           const videoData = await fetchVideoData(videoId);
           setVideoData(videoData);
-          // console.log(videoData);
+          console.log(videoData);
         } else {
           console.error("videoId is undefined");
         }
@@ -30,34 +39,58 @@ function ViewVideo() {
     fetchData();
   }, [videoId]);
 
-  const handleDownload = (url, filename) => {
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handlePlayerReady = (player) => {
+    playerRef.current = player;
+
+    player.on("waiting", () => {
+      videojs.log("player is waiting");
+    });
+
+    player.on("dispose", () => {
+      videojs.log("player will dispose");
+    });
+  };
+
+  // Fetch key information for decryption
+  useEffect(() => {
+    fetch(`${API}/getKeyInfo`)
+      .then((response) => response.json())
+      .then((data) => {
+        setKeyInfo(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching key info:", error);
+      });
+
+    // const videoId = '665eb4d11f8a45e277386d79'
+    fetchVideoData(videoId);
+  }, [videoId]);
+
+  const videoPlayerOptions = {
+    controls: true,
+    responsive: true,
+    fluid: true,
+    sources: [
+      {
+        src: videoData ? videoData.videoUrl : "",
+        type: "application/x-mpegURL",
+      },
+    ],
   };
 
   return (
     <>
-      {/* <GiReturnArrow
-        className="mb-5 lg:mt-10 lg:mb-0 w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer"
-        onClick={() => navigate(-1)}
-      /> */}
-
-      <div className="space-y-8 m-5 rounded-md border-[1px] border-richblack-700 shadow bg-black p-6">
+      <div className="space-y-8 m-5 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6 ">
         <div>
-        <h1 className="bg-gradient-to-b text-bold from-[#ffffff] via-[#ffffff] to-[#928d8d] text-transparent bg-clip-text text-4xl">
-        {videoData?.title}
+          <h1 className="text-2xl font-medium text-white">
+            {videoData?.title}
           </h1>
         </div>
         {videoData?.videoUrl ? (
-          <ReactPlayer
-            url={videoData?.videoUrl}
-            controls={true}
-            width="100%"
-            height="100%"
+          <VideoPlayer
+            options={videoPlayerOptions}
+            onReady={handlePlayerReady}
+            keyInfo={keyInfo}
           />
         ) : (
           "Loading..."
