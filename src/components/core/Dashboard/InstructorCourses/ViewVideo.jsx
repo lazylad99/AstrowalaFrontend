@@ -4,6 +4,7 @@ import VideoPlayer from "./VideoPlayer";
 import { useParams } from "react-router-dom";
 import { fetchVideoData } from "../../../../services/operations/videoAPI";
 import { FaFilePdf, FaImage } from "react-icons/fa";
+import {BACKEND_URL} from "../../../../services/apis"
 
 function ViewVideo() {
   const { videoId } = useParams();
@@ -13,7 +14,9 @@ function ViewVideo() {
 
   // const port = 5000;
   // const API = `http://localhost:${port}`;
-  const API = `https://astrowala-backend-deployed.onrender.com`;
+  // const API = `https://astrowala-backend-deployed.onrender.com`;
+  const API = BACKEND_URL;
+
 
   useEffect(() => {
     console.log("Video ID from params:", videoId); // Debugging line

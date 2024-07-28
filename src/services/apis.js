@@ -1,6 +1,7 @@
 // export const BASE_URL = "https://astrowala-bd-deployed-ffmpeg-71b9ee08cfa4.herokuapp.com";
 
-export const BASE_URL = "https://astrowala-backend-deployed.onrender.com/api/v1";
+export const BACKEND_URL = "https://astrowala-backend-deployed.onrender.com";
+export const BASE_URL = BACKEND_URL + "/api/v1";
 
 // export const BASE_URL = "http://localhost:5000/api/v1";
 

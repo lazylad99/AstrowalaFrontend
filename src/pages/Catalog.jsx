@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
+import { useParams, useNavigate } from "react-router-dom";
 import Footer from "../components/common/Footer";
 import Course_Card from "../components/core/Catalog/Course_Card";
 import Loading from "./../components/common/Loading";
@@ -9,6 +8,7 @@ import img1 from "../assets/Images/astro_images/banner6.png";
 
 function Catalog() {
   const { catID } = useParams();
+  const navigate = useNavigate();
   const [active, setActive] = useState(1);
   const [catalogPageData, setCatalogPageData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -53,12 +53,16 @@ function Catalog() {
       {/* Hero Section */}
       <div className="relative h-[200px] sm:h-[300px] md:h-[350px] lg:h-[400px] mx-auto flex flex-col w-11/12 max-w-maxContent text-white translate1 sm:justify-center  text-left">
         <div className="flex min-h-[30px] m-3 max-w-maxContentTab mt-10 flex-col gap-5 lg:max-w-maxContent text-left sm:text-left">
-          <p className="hidden sm:block text-sm text-richwhite-300 mb-2">
-            {`Home / Categories / `}
-            <span className="text-yellow-25">
-              {catalogPageData?.selectedCategory?.category?.name}
-            </span>
-          </p>
+        <p className="hidden sm:block text-sm text-richwhite-300 mb-2">
+  <span onClick={() => navigate('/')} className="cursor-pointer hover:underline"> Home </span>
+  / 
+  <span onClick={() => navigate('/categories')} className="cursor-pointer hover:underline"> Categories </span>
+  /  
+  <span className="text-yellow-25">
+    {catalogPageData?.selectedCategory?.category?.name}
+  </span>
+</p>
+
 
           <p className="text-xl sm:text-2xl md:text-3xl item-left text-white">
             {catalogPageData?.selectedCategory?.category?.name}
