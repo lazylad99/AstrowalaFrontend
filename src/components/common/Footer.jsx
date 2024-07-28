@@ -60,18 +60,15 @@ const Footer = () => {
             Quick Links
           </h1>
           <div className="flex flex-col gap-2 mt-2">
-            {QuickLinks.map((ele, index) => (
-              <div
-                key={index}
-                className="text-[14px] cursor-pointer hover:text-pure-greys-500 transition-all duration-200"
-              >
-                {ele === "Home" ? (
-                  <Link to="#">Home</Link>
-                ) : (
-                  <Link to={ele.toLowerCase().replace(/\s+/g, "-")}>{ele}</Link>
-                )}
-              </div>
-            ))}
+            <div className="text-[14px] cursor-pointer hover:text-pure-greys-500 transition-all duration-200">
+              <Link to="/">Home</Link>
+            </div>
+            <div className="text-[14px] cursor-pointer hover:text-pure-greys-500 transition-all duration-200">
+              <Link to="/about">About</Link>
+            </div>
+            <div className="text-[14px] cursor-pointer hover:text-pure-greys-500 transition-all duration-200">
+              <Link to="/contact">Contact</Link>
+            </div>
           </div>
         </div>
 
