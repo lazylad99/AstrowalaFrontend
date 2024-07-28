@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { fetchVideoData } from "../../../../services/operations/videoAPI";
 import { FaFilePdf, FaImage } from "react-icons/fa";
 import {BACKEND_URL} from "../../../../services/apis"
+// import ReactPlayer from "react-player";
 
 function ViewVideo() {
   const { videoId } = useParams();
@@ -92,6 +93,13 @@ function ViewVideo() {
             onReady={handlePlayerReady}
             keyInfo={keyInfo}
           />
+
+          // <ReactPlayer
+          //   url={videoData?.videoUrl}
+          //   controls={true}
+          //   width="100%"
+          //   height="100%"
+          // />
         ) : (
           "Loading..."
         )}
