@@ -64,7 +64,7 @@ const Navbar = () => {
     <>
       {/* <ContactInfo /> */}
       <nav
-        className={`z-[10] flex w-full items-center justify-center border-shadow pt-4 p-6 translate-y-0 transition-all ${showNavbar}`}
+        className={`z-[10] flex w-full items-center justify-center border-shadow p-1 translate-y-0 transition-all ${showNavbar}`}
         style={{
           background:
             location.pathname === "/" || location.pathname.startsWith("/catalog")
