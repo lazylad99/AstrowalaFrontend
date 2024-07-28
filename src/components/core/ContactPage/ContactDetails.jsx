@@ -45,8 +45,8 @@ const ContactDetails = () => {
               </h1>
             </div>
 
-            <p className="font-medium">{ele?.description}</p>
-            <p className="font-semibold">{ele?.details}</p>
+            <p className="font-normal">{ele?.description}</p>
+            <p className="font-normal">{ele?.details}</p>
           </div></div>
         );
       })}
