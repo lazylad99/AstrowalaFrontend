@@ -32,7 +32,7 @@ const ContactDetails = () => {
       {contactDetails.map((ele, i) => {
         let Icon = Icon1[ele.icon] || Icon2[ele.icon] || Icon3[ele.icon];
         return (
-          <div className="flex flex-col gap-6 rounded-xl bg-black p-4 m-2 mb-5 shadow1 lg:p-6 hover:scale-110" >
+          <div className="flex flex-col gap-6 rounded-xl bg-black p-4 m-2 mb-5 lg:p-6 hover:scale-105" >
           <div
             className="flex flex-col gap-[2px] p-3 text-sm text-white"
             key={i}
