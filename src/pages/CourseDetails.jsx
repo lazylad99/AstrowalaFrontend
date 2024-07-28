@@ -126,9 +126,15 @@ function CourseDetails() {
     });
   };
 
-  const handleShare = () => {
-    copy(window.location.href);
-    toast.success("Link copied to clipboard");
+const handleShare = () => {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        toast.success("Link copied to clipboard");
+      })
+      .catch(() => {
+        toast.error("Failed to copy link");
+      });
   };
 
   const modalData = {
