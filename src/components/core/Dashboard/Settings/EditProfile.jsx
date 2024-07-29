@@ -27,7 +27,7 @@ export default function EditProfile() {
   
   return (
     <>
-      <h1 className="mb-5 text-3xl font-medium text-black font-boogaloo text-center sm:text-left">
+        <h1 className="bg-gradient-to-b font-semibold mb-5 from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text lg:text-4xl text-3xl ">
         Edit Profile
       </h1>      
       <ChangeProfilePicture />

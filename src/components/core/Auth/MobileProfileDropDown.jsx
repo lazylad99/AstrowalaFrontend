@@ -104,7 +104,7 @@ export default function MobileProfileDropDown() {
               </div>
             </Link> :
 
-            <Link to="/dashboard/profile" onClick={() => setOpen(false)}>
+            <Link to="/dashboard/my-profile" onClick={() => setOpen(false)}>
               <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white border-y border-richwhite-700 ">
               <VscDashboard className="text-lg" />
               Profile

@@ -14,6 +14,7 @@ import video_bg from "../../../../assets/Images/video_bg.png";
 import Tab from "../../../common/Tab";
 import Img from "../../../common/Img";
 import {
+  deleteVideo,
   fetchCourseVideos,
   toggleVideoPublishStatus,
 } from "../../../../services/operations/videoAPI";
@@ -52,18 +53,18 @@ const VideosTable = () => {
 
 
 
-  // const handleVideoDelete = async (videoId) => {
-  //   setLoading(true);
-  //   const toastId = toast.loading("Deleting...");
-  //   await deleteVideo({ videoId }, token);
-  //   const result = await fetchCourseVideos(courseId, token);
-  //   if (result) {
-  //     setVideos(result);
-  //   }
-  //   setConfirmationModal(null);
-  //   setLoading(false);
-  //   toast.dismiss(toastId);
-  // };
+  const handleVideoDelete = async (videoId) => {
+    setLoading(true);
+    // const toastId = toast.loading("Deleting...");
+    await deleteVideo( videoId, token);
+    const result = await fetchCourseVideos(courseId, token);
+    if (result) {
+      setVideos(result);
+    }
+    setConfirmationModal(null);
+    setLoading(false);
+    toast.dismiss(toastId);
+  };
 
   
 
@@ -227,7 +228,7 @@ const VideosTable = () => {
                             >
                               <FiEdit2 size={20} />
                             </button>
-                            {/* <button
+                            <button
                               disabled={loading}
                               onClick={(event) => {
                                 event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
@@ -246,7 +247,7 @@ const VideosTable = () => {
                               title="Delete"
                             >
                               <RiDeleteBin6Line size={20} />
-                            </button> */}
+                            </button>
                           </div>
                           <div>
                             <button

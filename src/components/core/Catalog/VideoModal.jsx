@@ -35,7 +35,7 @@ const VideoModal = ({ videoUrl, setShowVideo }) => {
     >
       <div className="relative bg-black rounded-lg p-10 w-full max-w-4xl">
         <button
-          className="absolute  text-white text-2xl top-2 right-3 text-gray-700"
+          className="absolute  text-white text-4xl top-1 right-3 text-gray-700"
           onClick={handleClose}
         >
           &times;

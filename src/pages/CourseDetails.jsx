@@ -23,6 +23,7 @@ import { MdOutlineVerified } from 'react-icons/md';
 import Img from './../components/common/Img';
 import toast from "react-hot-toast";
 import bgImg from '../assets//Images/random bg img/img1.jpg'
+import VideoModal from "../components/core/Catalog/VideoModal";
 import VideoCard from "../components/common/VideoCard";
 
 function CourseDetails() {
@@ -32,10 +33,14 @@ function CourseDetails() {
   const { paymentLoading } = useSelector((state) => state.course);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   // Getting courseId from url parameter
   const { courseId } = useParams();
   // console.log(`course id: ${courseId}`);
+
+  const [video, setVideo] = useState(null);
+
+
+
 
   // Declare a state to save the course details
   const [response, setResponse] = useState(null);
@@ -112,6 +117,7 @@ function CourseDetails() {
     instructor,
     studentsEnrolled,
     createdAt,
+    introductoryVideoUrl,
     // tag
   } = response;
 
@@ -164,11 +170,20 @@ function CourseDetails() {
   };
 
 
+  const handleVideo = () => {
+    setVideo(introductoryVideoUrl);
+  };
+
+  // const modalData = {
+  //   btn2Text: "Cancel",
+  //   btn2Handler: () => setVideo(null),
+  // };
+
   return (
     <>
       <div className={`relative w-full bg-course-details`}>
         {/* Hero Section */}
-        <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative mb-12">
+        <div className="mx-auto flex justify-between box-content px-4 lg:w-[1260px] 2xl:relative mb-12">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-cente py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px] mt-10">
 
             {/* will appear only for small size */}
@@ -177,6 +192,7 @@ function CourseDetails() {
                 src={thumbnailUrl}
                 alt="course thumbnail"
                 className="aspect-auto w-full rounded-2xl"
+                
               />
               <div className="absolute bottom-0 left-0 h-full w-full shadow-[#161D29_0px_-64px_36px_-28px_inset]"></div>
             </div>
@@ -267,23 +283,33 @@ function CourseDetails() {
                 <button onClick={handleAddToCart} className="button-36">
                   Add to Cart
                 </button>
+                <button className="button-36" onClick={handleVideo}>
+                    Watch Intro
+                  </button>
               </div>
             )}
 
-{!user && 
-  <button className="button-36 block sm:hidden" onClick={handleBuyCourse}>
-    Buy Now
-  </button>}
+{!user && (
+                <div className="flex w-full flex-col gap-4 lg:hidden">
+                  <button className="button-36" onClick={handleBuyCourse}>
+                    Buy Now
+                  </button>
+                  <button className="button-36" onClick={handleVideo}>
+                    Watch Intro
+                  </button>
+                </div>
+              )}
 
           </div>
 
           {/* Floating Courses Card */}
-          <div className="right-[10rem] top-[60px] mx-auto hidden lg:block lg:absolute min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0">
+          <div className=" mx-auto hidden lg:block mt-10 min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0">
             <CourseDetailsCard
               course={response}
               thumbnail={thumbnailUrl ? thumbnailUrl : bgImg}
               setConfirmationModal={setConfirmationModal}
               handleBuyCourse={handleBuyCourse}
+              handleVideo={handleVideo}
             />
           </div>
         </div>
@@ -303,6 +329,11 @@ function CourseDetails() {
 
       <Footer />
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
+
+      {video && (
+        <VideoModal videoUrl={video} setShowVideo={setVideo} />
+        // <ConfirmationModal videoUrl={video} isVideo modalData={modalData} />
+      )}
     </>
   );
 }

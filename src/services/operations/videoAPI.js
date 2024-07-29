@@ -141,3 +141,33 @@ export const editVideoDetails = async (videoId, formData, token) => {
   toast.dismiss(toastId);
   return result;
 };
+
+
+// ================ DELETING VIDEO ================
+
+export const deleteVideo = async (videoId, token) => {
+  const toastId = toast.loading("Deleting video...");
+  let result = null;
+
+  try {
+    const response = await apiConnector("DELETE", `${BASE_URL}/video/delete/${videoId}`, null, {
+      Authorization: `Bearer ${token}`,
+    });
+
+    console.log("RESPONSE", response);
+
+    if (!response?.data) {
+      throw new Error("Failed to delete video");
+    }
+    console.log(response.data);
+
+    result = response.data.message;
+    toast.success("Video deleted successfully.");
+  } catch (error) {
+    console.error("Error deleting video:", error.response?.data || error.message);
+    toast.error(error.response?.data?.message || "Failed to delete video. Please try again.");
+  }
+
+  toast.dismiss(toastId);
+  return result;
+};

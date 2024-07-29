@@ -48,9 +48,9 @@ function Categories() {
   }
 
   return (
-    <div>
+    <div className="bg-course-details">
       {/* Categories Section */}
-      <div className="relative mx-auto box-content w-full max-w-maxContentTab px-4 py-12 mt-5 lg:max-w-maxContent">
+      <div className="relative mx-auto box-content w-full  max-w-maxContentTab px-4 py-12 mt-5 lg:max-w-maxContent">
         <div className="flex justify-between">
           <h1 className="bg-gradient-to-b text-bold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl font-semibold lg:w-[60%]">
             Categories

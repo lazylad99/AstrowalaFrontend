@@ -464,6 +464,17 @@ nav li a {
   background-repeat: no-repeat;
 }
 
+.bg-course-details3 {
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),  /* Adjust the opacity (0.5 for 50% opacity) */
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('./assets/Images/astro_images/black1.jpg'); /* Update the path as necessary */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 
 /* form css */
