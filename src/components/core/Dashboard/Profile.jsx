@@ -35,9 +35,10 @@ export default function Profile() {
               <h4 className="text-xl font-bold text-navy-700">
                 {user?.firstName + " " + user?.lastName}
               </h4>
-              <p className="text-base font-normal text-gray-600 ">
-                {user?.email}
-              </p>
+              <p className="text-base font-normal text-gray-600">
+  {user?.email}
+</p>
+
             </div>
 
   

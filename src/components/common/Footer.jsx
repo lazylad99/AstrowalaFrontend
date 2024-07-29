@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
 
         {/* <!-- Column 2: Quick Links --> */}
-          <div className="w-full mb-2 lg:pl-0 lg:w-auto sm:text-left">
+          <div className="w-full mb-2 lg:pl-10 lg:w-auto sm:text-left">
             <h1 className="text-richblack-100 font-semibold text-[16px]">
               Quick Links
             </h1>
@@ -63,9 +63,9 @@ const Footer = () => {
                   className="text-[14px] cursor-pointer hover:text-pure-greys-500 transition-all duration-200"
                 >
                   {ele === "Home" ? (
-                    <Link to="#">Home</Link>
+                    <Link to="/">Home</Link>
                   ) : (
-                    <Link to={ele.toLowerCase().replace(/\s+/g, "-")}>{ele}</Link>
+                    <Link to={`/${ele.toLowerCase()}`} >{ele}</Link>
                   )}
                 </div>
               ))}
@@ -126,22 +126,22 @@ const Footer = () => {
 
 
   {/* Column 4 */}
-        <div className="w-full mb-2 lg:pl-0 lg:w-auto mt-5">
-          <h1 className="text-richblack-100 font-semibold text-[16px]">
-            Connect with Us
-          </h1>
-          <div className="flex gap-3 text-lg duration-200">
-            <Link to="https://www.facebook.com/astrowala5">
-              <ImFacebook className="cursor-pointer hover:scale-95" />
-            </Link>
-            <Link to="https://www.youtube.com/@AstroWala">
-              <ImYoutube className="cursor-pointer hover:scale-95" />
-            </Link>
-            <Link to="https://www.instagram.com/numerowala/?hl=en">
-              <ImInstagram className="cursor-pointer hover:scale-95" />
-            </Link>
-          </div>
-        </div></div>
+  <div className="w-full mb-2 lg:pl-0 lg:w-auto mt-5">
+  <h1 className="text-richblack-100 font-semibold text-[16px]">
+    Connect with Us
+  </h1>
+  <div className="flex gap-3 text-lg duration-200">
+    <a href="https://www.facebook.com/astrowala5" target="_blank" rel="noopener noreferrer">
+      <ImFacebook className="cursor-pointer hover:scale-95" />
+    </a>
+    <a href="https://www.youtube.com/@AstroWala" target="_blank" rel="noopener noreferrer">
+      <ImYoutube className="cursor-pointer hover:scale-95" />
+    </a>
+    <a href="https://www.instagram.com/numerowala/?hl=en" target="_blank" rel="noopener noreferrer">
+      <ImInstagram className="cursor-pointer hover:scale-95" />
+    </a>
+  </div>
+</div></div>
 </div>
       {/* Rest of the Footer */}
       <div className="flex flex-row items-center justify-between w-11/12 max-w-maxContent text-white mx-auto pb-8 text-sm">
