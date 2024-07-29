@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 function CategoryCard({ category }) {
   const [isHovered, setIsHovered] = useState(false);
+  const descriptionWordSize = 100
 
   return (
     <div
-      className={`relative flex flex-col mt-6 mb-3 text-gray-700 text-white bg-course-details2 shadow shadow-md bg-clip-border rounded-xl w-96 transition-all duration-200 ${
+      className={`relative flex flex-col mt-6 mb-3 text-gray-700 text-white bg-course-details2 shadow-sm bg-clip-border rounded-xl w-96 transition-all duration-200 ${
         isHovered ? "hover:scale-105" : ""
       }`}
       onMouseEnter={() => setIsHovered(true)}
@@ -16,7 +17,10 @@ function CategoryCard({ category }) {
           {category.name}
         </h5>
         <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-          {category.description}
+          {/* {category.description} */}
+          {category.description.length > descriptionWordSize
+            ? category.description.substring(0, descriptionWordSize) + "..."
+            : category.description}
         </p>
       </div>
     </div>
