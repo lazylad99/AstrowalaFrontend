@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-hot-toast";
 
 import { changePassword } from "../../../../services/operations/SettingsAPI"
 import IconBtn from "../../../common/IconBtn"
@@ -25,8 +26,9 @@ export default function UpdatePassword() {
     console.log("password Data - ", data)
     try {
       await changePassword(token, data)
+      toast.success("Password Changed Successfully")
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
+      toast.error("Could Not Changed Password, Try Again")
     }
   }
 
@@ -34,12 +36,12 @@ export default function UpdatePassword() {
     <>
       <form onSubmit={handleSubmit(submitPasswordForm)}>
         <div className="my-3 flex flex-col gap-y-2 rounded-md border-[1px] border-richwhite-700 bg-black p-8 px-6 sm:px-12">
-          <h2 className="text-lg font-semibold text-white">Update Password</h2>
+          <h1 className="text-xl mb-4 font-semibold text-white">Update Password</h1>
 
-          <div className="flex flex-col gap-5 lg:flex-row">
+          <div className="flex flex-col gap-3 justify-evenly lg:flex-row">
             {/* Current Password */}
             <div className="relative flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="oldPassword" className="lable-style">
+              <label htmlFor="oldPassword" className="text-white">
                 Current Password
               </label>
 
@@ -72,7 +74,7 @@ export default function UpdatePassword() {
 
             {/* new password */}
             <div className="relative flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="newPassword" className="lable-style">
+              <label htmlFor="newPassword" className="text-white">
                 New Password
               </label>
 
@@ -104,7 +106,7 @@ export default function UpdatePassword() {
 
             {/*confirm new password */}
             <div className="relative flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="confirmNewPassword" className="lable-style">
+              <label htmlFor="confirmNewPassword" className="text-white">
                 Confirm New Password
               </label>
 
