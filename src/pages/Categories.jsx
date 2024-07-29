@@ -50,13 +50,13 @@ function Categories() {
   return (
     <div>
       {/* Categories Section */}
-      <div className="relative mx-auto box-content w-full max-w-maxContentTab px-4 py-12 mt-5 lg:max-w-maxContent">
-        <div className="flex justify-between">
-          <h1 className="bg-gradient-to-b text-bold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl font-semibold lg:w-[60%]">
+      <div className="relative mx-auto box-content w-full max-w-maxContentTab px-4 py-6 mt-2 lg:max-w-maxContent">
+        <div className="flex justify-between px-2">
+          <h1 className="bg-gradient-to-b text-bold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-2xl lg:text-4xl font-semibold lg:w-[60%]">
             Categories
           </h1>
           <button
-            className="button-36"
+            className="button-36 mr-5 md:mr-0"
             onClick={() => setShowModal(true)}
           >
             Add Categories+

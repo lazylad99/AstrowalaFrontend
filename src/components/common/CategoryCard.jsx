@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function CategoryCard({ category }) {
   const [isHovered, setIsHovered] = useState(false);

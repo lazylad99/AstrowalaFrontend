@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import bg from "../../assets/Images/astro_images/black.png";
+import bg from "../../assets/Images/astro_images/black1.jpg";
 
 const MoreInfo = () => {
   return (

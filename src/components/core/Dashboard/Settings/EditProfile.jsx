@@ -17,6 +17,7 @@ export default function EditProfile() {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   const submitProfileForm = async (data) => {
+    // console.log("DATA EditProfile - ", data);
     try {
       await dispatch(updateProfile(token, data));
       navigate("/dashboard/my-profile");

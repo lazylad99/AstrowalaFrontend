@@ -1,6 +1,6 @@
 
 
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { Link, matchPath, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { NavbarLinks } from "../../../data/navbar-links";
@@ -123,7 +123,7 @@ const Navbar = () => {
                                   .split(" ")
                                   .join("-")
                                   .toLowerCase()}`}
-                                className="rounded-lg bg-transparent py-4 pl-4 text-black hover:bg-richblack-25 hoverable"
+                                className="rounded-lg bg-transparent py-4 pl-4 text-black font-normal hover:bg-richblack-25 hoverable"
                                 key={i}
                               >
                                 <p>{subLink.name}</p>
