@@ -28,6 +28,8 @@ export default function CoursesTable({
 }) {
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
+  const { course } = useSelector((state) => state.course);
+  console.log(course)
 
   const [confirmationModal, setConfirmationModal] = useState(null);
   const [field, setField] = useState("Published"); // State to toggle published/unpublished courses

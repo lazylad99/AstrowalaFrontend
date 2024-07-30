@@ -4,7 +4,8 @@ import VideoPlayer from "./VideoPlayer";
 import { useParams } from "react-router-dom";
 import { fetchVideoData } from "../../../../services/operations/videoAPI";
 import { FaFilePdf, FaImage } from "react-icons/fa";
-import {BACKEND_URL} from "../../../../services/apis"
+import { BACKEND_URL } from "../../../../services/apis";
+import { useSelector } from "react-redux";
 
 function ViewVideo() {
   const { videoId } = useParams();
@@ -12,11 +13,17 @@ function ViewVideo() {
   const [keyInfo, setKeyInfo] = useState(null);
   const [videoData, setVideoData] = useState(null);
 
+  const { course } = useSelector((state) => state.course);
+  console.log(course)
+
+  const titleWordLenght = 20;
+
+  console.log("Video Data", videoData); // Debugging line
+
   // const port = 5000;
   // const API = `http://localhost:${port}`;
   // const API = `https://astrowala-backend-deployed.onrender.com`;
   const API = BACKEND_URL;
-
 
   useEffect(() => {
     console.log("Video ID from params:", videoId); // Debugging line
@@ -81,6 +88,32 @@ function ViewVideo() {
   return (
     <>
       <div className="space-y-8 m-5 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6 ">
+        {/* <p className="hidden  sm:block text-sm text-white mt-1">
+          <span
+            onClick={() => navigate("/")}
+            className="cursor-pointer hover:underline"
+          >
+            {" "}
+            Dashboard{" "}
+          </span>
+          /
+          <span
+            onClick={() => navigate("/categories")}
+            className="cursor-pointer hover:underline"
+          >
+            {" "}
+            All Course{" "}
+          </span>
+          /
+          <span
+            onClick={() => navigate(`/`)}
+            className="cursor-pointer hover:underline"
+          >
+            {" "}
+            course name{" "}
+          </span>
+          /<span className="text-yellow-100 font-medium">{videoData?.title.length > titleWordLenght ? videoData?.title.slice(0, titleWordLenght) + "..." : videoData?.title}</span>
+        </p> */}
         <div>
           <h1 className="text-2xl font-medium text-white">
             {videoData?.title}

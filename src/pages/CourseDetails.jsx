@@ -14,15 +14,15 @@ import { fetchCourseDetails } from "../services/operations/courseDetailsAPI";
 import { buyCourse } from "../services/operations/studentFeaturesAPI";
 
 import GetAvgRating from "../utils/avgRating";
-import { ACCOUNT_TYPE } from './../utils/constants';
+import { ACCOUNT_TYPE } from "./../utils/constants";
 import { addToCart } from "../slices/cartSlice";
 import { FaShareSquare } from "react-icons/fa";
 
-import { GiReturnArrow } from 'react-icons/gi';
-import { MdOutlineVerified } from 'react-icons/md';
-import Img from './../components/common/Img';
+import { GiReturnArrow } from "react-icons/gi";
+import { MdOutlineVerified } from "react-icons/md";
+import Img from "./../components/common/Img";
 import toast from "react-hot-toast";
-import bgImg from '../assets//Images/random bg img/img1.jpg'
+import bgImg from "../assets//Images/random bg img/img1.jpg";
 import VideoCard from "../components/common/VideoCard";
 
 function CourseDetails() {
@@ -39,6 +39,10 @@ function CourseDetails() {
 
   // Declare a state to save the course details
   const [response, setResponse] = useState(null);
+  // console.log("course details response: ", response);
+
+  const corseWordLenght = 20;
+
   const [confirmationModal, setConfirmationModal] = useState(null);
 
   useEffect(() => {
@@ -46,7 +50,7 @@ function CourseDetails() {
     const fetchCourseDetailsData = async () => {
       try {
         const res = await fetchCourseDetails(courseId);
-        console.log("course details res: ", res);
+        // console.log("course details res: ", res);
         setResponse(res?.data);
       } catch (error) {
         console.log("Could not fetch Course Details", error);
@@ -72,7 +76,6 @@ function CourseDetails() {
     );
   };
 
-
   // Scroll to the top of the page when the component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -92,9 +95,10 @@ function CourseDetails() {
         <p className="h-4 w-[35%] lg:w-[10%] rounded-xl skeleton"></p>
 
         {/* Floating Courses Card */}
-        <div className="right-[1.5rem] top-[20%] hidden lg:block lg:absolute min-h-[450px] w-1/3 max-w-[410px] 
-            translate-y-24 md:translate-y-0 rounded-xl skeleton">
-        </div>
+        <div
+          className="right-[1.5rem] top-[20%] hidden lg:block lg:absolute min-h-[450px] w-1/3 max-w-[410px] 
+            translate-y-24 md:translate-y-0 rounded-xl skeleton"
+        ></div>
 
         <p className="mt-24 h-60 lg:w-[60%] rounded-xl skeleton"></p>
       </div>
@@ -157,14 +161,45 @@ function CourseDetails() {
     toast.success("Link copied to clipboard");
   };
 
-
   return (
     <>
       <div className={`relative w-full bg-course-details`}>
         {/* Hero Section */}
-        <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative mb-12">
-          <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-cente py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px] mt-10">
-
+        <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative">
+          {/* breadcrumb here */}
+          <p className="hidden  sm:block text-sm text-black mt-10 pb-6">
+            <span
+              onClick={() => navigate("/")}
+              className="cursor-pointer hover:underline"
+            >
+              {" "}
+              Home{" "}
+            </span>
+            /
+            <span
+              onClick={() => navigate("/categories")}
+              className="cursor-pointer hover:underline"
+            >
+              {" "}
+              Categories{" "}
+            </span>
+            /
+            <span
+              onClick={() => navigate(`/catalog/${response?.category?._id}`)}
+              className="cursor-pointer hover:underline"
+            >
+              {" "}
+              {response?.category?.name}
+              {" "}
+            </span>
+            /
+            <span className="text-richblack-600 font-medium">
+              {" "}
+              {/* {response?.courseName} */}
+              {response?.courseName.length > corseWordLenght ? response?.courseName.slice(0, corseWordLenght) + "..." : response?.courseName}
+            </span>
+          </p>
+          <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-cente py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
             {/* will appear only for small size */}
             <div className="relative block max-h-[30rem] lg:hidden">
               <Img
@@ -187,11 +222,11 @@ function CourseDetails() {
                 <span className="text-yellow-300">
                   {/* {avgReviewCount} */}
                   4.5
-                  </span>
-                <RatingStars Review_Count=
-                // {avgReviewCount}
-                "4.5"
-                Star_Size={24} />
+                </span>
+                <RatingStars
+                  Review_Count="4.5" // {avgReviewCount}
+                  Star_Size={24}
+                />
                 {/* <span>{`(${ratingAndReviews.length} reviews)`}</span> */}
                 <span>{`${studentsEnrolled.length} students enrolled`}</span>
               </div>
@@ -212,38 +247,35 @@ function CourseDetails() {
                   <HiOutlineGlobeAlt /> English
                 </p>
                 <button
-              className="flex items-center gap-2 py-6 text-black"
-              onClick={handleShare}
-            >
-              <FaShareSquare size={15} /> Share
-            </button>
+                  className="flex items-center gap-2 py-6 text-black"
+                  onClick={handleShare}
+                >
+                  <FaShareSquare size={15} /> Share
+                </button>
               </div>
-
-
 
               {/* Author Details */}
               <div className="mb-8 mt-5 sm:mb-2">
-
-              <p className="text-[28px] font-semibold">Author</p>
-              <div className="flex items-center gap-4 py-4">
-                <Img
-                  src={instructor.image}
-                  alt="Author"
-                  className="h-14 w-14 rounded-full object-cover"
-                />
-                <div>
-                  <p className="text-lg capitalize flex items-center gap-2 font-semibold">
-                    {`${instructor.firstName} ${instructor.lastName}`}
-                    <span>
-                      <MdOutlineVerified className="w-5 h-5 text-[#00BFFF]" />
-                    </span>
-                  </p>
-                  <p className="text-black">
-                    {instructor?.additionalDetails?.about}
-                  </p>
+                <p className="text-[28px] font-semibold">Author</p>
+                <div className="flex items-center gap-4 py-4">
+                  <Img
+                    src={instructor.image}
+                    alt="Author"
+                    className="h-14 w-14 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="text-lg capitalize flex items-center gap-2 font-semibold">
+                      {`${instructor.firstName} ${instructor.lastName}`}
+                      <span>
+                        <MdOutlineVerified className="w-5 h-5 text-[#00BFFF]" />
+                      </span>
+                    </p>
+                    <p className="text-black">
+                      {instructor?.additionalDetails?.about}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
 
             {/* will appear only for small size */}
@@ -264,11 +296,14 @@ function CourseDetails() {
               </div>
             )}
 
-{!user && 
-  <button className="button-36 block sm:hidden" onClick={handleBuyCourse}>
-    Buy Now
-  </button>}
-
+            {!user && (
+              <button
+                className="button-36 block sm:hidden"
+                onClick={handleBuyCourse}
+              >
+                Buy Now
+              </button>
+            )}
           </div>
 
           {/* Floating Courses Card */}
@@ -281,17 +316,12 @@ function CourseDetails() {
             />
           </div>
         </div>
-      
 
-      <div className="mx-auto box-content px-4 text-start text-black lg:w-[1260px]">
-        <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
-
-          {/* Course Content Section */}
-          <div className="max-w-[830px]">
-
-            
+        <div className="mx-auto box-content px-4 text-start text-black lg:w-[1260px]">
+          <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
+            {/* Course Content Section */}
+            <div className="max-w-[830px]"></div>
           </div>
-        </div>
         </div>
       </div>
 

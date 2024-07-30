@@ -33,6 +33,8 @@ const VideosTable = () => {
   const [filter, setFilter] = useState("Added to Course");
   const TRUNCATE_LENGTH = 25;
 
+  console.log("Videos:", videos); // Debugging line
+
   const tabData = [
     { id: 1, type: "Added to Course", tabName: "Added to Course" },
     { id: 2, type: "Drafted", tabName: "Drafted" },
