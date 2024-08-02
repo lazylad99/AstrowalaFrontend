@@ -116,14 +116,14 @@ function EnrollStudentsForm() {
       {studentEmails.length > 0 && (
         <ul className="mb-4">
           {studentEmails.map((email, index) => (
-            <li key={index} className="flex items-center justify-between p-2 border-b">
+            <li key={index} className="flex items-center justify-between p-2 border border-dotted  rounded-xl ">
               <span>{email}</span>
               <button
                 type="button"
                 onClick={() => handleRemoveEmail(email)}
                 className="text-red-500 hover:text-red-700"
               >
-                Remove
+                &times;
               </button>
             </li>
           ))}
