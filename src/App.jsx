@@ -44,6 +44,7 @@ import Profile from "./components/core/Dashboard/Profile";
 import Categories from "./pages/Categories";
 import StudentVideosTable from "./components/core/Dashboard/InstructorCourses/StudentVideosTable";
 import EditProfile from "./components/core/Dashboard/Settings/EditProfile";
+import DirectCourseAccess from "./components/core/directAccess/DirectCourseAccess";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -189,6 +190,7 @@ function App() {
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
               <Route path="dashboard/instructor" element={<Instructor />} />
+              <Route path="dashboard/direct-access" element={<DirectCourseAccess />} />
               <Route path="dashboard/add-course" element={<AddCourse />} />
               <Route path="dashboard/my-courses" element={<MyCourses />} />
               <Route

@@ -1,12 +1,6 @@
-import { ACCOUNT_TYPE } from './../src/utils/constants';
+import { ACCOUNT_TYPE } from "./../src/utils/constants";
 
 export const sidebarLinks = [
-  {
-    id: 1,
-    name: "My Profile",
-    path: "/dashboard/my-profile",
-    icon: "VscAccount",
-  },
   {
     id: 2,
     name: "Dashboard",
@@ -14,6 +8,8 @@ export const sidebarLinks = [
     type: ACCOUNT_TYPE.INSTRUCTOR,
     icon: "VscDashboard",
   },
+
+
   {
     id: 3,
     name: "My Courses",
@@ -41,6 +37,19 @@ export const sidebarLinks = [
     path: "/dashboard/enrolled-courses",
     type: ACCOUNT_TYPE.STUDENT,
     icon: "VscMortarBoard",
+  },
+  {
+    id: 7,
+    name: "Direct Access",
+    path: "/dashboard/direct-access",
+    type: ACCOUNT_TYPE.INSTRUCTOR,
+    icon: "VscVm",
+  },
+  {
+    id: 1,
+    name: "My Profile",
+    path: "/dashboard/my-profile",
+    icon: "VscAccount",
   },
   // {
   //   id: 7,
