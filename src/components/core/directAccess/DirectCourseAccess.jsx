@@ -148,7 +148,6 @@ function DirectCourseAccess() {
       >
         {loading ? "Enrolling..." : "Enroll Students"}
       </button>
-      {message && <p className="mt-4 text-center">{message}</p>}
     </form>
   );
 }
