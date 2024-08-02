@@ -70,11 +70,11 @@ export default function CoursesTable({
     toast.dismiss(toastId);
   };
 
-  const handleEnrollStudents = (formData) => {
-    console.log("Form Data:", formData);
-    // Handle form submission logic here, like calling an API to save the data
-    setShowModal(false);
-  };
+  // const handleEnrollStudents = (formData) => {
+  //   console.log("Form Data:", formData);
+  //   // Handle form submission logic here, like calling an API to save the data
+  //   setShowModal(false);
+  // };
 
   
   const skItem = () => (
@@ -320,8 +320,9 @@ export default function CoursesTable({
       </div>
 
       <Modal showModal={showModal} setShowModal={setShowModal}>
-        <EnrollStudentsForm onSubmit={handleEnrollStudents} />
-      </Modal>
+  <EnrollStudentsForm setShowModal={setShowModal} />
+</Modal>
+
 
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </>

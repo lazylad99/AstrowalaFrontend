@@ -1,124 +1,156 @@
-import React, { useState } from 'react';
-import Select from "react-select";
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { directAccessCourse } from "../../../../services/operations/directCourseAccessAPI";
+import { getAllCourses } from "../../../../services/operations/courseDetailsAPI";
 
-const BASE_URL = 'https://example.com/'; // Replace with your actual base URL
+function EnrollStudentsForm() {
+  const [courseId, setCourseId] = useState("");
+  const [studentEmails, setStudentEmails] = useState([]);
+  const [emailInput, setEmailInput] = useState("");
+  const [expirationPeriod, setExpirationPeriod] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [courses, setCourses] = useState([]);
 
-const EnrollStudentsForm = () => {
-  const [formData, setFormData] = useState({
-    selectedCourse: null,
-    studentEmails: [""],
-    expirationPeriod: "",
-  });
-  
-  const coursesOptions = [
-    { value: "Components of Numerology", label: "Components of Numerology" },
-    { value: "Advanced Numerological Analysis Techniques", label: "Advanced Numerological Analysis Techniques" },
-    { value: "Introduction to Vedic Astrology", label: "Introduction to Vedic Astrology" },
-    { value: "Medical Astrology", label: "Medical Astrology" },
-  ];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+
+
+  const { token } = useSelector((state) => state.auth);
+
+  const handleAddEmail = (e) => {
+    e.preventDefault();
+    if (emailInput && !studentEmails.includes(emailInput)) {
+      setStudentEmails([...studentEmails, emailInput]);
+      setEmailInput("");
+    }
   };
 
-  const handleCourseChange = (selectedOption) => {
-    setFormData({
-      ...formData,
-      selectedCourse: selectedOption,
-    });
-  };
-
-  const handleEmailChange = (index, value) => {
-    const newEmails = [...formData.studentEmails];
-    newEmails[index] = value;
-    setFormData({
-      ...formData,
-      studentEmails: newEmails,
-    });
-  };
-
-  const addEmailField = () => {
-    setFormData({
-      ...formData,
-      studentEmails: [...formData.studentEmails, ""],
-    });
+  const handleRemoveEmail = (email) => {
+    setStudentEmails(studentEmails.filter((e) => e !== email));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    const data = {
+      courseId,
+      studentEmails,
+      expirationPeriod: Number(expirationPeriod),
+    };
+
     try {
-      const response = await axios.post(`${BASE_URL}payment/enroll-directly`, formData);
-      console.log('Data submitted successfully:', response.data);
+      const response = await directAccessCourse(data, token);
+      if (response.success) {
+        setMessage(response.message);
+      } else {
+        setMessage(response.message);
+      }
     } catch (error) {
-      console.error('Error submitting data:', error);
+      console.error(error);
+      setMessage(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
+  const handleAllCourses = async () => {
+    try {
+      const response = await getAllCourses();
+      setCourses(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    handleAllCourses();
+  }, []);
+
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="bg-black text-white p-5 rounded-xl">
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="course">
-            Select Course
-          </label>
-          <Select
-            id="course"
-            name="course"
-            value={formData.selectedCourse}
-            onChange={handleCourseChange}
-            options={coursesOptions}
-            className="shadow appearance-none border rounded w-full text-black py-2  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Student Emails
-          </label>
-          {formData.studentEmails.map((email, index) => (
-            <div key={index} className="mb-2">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => handleEmailChange(index, e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-md mx-auto bg-white p-8 shadow-md rounded"
+    >
+      <h2 className="text-2xl font-bold mb-6">Enroll Students</h2>
+      <div className="mb-4">
+        <label className="block text-gray-700 mb-2">Course</label>
+        <select
+          value={courseId}
+          onChange={(e) => setCourseId(e.target.value)}
+          required
+          className="w-full p-2 border border-gray-300 rounded"
+        >
+          <option value="">Select a course</option>
+          {courses.map((course) => (
+            <option key={course._id} value={course._id}>
+              {course.courseName} - ₹{course.price}
+            </option>
           ))}
+        </select>
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 mb-2">Student Email</label>
+        <div className="flex">
+          <input
+            type="email"
+            value={emailInput}
+            onChange={(e) => setEmailInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleAddEmail(e);
+              }
+            }}
+            className="flex-grow p-2 border border-gray-300 rounded-l"
+          />
           <button
             type="button"
-            onClick={addEmailField}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={handleAddEmail}
+            className="px-4 bg-blue-500 text-white rounded-r"
           >
-            Add Email
+            Add
           </button>
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="expirationPeriod">
-            Expiration Period
-          </label>
-          <input
-            type="date"
-            id="expirationPeriod"
-            name="expirationPeriod"
-            value={formData.expirationPeriod}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-        <button
-          type="submit"
-          className="button-36"
-        >
-          Enroll Students
-        </button>
-      </form>
-    </div>
+      </div>
+      {studentEmails.length > 0 && (
+        <ul className="mb-4">
+          {studentEmails.map((email, index) => (
+            <li key={index} className="flex items-center justify-between p-2 border-b">
+              <span>{email}</span>
+              <button
+                type="button"
+                onClick={() => handleRemoveEmail(email)}
+                className="text-red-500 hover:text-red-700"
+              >
+                Remove
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+      <div className="mb-4">
+        <label className="block text-gray-700 mb-2">Expiration Period (days)</label>
+        <input
+          type="number"
+          value={expirationPeriod}
+          onChange={(e) => setExpirationPeriod(e.target.value)}
+          required
+          className="w-full p-2 border border-gray-300 rounded"
+        />
+      </div>
+      <button
+        type="submit"
+        disabled={loading}
+        className={`w-full py-2 px-4 bg-blue-500 text-white rounded ${
+          loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
+        }`}
+      >
+        {loading ? "Enrolling..." : "Enroll Students"}
+      </button>
+      {message && <p className="mt-4 text-center">{message}</p>}
+    </form>
   );
-};
+}
 
 export default EnrollStudentsForm;
