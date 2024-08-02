@@ -1,21 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { directAccessCourse } from "../../../../services/operations/directCourseAccessAPI";
-import { getAllCourses } from "../../../../services/operations/courseDetailsAPI";
+import { fetchInstructorCourses } from "../../../../services/operations/courseDetailsAPI";
 
-function EnrollStudentsForm() {
+export default function EnrollStudentsForm({courses}) {
   const [courseId, setCourseId] = useState("");
   const [studentEmails, setStudentEmails] = useState([]);
   const [emailInput, setEmailInput] = useState("");
   const [expirationPeriod, setExpirationPeriod] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [courses, setCourses] = useState([]);
-
-
-
+  // const [courses, setCourses] = useState([]);
 
   const { token } = useSelector((state) => state.auth);
+// console.log(token);
+//   const handleAllCourses = async (token) => {
+//     try {
+//       const response = await fetchInstructorCourses(token);
+//       setCourses(response);
+//       console.log(response);
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+
+  // useEffect(() => {
+  //   handleAllCourses();
+  // }, []);
+
 
   const handleAddEmail = (e) => {
     e.preventDefault();
@@ -55,19 +67,7 @@ function EnrollStudentsForm() {
     }
   };
 
-  const handleAllCourses = async () => {
-    try {
-      const response = await getAllCourses();
-      setCourses(response);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    handleAllCourses();
-  }, []);
-
+ 
   return (
     <form
       onSubmit={handleSubmit}
@@ -152,5 +152,3 @@ function EnrollStudentsForm() {
     </form>
   );
 }
-
-export default EnrollStudentsForm;

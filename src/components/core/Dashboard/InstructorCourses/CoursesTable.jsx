@@ -320,7 +320,7 @@ export default function CoursesTable({
       </div>
 
       <Modal showModal={showModal} setShowModal={setShowModal}>
-  <EnrollStudentsForm setShowModal={setShowModal} />
+  <EnrollStudentsForm setShowModal={setShowModal} courses={courses} />
 </Modal>
 
 
