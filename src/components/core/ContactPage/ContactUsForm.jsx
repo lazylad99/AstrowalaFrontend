@@ -103,13 +103,13 @@ const ContactUsForm = () => {
               Phone Number
             </label>
             <div className="flex gap-5">
-              <div className="flex w-[81px] flex-col gap-2">
+              <div className="flex w-[70px] flex-col gap-2">
                 <select
                   type="text"
                   name="countrycode"
                   id="countrycode"
                   placeholder="Enter country code"
-                  className="peer w-full py-2 text-lg bg-white border-b-2 border-white text-black outline-none"
+                  className="peer w-full py-2 text-lg bg-white border-b-2 border-white text-black outline-none rounded-sm"
                   {...register("countrycode", { required: true })}
                 >
                   {CountryCode.map((ele, i) => (

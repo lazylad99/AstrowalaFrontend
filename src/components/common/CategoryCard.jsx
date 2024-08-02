@@ -2,7 +2,11 @@ import { useState } from "react";
 
 function CategoryCard({ category }) {
   const [isHovered, setIsHovered] = useState(false);
+<<<<<<< HEAD
   const descriptionWordSize = 100
+=======
+  const descriptionWordSize = 100;
+>>>>>>> 297ce6be0807c9b68c6265f47e18dd1e9ef8a05e
 
   return (
     <div

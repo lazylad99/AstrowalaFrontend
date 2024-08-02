@@ -51,8 +51,13 @@ function Categories() {
     <div>
       {/* Categories Section */}
       <div className="relative mx-auto box-content w-full max-w-maxContentTab px-4 py-6 mt-2 lg:max-w-maxContent">
+<<<<<<< HEAD
         <div className="flex justify-between px-2">
           <h1 className="bg-gradient-to-b text-bold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-2xl lg:text-4xl font-semibold lg:w-[60%]">
+=======
+        <div className="flex justify-between">
+          <h1 className="bg-gradient-to-b text-bold from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text text-4xl font-semibold lg:w-[60%]">
+>>>>>>> 297ce6be0807c9b68c6265f47e18dd1e9ef8a05e
             Categories
           </h1>
           <button
