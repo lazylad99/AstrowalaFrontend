@@ -38,6 +38,8 @@ const Home = () => {
     }
   }, [categoryID, dispatch]);
 
+  console.log("testing")
+
   return (
     <>
       <HeroSection />
