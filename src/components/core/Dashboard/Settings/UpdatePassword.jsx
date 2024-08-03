@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { toast } from "react-hot-toast";
+import { toast } from "react-hot-toast"
 
 import { changePassword } from "../../../../services/operations/SettingsAPI"
 import IconBtn from "../../../common/IconBtn"
@@ -14,11 +14,12 @@ export default function UpdatePassword() {
 
   const [showOldPassword, setShowOldPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
-  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
+  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false)
 
   const {
     register,
     handleSubmit,
+    reset, // Import the reset function
     formState: { errors },
   } = useForm()
 
@@ -27,8 +28,9 @@ export default function UpdatePassword() {
     try {
       await changePassword(token, data)
       toast.success("Password Changed Successfully")
+      reset() // Reset the form fields after successful submission
     } catch (error) {
-      toast.error("Could Not Changed Password, Try Again")
+      toast.error("Could Not Change Password, Try Again")
     }
   }
 
@@ -136,22 +138,19 @@ export default function UpdatePassword() {
               )}
             </div>
           </div>
-<div className="flex justify-end gap-2 m-3">
-          <button
-            onClick={() => {
-              navigate("/dashboard/my-profile");
-            }}
-            className="cursor-pointer rounded-md bg-richblack-500 py-2 px-5 font-semibold text-white"
-          >
-            Cancel
-          </button>
-          <IconBtn type="submit" text="Update" />
+          <div className="flex justify-end gap-2 m-3">
+            <button
+              onClick={() => {
+                navigate("/dashboard/my-profile")
+              }}
+              className="cursor-pointer rounded-md bg-richblack-500 py-2 px-5 font-semibold text-white"
+            >
+              Cancel
+            </button>
+            <IconBtn type="submit" text="Update" />
+          </div>
         </div>
-
-        </div>
-
-        
       </form>
     </>
-  );
+  )
 }

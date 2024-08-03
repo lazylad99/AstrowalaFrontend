@@ -6,7 +6,7 @@ import { updateProfile } from "../../../../services/operations/SettingsAPI"
 import IconBtn from "../../../common/IconBtn"
 import ChangeProfilePicture from "./ChangeProfilePicture"
 
-const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
+const genders = ["Male", "Female", "Other"]
 
 export default function EditProfile() {
   const { user } = useSelector((state) => state.profile)
