@@ -30,10 +30,10 @@ const VideoModal = ({ videoUrl, setShowVideo }) => {
   return (
     <div
       id="video-modal-container"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-newBlue bg-opacity-50"
       onClick={handleOutsideClick}
     >
-      <div className="relative bg-black rounded-lg p-10 w-full max-w-4xl">
+      <div className="relative bg-newBlue rounded-lg p-10 w-full max-w-4xl">
         <button
           className="absolute  text-white text-2xl top-2 right-3 text-gray-700"
           onClick={handleClose}

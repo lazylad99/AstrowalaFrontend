@@ -147,7 +147,7 @@ export default function AddCourse() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-4 m-3 rounded-2xl border-[1px]  bg-black text-white p-6 "
+        className="space-y-4 m-3 rounded-2xl border-[1px]  bg-newBlue text-white p-6 "
       >
         <div className="flex flex-col text-white space-y-2">
           <label className="text-sm text-white" htmlFor="courseTitle">

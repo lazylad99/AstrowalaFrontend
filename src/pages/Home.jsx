@@ -2,24 +2,26 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import HighlightText from "../components/core/HomePage/HighlightText";
+// import HighlightText from "../components/core/HomePage/HighlightText";
 import Footer from "../components/common/Footer";
 
 import { getCatalogPageData } from "../services/operations/pageAndComponentData";
 
-import { FaArrowRight } from "react-icons/fa";
-import videoSrc from "../assets/Images/astro_images/heroSection.mp4"; // Replace with your video file
+// import { FaArrowRight } from "react-icons/fa";
+// import videoSrc from "../assets/Images/astro_images/heroSection.mp4"; // Replace with your video file
 
-import { motion } from "framer-motion";
-import { fadeIn } from "./../components/common/motionFrameVarients";
+// import { motion } from "framer-motion";
+// import { fadeIn } from "./../components/common/motionFrameVarients";
 
-import SiteInfo from "../components/common/SiteInfo";
+// import SiteInfo from "../components/common/SiteInfo";
 import MoreInfo from "../components/common/Moreinfo";
 import Features from "../components/common/Features";
-import IconBtn from "../components/common/IconBtn";
+// import IconBtn from "../components/common/IconBtn";
 import CoursesCatalog from "../components/core/HomePage/CoursesCatalog";
-import ContactForm from "../components/core/ContactPage/ContactForm";
+// import ContactForm from "../components/core/ContactPage/ContactForm";
 import { HeroSection } from "../components/core/HomePage/HeroSection";
+import ServiceSection from "../components/common/ServiceSection";
+import PodcastSection from "../components/common/PodcastSection";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -38,15 +40,14 @@ const Home = () => {
     }
   }, [categoryID, dispatch]);
 
-  console.log("testing")
-
   return (
     <>
       <HeroSection />
       <CoursesCatalog />
-      <MoreInfo />
-      <Features />
-         {/* <SiteInfo /> */}
+      <ServiceSection />
+      {/* <MoreInfo /> */}
+      {/* <Features /> */}
+      <PodcastSection/>
       <Footer />
     </>
   );

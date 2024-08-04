@@ -74,7 +74,7 @@ function ReviewSlider() {
           {reviews.map((review, i) => {
             return (
               <SwiperSlide key={i}>
-                <div className="flex flex-col gap-3 bg-black p-3 text-[14px] text-richwhite-25 min-h-[180px] max-h-[180px] glass-bg">
+                <div className="flex flex-col gap-3 bg-newBlue p-3 text-[14px] text-richwhite-25 min-h-[180px] max-h-[180px] glass-bg">
                   <div className="flex items-center gap-4">
                     <Img
                       src={

@@ -83,7 +83,7 @@ export default function MobileProfileDropDown() {
         {open && (
           <div
             onClick={(e) => e.stopPropagation()}
-            className="absolute min-w-[120px] top-[118%] right-0 z-[1000] divide-y-[1px] divide-richwhite-700 overflow-hidden rounded-lg border-[1px] border-richwhite-700 bg-black"
+            className="absolute min-w-[120px] top-[118%] right-0 z-[1000] divide-y-[1px] divide-richwhite-700 overflow-hidden rounded-lg border-[1px] border-richwhite-700 bg-newBlue"
             ref={ref}
           >
             <Link to="/dashboard/instructor" onClick={() => setOpen(false)}>

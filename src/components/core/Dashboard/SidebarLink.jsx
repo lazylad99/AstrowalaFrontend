@@ -27,17 +27,17 @@ export default function SidebarLink({ link, iconName }) {
     <NavLink
       to={link.path}
       onClick={handleClick}
-      className={`relative px-8 py-2 text-sm font-semibold text-white ${
+      className={`relative px-8 py-2 md:py-3 text-sm font-semibold text-white ${
         matchRoute(link.path)
-          ? "bg-richblack-500"
-          : " hover:bg-richblack-500 text-shadow-md duration-200"
+          ? "bg-richblack-500 rounded-lg"
+          : " hover:bg-richblack-500 rounded-lg text-shadow-md duration-200"
       } transition-all `}
     >
-      <span
+      {/* <span
         className={`absolute left-0 top-0 h-full w-[0.15rem] bg-blue-50 ${
           matchRoute(link.path) ? "opacity-100" : "opacity-0"
         }`}
-      ></span>
+      ></span> */}
 
       <div className="flex items-center gap-x-2">
         <Icon className="text-lg" />

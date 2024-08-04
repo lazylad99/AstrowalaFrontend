@@ -67,7 +67,7 @@ export default function InstructorChart({ courses }) {
   };
 
   return (
-    <div className="flex flex-1 flex-col gap-y-4 rounded-xl bg-black p-6">
+    <div className="flex flex-1 flex-col gap-y-4 rounded-xl bg-newBlue p-6">
       <p className="text-lg font-bold text-white">Visualize</p>
 
       <div className="space-x-4 font-semibold">

@@ -40,8 +40,8 @@ const ContactUsForm = () => {
   }, [reset, isSubmitSuccessful]);
 
   return (
-    <div className="relative flex items-center justify-center bg-black">
-      <div className="w-100 p-5 bg-black shadow rounded-lg">
+    <div className="relative flex items-center justify-center bg-newBlue">
+      <div className="w-100 p-5 bg-newBlue  rounded-lg">
         {/* <h2 className="text-2xl text-center text-white">Contact Us</h2> */}
         <form onSubmit={handleSubmit(submitContactForm)} className="flex flex-col gap-7 newform">
           <div className="flex flex-col gap-5 lg:flex-row">

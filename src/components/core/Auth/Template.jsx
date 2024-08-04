@@ -13,7 +13,7 @@ function Template({ title, description1, description2, image, formType }) {
         className="absolute inset-0 object-cover w-full h-full opacity-30"
       />
 
-      <div className="relative flex flex-col lg:flex-row w-11/12 max-w-5xl mx-auto bg-black rounded-lg shadow2">
+      <div className="relative flex flex-col lg:flex-row w-11/12 max-w-5xl mx-auto bg-newBlue rounded-lg shadow2">
         {/* Text container */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center p-6 lg:p-12 bg-white rounded-t-lg lg:rounded-t-none lg:rounded-l-lg">
           <h1 className="text-[1.5rem] lg:text-[1.875rem] font-semibold leading-[2.375rem] text-black">
@@ -28,7 +28,7 @@ function Template({ title, description1, description2, image, formType }) {
         </div>
 
         {/* Form container */}
-        <div className="w-full lg:w-1/2 p-6 pt-0 lg:p-12 bg-black rounded-b-lg lg:rounded-r-lg lg:rounded-bl-none h-auto max-h-[65vh] lg:max-h-[initial] order-2 lg:order-2">
+        <div className="w-full lg:w-1/2 p-6 pt-0 lg:p-12 bg-newBlue rounded-b-lg lg:rounded-r-lg lg:rounded-bl-none h-auto max-h-[65vh] lg:max-h-[initial] order-2 lg:order-2">
           <div className="mt-6">
             {formType === "signup" ? <SignupForm /> : <LoginForm />}
           </div>

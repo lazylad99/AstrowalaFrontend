@@ -65,7 +65,7 @@ export default function EnrolledCourses() {
       </h1>
       <div className="my-8 text-black">
         {/* Headings */}
-        <div className="flex rounded-t-2xl text-white bg-black ">
+        <div className="flex rounded-t-2xl text-white bg-newBlue ">
           <p className="w-full px-5 py-3">Course Name</p>
           {/* <p className="w-1/4 px-2 py-3">Duration</p> */}
           {/* <p className="flex-1 px-2 py-3">Progress</p> */}
