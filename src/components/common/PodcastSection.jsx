@@ -47,7 +47,7 @@ function PodcastSection() {
               />
             ))}
           </div>
-          <a href="https://www.youtube.com/@AstroWala" target="_blank" className="text-md py-3 px-5 rounded-md bg-newBlue text-white mt-3 hover:scale-105 transition-all">
+          <a href="https://www.youtube.com/@AstroWala" target="_blank" className=" text-md py-3 px-5 rounded-md bg-newBlue text-white  hover:scale-105 transition-all">
             Watch Now
           </a>
         </div>

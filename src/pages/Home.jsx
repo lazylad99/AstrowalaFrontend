@@ -22,6 +22,7 @@ import CoursesCatalog from "../components/core/HomePage/CoursesCatalog";
 import { HeroSection } from "../components/core/HomePage/HeroSection";
 import ServiceSection from "../components/common/ServiceSection";
 import PodcastSection from "../components/common/PodcastSection";
+import TestimonialSection from "../components/common/TestimonialSection";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const Home = () => {
       {/* <MoreInfo /> */}
       {/* <Features /> */}
       <PodcastSection/>
+      <TestimonialSection/>
       <Footer />
     </>
   );
