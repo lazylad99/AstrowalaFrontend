@@ -14,7 +14,7 @@ function PodcastSection() {
     img5
   ];
   return (
-    <div className="relative mx-auto box-content w-full max-w-maxContentTab px-4 pb-4 mb-12 lg:max-w-maxContent">
+    <div className="relative mx-auto box-content w-full max-w-maxContentTab px-4 pb-4 mb-12 mt-5 lg:max-w-maxContent">
       <div className="sm:flex items-center w-full">
         <div className="sm:flex flex-col gap-6 items-start justify-between w-full sm:w-[60%] mr-5 sm:mr-0">
           <h1 className="text-3xl font-semibold text-start ">

@@ -54,7 +54,7 @@ const ServiceSection = () => {
   ];
 
   return (
-    <div className="services_bg">
+    <div className="testimonial_bg">
       <section className="relative mx-auto box-content w-full max-w-maxContentTab px-4 pb-4 mb-12 lg:max-w-maxContent lg:w-full ">
         <div className="flex flex-col items-center justify-center">
           <h2 className="text-3xl font-semibold text-center">Our Services</h2>

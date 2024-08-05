@@ -85,7 +85,7 @@ function TestimonialSection() {
   };
 
   return (
-    <div>
+    <div className="testimonial_bg mb-5 py-5">
       <section className="relative mx-auto box-content w-full max-w-maxContentTab px-4 pb-4 mb-12 lg:max-w-maxContent lg:w-full">
         <div className="flex flex-col gap-4 items-center ">
           <div className="flex flex-col items-center w-full mb-8 lg:w-1/2 lg:mb-0">

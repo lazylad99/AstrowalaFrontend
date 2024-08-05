@@ -474,6 +474,20 @@ nav li a {
   background-position: center;
   background-repeat: no-repeat;
 }
+.testimonial_bg {
+  background-image: url('./assets/Images/testimonialBg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.nocount_bg {
+  background-image: url('./assets/Images/noshowbg (1).jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
 
 
 /* form css */

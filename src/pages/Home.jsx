@@ -23,6 +23,9 @@ import { HeroSection } from "../components/core/HomePage/HeroSection";
 import ServiceSection from "../components/common/ServiceSection";
 import PodcastSection from "../components/common/PodcastSection";
 import TestimonialSection from "../components/common/TestimonialSection";
+import WhyChooseUs from "../components/common/WhyChooseUs";
+import NoCountSection from "../components/common/NoCountSection";
+import FaqSection from "../components/common/FaqSection";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -46,10 +49,13 @@ const Home = () => {
       <HeroSection />
       <CoursesCatalog />
       <ServiceSection />
+      <WhyChooseUs/>
+      <NoCountSection/>
       {/* <MoreInfo /> */}
       {/* <Features /> */}
       <PodcastSection/>
       <TestimonialSection/>
+      <FaqSection/>
       <Footer />
     </>
   );
