@@ -104,16 +104,8 @@ export default function Profile() {
               <div className="flex flex-col justify-center rounded-2xl bg-richblack-400 bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Phone Number</p>
                 <p className="text-base font-medium text-navy-700">
-                  {user?.additionalDetails?.contactNumber ? (
-                    user.additionalDetails.contactNumber
-                  ) : (
-                    <span
-                      className="cursor-pointer"
-                      onClick={() => navigate("/dashboard/edit-profile")}
-                    >
-                      Add Contact Number
-                    </span>
-                  )}
+                  {user?.additionalDetails?.contactNumber ? 
+                    user.additionalDetails.contactNumber : "Add Contact Number" }
                 </p>
               </div>
             </div>

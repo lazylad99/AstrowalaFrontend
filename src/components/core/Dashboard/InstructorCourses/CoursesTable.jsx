@@ -20,7 +20,7 @@ import toast from "react-hot-toast";
 import Tab from "../../../common/Tab";
 import CourseCard from "./CourseCard";
 import Modal from "../../../../components/common/Modal";
-import EnrollStudentsForm from "./EnrollStudentsForm";
+// import EnrollStudentsForm from "./EnrollStudentsForm";
 
 export default function CoursesTable({
   courses,
@@ -284,11 +284,11 @@ export default function CoursesTable({
                             }
                           ></IconBtn>
                         </button>
-                        <IconBtn customClasses={'h-[40px] w-[195px] z-40 m-2'} onclick={(event) =>{
+                        {/* <IconBtn customClasses={'h-[40px] w-[195px] z-40 m-2'} onclick={(event) =>{
                           event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
                            setShowModal(true)}}>
                           Enroll Students
-                        </IconBtn>
+                        </IconBtn> */}
                       </div>
                     </Tr>
                   </Tr>
@@ -319,9 +319,9 @@ export default function CoursesTable({
         )}
       </div>
 
-      <Modal showModal={showModal} setShowModal={setShowModal}>
+      {/* <Modal showModal={showModal} setShowModal={setShowModal}>
   <EnrollStudentsForm setShowModal={setShowModal} courses={courses} />
-</Modal>
+</Modal> */}
 
 
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
