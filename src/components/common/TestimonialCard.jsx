@@ -1,6 +1,6 @@
-import defaultAvtar from "../../assets/Images/Horoscope Imgs/podcast3.webp"
+import img1 from "../../assets/Images/testimonialdp.png";
 function TestimonialCard({ image, name, review }) {
-    const defaultImage = defaultAvtar; // Replace with your default image path
+    const defaultImage = img1; // Replace with your default image path
   
     return (
       <div className="flex flex-col items-center p-4 bg-white rounded-lg  w-[250px] border-2 border-pure-greys-100">

@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import TestimonialCard from "./TestimonialCard";
-import img1 from "../../assets/Images/Horoscope Imgs/podcast1.webp";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -9,47 +9,34 @@ function TestimonialSection() {
   const testimonials = [
     {
       id: 1,
-      image: img1,
-      name: "John Doe",
+      image: "",
+      name: "Shhimonaa Sharma",
       review:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien egestas tincidunt. Nullam nec purus nec purus ultricies.",
+        "Numerology is very easy & best with astrowala.com. Acharya ji trained course very well. Thanks.",
     },
     {
       id: 2,
       image: "",
-      name: "Jane Doe",
+      name: "Ramesh Roshan",
       review:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien egestas tincidunt. Nullam nec purus nec purus ultricies.",
+        "I consulted with astrowala.com for my job & by doing 2 remedies only I got my job.",
     },
     {
       id: 3,
       image: "",
-      name: "John Doe",
+      name: "Rohan Sharma",
       review:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien egestas tincidunt. Nullam nec purus nec purus ultricies.",
+        "Remedies in Numerology by astrology are very very good & nominal too. By small small remedies I achieved my goal.",
     },
     {
       id: 4,
       image: "",
-      name: "Jane Doe",
+      name: "Sushmita Rao",
       review:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien egestas tincidunt. Nullam nec purus nec purus ultricies.",
-    },
-    {
-      id: 5,
-      image: "",
-      name: "John Doe",
-      review:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien egestas tincidunt. Nullam nec purus nec purus ultricies.",
-    },
-    {
-      id: 6,
-      image: "",
-      name: "Jane Doe",
-      review:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien egestas tincidunt. Nullam nec purus nec purus ultricies.",
+        "I was 35 years old and my marriage was not happening, I didn't know why. Astrowala.com gave me one remedy only & I'm married now.",
     },
   ];
+  
 
   const settings = {
     dots: true,
@@ -85,7 +72,7 @@ function TestimonialSection() {
   };
 
   return (
-    <div className="testimonial_bg mb-5 py-5">
+    <div className="testimonial_bg py-5">
       <section className="relative mx-auto box-content w-full max-w-maxContentTab px-4 pb-4 mb-12 lg:max-w-maxContent lg:w-full">
         <div className="flex flex-col gap-4 items-center ">
           <div className="flex flex-col items-center w-full mb-8 lg:w-1/2 lg:mb-0">
