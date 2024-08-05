@@ -26,6 +26,7 @@ import TestimonialSection from "../components/common/TestimonialSection";
 import WhyChooseUs from "../components/common/WhyChooseUs";
 import NoCountSection from "../components/common/NoCountSection";
 import FaqSection from "../components/common/FaqSection";
+import WhyChooseUs1 from "../components/common/WhyChooseUs1";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -49,7 +50,8 @@ const Home = () => {
       <HeroSection />
       <CoursesCatalog />
       <ServiceSection />
-      <WhyChooseUs/>
+      {/* <WhyChooseUs/> */}
+      <WhyChooseUs1/>
       <NoCountSection/>
       {/* <MoreInfo /> */}
       {/* <Features /> */}

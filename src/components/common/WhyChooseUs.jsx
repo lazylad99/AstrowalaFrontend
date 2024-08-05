@@ -33,7 +33,7 @@ function WhyChooseUs() {
     },
     {
       id: 6,
-      title: 'Free Daily & Weekly Horoscopes',
+      title: 'Free Horoscopes',
       description: 'Get free daily and weekly horoscopes to know what the stars have in store for you.',
       icon: 'path/to/horoscope-icon.svg', // Replace with your icon path
     },{
@@ -43,7 +43,7 @@ function WhyChooseUs() {
       icon: 'path/to/vastu-icon.svg', // Replace with your icon path
     },{
       id: 8,
-      title: 'Safe and Secure Platform',
+      title: 'Secure Platform',
       description: 'We ensure your privacy and data security with our safe and secure platform.',
       icon: 'path/to/security-icon.svg', // Replace with your icon path
     }
