@@ -4,14 +4,13 @@ import { RiEditBoxLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { formattedDate } from "../../../utils/dateFormatter";
-import IconBtn from "../../common/IconBtn";
 import Img from "./../../common/Img";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.profile);
   const navigate = useNavigate();
   console.log(user);
-  
+
   // Scroll to the top of the page when the component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,7 +36,6 @@ export default function Profile() {
                 {user?.firstName + " " + user?.lastName}
               </h4>
               <p className="text-base font-normal text-pure-greys-50 ">
-             <p className="text-base font-normal text-pure-greys-50 ">
                 {user?.email}
               </p>
             </div>
@@ -46,7 +44,7 @@ export default function Profile() {
               <div className="flex justify-between">
                 <h4 className="px-2 text-xl font-bold text-white">About</h4>
                 <div
-                  className=" cursor-pointer text-white p-2 rounded-full bg-pure-greys-200 font-bold"
+                  className="cursor-pointer text-white p-2 rounded-full bg-pure-greys-200 font-bold"
                   onClick={() => navigate("/dashboard/edit-profile")}
                 >
                   <RiEditBoxLine />
@@ -105,8 +103,9 @@ export default function Profile() {
               <div className="flex flex-col justify-center rounded-2xl bg-richblack-400 bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Phone Number</p>
                 <p className="text-base font-medium text-navy-700">
-                  {user?.additionalDetails?.contactNumber ? 
-                    user.additionalDetails.contactNumber : "Add Contact Number" }
+                  {user?.additionalDetails?.contactNumber
+                    ? user.additionalDetails.contactNumber
+                    : "Add Contact Number"}
                 </p>
               </div>
             </div>
