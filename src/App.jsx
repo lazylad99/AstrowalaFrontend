@@ -45,6 +45,7 @@ import Categories from "./pages/Categories";
 import StudentVideosTable from "./components/core/Dashboard/InstructorCourses/StudentVideosTable";
 import EditProfile from "./components/core/Dashboard/Settings/EditProfile";
 import ServiceSection from "./components/common/ServiceSection";
+import ServiceSection from "./components/common/ServiceSection";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
