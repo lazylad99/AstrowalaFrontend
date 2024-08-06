@@ -468,8 +468,12 @@ nav li a {
   background-repeat: no-repeat;
 }
 
-.services_bg {
-  background-image: url('./assets/Images/sevice.jpg');
+.bg-course-details3 {
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),  /* Adjust the opacity (0.5 for 50% opacity) */
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('./assets/Images/astro_images/black1.jpg'); /* Update the path as necessary */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -578,3 +582,23 @@ nav li a {
   font-size: 1.125rem;
   font-weight: 600;
 }
+
+.email-display {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 1000;
+  font-size: 16px;
+  display: none; /* Initially hidden */
+}
+
+.video-js:fullscreen .email-display {
+  display: block; /* Show email display in fullscreen */
+  position: fixed; /* Ensure it is fixed at the top right corner of the screen */
+}
+
+

@@ -39,7 +39,6 @@ import AddVideos from "./components/core/Dashboard/InstructorCourses/AddVideos";
 import VideosTable from "./components/core/Dashboard/InstructorCourses/VideosTable";
 import ViewVideo from "./components/core/Dashboard/InstructorCourses/ViewVideo";
 import EditVideo from "./components/core/Dashboard/InstructorCourses/EditVideo";
-import HandlePayment from "./components/core/Dashboard/Handle Payment/HandlePayment";
 import Profile from "./components/core/Dashboard/Profile";
 import Categories from "./pages/Categories";
 import StudentVideosTable from "./components/core/Dashboard/InstructorCourses/StudentVideosTable";
@@ -194,8 +193,8 @@ function App() {
               <Route path="dashboard/add-course" element={<AddCourse />} />
               <Route path="dashboard/my-courses" element={<MyCourses />} />
               <Route
-                path="dashboard/handlePayment"
-                element={<HandlePayment />}
+                path="dashboard/enroll-students"
+                element={<EnrollStudents />}
               />
               <Route
                 path="dashboard/:courseId/add-videos"

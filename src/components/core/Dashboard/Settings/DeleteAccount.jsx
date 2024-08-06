@@ -10,11 +10,12 @@ export default function DeleteAccount() {
 
   const [confirmationModal, setConfirmationModal] = useState(null);
   const [check, setCheck] = useState(false);
-
+  const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const userId = user._id;
 
 
   return (
@@ -55,7 +56,7 @@ export default function DeleteAccount() {
                   text2: "Delete my account...!",
                   btn1Text: "Delete",
                   btn2Text: "Cancel",
-                  btn1Handler: () => dispatch(deleteProfile(token, navigate)),
+                  btn1Handler: () => dispatch(deleteProfile(token, userId, navigate)),
                   btn2Handler: () => {
                     setConfirmationModal(null);
                     setCheck(false);

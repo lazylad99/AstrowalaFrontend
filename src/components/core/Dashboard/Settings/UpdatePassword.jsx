@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-hot-toast"
 
 import { changePassword } from "../../../../services/operations/SettingsAPI"
 import IconBtn from "../../../common/IconBtn"
@@ -13,11 +14,12 @@ export default function UpdatePassword() {
 
   const [showOldPassword, setShowOldPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
-  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
+  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false)
 
   const {
     register,
     handleSubmit,
+    reset, // Import the reset function
     formState: { errors },
   } = useForm()
 
@@ -25,21 +27,24 @@ export default function UpdatePassword() {
     console.log("password Data - ", data)
     try {
       await changePassword(token, data)
+      toast.success("Password Changed Successfully")
+      reset() // Reset the form fields after successful submission
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
+      toast.error("Could Not Change Password, Try Again")
     }
   }
 
   return (
     <>
       <form onSubmit={handleSubmit(submitPasswordForm)}>
-        <div className="my-3 flex flex-col gap-y-2 rounded-md border-[1px] border-richwhite-700 bg-newBlue p-8 px-6 sm:px-12">
+
+         <div className="my-3 flex flex-col gap-y-2 rounded-md border-[1px] border-richwhite-700 bg-newBlue p-8 px-6 sm:px-12">
           <h2 className="text-lg font-semibold text-white">Update Password</h2>
 
-          <div className="flex flex-col gap-5 lg:flex-row">
+          <div className="flex flex-col gap-3 justify-evenly lg:flex-row">
             {/* Current Password */}
             <div className="relative flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="oldPassword" className="lable-style">
+              <label htmlFor="oldPassword" className="text-white">
                 Current Password
               </label>
 
@@ -54,7 +59,7 @@ export default function UpdatePassword() {
 
               <span
                 onClick={() => setShowOldPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+                className="absolute right-3 top-[45px] z-[10] cursor-pointer"
               >
                 {showOldPassword ? (
                   <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
@@ -72,7 +77,7 @@ export default function UpdatePassword() {
 
             {/* new password */}
             <div className="relative flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="newPassword" className="lable-style">
+              <label htmlFor="newPassword" className="text-white">
                 New Password
               </label>
 
@@ -87,7 +92,7 @@ export default function UpdatePassword() {
 
               <span
                 onClick={() => setShowNewPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+                className="absolute right-3 top-[45px] z-[10] cursor-pointer"
               >
                 {showNewPassword ? (
                   <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
@@ -104,7 +109,7 @@ export default function UpdatePassword() {
 
             {/*confirm new password */}
             <div className="relative flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="confirmNewPassword" className="lable-style">
+              <label htmlFor="confirmNewPassword" className="text-white">
                 Confirm New Password
               </label>
 
@@ -119,7 +124,7 @@ export default function UpdatePassword() {
 
               <span
                 onClick={() => setShowConfirmNewPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+                className="absolute right-3 top-[45px] z-[10] cursor-pointer"
               >
                 {showConfirmNewPassword ? (
                   <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
@@ -134,22 +139,19 @@ export default function UpdatePassword() {
               )}
             </div>
           </div>
-<div className="flex justify-end gap-2 m-3">
-          <button
-            onClick={() => {
-              navigate("/dashboard/my-profile");
-            }}
-            className="cursor-pointer rounded-md bg-richblack-500 py-2 px-5 font-semibold text-white"
-          >
-            Cancel
-          </button>
-          <IconBtn type="submit" text="Update" />
+          <div className="flex justify-end gap-2 m-3">
+            <button
+              onClick={() => {
+                navigate("/dashboard/my-profile")
+              }}
+              className="cursor-pointer rounded-md bg-richblack-500 py-2 px-5 font-semibold text-white"
+            >
+              Cancel
+            </button>
+            <IconBtn type="submit" text="Update" />
+          </div>
         </div>
-
-        </div>
-
-        
       </form>
     </>
-  );
+  )
 }

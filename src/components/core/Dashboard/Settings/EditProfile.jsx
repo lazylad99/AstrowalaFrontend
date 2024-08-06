@@ -1,20 +1,36 @@
-import { useForm } from "react-hook-form"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { updateProfile } from "../../../../services/operations/SettingsAPI"
-import IconBtn from "../../../common/IconBtn"
-import ChangeProfilePicture from "./ChangeProfilePicture"
+import { updateProfile } from "../../../../services/operations/SettingsAPI";
+import IconBtn from "../../../common/IconBtn";
+import ChangeProfilePicture from "./ChangeProfilePicture";
 
-const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
+const genders = ["Male", "Female", "Other"];
 
 export default function EditProfile() {
-  const { user } = useSelector((state) => state.profile)
-  const { token } = useSelector((state) => state.auth)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.profile);
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  function formatDate(date) {
+    if (!(date instanceof Date) || isNaN(date.getTime())) {
+      return ''; // Return empty string if the date is invalid
+    }
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+   
+
+  // Ensure dob is converted to Date object if it is a string
+  const dobString = user?.additionalDetails?.dob;
+  const dob = dobString ? new Date(dobString) : null;
+  <log>   </log>
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const submitProfileForm = async (data) => {
     try {
@@ -24,12 +40,12 @@ export default function EditProfile() {
       console.log("ERROR MESSAGE - ", error.message);
     }
   };
-  
+
   return (
     <>
-      <h1 className="mb-5 text-3xl font-medium text-black font-boogaloo text-center sm:text-left">
+      <h1 className="bg-gradient-to-b font-semibold mb-5 from-[#0b0b0b] via-[#464545] to-[#aaa8a8] text-transparent bg-clip-text lg:text-4xl text-3xl">
         Edit Profile
-      </h1>      
+      </h1>
       <ChangeProfilePicture />
 
       <form className="text-white" onSubmit={handleSubmit(submitProfileForm)}>
@@ -68,7 +84,7 @@ export default function EditProfile() {
                 type="text"
                 name="lastName"
                 id="lastName"
-                placeholder="Enter first name"
+                placeholder="Enter last name"
                 className="form-style"
                 {...register("lastName", { required: true })}
                 defaultValue={user?.lastName}
@@ -101,7 +117,7 @@ export default function EditProfile() {
                     message: "Date of Birth cannot be in the future.",
                   },
                 })}
-                defaultValue={user?.dob}
+                defaultValue={formatDate(dob)}
               />
               {errors.dob && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
@@ -122,17 +138,15 @@ export default function EditProfile() {
                 {...register("gender", { required: true })}
                 defaultValue={user?.additionalDetails?.gender}
               >
-                {genders.map((ele, i) => {
-                  return (
-                    <option key={i} value={ele}>
-                      {ele}
-                    </option>
-                  );
-                })}
+                {genders.map((gender, index) => (
+                  <option key={index} value={gender}>
+                    {gender}
+                  </option>
+                ))}
               </select>
               {errors.gender && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your Date of Birth.
+                  Please select your gender.
                 </span>
               )}
             </div>
@@ -185,23 +199,18 @@ export default function EditProfile() {
                 </span>
               )}
             </div>
+          </div>
 
-            
-          </div><div className="flex justify-end  gap-2">
-          <button
-            onClick={() => {
-              navigate("/dashboard/my-profile");
-            }}
-            className="cursor-pointer rounded-md bg-richblack-500 py-2 px-5 font-semibold text-white"
-          >
-            Cancel
-          </button>
-          <IconBtn type="submit" text="Save" />
+          <div className="flex justify-end gap-2">
+            <button
+              onClick={() => navigate("/dashboard/my-profile")}
+              className="cursor-pointer rounded-md bg-richblack-500 py-2 px-5 font-semibold text-white"
+            >
+              Cancel
+            </button>
+            <IconBtn type="submit" text="Save" />
+          </div>
         </div>
-        
-        </div>
-
-        
       </form>
     </>
   );

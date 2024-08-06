@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 // import ProgressBar from "@ramonak/react-progress-bar";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
 import Img from "./../../common/Img";
@@ -52,9 +53,15 @@ export default function EnrolledCourses() {
   // return if data is null
   if (enrolledCourses?.length === 0) {
     return (
-      <p className="grid h-[50vh] w-full place-content-center text-center text-black text-3xl">
-        You have not enrolled in any course yet.
-      </p>
+      <div className="flex flex-col justify-center items-center rounded-md h-[75vh] p-6 py-20">
+        <p className="w-full place-content-center text-center text-black text-3xl">
+          You have not enrolled in any course yet.
+        </p>
+
+        <Link to="/categories">
+          <button className="button-36">Buy Course</button>
+        </Link>
+      </div>
     );
   }
 
@@ -93,7 +100,7 @@ export default function EnrolledCourses() {
             <div
               className="flex flex-col sm:flex-row sm:items-center gap-4 w-full cursor-pointer"
               onClick={() => navigate(`/dashboard/${course._id}/videos`)}
-              >
+            >
               <Img
                 src={course.thumbnailUrl}
                 alt="course_img"
@@ -106,13 +113,14 @@ export default function EnrolledCourses() {
                 </p>
                 <p className="pb-4">
                   {
-                  // course.courseDescription.split(" ").length > TRUNCATE_LENGTH
-                  //   ? course.courseDescription
-                  //       .split(" ")
-                  //       .slice(0, TRUNCATE_LENGTH)
-                  //       .join(" ") + "..."
-                  //   : 
-                    course.courseDescription}
+                    // course.courseDescription.split(" ").length > TRUNCATE_LENGTH
+                    //   ? course.courseDescription
+                    //       .split(" ")
+                    //       .slice(0, TRUNCATE_LENGTH)
+                    //       .join(" ") + "..."
+                    //   :
+                    course.courseDescription
+                  }
                 </p>
               </div>
             </div>

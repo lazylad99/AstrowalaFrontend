@@ -14,6 +14,7 @@ import { MdOutlineContactPhone } from "react-icons/md"
 import { TbMessage2Plus } from "react-icons/tb"
 import { PiNotebook } from "react-icons/pi"
 import { fetchCourseCategories } from './../../../services/operations/courseDetailsAPI';
+import { ACCOUNT_TYPE } from "../../../utils/constants";
 
 
 // const CatalogDropDown = ({ subLinks }) => {
@@ -86,12 +87,7 @@ export default function MobileProfileDropDown() {
             className="absolute min-w-[120px] top-[118%] right-0 z-[1000] divide-y-[1px] divide-richwhite-700 overflow-hidden rounded-lg border-[1px] border-richwhite-700 bg-newBlue"
             ref={ref}
           >
-            <Link to="/dashboard/instructor" onClick={() => setOpen(false)}>
-              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white">
-                <VscDashboard className="text-lg" />
-                Dashboard
-              </div>
-            </Link>
+            
 
             <Link to="/" onClick={() => setOpen(false)}>
               <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white border-y border-richwhite-700 ">
@@ -99,6 +95,22 @@ export default function MobileProfileDropDown() {
                 Home
               </div>
             </Link>
+
+          {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR ? 
+            <Link to="/dashboard/instructor" onClick={() => setOpen(false)}>
+              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white border-y border-richwhite-700 ">
+              <VscDashboard className="text-lg" />
+                Dashboard
+              </div>
+            </Link> :
+
+            <Link to="/dashboard/my-profile" onClick={() => setOpen(false)}>
+              <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white border-y border-richwhite-700 ">
+              <VscDashboard className="text-lg" />
+              Profile
+            </div>
+          </Link>  }
+
 
             <Link to="/categories" onClick={() => setOpen(false)}>
               <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white">

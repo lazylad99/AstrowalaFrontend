@@ -21,6 +21,7 @@ function Catalog() {
         try {
           const res = await getCatalogPageData(catID);
           setCatalogPageData(res);
+          console.log(res)
         } catch (error) {
           console.log("Error fetching catalog data:", error);
         }

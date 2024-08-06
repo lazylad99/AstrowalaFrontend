@@ -32,7 +32,7 @@ const ContactDetails = () => {
       {contactDetails.map((ele, i) => {
         let Icon = Icon1[ele.icon] || Icon2[ele.icon] || Icon3[ele.icon];
         return (
-          <div className="flex flex-col gap-6 rounded-xl bg-newBlue p-4 m-2 mb-5  lg:p-6 hover:scale-105 transition-all" >
+<div className="flex flex-col gap-6 rounded-xl bg-black p-4 m-2 mb-5 lg:p-6 hover:scale-105 transition-all" >          
           <div
             className="flex flex-col gap-[2px] p-3 text-sm text-white"
             key={i}
@@ -45,8 +45,8 @@ const ContactDetails = () => {
               </h1>
             </div>
 
-            <p className="font-medium">{ele?.description}</p>
-            <p className="font-semibold">{ele?.details}</p>
+            <p className="font-normal">{ele?.description}</p>
+            <p className="font-normal">{ele?.details}</p>
           </div></div>
         );
       })}

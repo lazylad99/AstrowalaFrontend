@@ -11,6 +11,7 @@ export default function Profile() {
   const { user } = useSelector((state) => state.profile);
   const navigate = useNavigate();
   console.log(user);
+  
   // Scroll to the top of the page when the component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -36,11 +37,11 @@ export default function Profile() {
                 {user?.firstName + " " + user?.lastName}
               </h4>
               <p className="text-base font-normal text-pure-greys-50 ">
+             <p className="text-base font-normal text-pure-greys-50 ">
                 {user?.email}
               </p>
             </div>
 
-  
             <div className="mt-2 mb-8 w-full text-black">
               <div className="flex justify-between">
                 <h4 className="px-2 text-xl font-bold text-white">About</h4>
@@ -52,8 +53,7 @@ export default function Profile() {
                 </div>
               </div>
               <p className="mt-2 px-2 text-base text-pure-greys-50">
-                {user?.additionalDetails?.about ??
-                  "Write Something About Yourself"}
+                {user?.additionalDetails?.about ?? "Write Something About Yourself"}
               </p>
             </div>
 
@@ -69,22 +69,35 @@ export default function Profile() {
               <div className="flex flex-col justify-center rounded-2xl bg-richblack-400 bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Gender</p>
                 <p className="text-base font-medium text-navy-700">
-                  {user?.additionalDetails?.gender ?? "Add Gender"}
+                  {user?.additionalDetails?.gender ? (
+                    user.additionalDetails.gender
+                  ) : (
+                    <span
+                      className="cursor-pointer"
+                      onClick={() => navigate("/dashboard/edit-profile")}
+                    >
+                      Add Gender
+                    </span>
+                  )}
                 </p>
               </div>
 
               <div className="flex flex-col justify-center rounded-2xl bg-richblack-400 bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <div className="flex justify-between">
                   <p className="text-sm text-gray-600">Date Of Birth</p>
-                  {/* <RiEditBoxLine
-                    className="ml-2 cursor-pointer text-white"
-                    onClick={() => navigate("/dashboard/edit-profile")}
-                  /> */}
                 </div>
                 <div className="flex items-center">
-                  <p className="  text-base font-medium text-navy-700">
-                    {formattedDate(user?.additionalDetails?.dob) ??
-                      "Add Date Of Birth"}
+                  <p className="text-base font-medium text-navy-700">
+                    {user?.additionalDetails?.dob ? (
+                      formattedDate(user.additionalDetails.dob)
+                    ) : (
+                      <span
+                        className="cursor-pointer"
+                        onClick={() => navigate("/dashboard/edit-profile")}
+                      >
+                        Add Date Of Birth
+                      </span>
+                    )}
                   </p>
                 </div>
               </div>
@@ -92,8 +105,8 @@ export default function Profile() {
               <div className="flex flex-col justify-center rounded-2xl bg-richblack-400 bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Phone Number</p>
                 <p className="text-base font-medium text-navy-700">
-                  {user?.additionalDetails?.contactNumber ??
-                    "Add Contact Number"}
+                  {user?.additionalDetails?.contactNumber ? 
+                    user.additionalDetails.contactNumber : "Add Contact Number" }
                 </p>
               </div>
             </div>

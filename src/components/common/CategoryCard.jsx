@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function CategoryCard({ category }) {
   const [isHovered, setIsHovered] = useState(false);
+  const descriptionWordSize = 100;
 
   return (
     <div
@@ -16,7 +17,10 @@ function CategoryCard({ category }) {
           {category.name}
         </h5>
         <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-          {category.description}
+          {/* {category.description} */}
+          {category.description.length > descriptionWordSize
+            ? category.description.substring(0, descriptionWordSize) + "..."
+            : category.description}
         </p>
       </div>
     </div>

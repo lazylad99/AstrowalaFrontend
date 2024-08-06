@@ -179,14 +179,15 @@ export default function Instructor() {
         </div>
       ) : (
         <div className="mt-20 rounded-md bg-newBlue p-6 py-20">
+         <div className="mt-20 rounded-md bg-newBlue p-6 py-20">
           <p className="text-center text-2xl font-bold text-white">
-            You have not created any courses yet
+            You have not created any courses yet.
           </p>
 
           <Link to="/dashboard/add-course">
-            <p className="mt-1 text-center text-lg font-semibold text-yellow-50">
-              Create a course
-            </p>
+            <button className="button-36">
+              Add course
+            </button>
           </Link>
         </div>
       )}
