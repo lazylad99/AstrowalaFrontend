@@ -91,7 +91,7 @@ const VideoDetails = () => {
         >
           <GiReturnArrow className="w-10 h-10 text-yellow-100 hover:text-yellow-50 cursor-pointer" />
         </div>
-        <div className="space-y-8 m-5 rounded-md border-[1px] border-richwhite-700 bg-black p-6">
+        <div className="space-y-8 m-5 rounded-md border-[1px] border-richwhite-700 bg-newBlue p-6">
           <div>
             <h1 className="text-2xl font-medium text-white">
               {videoData?.title}

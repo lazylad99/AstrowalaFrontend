@@ -50,7 +50,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-3.5rem)] w-[320px] max-w-[350px] flex-col border-r-[1px] border-r-richwhite-700 bg-black">
+      <div className="flex h-[calc(100vh-3.5rem)] w-[320px] max-w-[350px] flex-col border-r-[1px] border-r-richwhite-700 bg-newBlue">
         <div className="mx-5 flex flex-col items-start justify-between gap-2 gap-y-4 border-b border-richwhite-600 py-5 text-lg font-bold text-richwhite-25">
           <div className="flex w-full items-center justify-between ">
             {/* open - close side bar icons */}

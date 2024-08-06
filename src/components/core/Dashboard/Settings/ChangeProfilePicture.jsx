@@ -61,7 +61,7 @@ export default function ChangeProfilePicture() {
 
   return (
     <>
-      <div className="flex flex-col mb-0  justify-between rounded-t-md pt-8 bg-black p-4 px-3 sm:px-12 text-white">
+      <div className="flex flex-col mb-0  justify-between rounded-t-md pt-8 bg-newBlue p-4 px-3 sm:px-12 text-white">
         <h2 className="text-lg font-semibold text-white mb-2">
           Change Profile Picture
         </h2>

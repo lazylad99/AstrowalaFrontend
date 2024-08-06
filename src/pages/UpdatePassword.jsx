@@ -69,7 +69,7 @@ function UpdatePassword() {
                 style={{
                   boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                 }}
-                className="w-full rounded-[0.5rem] bg-black p-[12px] text-black "
+                className="w-full rounded-[0.5rem] bg-newBlue p-[12px] text-black "
               />
               <span
                 onClick={() => setShowPassword((prev) => !prev)}
@@ -97,7 +97,7 @@ function UpdatePassword() {
                 style={{
                   boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                 }}
-                className="w-full rounded-[0.5rem] bg-black p-[12px] text-black "
+                className="w-full rounded-[0.5rem] bg-newBlue p-[12px] text-black "
               />
               <span
                 onClick={() => setShowConfirmPassword((prev) => !prev)}

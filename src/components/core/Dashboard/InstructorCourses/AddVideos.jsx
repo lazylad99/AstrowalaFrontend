@@ -67,7 +67,7 @@ export default function AddVideo() {
 
   return (
     <div className="container mx-auto mt-4">
-      <div className="max-w-4xl mx-auto bg-black p-8 rounded-lg shadow-lg">
+      <div className="max-w-4xl mx-auto bg-newBlue p-8 rounded-lg shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
           {fields.map((field, index) => (
             <div key={field.id} className="mb-4">

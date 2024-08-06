@@ -19,6 +19,7 @@ module.exports = {
     colors: {
       white: "#ffffff",
       black: "#000000",
+      newBlue: "#00274D",
       transparent: "#ffffff00",
       formColor: '#050C9C',
       'button-color': '#EE6368',
