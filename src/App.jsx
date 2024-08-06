@@ -44,6 +44,7 @@ import Categories from "./pages/Categories";
 import StudentVideosTable from "./components/core/Dashboard/InstructorCourses/StudentVideosTable";
 import EditProfile from "./components/core/Dashboard/Settings/EditProfile";
 import ServiceSection from "./components/common/ServiceSection";
+import EnrollStudents from "./components/core/Dashboard/HandlePayment/EnrollStudents";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -194,6 +195,7 @@ function App() {
               <Route path="dashboard/my-courses" element={<MyCourses />} />
               <Route
                 path="dashboard/enroll-students"
+                // error here in main repo
                 element={<EnrollStudents />}
               />
               <Route
