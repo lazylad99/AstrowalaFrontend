@@ -196,6 +196,7 @@ function App() {
               <Route path="dashboard/my-courses" element={<MyCourses />} />
               <Route
                 path="dashboard/enroll-students"
+                // error here in main repo
                 element={<EnrollStudents />}
               />
               <Route
