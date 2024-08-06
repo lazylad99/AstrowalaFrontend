@@ -83,3 +83,7 @@ export const settingsEndpoints = {
 export const certificateEndpoints = {
   GENERATE_UPLOAD_CERTIFICATE: BASE_URL + "/certificate"
 }
+
+export const directCourseAccessEndpoints = {
+  DIRECT_ENROLL_STUDENTS_API: BASE_URL + "/payment/enroll-directly",
+}

@@ -14,6 +14,7 @@ import video_bg from "../../../../assets/Images/video_bg.png";
 import Tab from "../../../common/Tab";
 import Img from "../../../common/Img";
 import {
+  deleteVideo,
   fetchCourseVideos,
   toggleVideoPublishStatus,
 } from "../../../../services/operations/videoAPI";
@@ -52,18 +53,18 @@ const VideosTable = () => {
 
 
 
-  // const handleVideoDelete = async (videoId) => {
-  //   setLoading(true);
-  //   const toastId = toast.loading("Deleting...");
-  //   await deleteVideo({ videoId }, token);
-  //   const result = await fetchCourseVideos(courseId, token);
-  //   if (result) {
-  //     setVideos(result);
-  //   }
-  //   setConfirmationModal(null);
-  //   setLoading(false);
-  //   toast.dismiss(toastId);
-  // };
+  const handleVideoDelete = async (videoId) => {
+    setLoading(true);
+    // const toastId = toast.loading("Deleting...");
+    await deleteVideo( videoId, token);
+    const result = await fetchCourseVideos(courseId, token);
+    if (result) {
+      setVideos(result);
+    }
+    setConfirmationModal(null);
+    setLoading(false);
+    toast.dismiss(toastId);
+  };
 
   
 
@@ -122,7 +123,7 @@ const VideosTable = () => {
       <div className="hidden md:block">
       <Table className="rounded-2xl">
         <Thead>
-          <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
+          <Tr className="flex rounded-md px-6 py-2 shadow1 bg-newBlue">
             <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
               Videos
             </Th>
@@ -148,7 +149,7 @@ const VideosTable = () => {
                     colSpan={3}
                     className="py-10 text-center text-2xl font-medium text-black"
                   >
-                    No videos found
+                    No videos found. Check out Draft Section.
                   </Td>
                 </Tr>
               ) : (
@@ -196,11 +197,11 @@ const VideosTable = () => {
                             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
                               <div>
                                 {!video.isPublished ? (
-                                  <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black px-2 py-[2px] text-[12px] font-medium text-pink-25">
+                                  <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-newBlue px-2 py-[2px] text-[12px] font-medium text-pink-25">
                                     <HiClock size={14} /> Drafted
                                   </p>
                                 ) : (
-                                  <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black  px-2 py-[2px] text-[12px] font-medium text-blue-25">
+                                  <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-newBlue  px-2 py-[2px] text-[12px] font-medium text-blue-25">
                                     <p className="flex h-3 w-3 items-center justify-center rounded-full bg-blue-5 text-black">
                                       <FaCheck size={8} />
                                     </p>{" "}
@@ -227,7 +228,7 @@ const VideosTable = () => {
                             >
                               <FiEdit2 size={20} />
                             </button>
-                            {/* <button
+                            <button
                               disabled={loading}
                               onClick={(event) => {
                                 event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
@@ -246,7 +247,7 @@ const VideosTable = () => {
                               title="Delete"
                             >
                               <RiDeleteBin6Line size={20} />
-                            </button> */}
+                            </button>
                           </div>
                           <div>
                             <button

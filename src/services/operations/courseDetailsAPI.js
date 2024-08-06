@@ -20,7 +20,7 @@ const {
 
 // ================ get All Courses ================
 export const getAllCourses = async () => {
-  const toastId = toast.loading("Loading...")
+  // const toastId = toast.loading("Loading...")
   let result = []
 
   try {
@@ -33,7 +33,7 @@ export const getAllCourses = async () => {
     console.log("GET_ALL_COURSE_API API ERROR............", error)
     toast.error(error.message)
   }
-  toast.dismiss(toastId)
+  // toast.dismiss(toastId)
   return result
 }
 

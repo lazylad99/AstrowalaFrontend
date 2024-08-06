@@ -29,7 +29,7 @@ const CategoryForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-black text-white p-5 rounded-xl">
+    <form onSubmit={handleSubmit} className="bg-newBlue text-white p-5 rounded-xl">
       <div>
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
           Name

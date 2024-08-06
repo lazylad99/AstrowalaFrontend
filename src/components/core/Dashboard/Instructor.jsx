@@ -93,7 +93,7 @@ export default function Instructor() {
             {totalAmount > 0 || totalStudents > 0 ? (
               <InstructorChart courses={instructorData} />
             ) : (
-              <div className="flex-1 rounded-md bg-black p-4 sm:p-6 flex flex-col justify-center items-center h-auto min-h-[18rem] sm:min-h-[20rem] md:min-h-[24rem] lg:min-h-[28rem]">
+              <div className="flex-1 rounded-md bg-[#3471ad] p-4 sm:p-6 flex flex-col justify-center items-center h-auto min-h-[18rem] sm:min-h-[20rem] md:min-h-[24rem] lg:min-h-[28rem]">
                 <p className="text-base sm:text-lg font-bold text-white text-center">Visualize</p>
                 <p className="mt-2 sm:mt-4 text-lg sm:text-xl font-medium text-white text-center">
                   Not Enough Data To Visualize
@@ -106,7 +106,7 @@ export default function Instructor() {
 
             {/* left column */}
             {/* Total Statistics */}
-            <div className="flex min-w-[250px] flex-col rounded-md bg-black p-6" style={{
+            <div className="flex min-w-[250px] flex-col rounded-md bg-newBlue p-6" style={{
             background: "linear-gradient(to right, black)",
           }}>
               <p className="text-lg font-bold text-white">Statistics</p>
@@ -134,7 +134,7 @@ export default function Instructor() {
           </div>
 
           {/* Render 3 courses */}
-          <div className="rounded-md bg-black p-6">
+          <div className="rounded-md bg-newBlue p-6">
             <div className="flex items-center justify-between">
               <p className="text-lg font-bold text-white">Your Courses</p>
               <Link to="/dashboard/my-courses">
@@ -178,15 +178,16 @@ export default function Instructor() {
           </div>
         </div>
       ) : (
-        <div className="mt-20 rounded-md bg-black p-6 py-20">
+        <div className="mt-20 rounded-md bg-newBlue p-6 py-20">
+         <div className="mt-20 rounded-md bg-newBlue p-6 py-20">
           <p className="text-center text-2xl font-bold text-white">
-            You have not created any courses yet
+            You have not created any courses yet.
           </p>
 
           <Link to="/dashboard/add-course">
-            <p className="mt-1 text-center text-lg font-semibold text-yellow-50">
-              Create a course
-            </p>
+            <button className="button-36">
+              Add course
+            </button>
           </Link>
         </div>
       )}

@@ -31,7 +31,7 @@ function VerifyEmail() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] grid place-items-center">
+    <div className="min-h-[calc(100vh-3.5rem)] grid place-items-center bg-course-details">
       {loading ? (
         <Loading />
       ) : (
@@ -40,7 +40,7 @@ function VerifyEmail() {
             Verify Email
           </h1>
 
-          <p className="text-[1.125rem] leading-[1.625rem] my-4 text-white">
+          <p className="text-[1.125rem] leading-[1.625rem] my-4 text-black">
             A verification code has been sent to you. Enter the code below
           </p>
 
@@ -56,7 +56,7 @@ function VerifyEmail() {
                   style={{
                     boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
                   }}
-                  className="w-[48px] lg:w-[60px] border-0 bg-black rounded-[0.5rem] text-white aspect-square text-center focus:border-0 focus:outline-2 focus:outline-white"
+                  className="w-[48px] lg:w-[60px] border-0 bg-newBlue rounded-[0.5rem] text-white aspect-square text-center focus:border-0 focus:outline-2 focus:outline-white"
                 />
               )}
               containerStyle={{

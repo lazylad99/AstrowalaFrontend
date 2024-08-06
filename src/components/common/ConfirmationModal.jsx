@@ -9,7 +9,7 @@ export default function ConfirmationModal({
 }) {
   return (
     <div className="fixed inset-0 z-[1000] grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="w-full max-w-[800px] rounded-lg border border-richblack-400 bg-black p-8">
+      <div className="w-full max-w-[800px] rounded-lg border border-richblack-400 bg-newBlue p-8">
         {isVideo ? (
           videoUrl ? (
             <div className="relative" style={{ paddingBottom: "56.25%" }}>

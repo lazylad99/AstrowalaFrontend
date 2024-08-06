@@ -7,6 +7,7 @@ import { FaShareSquare } from "react-icons/fa";
 import { addToCart } from "../../../slices/cartSlice";
 import { ACCOUNT_TYPE } from "../../../utils/constants";
 import Img from "./../../common/Img";
+import img1 from "../../../assets/Images/video_bg.png";
 import IconBtn from "../../common/IconBtn";
 import Certificate from "../Dashboard/Certificate/Certificate";
 import ConfirmationModal from "../../common/ConfirmationModal";
@@ -16,12 +17,13 @@ function CourseDetailsCard({
   thumbnail,
   setConfirmationModal,
   handleBuyCourse,
+  handleVideo
 }) {
   const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [video, setVideo] = useState(null);
+  // const [video, setVideo] = useState(null);
   const courseId = useParams();
   const id = courseId.courseId;
 
@@ -41,14 +43,14 @@ function CourseDetailsCard({
     toast.success("Link copied to clipboard");
   };
 
-  const handleVideo = () => {
-    setVideo(introductoryVideoUrl);
-  };
+  // const handleVideo = () => {
+  //   setVideo(introductoryVideoUrl);
+  // };
 
-  const modalData = {
-    btn2Text: "Cancel",
-    btn2Handler: () => setVideo(null),
-  };
+  // const modalData = {
+  //   btn2Text: "Cancel",
+  //   btn2Handler: () => setVideo(null),
+  // };
 
   const handleAddToCart = () => {
     if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
@@ -79,12 +81,17 @@ function CourseDetailsCard({
 
   return (
     <>
-      <div className="flex flex-col w-[90%] p-6 gap-2  rounded-2xl shadow1 bg-richblack-25 border-white text-black">
-        <div onClick={handleVideo} className="cursor-pointer">
+      <div className="flex flex-col w-[90%] p-6 gap-2 rounded-2xl shadow1 bg-richblack-25 border-white text-black">
+        <div className="relative w-[400px] max-h-[300px] min-h-[180px] md:max-w-full overflow-hidden rounded-2xl cursor-pointer" onClick={handleVideo}>
           <Img
             src={thumbnail}
             alt={course?.courseName}
-            className="max-h-[300px] min-h-[180px] w-[400px] overflow-hidden rounded-2xl object-cover md:max-w-full"
+            className="h-full w-full object-cover rounded-2xl"
+          />
+          <img
+            src={img1}
+            alt="Overlay"
+            className="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-60"
           />
         </div>
         <div className="px-4">
@@ -94,7 +101,7 @@ function CourseDetailsCard({
 
           {!user && 
           <button className="button-36"
-                onClick={ handleBuyCourse}
+                onClick={handleBuyCourse}
               >
                 Buy Now
               </button>}
@@ -133,18 +140,11 @@ function CourseDetailsCard({
           </div>
 
           <div className="text-center">
-            {/* <button
-              className="mx-auto flex items-center gap-2 py-6 text-white"
-              onClick={handleShare}
-            >
-              <FaShareSquare size={15} /> Share
-            </button> */}
+           
           </div>
         </div>
       </div>
-      {video && (
-        <ConfirmationModal videoUrl={video} isVideo modalData={modalData} />
-      )}
+     
     </>
   );
 }

@@ -10,6 +10,7 @@ import ProfileDropDown from "../core/Auth/ProfileDropDown";
 import MobileProfileDropDown from "../core/Auth/MobileProfileDropDown";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdKeyboardArrowDown, MdMenu, MdClose } from "react-icons/md";
+import { useMemo } from "react";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
@@ -32,9 +33,16 @@ const Navbar = () => {
     setLoading(false);
   };
 
+  const memoizedFetchSublinks = useMemo(() => {
+    return fetchSublinks();
+  }, []); // Empty dependency array ensures it only runs once
+
   useEffect(() => {
-    fetchSublinks();
-  }, []);
+    memoizedFetchSublinks.then(data => {
+      // Use the fetched data here
+      console.log(data);
+    });
+  }, [memoizedFetchSublinks]);
 
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname);
@@ -68,12 +76,12 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`z-[10] flex w-full items-center justify-center border-shadow pt-4 p-6 translate-y-0 transition-all ${showNavbar}`}
+        className={`z-[10] flex w-full items-center justify-center border-shadow py-2 translate-y-0 transition-all ${showNavbar}`}
         style={{
           background:
             location.pathname === "/" || location.pathname.startsWith("/catalog")
               ? "linear-gradient(to bottom, black, transparent)"
-              : "black",
+              : "#00274D",
         }}
       >
         <div className="flex w-11/12 max-w-maxContent items-center justify-between">
@@ -123,7 +131,7 @@ const Navbar = () => {
                                   .split(" ")
                                   .join("-")
                                   .toLowerCase()}`}
-                                className="rounded-lg bg-transparent py-4 pl-4 text-black hover:bg-richblack-25 hoverable"
+                                className="rounded-lg bg-transparent py-4 pl-4 text-black font-normal hover:bg-richblack-25 hoverable"
                                 key={i}
                               >
                                 <p>{subLink.name}</p>
@@ -194,7 +202,7 @@ const Navbar = () => {
 
       {/* Mobile Sidebar for non-logged in users */}
       {sidebarOpen && token === null && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-75 flex justify-end">
+        <div className="fixed inset-0 z-50 bg-newBlue bg-opacity-75 flex justify-end">
           <div className="w-64 h-full bg-richblack-900 text-white p-4">
             <button onClick={() => setSidebarOpen(false)} className="text-white text-3xl mb-4">
               <MdClose />

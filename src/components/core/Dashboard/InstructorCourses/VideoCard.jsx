@@ -52,11 +52,11 @@ const VideoCard = ({
           {user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <div>
               {!video.isPublished ? (
-                <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black px-2 py-[2px] text-[12px] font-medium text-pink-25">
+                <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-newBlue px-2 py-[2px] text-[12px] font-medium text-pink-25">
                   <HiClock size={14} /> Drafted
                 </p>
               ) : (
-                <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black px-2 py-[2px] text-[12px] font-medium text-blue-25">
+                <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-newBlue px-2 py-[2px] text-[12px] font-medium text-blue-25">
                   <p className="flex h-3 w-3 items-center justify-center rounded-full bg-blue-5 text-black">
                     <FaCheck size={8} />
                   </p>{' '}

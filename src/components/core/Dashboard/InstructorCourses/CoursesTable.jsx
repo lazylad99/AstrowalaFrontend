@@ -19,6 +19,8 @@ import IconBtn from "../../../common/IconBtn";
 import toast from "react-hot-toast";
 import Tab from "../../../common/Tab";
 import CourseCard from "./CourseCard";
+import Modal from "../../../../components/common/Modal";
+// import EnrollStudentsForm from "./EnrollStudentsForm";
 
 export default function CoursesTable({
   courses,
@@ -32,6 +34,7 @@ export default function CoursesTable({
   const [confirmationModal, setConfirmationModal] = useState(null);
   const [field, setField] = useState("Published"); // State to toggle published/unpublished courses
   const TRUNCATE_LENGTH = 25;
+  const [showModal, setShowModal] = useState(false);
 
   const tabData = [
     { id: 1, type: "Published", tabName: "Published" },
@@ -67,6 +70,13 @@ export default function CoursesTable({
     toast.dismiss(toastId);
   };
 
+  // const handleEnrollStudents = (formData) => {
+  //   console.log("Form Data:", formData);
+  //   // Handle form submission logic here, like calling an API to save the data
+  //   setShowModal(false);
+  // };
+
+  
   const skItem = () => (
     <div className="flex border-b border-black px-6 py-8 w-full">
       <div className="flex flex-1 gap-x-4 ">
@@ -97,7 +107,7 @@ export default function CoursesTable({
       <div className="hidden md:block">
         <Table className="rounded-2xl ">
           <Thead>
-            <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
+            <Tr className="flex rounded-md px-6 py-2 shadow1 bg-newBlue">
               <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
                 Courses
               </Th>
@@ -159,11 +169,11 @@ export default function CoursesTable({
                           </p>
                         )}
                         {!course.isPublished ? (
-                          <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black px-2 py-[2px] text-[12px] font-medium text-pink-25">
+                          <p className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-newBlue px-2 py-[2px] text-[12px] font-medium text-pink-25">
                             <HiClock size={14} /> Unpublished
                           </p>
                         ) : (
-                          <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-black  px-2 py-[2px] text-[12px] font-medium text-blue-25">
+                          <div className="mt-2 flex w-fit flex-row items-center gap-2 rounded-full bg-newBlue  px-2 py-[2px] text-[12px] font-medium text-blue-25">
                             <p className="flex h-3 w-3 items-center justify-center rounded-full bg-blue-5 text-black">
                               <FaCheck size={8} />
                             </p>{" "}
@@ -233,7 +243,7 @@ export default function CoursesTable({
                           className="z-40 m-2"
                         >
                           <IconBtn
-                            customClasses={"w-[180px]"}
+                            customClasses={"h-[40px] w-[195px] mt-4"}
                             text="Add Videos"
                           ></IconBtn>
                         </button>
@@ -266,6 +276,7 @@ export default function CoursesTable({
                           className="z-40 m-2"
                         >
                           <IconBtn
+                          customClasses = {"h-[40px] w-[195px]"}
                             text={
                               !course.isPublished
                                 ? "Publish Course"
@@ -273,6 +284,11 @@ export default function CoursesTable({
                             }
                           ></IconBtn>
                         </button>
+                        {/* <IconBtn customClasses={'h-[40px] w-[195px] z-40 m-2'} onclick={(event) =>{
+                          event.stopPropagation(); // Stop the event from bubbling up to the row's onClick
+                           setShowModal(true)}}>
+                          Enroll Students
+                        </IconBtn> */}
                       </div>
                     </Tr>
                   </Tr>
@@ -302,6 +318,11 @@ export default function CoursesTable({
           ))
         )}
       </div>
+
+      {/* <Modal showModal={showModal} setShowModal={setShowModal}>
+  <EnrollStudentsForm setShowModal={setShowModal} courses={courses} />
+</Modal> */}
+
 
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </>
