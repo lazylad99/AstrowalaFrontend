@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../common/motionFrameVarients";
 import videoSrc from "../../../assets/Images/astro_images/heroSection.mp4"; // Replace with your video file
 import IconBtn from "../../common/IconBtn";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaArrowDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 export const HeroSection = () => {
@@ -11,7 +11,7 @@ export const HeroSection = () => {
   return (
     <div>
       {/* Background video */}
-      <div className="w-full h-screen absolute top-0 left-0 shadow overflow-hidden">
+      <div className="w-full h-screen absolute top-0 left-0 overflow-hidden">
         <video
           src={videoSrc}
           autoPlay
@@ -59,7 +59,18 @@ export const HeroSection = () => {
             <FaArrowRight />
           </IconBtn>
         </motion.div>
+
+        {/* Scroll Down Arrow */}
+        <motion.div
+          className="absolute bottom-10 text-white text-2xl animate-bounce"
+          variants={fadeIn("up", 0.1)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.1 }}
+        >
+          <FaArrowDown />
+        </motion.div>
       </div>
     </div>
   );
-}
+};
