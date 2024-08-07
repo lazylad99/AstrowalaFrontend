@@ -18,6 +18,7 @@ const CategoryCard = ({ category }) => (
 const CoursesCatalog = () => {
   const [categoriesData, setCategoriesData] = useState([]);
   const [loading, setLoading] = useState(false);
+  // console.log(categoriesData);
 
   useEffect(() => {
     (async () => {

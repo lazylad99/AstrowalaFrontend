@@ -40,8 +40,8 @@ const ContactUsForm = () => {
   }, [reset, isSubmitSuccessful]);
 
   return (
-    <div className="relative flex items-center justify-center bg-black">
-      <div className="w-100 p-5 bg-black shadow rounded-lg">
+    <div className="relative flex items-center justify-center bg-newBlue">
+      <div className="w-100 p-5 bg-newBlue  rounded-lg">
         {/* <h2 className="text-2xl text-center text-white">Contact Us</h2> */}
         <form onSubmit={handleSubmit(submitContactForm)} className="flex flex-col gap-7 newform">
           <div className="flex flex-col gap-5 lg:flex-row">
@@ -103,13 +103,13 @@ const ContactUsForm = () => {
               Phone Number
             </label>
             <div className="flex gap-5">
-              <div className="flex w-[81px] flex-col gap-2">
+              <div className="flex w-[70px] rounded-md flex-col gap-2">
                 <select
                   type="text"
                   name="countrycode"
                   id="countrycode"
                   placeholder="Enter country code"
-                  className="peer w-full py-2 text-lg bg-white border-b-2 border-white text-black outline-none"
+                  className="peer w-full py-2 rounded-sm text-lg bg-white border-b-2 border-white text-black outline-none"
                   {...register("countrycode", { required: true })}
                 >
                   {CountryCode.map((ele, i) => (

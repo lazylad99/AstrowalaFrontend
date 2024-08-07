@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import { MdNavigateNext } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   addCourseDetails,
   editCourseDetails,
@@ -119,7 +119,7 @@ export default function AddCourse() {
       return;
     }
 
-    console.log(data.courseVideo);
+    // console.log(data.courseVideo);
 
     const formData = new FormData();
     formData.append("courseName", data.courseTitle);
@@ -147,7 +147,7 @@ export default function AddCourse() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-4 m-3 rounded-2xl border-[1px]  bg-black text-white p-6 "
+        className="space-y-4 m-3 rounded-2xl border-[1px]  bg-newBlue text-white p-6 "
       >
         <div className="flex flex-col text-white space-y-2">
           <label className="text-sm text-white" htmlFor="courseTitle">
@@ -211,9 +211,12 @@ export default function AddCourse() {
         </div>
 
         <div className="flex flex-col space-y-2">
-          <label className="text-sm text-white" htmlFor="courseCategory">
-            Course Category
-          </label>
+          <div className="flex items-center justify-between">
+            <label className="text-sm text-white" htmlFor="courseCategory">
+              Course Category
+            </label>
+            <Link to="/categories" className="text-base font-medium  py-1 px-2 rounded-lg bg-white text-black">Add Category</Link>
+          </div>
           <select
             {...register("courseCategory", { required: true })}
             defaultValue=""
@@ -274,7 +277,15 @@ export default function AddCourse() {
           )}
           <IconBtn
             disabled={loading}
-            text={!editCourse ? (loading ? "Creating..." : "Next" ) : (loading ? "Saving..." :"Save Changes") }
+            text={
+              !editCourse
+                ? loading
+                  ? "Creating..."
+                  : "Next"
+                : loading
+                ? "Saving..."
+                : "Save Changes"
+            }
           >
             {loading && <MdNavigateNext />}
           </IconBtn>
@@ -284,7 +295,8 @@ export default function AddCourse() {
         <ConfirmationModal
           modalData={{
             text1: "Course Created",
-            text2: "Your course has been created and is currently in the unpublished section. Publish it to make it available to the public.",
+            text2:
+              "Your course has been created and is currently in the unpublished section. Publish it to make it available to the public.",
             btn1Text: "Close",
             btn1Handler: handleModalClose,
           }}

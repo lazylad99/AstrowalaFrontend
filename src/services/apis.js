@@ -2,6 +2,7 @@
 
 export const BACKEND_URL = "https://astrowala-backend-deployed.onrender.com";
 export const BASE_URL = BACKEND_URL + "/api/v1";
+// export const BASE_URL = "http://82.112.235.50:5001/api/v1";
 
 // export const BASE_URL = "http://localhost:5000/api/v1";
 

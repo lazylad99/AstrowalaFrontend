@@ -43,7 +43,9 @@ import Profile from "./components/core/Dashboard/Profile";
 import Categories from "./pages/Categories";
 import StudentVideosTable from "./components/core/Dashboard/InstructorCourses/StudentVideosTable";
 import EditProfile from "./components/core/Dashboard/Settings/EditProfile";
+import ServiceSection from "./components/common/ServiceSection";
 import EnrollStudents from "./components/core/Dashboard/HandlePayment/EnrollStudents";
+
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -99,6 +101,7 @@ function App() {
         <Route path="/catalog/:catID" element={<Catalog />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/courses/:courseId" element={<CourseDetails />} />
+        <Route path="/services" element={<ServiceSection />} />
 
         {/* Open Route - for Only Non Logged in User */}
         <Route
@@ -193,6 +196,7 @@ function App() {
               <Route path="dashboard/my-courses" element={<MyCourses />} />
               <Route
                 path="dashboard/enroll-students"
+                // error here in main repo
                 element={<EnrollStudents />}
               />
               <Route

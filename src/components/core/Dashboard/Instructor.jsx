@@ -5,38 +5,33 @@ import { Link } from "react-router-dom"
 import { fetchInstructorCourses } from "../../../services/operations/courseDetailsAPI"
 import { getInstructorData } from "../../../services/operations/profileAPI"
 import InstructorChart from "./InstructorDashboard/InstructorChart"
-import Img from './../../common/Img';
-
-
+import Img from "./../../common/Img"
 
 export default function Instructor() {
   const { token } = useSelector((state) => state.auth)
-  const { user } = useSelector((state) => state.profile)
+  // const { user } = useSelector((state) => state.profile)
 
   const [loading, setLoading] = useState(false)
   const [instructorData, setInstructorData] = useState(null)
   const [courses, setCourses] = useState([])
 
-
   // get Instructor Data
   useEffect(() => {
-    ; (async () => {
+    (async () => {
       setLoading(true)
       const instructorApiData = await getInstructorData(token)
       const result = await fetchInstructorCourses(token)
-      // console.log('INSTRUCTOR_API_RESPONSE.....', instructorApiData)
       if (instructorApiData.length) setInstructorData(instructorApiData)
       if (result) {
         setCourses(result)
       }
       setLoading(false)
     })()
-  }, [])
+  }, [token])
 
   const totalAmount = instructorData?.reduce((acc, curr) => acc + curr.totalAmountGenerated, 0)
 
   const totalStudents = instructorData?.reduce((acc, curr) => acc + curr.totalStudentsEnrolled, 0)
-
 
   // skeleton loading
   const skItem = () => {
@@ -83,7 +78,6 @@ export default function Instructor() {
 
   return (
     <div>
-  
       {loading ? (
         <div>{skItem()}</div>
       ) : courses.length > 0 ? (
@@ -93,22 +87,22 @@ export default function Instructor() {
             {totalAmount > 0 || totalStudents > 0 ? (
               <InstructorChart courses={instructorData} />
             ) : (
-              <div className="flex-1 rounded-md bg-black p-4 sm:p-6 flex flex-col justify-center items-center h-auto min-h-[18rem] sm:min-h-[20rem] md:min-h-[24rem] lg:min-h-[28rem]">
+              <div className="flex-1 rounded-md bg-[#3471ad] p-4 sm:p-6 flex flex-col justify-center items-center h-auto min-h-[18rem] sm:min-h-[20rem] md:min-h-[24rem] lg:min-h-[28rem]">
                 <p className="text-base sm:text-lg font-bold text-white text-center">Visualize</p>
                 <p className="mt-2 sm:mt-4 text-lg sm:text-xl font-medium text-white text-center">
                   Not Enough Data To Visualize
                 </p>
               </div>
-
-
-
             )}
 
             {/* left column */}
             {/* Total Statistics */}
-            <div className="flex min-w-[250px] flex-col rounded-md bg-black p-6" style={{
-            background: "linear-gradient(to right, black)",
-          }}>
+            <div
+              className="flex min-w-[250px] flex-col rounded-md bg-newBlue p-6"
+              style={{
+                background: "linear-gradient(to right, black)",
+              }}
+            >
               <p className="text-lg font-bold text-white">Statistics</p>
               <div className="mt-4 space-y-4">
                 <div>
@@ -134,7 +128,7 @@ export default function Instructor() {
           </div>
 
           {/* Render 3 courses */}
-          <div className="rounded-md bg-black p-6">
+          <div className="rounded-md bg-newBlue p-6">
             <div className="flex items-center justify-between">
               <p className="text-lg font-bold text-white">Your Courses</p>
               <Link to="/dashboard/my-courses">
@@ -164,9 +158,7 @@ export default function Instructor() {
                       <p className="text-xs font-medium text-richblack-300">
                         {course.studentsEnrolled.length} students
                       </p>
-                      <p className="text-xs font-medium text-richblack-300">
-                        |
-                      </p>
+                      <p className="text-xs font-medium text-richblack-300">|</p>
                       <p className="text-xs font-medium text-richblack-300">
                         Rs. {course.price}
                       </p>
@@ -178,18 +170,16 @@ export default function Instructor() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center mt-20 rounded-md bg-black p-6 py-20">
+        <div className="mt-20 rounded-md bg-newBlue p-6 py-20">
           <p className="text-center text-2xl font-bold text-white">
             You have not created any courses yet.
           </p>
 
           <Link to="/dashboard/add-course">
-            <button className="button-36">
-              Add course
-            </button>
+            <button className="button-36">Add course</button>
           </Link>
         </div>
       )}
     </div>
-  );
+  )
 }

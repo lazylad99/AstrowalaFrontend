@@ -50,8 +50,10 @@ export default function EditProfile() {
 
       <form className="text-white" onSubmit={handleSubmit(submitProfileForm)}>
         {/* Profile Information */}
-        <div className="mb-10 flex flex-col gap-y-6 rounded-b-md border-richwhite-700 bg-black p-4 pb-8 mt-0 px-6 sm:px-12">
-          <h2 className="text-lg font-semibold text-white">Profile Information</h2>
+        <div className="mb-10 flex flex-col gap-y-6 rounded-b-md  border-richwhite-700 bg-newBlue p-4 pb-8 mt-0 px-6 sm:px-12">
+          <h2 className="text-lg font-semibold text-white">
+            Profile Information
+          </h2>
 
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">

@@ -59,20 +59,24 @@ export default function Sidebar() {
   return (
     <>
       <div
-        className="sm:hidden text-white absolute left-7 top-3 cursor-pointer "
+        className="sm:hidden text-white absolute left-7 cursor-pointer "
         onClick={() => dispatch(setOpenSideMenu(!openSideMenu))}
       >
-        {openSideMenu ? <IoMdClose size={33} className="text-white" /> : <HiMenuAlt1 size={33} className="text-black" />}
+        {openSideMenu ? (
+          <IoMdClose size={33} className="text-white" />
+        ) : (
+          <HiMenuAlt1 size={33} className="text-black" />
+        )}
       </div>
 
       {openSideMenu && (
         <div
-          className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col bg-black  py-10 shadow1 "
+          className="flex h-[calc(100vh-3.5rem)] min-w-[220px] px-3 flex-col bg-newBlue shadow1 border-t-[1px] border-t-white"
           // style={{
           //   background: "linear-gradient(to right, black)",
           // }}
         >
-          <div className="flex flex-col mt-6">
+          <div className="flex flex-col mt-6 gap-2">
             {sidebarLinks.map((link) => {
               if (link.type && user?.accountType !== link.type) return null;
               return (
@@ -88,7 +92,7 @@ export default function Sidebar() {
 
           <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richwhite-100" />
 
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-2">
             <SidebarLink
               link={{ name: "Settings", path: "/dashboard/settings" }}
               iconName={"VscSettingsGear"}
@@ -108,7 +112,7 @@ export default function Sidebar() {
               }
               className=" "
             >
-              <div className="flex items-center gap-x-2 px-8 py-2 text-sm font-semibold text-white hover:bg-black relative">
+              <div className="flex items-center gap-x-2 px-8 py-2 md:py-3 text-sm font-semibold text-white hover:bg-[#291D1D] hover:rounded-lg relative">
                 <VscSignOut className="text-lg" />
                 <span>Logout</span>
               </div>

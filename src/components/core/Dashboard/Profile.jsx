@@ -4,24 +4,23 @@ import { RiEditBoxLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { formattedDate } from "../../../utils/dateFormatter";
-import IconBtn from "../../common/IconBtn";
 import Img from "./../../common/Img";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.profile);
   const navigate = useNavigate();
   console.log(user);
-  
+
   // Scroll to the top of the page when the component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="flex w-full flex-col items-center gap-5 text-black">
+    <div className="flex w-full flex-col items-center gap-5 text-white">
       <div className="w-[80%] mt-3 flex h-fit flex-col gap-5">
-        <div className="col-span-12 lg:col-span-8 3xl:col-span-5 shadow rounded-2xl">
-          <CardComponent extra="w-full h-full p-3 mb-3 bg-white">
+        <div className="col-span-12 lg:col-span-8 3xl:col-span-5 rounded-2xl">
+          <CardComponent extra="w-full h-full p-3 mb-3 bg-newBlue">
             {/* Background and profile */}
             <div className="relative mt-1 flex h-32 w-full justify-center rounded-xl bg-cover">
               <Img
@@ -33,25 +32,25 @@ export default function Profile() {
 
             {/* Name and position */}
             <div className="mt-12 flex flex-col items-center text-black">
-              <h4 className="text-xl font-bold text-navy-700">
+              <h4 className="text-xl font-bold text-white">
                 {user?.firstName + " " + user?.lastName}
               </h4>
-              <p className="text-base font-normal text-gray-600">
+              <p className="text-base font-normal text-pure-greys-50 ">
                 {user?.email}
               </p>
             </div>
 
             <div className="mt-2 mb-8 w-full text-black">
               <div className="flex justify-between">
-                <h4 className="px-2 text-xl font-bold text-navy-700">About</h4>
+                <h4 className="px-2 text-xl font-bold text-white">About</h4>
                 <div
-                  className="pr-5 cursor-pointer"
+                  className="cursor-pointer text-white p-2 rounded-full bg-pure-greys-200 font-bold"
                   onClick={() => navigate("/dashboard/edit-profile")}
                 >
                   <RiEditBoxLine />
                 </div>
               </div>
-              <p className="mt-2 px-2 text-base text-gray-600">
+              <p className="mt-2 px-2 text-base text-pure-greys-50">
                 {user?.additionalDetails?.about ?? "Write Something About Yourself"}
               </p>
             </div>
@@ -104,8 +103,9 @@ export default function Profile() {
               <div className="flex flex-col justify-center rounded-2xl bg-richblack-400 bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Phone Number</p>
                 <p className="text-base font-medium text-navy-700">
-                  {user?.additionalDetails?.contactNumber ? 
-                    user.additionalDetails.contactNumber : "Add Contact Number" }
+                  {user?.additionalDetails?.contactNumber
+                    ? user.additionalDetails.contactNumber
+                    : "Add Contact Number"}
                 </p>
               </div>
             </div>

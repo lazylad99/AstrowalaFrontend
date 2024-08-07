@@ -59,7 +59,7 @@ const StudentVideosTable = () => {
 
       <Table className="rounded-2xl">
         <Thead>
-          <Tr className="flex rounded-md px-6 py-2 shadow1 bg-black">
+          <Tr className="flex rounded-md px-6 py-2 shadow1 bg-newBlue">
             <Th className="flex-1 text-left text-sm font-medium ml-[100px] uppercase text-white">
               Videos
             </Th>

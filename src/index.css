@@ -22,6 +22,7 @@ body {
   background: url('./assets/Images/bghome.svg');
 }
 
+
 .gradient_color {
   background: linear-gradient(118.19deg, #1FA2FF -3.62%, #12D8FA 50.44%, #A6FFCB 104.51%),
     linear-gradient(0deg, #F1F2FF, #F1F2FF);
@@ -64,6 +65,9 @@ body {
   -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
   animation: s3 0.6s infinite linear;
 }
+.bg-color{
+  background: linear-gradient(90deg, #00274D, #00B2FF);
+}
 
 @keyframes s3 {
   to {
@@ -96,11 +100,11 @@ textarea::placeholder {
 
 /* Buttons */
 .yellowButton {
-  @apply cursor-pointer rounded-md bg-yellow-50 px-[20px] py-[8px] font-semibold text-richblue-900 hover:bg-black hover:text-yellow-50 duration-300;
+  @apply cursor-pointer rounded-md bg-yellow-50 px-[20px] py-[8px] font-semibold text-richblue-900 hover:bg-newBlue hover:text-yellow-50 duration-300;
 }
 
 .blackButton {
-  @apply cursor-pointer rounded-md bg-black px-[20px] py-[8px] font-semibold text-black hover:bg-richwhite-5 hover:text-black duration-300;
+  @apply cursor-pointer rounded-md bg-newBlue px-[20px] py-[8px] font-semibold text-black hover:bg-richwhite-5 hover:text-black duration-300;
 }
 
 
@@ -474,6 +478,19 @@ nav li a {
   background-position: center;
   background-repeat: no-repeat;
 }
+.testimonial_bg {
+  background-image: url('./assets/Images/testimonialBg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.nocount_bg {
+  background-image: url('./assets/Images/noshowbg (1).jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 
 
