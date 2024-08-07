@@ -119,7 +119,7 @@ export default function AddCourse() {
       return;
     }
 
-    console.log(data.courseVideo);
+    // console.log(data.courseVideo);
 
     const formData = new FormData();
     formData.append("courseName", data.courseTitle);
