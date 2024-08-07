@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Modal from "../components/common/Modal";
 import CategoryForm from "../components/core/Catalog/CategoryForm";
 import { useSelector } from "react-redux";
+import { ACCOUNT_TYPE } from "../utils/constants";
 
 function Categories() {
   const [categoriesData, setCategoriesData] = useState([]);

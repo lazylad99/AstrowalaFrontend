@@ -27,6 +27,7 @@ import WhyChooseUs from "../components/common/WhyChooseUs";
 import NoCountSection from "../components/common/NoCountSection";
 import FaqSection from "../components/common/FaqSection";
 import WhyChooseUs1 from "../components/common/WhyChooseUs1";
+import PopularTopic from "../components/common/PopularTopic";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -48,7 +49,8 @@ const Home = () => {
   return (
     <>
       <HeroSection />
-      <CoursesCatalog />
+      {/* <CoursesCatalog /> */}
+      <PopularTopic/>
       <ServiceSection />
       {/* <WhyChooseUs/> */}
       <WhyChooseUs1/>
