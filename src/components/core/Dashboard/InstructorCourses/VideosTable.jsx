@@ -149,7 +149,7 @@ const VideosTable = () => {
                     colSpan={3}
                     className="py-10 text-center text-2xl font-medium text-black"
                   >
-                    No videos found. Check out Draft Section.
+                    No videos found.
                   </Td>
                 </Tr>
               ) : (
