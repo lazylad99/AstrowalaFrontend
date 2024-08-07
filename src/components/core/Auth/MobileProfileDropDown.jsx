@@ -17,16 +17,6 @@ import { fetchCourseCategories } from './../../../services/operations/courseDeta
 import { ACCOUNT_TYPE } from "../../../utils/constants";
 
 
-// const CatalogDropDown = ({ subLinks }) => {
-//     if (!subLinks) return
-
-//     return (
-//         <div>
-
-//         </div>
-//     )
-// }
-
 
 export default function MobileProfileDropDown() {
     const { user } = useSelector((state) => state.profile)
@@ -102,9 +92,7 @@ export default function MobileProfileDropDown() {
               <VscDashboard className="text-lg" />
                 Dashboard
               </div>
-            </Link> :
-
-            <Link to="/dashboard/my-profile" onClick={() => setOpen(false)}>
+            </Link> : <Link to="/dashboard/my-profile" onClick={() => setOpen(false)}>
               <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-white border-y border-richwhite-700 ">
               <VscDashboard className="text-lg" />
               Profile

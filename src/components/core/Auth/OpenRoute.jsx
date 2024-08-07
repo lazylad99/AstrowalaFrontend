@@ -8,7 +8,8 @@ function OpenRoute({ children }) {
   if (token === null) {
     return children
   } else {
-    return <Navigate to="/dashboard/my-profile" />
+    return 
+    // <Navigate to="/dashboard/my-profile" />
   }
 }
 

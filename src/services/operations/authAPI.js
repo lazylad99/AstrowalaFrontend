@@ -5,6 +5,7 @@ import { resetCart } from "../../slices/cartSlice"
 import { setUser } from "../../slices/profileSlice"
 import { apiConnector } from "../apiConnector"
 import { endpoints } from "../apis"
+import { ACCOUNT_TYPE } from "../../utils/constants";
 
 const {
   SENDOTP_API,
@@ -13,6 +14,9 @@ const {
   RESETPASSTOKEN_API,
   RESETPASSWORD_API,
 } = endpoints
+
+// const { user } = useSelector((state) => state.profile)
+
 
 // ================ send Otp ================
 export function sendOtp(email, navigate) {
@@ -81,7 +85,6 @@ export function signUp(accountType, firstName, lastName, email, password, confir
   }
 }
 
-
 // ================ Login ================
 export function login(email, password, navigate) {
   return async (dispatch) => {
@@ -117,12 +120,17 @@ export function login(email, password, navigate) {
         : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
 
         dispatch(setUser({ ...response.data.user, image: userImage }));
-        // console.log('User data - ', response.data.user);/
+        
+        // Save user data to localStorage
         localStorage.setItem("token", JSON.stringify(response.data?.token));
-
         localStorage.setItem("user", JSON.stringify({ ...response.data.user, image: userImage }));
 
-        navigate("/dashboard/instructor");
+        // Redirect based on account type
+        if (response.data.user.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
+          navigate("/dashboard/instructor");
+        } else {
+          navigate("/dashboard/my-profile");
+        }
       }
     } catch (error) {
       console.log("LOGIN API ERROR.......", error)
