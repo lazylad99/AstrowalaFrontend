@@ -20,5 +20,9 @@ git clone https://github.com/lazylad99/E-learning.git
 cd E-learning
 npm install
 npm start  # or npm run dev (for Next.js)
+
+Deployed site:
+https://astrowala.world/
+
 📌 Contributing
 Feel free to fork this repo and submit pull requests. Contributions are welcome!
